@@ -150,7 +150,7 @@ openclaw logs --follow
 # 查看待审批配对
 openclaw pairing list feishu
 # 批准指定码
-openclaw pairing approve feishu <配对码>
+openclaw pairing approve feishu &lt;配对码&gt;
 ```
 
 批准后即可正常对话。
@@ -280,7 +280,7 @@ openclaw pairing approve feishu <配对码>
 | openclaw gateway status | 网关状态 |
 | openclaw logs --follow | 实时日志 |
 | openclaw pairing list feishu | 查看配对 |
-| openclaw pairing approve feishu <code> | 批准用户 |
+| openclaw pairing approve feishu &lt;code&gt; | 批准用户 |
 
 ---
 
