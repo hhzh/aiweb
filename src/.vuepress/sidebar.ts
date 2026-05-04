@@ -8,6 +8,7 @@ export default sidebar({
             icon: "laptop-code",
             prefix: "claudecode/",
             link: "claudecode/",
+            collapsible: true,
             children: "structure",
         },
         {
@@ -15,6 +16,7 @@ export default sidebar({
             icon: "book",
             prefix: "codex/",
             link: "codex/",
+            collapsible: true,
             children: "structure",
         },
         {
@@ -22,6 +24,7 @@ export default sidebar({
             icon: "laptop-code",
             prefix: "skills/",
             link: "skills/",
+            collapsible: true,
             children: "structure",
         },
         {
@@ -29,6 +32,7 @@ export default sidebar({
             icon: "laptop-code",
             prefix: "agent/",
             link: "agent/",
+            collapsible: true,
             children: "structure",
         },
         {
@@ -36,6 +40,7 @@ export default sidebar({
             icon: "person-chalkboard",
             prefix: "openclaw/",
             link: "openclaw/",
+            collapsible: true,
             children: "structure",
         },
         {
@@ -43,6 +48,7 @@ export default sidebar({
             icon: "signs-post",
             prefix: "obsidian/",
             link: "obsidian/",
+            collapsible: true,
             children: "structure",
         },
         {
@@ -50,6 +56,7 @@ export default sidebar({
             icon: "gears",
             prefix: "tool/",
             link: "tool/",
+            collapsible: true,
             children: "structure",
         },
     ],

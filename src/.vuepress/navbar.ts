@@ -9,7 +9,7 @@ export default navbar([
     },
     {
         text: "codex",
-        icon: "book",
+        icon: "dumbbell",
         link: "/codex/",
     },
     {
@@ -26,11 +26,6 @@ export default navbar([
         text: "openclaw",
         icon: "book",
         link: "/openclaw/",
-    },
-    {
-        text: "agent",
-        icon: "book",
-        link: "/agent/",
     },
     {
         text: "obsidian",

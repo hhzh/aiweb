@@ -177,6 +177,5 @@ curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/
 
 ## 七、总结
 
-karpathy\-skills 用**4 条极简准则**，把 AI 编码从 “自由发挥” 变为 “可控交付”：先思考防瞎猜、简洁防臃肿、精准防乱改、目标防敷衍。无论是个人开发还是团队协作，只需一个文件或一行插件命令，就能显著提升 AI 生成代码的质量与可维护性，是 Claude Code 用户的必备效率工具。
+karpathy -skills 用**4 条极简准则**，把 AI 编码从 “自由发挥” 变为 “可控交付”：先思考防瞎猜、简洁防臃肿、精准防乱改、目标防敷衍。无论是个人开发还是团队协作，只需一个文件或一行插件命令，就能显著提升 AI 生成代码的质量与可维护性，是 Claude Code 用户的必备效率工具。
 
-> （注：文档部分内容可能由 AI 生成）

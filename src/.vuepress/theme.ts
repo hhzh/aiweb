@@ -6,10 +6,10 @@ import sidebar from "./sidebar.js";
 export default hopeTheme({
   hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
 
-  author: {
-    name: "Mr.Hope",
-    url: "https://mister-hope.com",
-  },
+  // author: {
+  //   name: "Mr.Hope",
+  //   url: "https://mister-hope.com",
+  // },
 
   logo: "https://theme-hope-assets.vuejs.press/logo.svg",
 
@@ -25,7 +25,7 @@ export default hopeTheme({
 
   // 页脚
   footer: "默认页脚",
-  displayFooter: true,
+  displayFooter: false,
 
   // 加密配置
   encrypt: {
@@ -39,7 +39,7 @@ export default hopeTheme({
 
   // 多语言配置
   metaLocales: {
-    editLink: "在 GitHub 上编辑此页",
+    // editLink: "在 GitHub 上编辑此页",
   },
 
   // 如果想要实时查看任何改变，启用它。注: 这对更新性能有很大负面影响
@@ -105,7 +105,7 @@ export default hopeTheme({
     // flowchart: true,
 
     // 在启用之前安装 mermaid
-    // mermaid: true,
+    mermaid: true,
 
     // playground: {
     //   presets: ["ts", "vue"],
