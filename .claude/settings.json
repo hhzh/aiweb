@@ -1,0 +1,31 @@
+{
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
+      "Read(~/.zshrc)",
+      "Edit(./ai/**/*)",
+      "Bash(echo *)",
+      "Bash(ls *)",
+      "Bash(cd *)",
+      "Bash(sed *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(awk *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(mv *)",
+      "Bash(for *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(git diff *)",
+      "Bash(git checkout *)",
+      "Bash(git commit *)",
+      "Bash(git * main)"
+    ]
+  }
+}

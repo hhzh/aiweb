@@ -6,11 +6,9 @@ export default defineUserConfig({
   base: "/",
 
   lang: "zh-CN",
-  title: "文档演示",
-  description: "vuepress-theme-hope 的文档演示",
+  title: "小林学AI",
+  description: "小林学AI，专业的 AI 教程网站",
 
   theme,
 
-  // 和 PWA 一起启用
-  // shouldPrefetch: false,
 });

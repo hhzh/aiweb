@@ -2,30 +2,44 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
   "/",
-  "/portfolio",
-  "/demo/",
   {
-    text: "指南",
+    text: "Claude Code教程",
     icon: "lightbulb",
-    prefix: "/guide/",
-    children: [
-      {
-        text: "Bar",
-        icon: "lightbulb",
-        prefix: "bar/",
-        children: ["baz", { text: "...", icon: "ellipsis", link: "" }],
-      },
-      {
-        text: "Foo",
-        icon: "lightbulb",
-        prefix: "foo/",
-        children: ["ray", { text: "...", icon: "ellipsis", link: "" }],
-      },
-    ],
+    link: "/claudecode/",
   },
   {
-    text: "V2 文档",
+    text: "codex",
     icon: "book",
-    link: "https://theme-hope.vuejs.press/zh/",
+    link: "/codex/",
+  },
+  {
+    text: "skills",
+    icon: "book",
+    link: "/skills/",
+  },
+  {
+    text: "agent",
+    icon: "book",
+    link: "/agent/",
+  },
+  {
+    text: "openclaw",
+    icon: "book",
+    link: "/openclaw/",
+  },
+  {
+    text: "agent",
+    icon: "book",
+    link: "/agent/",
+  },
+  {
+    text: "obsidian",
+    icon: "book",
+    link: "/obsidian/",
+  },
+  {
+    text: "tool",
+    icon: "book",
+    link: "/tool/",
   },
 ]);

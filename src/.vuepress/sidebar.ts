@@ -3,12 +3,11 @@ import { sidebar } from "vuepress-theme-hope";
 export default sidebar({
   "/": [
     "",
-    "portfolio",
     {
-      text: "案例",
+      text: "Claude Code",
       icon: "laptop-code",
-      prefix: "demo/",
-      link: "demo/",
+      prefix: "claudecode/",
+      link: "claudecode/",
       children: "structure",
     },
     {
