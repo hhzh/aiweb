@@ -14,7 +14,7 @@ export default navbar([
   },
   {
     text: "skills",
-    icon: "book",
+    icon: "laptop-code",
     link: "/skills/",
   },
   {
@@ -39,7 +39,7 @@ export default navbar([
   },
   {
     text: "tool",
-    icon: "book",
+    icon: "gears",
     link: "/tool/",
   },
 ]);
