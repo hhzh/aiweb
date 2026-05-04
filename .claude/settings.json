@@ -6,7 +6,8 @@
     "defaultMode": "acceptEdits",
     "allow": [
       "Bash(npm run lint)",
-      "Bash(npm run test:*)",
+      "Bash(npm run lint)",
+      "Bash(pnpm run *)",
       "Read(~/.zshrc)",
       "Edit(./ai/**/*)",
       "Bash(echo *)",
