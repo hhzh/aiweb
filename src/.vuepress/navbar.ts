@@ -28,11 +28,6 @@ export default navbar([
         link: "/openclaw/",
     },
     {
-        text: "obsidian",
-        icon: "book",
-        link: "/obsidian/",
-    },
-    {
         text: "tool",
         icon: "gears",
         link: "/tool/",

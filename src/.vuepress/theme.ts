@@ -13,7 +13,7 @@ export default hopeTheme({
 
   logo: "logo_black.png",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  // repo: "vuepress-theme-hope/vuepress-theme-hope",
 
   docsDir: "src",
 
@@ -26,6 +26,11 @@ export default hopeTheme({
   // 页脚
   footer: "默认页脚",
   displayFooter: false,
+
+  // 隐藏页面底部信息
+  editLink: false,
+  lastUpdated: false,
+  contributors: false,
 
   // 加密配置
   encrypt: {

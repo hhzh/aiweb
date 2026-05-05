@@ -5,7 +5,7 @@ export default sidebar({
         "",
         {
             text: "Claude Code",
-            icon: "laptop-code",
+            icon: "book",
             prefix: "claudecode/",
             link: "claudecode/",
             collapsible: true,
@@ -21,7 +21,7 @@ export default sidebar({
         },
         {
             text: "skills",
-            icon: "laptop-code",
+            icon: "book",
             prefix: "skills/",
             link: "skills/",
             collapsible: true,
@@ -29,7 +29,7 @@ export default sidebar({
         },
         {
             text: "agent",
-            icon: "laptop-code",
+            icon: "book",
             prefix: "agent/",
             link: "agent/",
             collapsible: true,
@@ -37,17 +37,9 @@ export default sidebar({
         },
         {
             text: "openclaw",
-            icon: "person-chalkboard",
+            icon: "book",
             prefix: "openclaw/",
             link: "openclaw/",
-            collapsible: true,
-            children: "structure",
-        },
-        {
-            text: "obsidian",
-            icon: "signs-post",
-            prefix: "obsidian/",
-            link: "obsidian/",
             collapsible: true,
             children: "structure",
         },
