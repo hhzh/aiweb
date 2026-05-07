@@ -25,3 +25,4 @@ mvnw
 /src/.vuepress/.cache/
 /src/.vuepress/.temp/
 /.idea/
+/.playwright-cli/
