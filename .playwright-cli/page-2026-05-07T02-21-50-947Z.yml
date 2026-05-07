@@ -1,0 +1,976 @@
+- generic [ref=e2]:
+  - navigation [ref=e4]:
+    - list [ref=e5]:
+      - listitem [ref=e6]:
+        - banner "开发者的网上家园" [ref=e7] [cursor=pointer]:
+          - img "博客园Logo" [ref=e8]
+      - listitem [ref=e9]:
+        - link "会员" [ref=e10] [cursor=pointer]:
+          - /url: https://cnblogs.vip/
+      - listitem [ref=e11]:
+        - link "周边" [ref=e12] [cursor=pointer]:
+          - /url: https://cnblogs.vip/store
+      - listitem [ref=e13]:
+        - link "新闻" [ref=e14] [cursor=pointer]:
+          - /url: https://news.cnblogs.com/
+      - listitem [ref=e15]:
+        - link "博问" [ref=e16] [cursor=pointer]:
+          - /url: https://q.cnblogs.com/
+      - listitem [ref=e17]:
+        - link "闪存" [ref=e18] [cursor=pointer]:
+          - /url: https://ing.cnblogs.com/
+      - listitem [ref=e19]:
+        - link "班级" [ref=e20] [cursor=pointer]:
+          - /url: https://edu.cnblogs.com/
+      - listitem [ref=e21]:
+        - link "赞助商" [ref=e22] [cursor=pointer]:
+          - /url: https://www.cnblogs.com/cmt/p/19316348
+      - listitem [ref=e23]:
+        - link "HarmonyOS" [ref=e24] [cursor=pointer]:
+          - /url: https://harmonyos.cnblogs.com/
+      - listitem [ref=e25]:
+        - link "YouClaw" [ref=e26] [cursor=pointer]:
+          - /url: https://youclaw.dev/
+      - listitem [ref=e27]:
+        - img [ref=e29]
+        - generic:
+          - link "怀旧" [ref=e30] [cursor=pointer]:
+            - /url: /legacy
+          - link "园子" [ref=e31] [cursor=pointer]:
+            - /url: https://home.cnblogs.com/
+          - link "收藏" [ref=e32] [cursor=pointer]:
+            - /url: https://wz.cnblogs.com/
+    - list [ref=e33]:
+      - listitem [ref=e34]:
+        - search [ref=e35]:
+          - searchbox "代码改变世界" [ref=e36]
+          - button "搜索" [ref=e37] [cursor=pointer]:
+            - img "搜索" [ref=e38]
+          - list:
+            - listitem [ref=e39]:
+              - img "搜索" [ref=e41]
+              - generic [ref=e42]: 所有博客
+            - listitem [ref=e43]:
+              - img "搜索" [ref=e45]
+              - generic [ref=e46]: 我的博客
+      - listitem [ref=e47]:
+        - link "写随笔" [ref=e48] [cursor=pointer]:
+          - /url: https://i.cnblogs.com/EditPosts.aspx?opt=1
+          - img "写随笔" [ref=e49]
+        - link "我的博客" [ref=e50] [cursor=pointer]:
+          - /url: https://account.cnblogs.com/blog-apply
+          - img "我的博客" [ref=e51]
+        - link "短消息" [ref=e52] [cursor=pointer]:
+          - /url: https://msg.cnblogs.com/
+          - img "短消息" [ref=e53]
+        - generic [ref=e54]:
+          - link "用户头像" [ref=e55] [cursor=pointer]:
+            - /url: https://home.cnblogs.com/u/3796252
+            - img "用户头像" [ref=e56]
+          - generic:
+            - link "我的博客" [ref=e57] [cursor=pointer]:
+              - /url: https://account.cnblogs.com/blog-apply
+            - link "我的园子" [ref=e58] [cursor=pointer]:
+              - /url: https://home.cnblogs.com/
+            - link "账号设置" [ref=e59] [cursor=pointer]:
+              - /url: https://account.cnblogs.com/settings/account
+            - link "会员中心" [ref=e60] [cursor=pointer]:
+              - /url: https://vip.cnblogs.com/my
+            - link "简洁模式" [ref=e61] [cursor=pointer]:
+              - /url: javascript:void(0)
+            - link "退出登录" [ref=e62] [cursor=pointer]:
+              - /url: javascript:void(0)
+  - link [ref=e63] [cursor=pointer]:
+    - /url: https://www.volcengine.com/activity/codingplan?utm_campaign=hw&utm_content=hw&utm_medium=devrel_tool_web&utm_source=OWO&utm_term=cnblogs
+    - img [ref=e65]
+  - generic [ref=e67]:
+    - list [ref=e69]:
+      - listitem [ref=e70]:
+        - link "分类" [ref=e71] [cursor=pointer]:
+          - /url: "#cate-menu"
+          - img [ref=e72]
+          - generic [ref=e73]: 分类
+      - listitem [ref=e74]:
+        - link "精华" [ref=e75] [cursor=pointer]:
+          - /url: /pick/
+          - img [ref=e76]
+          - generic [ref=e77]: 精华
+      - listitem [ref=e78]:
+        - link "候选" [ref=e79] [cursor=pointer]:
+          - /url: /candidate/
+          - img [ref=e80]
+          - generic [ref=e81]: 候选
+      - listitem [ref=e82]
+      - listitem [ref=e83]:
+        - link "订阅" [ref=e84] [cursor=pointer]:
+          - /url: /subscription
+          - img [ref=e85]
+          - generic [ref=e86]: 订阅
+      - listitem [ref=e87]:
+        - link "关注" [ref=e88] [cursor=pointer]:
+          - /url: /following
+          - img [ref=e89]
+          - generic [ref=e90]: 关注
+      - listitem [ref=e91]:
+        - link "我评" [ref=e92] [cursor=pointer]:
+          - /url: /aggsite/mycommented
+          - img [ref=e93]
+          - generic [ref=e94]: 我评
+      - listitem [ref=e95]:
+        - link "我赞" [ref=e96] [cursor=pointer]:
+          - /url: /aggsite/mydigged
+          - img [ref=e97]
+          - generic [ref=e98]: 我赞
+      - listitem [ref=e99]:
+        - link "足迹" [ref=e100] [cursor=pointer]:
+          - /url: /aggsite/myhistory
+          - img [ref=e101]
+          - generic [ref=e102]: 足迹
+      - listitem [ref=e103]:
+        - link "更多" [ref=e105] [cursor=pointer]:
+          - /url: javascript:void(0)
+          - img [ref=e106]
+          - text: 更多
+        - generic:
+          - link "所有随笔" [ref=e107] [cursor=pointer]:
+            - /url: /cate/all
+          - link "所有文章" [ref=e108] [cursor=pointer]:
+            - /url: /cate/articles
+          - link "最新评论" [ref=e109] [cursor=pointer]:
+            - /url: /comment/
+          - link "官方博客" [ref=e110] [cursor=pointer]:
+            - /url: /cmt/
+          - link "博客皮肤" [ref=e111] [cursor=pointer]:
+            - /url: /skins.aspx
+      - listitem [ref=e112]
+      - listitem [ref=e113]:
+        - link "反馈" [ref=e114] [cursor=pointer]:
+          - /url: https://group.cnblogs.com/forum/public/
+          - img [ref=e115]
+          - generic [ref=e116]: 反馈
+      - listitem [ref=e117]:
+        - link [ref=e118] [cursor=pointer]:
+          - /url: javascript:void(0)
+          - img [ref=e119]
+    - generic [ref=e121]:
+      - list [ref=e123]:
+        - listitem [ref=e124]:
+          - link "【编辑推荐】DeepSeek V4模型的Agent能力实测 (20/33/5712)" [ref=e125] [cursor=pointer]:
+            - /url: https://www.cnblogs.com/zhayujie/p/19935607/deepseek-v4-eval
+          - link "»" [ref=e126] [cursor=pointer]:
+            - /url: /aggsite/headline
+        - listitem [ref=e127]:
+          - link "【最多推荐】从 305 GB 到 7.4 GB：大模型 KVCache 架构演进全景(0/6/203)" [ref=e128] [cursor=pointer]:
+            - /url: https://www.cnblogs.com/cswuyg/p/19981922
+          - link "»" [ref=e129] [cursor=pointer]:
+            - /url: /aggsite/topdigged24h
+        - listitem [ref=e130]:
+          - link "【新闻头条】全身麻醉状态下大脑仍具复杂语言处理能力(0/0/102)" [ref=e131] [cursor=pointer]:
+            - /url: https://news.cnblogs.com/n/821754/
+          - link "»" [ref=e132] [cursor=pointer]:
+            - /url: https://news.cnblogs.com/
+        - listitem [ref=e133]:
+          - link "【推荐新闻】“DeepSeek版Claude Code”，Github 2.3k星(0/13/368)" [ref=e134] [cursor=pointer]:
+            - /url: https://news.cnblogs.com/n/821714/
+          - link "»" [ref=e135] [cursor=pointer]:
+            - /url: https://news.cnblogs.com/n/recommend
+      - generic [ref=e136]:
+        - article [ref=e137]:
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - link "【译】Azure MCP 工具现已内置集成至 Visual Studio 2022，无需额外安装扩展" [ref=e140] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/MeteorSeed/p/19979206
+              - paragraph [ref=e141]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/MeteorSeed
+                  - img "博主头像" [ref=e142] [cursor=pointer]
+                - text: Azure MCP 工具现已内置到 Visual Studio 2022 的 Azure 开发工作负载中，无需单独查找、安装或更新扩展程序。您可以在 GitHub Copilot Chat 界面中直接启用涵盖 45 项 Azure 服务的 230 余种工具，无需离开 IDE，即可管理 Azure 资 ...
+            - generic [ref=e143]:
+              - link "MeteorSeed" [ref=e144] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/MeteorSeed
+              - generic [ref=e146]: 2026-05-07 10:02
+              - link "0" [ref=e147] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/MeteorSeed/p/19979206#commentform
+                - img [ref=e148]
+                - generic [ref=e150]: "0"
+              - link "0" [ref=e151] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e152]
+                - generic [ref=e154]: "0"
+              - link "7" [ref=e155] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/MeteorSeed/p/19979206
+                - img [ref=e156]
+                - generic [ref=e158]: "7"
+          - figure
+        - article [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - link "给 AI 用的代码索引器-技术篇" [ref=e162] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt/p/19984718
+              - paragraph [ref=e163]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/adouwt
+                  - img "博主头像" [ref=e164] [cursor=pointer]
+                - text: "## 问题定义：为什么需要“代码索引器”？ 很多团队都遇到过这些问题： - 代码库较大，AI 只能“盲猜”业务结构 - 每次让 AI 介入都要重复解释模块关系 - 变更后没有增量更新，索引很快过期 - 提交代码时缺少“上下文产物”的自动更新机制 目标很明确：**把“给 AI 解释项目”从一次性... ..."
+            - generic [ref=e165]:
+              - link "adouwt" [ref=e166] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt
+              - generic [ref=e168]: 2026-05-07 09:51
+              - link "0" [ref=e169] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt/p/19984718#commentform
+                - img [ref=e170]
+                - generic [ref=e172]: "0"
+              - link "0" [ref=e173] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e174]
+                - generic [ref=e176]: "0"
+              - link "20" [ref=e177] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt/p/19984718
+                - img [ref=e178]
+                - generic [ref=e180]: "20"
+          - figure
+        - article [ref=e181]:
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - link "京东二面：Redis的使用场景有哪些？别说你只用过缓存" [ref=e184] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/12lisu/p/19984494
+              - paragraph [ref=e185]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/12lisu
+                  - img "博主头像" [ref=e186] [cursor=pointer]
+                - text: 前言 最近面试季，好多小伙伴都反馈同一个问题：“面试官问我Redis的使用场景，我只说了缓存，结果当场被怼——‘就这？’” 其实，Redis远不止“缓存”这么简单。 它是一个多才多艺的选手，凭借内存读写、丰富的数据结构、原子操作、持久化、高可用等特性，几乎渗透到了后端开发的所有角落。 今天这篇文章就 ...
+            - generic [ref=e187]:
+              - link "苏三说技术" [ref=e188] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/12lisu
+              - generic [ref=e190]: 2026-05-07 09:25
+              - link "0" [ref=e191] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/12lisu/p/19984494#commentform
+                - img [ref=e192]
+                - generic [ref=e194]: "0"
+              - link "1" [ref=e195] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e196]
+                - generic [ref=e198]: "1"
+              - link "77" [ref=e199] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/12lisu/p/19984494
+                - img [ref=e200]
+                - generic [ref=e202]: "77"
+          - figure
+        - article [ref=e203]:
+          - generic [ref=e204]:
+            - generic [ref=e205]:
+              - link "最小二乘问题详解：目录" [ref=e206] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44/p/19984452
+              - paragraph [ref=e207]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/charlee44
+                  - img "博主头像" [ref=e208] [cursor=pointer]
+                - text: 本系列文章系统性地讲解了从最小二乘法的数学原理到增量式SFM三维重建系统的完整知识体系，涵盖了线性与非线性求解、多视图几何建模以及工程实践中的鲁棒优化等核心内容。 ...
+            - generic [ref=e209]:
+              - link "charlee44" [ref=e210] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44
+              - img "博客园VIP会员" [ref=e211]
+              - generic [ref=e213]: 2026-05-07 09:19
+              - link "0" [ref=e214] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44/p/19984452#commentform
+                - img [ref=e215]
+                - generic [ref=e217]: "0"
+              - link "0" [ref=e218] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e219]
+                - generic [ref=e221]: "0"
+              - link "17" [ref=e222] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44/p/19984452
+                - img [ref=e223]
+                - generic [ref=e225]: "17"
+          - figure
+        - article [ref=e226]:
+          - generic [ref=e227]:
+            - generic [ref=e228]:
+              - link "12. LangChain 6大核心调用方法：invoke/stream/batch同步异步全解析，新手也能轻松学会" [ref=e229] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/halfcode/p/19984344
+              - paragraph [ref=e230]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/halfcode
+                  - img "博主头像" [ref=e231] [cursor=pointer]
+                - text: 做 AI 应用开发的朋友都有体会，不同业务场景对大模型的调用方式，要求天差地别。为了适配各类开发需求，帮大家省去重复造轮子的麻烦，LangChain 针对大模型对话交互，封装了 6 种核心调用模式，几乎覆盖了绝大多数开发场景。 invoke/ainvoke 是单次调用、一次性返回全部结果，前者同步会 ...
+            - generic [ref=e232]:
+              - link "老陈说编程" [ref=e233] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/halfcode
+              - generic [ref=e235]: 2026-05-07 09:06
+              - link "0" [ref=e236] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/halfcode/p/19984344#commentform
+                - img [ref=e237]
+                - generic [ref=e239]: "0"
+              - link "0" [ref=e240] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e241]
+                - generic [ref=e243]: "0"
+              - link "36" [ref=e244] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/halfcode/p/19984344
+                - img [ref=e245]
+                - generic [ref=e247]: "36"
+          - figure
+        - article [ref=e248]:
+          - generic [ref=e249]:
+            - generic [ref=e250]:
+              - link "Tomcat Container的管道机制：责任链模式" [ref=e251] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/sevencoding/p/19963752
+              - paragraph [ref=e252]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/sevencoding
+                  - img "博主头像" [ref=e253] [cursor=pointer]
+                - text: 内容引入 承接上文Engine的设计，从以下几个方面，我将向你解释为什么要理解Tomcat中管道机制，它要解决什么问题？ Tomcat总计架构图中Pipeline和Vavle 我们在上文Engine中有一块Pipline没有解释： 为什么Tomcat要引入Pipline呢？它要解决什么问题呢？ 下文 ...
+            - generic [ref=e254]:
+              - link "程序员Seven" [ref=e255] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/sevencoding
+              - img "博客园VIP会员" [ref=e256]
+              - generic [ref=e258]: 2026-05-07 09:00
+              - link "0" [ref=e259] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/sevencoding/p/19963752#commentform
+                - img [ref=e260]
+                - generic [ref=e262]: "0"
+              - link "0" [ref=e263] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e264]
+                - generic [ref=e266]: "0"
+              - link "27" [ref=e267] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/sevencoding/p/19963752
+                - img [ref=e268]
+                - generic [ref=e270]: "27"
+          - figure
+        - article [ref=e271]:
+          - generic [ref=e272]:
+            - generic [ref=e273]:
+              - link "transformer进阶之路：#2 工作原理详解" [ref=e274] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aifrontiers/p/19977706
+              - paragraph [ref=e275]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/aifrontiers
+                  - img "博主头像" [ref=e276] [cursor=pointer]
+                - text: "原文： 欢迎关注公众h: AI-Frontiers transformer往期文章推荐 收藏! transformer学习资源汇总 transformer进阶之路：#1 整体概述 这是Transformer系列文章的第二篇。在第一篇中 transformer进阶之路：#1 整体概述 中，我们了解了 ..."
+            - generic [ref=e277]:
+              - link "AI-Frontiers" [ref=e278] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aifrontiers
+              - generic [ref=e280]: 2026-05-07 08:36
+              - link "0" [ref=e281] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aifrontiers/p/19977706#commentform
+                - img [ref=e282]
+                - generic [ref=e284]: "0"
+              - link "0" [ref=e285] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e286]
+                - generic [ref=e288]: "0"
+              - link "55" [ref=e289] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aifrontiers/p/19977706
+                - img [ref=e290]
+                - generic [ref=e292]: "55"
+          - figure
+        - article [ref=e293]:
+          - generic [ref=e294]:
+            - generic [ref=e295]:
+              - link ".NET生态系统中的A2A（Agent-to-Agent）协议支持与跨平台多智能体协同" [ref=e296] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/shanyou/p/19974558/dotnet-a2a
+              - paragraph [ref=e297]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/shanyou
+                  - img "博主头像" [ref=e298] [cursor=pointer]
+                - text: 本文将深入剖析A2A v1.0协议的核心规范设计，并详尽解析上述三大.NET核心框架在实现A2A协议时的技术路径、多态架构演变及其对企业级AI系统设计的深远影响。 ...
+            - generic [ref=e299]:
+              - link "张善友" [ref=e300] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/shanyou
+              - img "博客园VIP会员" [ref=e301]
+              - generic [ref=e303]: 2026-05-06 22:22
+              - link "0" [ref=e304] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/shanyou/p/19974558/dotnet-a2a#commentform
+                - img [ref=e305]
+                - generic [ref=e307]: "0"
+              - link "0" [ref=e308] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e309]
+                - generic [ref=e311]: "0"
+              - link "163" [ref=e312] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/shanyou/p/19974558/dotnet-a2a
+                - img [ref=e313]
+                - generic [ref=e315]: "163"
+          - figure
+        - article [ref=e316]:
+          - generic [ref=e317]:
+            - generic [ref=e318]:
+              - link "Cilium VXLAN 模式使用说明" [ref=e319] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/manuscript/p/19982986
+              - paragraph [ref=e320]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/manuscript
+                  - img "博主头像" [ref=e321] [cursor=pointer]
+                - text: 模式介绍 项目文档：https://docs.cilium.io/en/stable/network/concepts/routing/#encapsulation VXLAN 模式对底层网络基础设施的要求最。在此模式下，所有集群节点通过基于 UDP 的封装协议（VXLAN 或 Geneve）建立起 ...
+            - generic [ref=e322]:
+              - link "怎么还在写代码" [ref=e323] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/manuscript
+              - img "博客园VIP会员" [ref=e324]
+              - generic [ref=e326]: 2026-05-06 22:03
+              - link "0" [ref=e327] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/manuscript/p/19982986#commentform
+                - img [ref=e328]
+                - generic [ref=e330]: "0"
+              - link "1" [ref=e331] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e332]
+                - generic [ref=e334]: "1"
+              - link "58" [ref=e335] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/manuscript/p/19982986
+                - img [ref=e336]
+                - generic [ref=e338]: "58"
+          - figure
+        - article [ref=e339]:
+          - generic [ref=e340]:
+            - generic [ref=e341]:
+              - link "【GUI-Agent】阿里通义MAI-UI 代码阅读（1）--- 总体" [ref=e342] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/rossiXYZ/p/19963830
+              - paragraph [ref=e343]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/rossiXYZ
+                  - img "博主头像" [ref=e344] [cursor=pointer]
+                - text: 【GUI-Agent】阿里通义MAI-UI 代码阅读（1） 总体 目录【GUI-Agent】阿里通义MAI-UI 代码阅读（1） 总体0x00 摘要0x01 特色1.1 端云协同1.2 应对挑战1.3 核心Agent1.4 整体架构图1.5 评测流程图0x02 MCP在MAI-UI中的作用2.1 M ...
+            - generic [ref=e345]:
+              - link "罗西的思考" [ref=e346] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/rossiXYZ
+              - generic [ref=e348]: 2026-05-06 20:30
+              - link "0" [ref=e349] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/rossiXYZ/p/19963830#commentform
+                - img [ref=e350]
+                - generic [ref=e352]: "0"
+              - link "0" [ref=e353] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e354]
+                - generic [ref=e356]: "0"
+              - link "82" [ref=e357] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/rossiXYZ/p/19963830
+                - img [ref=e358]
+                - generic [ref=e360]: "82"
+          - figure
+        - article [ref=e361]:
+          - generic [ref=e362]:
+            - generic [ref=e363]:
+              - link "最小二乘问题详解22：抗差估计与增量式SFM的工程稳健实现" [ref=e364] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44/p/19982556
+              - paragraph [ref=e365]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/charlee44
+                  - img "博主头像" [ref=e366] [cursor=pointer]
+                - text: 本文深入探讨了增量式SFM（运动恢复结构）系统在工程实践中如何应对数据外点（Outliers）的挑战，通过引入抗差估计（Robust Estimation）理论，详细阐述了从初始化、迭代注册到全局优化的全流程鲁棒性改进方案，并验证了其在含噪仿真数据中的有效性。 ...
+            - generic [ref=e367]:
+              - link "charlee44" [ref=e368] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44
+              - img "博客园VIP会员" [ref=e369]
+              - generic [ref=e371]: 2026-05-06 19:53
+              - link "0" [ref=e372] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44/p/19982556#commentform
+                - img [ref=e373]
+                - generic [ref=e375]: "0"
+              - link "0" [ref=e376] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e377]
+                - generic [ref=e379]: "0"
+              - link "43" [ref=e380] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/charlee44/p/19982556
+                - img [ref=e381]
+                - generic [ref=e383]: "43"
+          - figure
+        - article [ref=e384]:
+          - generic [ref=e385]:
+            - generic [ref=e386]:
+              - link "JSON 数据格式" [ref=e387] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/young520/p/19952027
+              - paragraph [ref=e388]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/young520
+                  - img "博主头像" [ref=e389] [cursor=pointer]
+                - text: JSON 起源于 JavaScript 语言，是一种轻量级的数据交换格式。 它由键值对组成，采用完全独立于编程语言的文本格式，易于人阅读和编写，同时也易于机器解析和生成，常用于前后端之间的数据交换以及配置信息的存储、NoSQL 数据库的数据存储。本篇介绍 JSON 格式发展历程以及实现要求。 ...
+            - generic [ref=e390]:
+              - link "木三百川" [ref=e391] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/young520
+              - generic [ref=e393]: 2026-05-06 19:41
+              - link "0" [ref=e394] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/young520/p/19952027#commentform
+                - img [ref=e395]
+                - generic [ref=e397]: "0"
+              - link "0" [ref=e398] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e399]
+                - generic [ref=e401]: "0"
+              - link "110" [ref=e402] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/young520/p/19952027
+                - img [ref=e403]
+                - generic [ref=e405]: "110"
+          - figure
+        - article [ref=e406]:
+          - generic [ref=e407]:
+            - generic [ref=e408]:
+              - link "[golang编码小技巧]对数组元素赋值时，先赋值尾部再赋值头部就会变快" [ref=e409] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/ahfuzhang/p/19982170
+              - paragraph [ref=e410]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/ahfuzhang
+                  - img "博主头像" [ref=e411] [cursor=pointer]
+                - text: 作者:张富春(ahfuzhang)，转载时请注明作者和引用链接，谢谢！ cnblogs博客 zhihu Github 公众号:一本正经的瞎扯 最近看到一个非常棒的 protobuf 的库：github.com/planetscale/vtprotobuf 其性能非常强悍，我自己写的版本始终没干过它。 ...
+            - generic [ref=e412]:
+              - link "ahfuzhang" [ref=e413] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/ahfuzhang
+              - img "博客园VIP会员" [ref=e414]
+              - generic [ref=e416]: 2026-05-06 18:06
+              - link "0" [ref=e417] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/ahfuzhang/p/19982170#commentform
+                - img [ref=e418]
+                - generic [ref=e420]: "0"
+              - link "0" [ref=e421] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e422]
+                - generic [ref=e424]: "0"
+              - link "71" [ref=e425] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/ahfuzhang/p/19982170
+                - img [ref=e426]
+                - generic [ref=e428]: "71"
+          - figure
+        - article [ref=e429]:
+          - generic [ref=e430]:
+            - generic [ref=e431]:
+              - link "从 305 GB 到 7.4 GB：大模型 KVCache 架构演进全景" [ref=e432] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/cswuyg/p/19981922
+              - paragraph [ref=e433]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/cswuyg
+                  - img "博主头像" [ref=e434] [cursor=pointer]
+                - text: 本文已于 2026.05.06 发表于公众号和知乎。 五一本打算更新一年前写的开源引擎 KVCache 实现文档，但梳理下来发现，光是 KVCache 演进的理论部分就已足够撑起一篇独立文章。在 Agent 改变搜索习惯、重塑软件行业的今天，多轮交互带来的长上下文让 KVCache 持续膨胀，显存瓶 ...
+            - generic [ref=e435]:
+              - link "-银光-" [ref=e436] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/cswuyg
+              - generic [ref=e438]: 2026-05-06 17:46
+              - link "0" [ref=e439] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/cswuyg/p/19981922#commentform
+                - img [ref=e440]
+                - generic [ref=e442]: "0"
+              - link "6" [ref=e443] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e444]
+                - generic [ref=e446]: "6"
+              - link "203" [ref=e447] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/cswuyg/p/19981922
+                - img [ref=e448]
+                - generic [ref=e450]: "203"
+          - figure
+        - article [ref=e451]:
+          - generic [ref=e452]:
+            - generic [ref=e453]:
+              - link "给 AI 用的代码索引器" [ref=e454] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt/p/19981119
+              - paragraph [ref=e455]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/adouwt
+                  - img "博主头像" [ref=e456] [cursor=pointer]
+                - text: 产品视角：为什么你需要一个“给 AI 用的代码索引器” 在 AI 辅助开发越来越普及的今天，一个高频痛点是：AI 不理解你的项目上下文。 每次让 AI 帮你改代码、写功能、排问题时，你都要花时间解释项目结构、模块关系、业务边界。如果代码库较大，这种“解释成本”会越来越高。 于是我做了一个工具：fil ...
+            - generic [ref=e457]:
+              - link "adouwt" [ref=e458] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt
+              - generic [ref=e460]: 2026-05-06 16:38
+              - link "0" [ref=e461] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt/p/19981119#commentform
+                - img [ref=e462]
+                - generic [ref=e464]: "0"
+              - link "1" [ref=e465] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e466]
+                - generic [ref=e468]: "1"
+              - link "134" [ref=e469] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/adouwt/p/19981119
+                - img [ref=e470]
+                - generic [ref=e472]: "134"
+          - figure
+        - article [ref=e473]:
+          - generic [ref=e474]:
+            - generic [ref=e475]:
+              - link "11、（ByteArrayInputStream和DataInputStream的源码分析和使用方法详细分析前言）UTF-8 编码规则" [ref=e476] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Carey-ccl/p/19981026
+              - paragraph [ref=e477]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/Carey-ccl
+                  - img "博主头像" [ref=e478] [cursor=pointer]
+                - text: UTF-8（Unicode Transformation Format-8-bit）是一种针对 Unicode 的可变长度字符编码，通过 1 至 4 个字节表示一个字符，完美兼容 ASCII 编码，同时支持全球所有语言的字符（包括中文、日文、韩文、阿拉伯语等）。其核心设计思想是通过首字节的标识符确定 ...
+            - generic [ref=e479]:
+              - link "Carey_ccl" [ref=e480] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Carey-ccl
+              - generic [ref=e482]: 2026-05-06 16:33
+              - link "0" [ref=e483] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Carey-ccl/p/19981026#commentform
+                - img [ref=e484]
+                - generic [ref=e486]: "0"
+              - link "0" [ref=e487] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e488]
+                - generic [ref=e490]: "0"
+              - link "47" [ref=e491] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Carey-ccl/p/19981026
+                - img [ref=e492]
+                - generic [ref=e494]: "47"
+          - figure
+        - article [ref=e495]:
+          - generic [ref=e496]:
+            - generic [ref=e497]:
+              - link "深度学习进阶（十八）坐标注意力 CA" [ref=e498] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Goblinscholar/p/19981001
+              - paragraph [ref=e499]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/Goblinscholar
+                  - img "博主头像" [ref=e500] [cursor=pointer]
+                - text: 上一篇我们介绍了 ECA，它用一维卷积替代了 SE 中的 MLP bottleneck，用更少的参数实现了更好的通道注意力。 但实际上，这套框架里还有别的优化空间： 在前面的内容里，无论是 SE 、 CBAM 还是 ECA ，它们的通道注意力子模块第一步都是 全局平均池化（CBAM 额外加入了最大池 ...
+            - generic [ref=e501]:
+              - link "哥布林学者" [ref=e502] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Goblinscholar
+              - generic [ref=e504]: 2026-05-06 16:27
+              - link "0" [ref=e505] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Goblinscholar/p/19981001#commentform
+                - img [ref=e506]
+                - generic [ref=e508]: "0"
+              - link "0" [ref=e509] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e510]
+                - generic [ref=e512]: "0"
+              - link "61" [ref=e513] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/Goblinscholar/p/19981001
+                - img [ref=e514]
+                - generic [ref=e516]: "61"
+          - figure
+        - article [ref=e517]:
+          - generic [ref=e518]:
+            - generic [ref=e519]:
+              - link "记一次 .NET 某智慧工厂视觉程序 崩溃分析" [ref=e520] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/huangxincheng/p/19980635
+              - paragraph [ref=e521]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/huangxincheng
+                  - img "博主头像" [ref=e522] [cursor=pointer]
+                - text: 一：背景 1. 讲故事 好久没有写文章了，除了家里的小宝宝要照护，还有一个就是卷英语的听说去了，虽有些时段未更新，但这个 .NET高级调试之旅 肯定不会断的，感谢大家的期盼，接下来开始分享吧。 前些天有位朋友找到我，说它们的视觉程序崩溃了，让我帮忙看下怎么回事？虽然给同行们分析没有那么频了，但该出手 ...
+            - generic [ref=e523]:
+              - link "一线码农" [ref=e524] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/huangxincheng
+              - generic [ref=e526]: 2026-05-06 15:48
+              - link "0" [ref=e527] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/huangxincheng/p/19980635#commentform
+                - img [ref=e528]
+                - generic [ref=e530]: "0"
+              - link "5" [ref=e531] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e532]
+                - generic [ref=e534]: "5"
+              - link "381" [ref=e535] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/huangxincheng/p/19980635
+                - img [ref=e536]
+                - generic [ref=e538]: "381"
+          - figure
+        - article [ref=e539]:
+          - generic [ref=e540]:
+            - generic [ref=e541]:
+              - link "从被动响应到主动自愈：IT运维智能体自主诊断与修复平台建设探讨" [ref=e542] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/liuziyi1/p/19980094
+              - paragraph [ref=e543]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/liuziyi1
+                  - img "博主头像" [ref=e544] [cursor=pointer]
+                - text: 近年来，随着大数据、人工智能等新一代信息技术的快速发展，推动数字技术与实体经济深度融合已成为产业转型升级的必然选择。2024年，“人工智能+”行动首次被写入政府工作报告，2025年政府工作报告提出持续推进“人工智能+”行动。2026年4月，工业和信息化部进一步明确，将开展“人工智能+软件”专项行动， ...
+            - generic [ref=e545]:
+              - link "刘子毅" [ref=e546] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/liuziyi1
+              - generic [ref=e548]: 2026-05-06 14:54
+              - link "0" [ref=e549] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/liuziyi1/p/19980094#commentform
+                - img [ref=e550]
+                - generic [ref=e552]: "0"
+              - link "1" [ref=e553] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e554]
+                - generic [ref=e556]: "1"
+              - link "155" [ref=e557] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/liuziyi1/p/19980094
+                - img [ref=e558]
+                - generic [ref=e560]: "155"
+          - figure
+        - article [ref=e561]:
+          - generic [ref=e562]:
+            - generic [ref=e563]:
+              - link "SQLServer RAG笔记5：为SQLServer 2025配置Ollama" [ref=e564] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aspnetx/p/19980070
+              - paragraph [ref=e565]:
+                - link "博主头像":
+                  - /url: https://www.cnblogs.com/aspnetx
+                  - img "博主头像" [ref=e566] [cursor=pointer]
+                - text: 在第三篇笔记中，我们结合Python代码，通过Ollama的嵌入模型，实现了为SQLServer 2025向量数据库生成向量值。从SQLServer 2025开始，是支持直接把大模型作为EXTERNAL MODEL的。此篇将介绍如何配置Ollama里的嵌入模型作为SQLServer 2025的EXT... ...
+            - generic [ref=e567]:
+              - link "哥本哈士奇(aspnetx)" [ref=e568] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aspnetx
+              - generic [ref=e570]: 2026-05-06 14:52
+              - link "0" [ref=e571] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aspnetx/p/19980070#commentform
+                - img [ref=e572]
+                - generic [ref=e574]: "0"
+              - link "0" [ref=e575] [cursor=pointer]:
+                - /url: javascript:void(0)
+                - img [ref=e576]
+                - generic [ref=e578]: "0"
+              - link "140" [ref=e579] [cursor=pointer]:
+                - /url: https://www.cnblogs.com/aspnetx/p/19980070
+                - img [ref=e580]
+                - generic [ref=e582]: "140"
+          - figure
+      - generic [ref=e585]:
+        - link "1" [ref=e586] [cursor=pointer]:
+          - /url: /
+        - link "2" [ref=e587] [cursor=pointer]:
+          - /url: /sitehome/p/2
+        - link "3" [ref=e588] [cursor=pointer]:
+          - /url: /sitehome/p/3
+        - text: ···
+        - link "100" [ref=e589] [cursor=pointer]:
+          - /url: /sitehome/p/100
+        - link ">" [ref=e590] [cursor=pointer]:
+          - /url: /sitehome/p/2
+    - generic [ref=e591]:
+      - link [ref=e593] [cursor=pointer]:
+        - /url: https://www.trae.com.cn/?utm_source=advertising&utm_medium=cnblogs_ug_cpa&utm_term=hw_trae_cnblogs
+        - img [ref=e594]
+      - generic [ref=e595]:
+        - heading "48小时阅读排行" [level=4] [ref=e596]:
+          - link "48小时阅读排行" [ref=e597] [cursor=pointer]:
+            - /url: /aggsite/topviews
+        - list [ref=e598]:
+          - listitem [ref=e599]:
+            - generic [ref=e600]: "1"
+            - link "试了下 Codex 新出的宠物功能，吊打 Claude Code，给我玩上头了。。" [ref=e601] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/yupi/p/19977389
+          - listitem [ref=e602]:
+            - generic [ref=e603]: "2"
+            - link "五一爆肝，我写了一个离线版 Apifox 平替——ApiMocktle" [ref=e604] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/xiaohuiduan/p/19976219/apimocktletool-qnfkf
+          - listitem [ref=e605]:
+            - generic [ref=e606]: "3"
+            - link "语雀里存了三年的笔记，我花了30分钟全部「抢救」到了本地" [ref=e607] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/navyum/p/19977829
+          - listitem [ref=e608]:
+            - generic [ref=e609]: "4"
+            - link "OpenClaw.NET .NET 原生插件开发完全指南：以 Mempalace 插件为范例" [ref=e610] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/shanyou/p/19974437
+          - listitem [ref=e611]:
+            - generic [ref=e612]: "5"
+            - link "C# 也能像 Python 一样写脚本 | .NET 10 构建基于文件的应用" [ref=e613] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/denglei1024/p/19979190
+          - listitem [ref=e614]:
+            - generic [ref=e615]: "6"
+            - link ".NET 10 使用 Microsoft.AspNetCore.OpenApi 实现 API 版本管理" [ref=e616] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/denglei1024/p/19975811
+      - generic [ref=e617]:
+        - heading "10天推荐排行" [level=4] [ref=e618]:
+          - link "10天推荐排行" [ref=e619] [cursor=pointer]:
+            - /url: /aggsite/topdiggs
+        - list [ref=e620]:
+          - listitem [ref=e621]:
+            - generic [ref=e622]: "1"
+            - link "DeepSeek V4模型的Agent能力实测" [ref=e623] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/zhayujie/p/19935607/deepseek-v4-eval
+          - listitem [ref=e624]:
+            - generic [ref=e625]: "2"
+            - link "《HelloGitHub》第 121 期" [ref=e626] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/xueweihan/p/19940573
+          - listitem [ref=e627]:
+            - generic [ref=e628]: "3"
+            - link "SonnetDB：.NET 生态下的高性能嵌入式时序数据库" [ref=e629] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/shanyou/p/19939715/SonnetDB
+          - listitem [ref=e630]:
+            - generic [ref=e631]: "4"
+            - link "五一爆肝，我写了一个离线版 Apifox 平替——ApiMocktle" [ref=e632] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/xiaohuiduan/p/19976219/apimocktletool-qnfkf
+          - listitem [ref=e633]:
+            - generic [ref=e634]: "5"
+            - link "[C#] 零依赖高性能跨平台 Web 胶水库 PicoServer 价值挖掘与选型推荐" [ref=e635] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/juziyu/p/19948369
+          - listitem [ref=e636]:
+            - generic [ref=e637]: "6"
+            - link "为什么 React 和 Vue 不一样？" [ref=e638] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/wjszxli/p/19952269
+      - link [ref=e640] [cursor=pointer]:
+        - /url: https://developer.huawei.com/consumer/cn/features/?ha_source=bokeyuan&ha_sourceId=89000449
+        - img [ref=e641]
+      - generic [ref=e642]:
+        - heading "15天热门博文" [level=4] [ref=e643]:
+          - link "15天热门博文" [ref=e644] [cursor=pointer]:
+            - /url: /aggsite/popular
+        - list [ref=e645]:
+          - listitem [ref=e646]:
+            - generic [ref=e647]: "1"
+            - link "DeepSeek V4模型的Agent能力实测" [ref=e648] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/zhayujie/p/19935607/deepseek-v4-eval
+          - listitem [ref=e649]:
+            - generic [ref=e650]: "2"
+            - link "Kimi 新模型发布！教你如何在 Claude Code 上配置并使用最新的 k2.6 模型！" [ref=e651] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/ACaiGarden/p/19911202
+          - listitem [ref=e652]:
+            - generic [ref=e653]: "3"
+            - link "RAG 是什么？16 种 RAG 方案一次讲清！AI 应用开发必学 | 万字干货" [ref=e654] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/yupi/p/19914426
+          - listitem [ref=e655]:
+            - generic [ref=e656]: "4"
+            - link "白嫖小米 MiMo 百万亿 Token，附 Claude Code 配置全流程！" [ref=e657] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/Can-daydayup/p/19972541
+          - listitem [ref=e658]:
+            - generic [ref=e659]: "5"
+            - link "再次感谢梁文锋和DeepSeekV4，历史性的一天！" [ref=e660] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/zh94/p/19928658
+          - listitem [ref=e661]:
+            - generic [ref=e662]: "6"
+            - link "试了下 Codex 新出的宠物功能，吊打 Claude Code，给我玩上头了。。" [ref=e663] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/yupi/p/19977389
+      - generic [ref=e664]:
+        - heading "编辑推荐" [level=4] [ref=e665]:
+          - link "编辑推荐" [ref=e666] [cursor=pointer]:
+            - /url: /aggsite/headline
+        - list [ref=e667]:
+          - listitem [ref=e668]:
+            - generic [ref=e669]: "1"
+            - link "DeepSeek V4模型的Agent能力实测" [ref=e670] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/zhayujie/p/19935607/deepseek-v4-eval
+          - listitem [ref=e671]:
+            - generic [ref=e672]: "2"
+            - link "C# 15 类型系统改进：Union Types" [ref=e673] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/hez2010/p/19891530/union-types-in-csharp-15
+          - listitem [ref=e674]:
+            - generic [ref=e675]: "3"
+            - link "你能被装进一个文件里吗？——7 万人把同事“蒸馏”成了 AI" [ref=e676] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/wmyskxz/p/19854791
+          - listitem [ref=e677]:
+            - generic [ref=e678]: "4"
+            - link "别再吹牛了，100% Vibe Coding 存在无法自洽的逻辑漏洞！" [ref=e679] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/mengxiang2/p/19796426
+          - listitem [ref=e680]:
+            - generic [ref=e681]: "5"
+            - link "Pretext：值得关注的文本排版引擎" [ref=e682] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/guangzan/p/19796050
+          - listitem [ref=e683]:
+            - generic [ref=e684]: "6"
+            - link "Prompt 焚诀——一个模板，终结你和 AI 的所有沟通问题" [ref=e685] [cursor=pointer]:
+              - /url: https://www.cnblogs.com/wmyskxz/p/19754974
+      - link [ref=e687] [cursor=pointer]:
+        - /url: https://ais.cn/u/3Qf22e
+        - img [ref=e688]
+      - generic [ref=e689]:
+        - heading "热门新闻" [level=4] [ref=e690]:
+          - link "热门新闻" [ref=e691] [cursor=pointer]:
+            - /url: https://news.cnblogs.com/n/digg
+        - list [ref=e692]:
+          - listitem [ref=e693]:
+            - generic [ref=e694]: "1"
+            - link "“DeepSeek版Claude Code”，Github 2.3k星" [ref=e695] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821714/
+          - listitem [ref=e696]:
+            - generic [ref=e697]: "2"
+            - link "为了挽回用户，微软终于不强制你更新Windows了" [ref=e698] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821665/
+          - listitem [ref=e699]:
+            - generic [ref=e700]: "3"
+            - link "突发，OpenAI总裁当庭「认罪」！自曝零元购300亿，马斯克这回真要赢了？" [ref=e701] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821674/
+          - listitem [ref=e702]:
+            - generic [ref=e703]: "4"
+            - link "10年了，为什么无人机还是送不了外卖？" [ref=e704] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821657/
+          - listitem [ref=e705]:
+            - generic [ref=e706]: "5"
+            - link "DeepSeek给AI装了根赛博手指，于是它能看见了" [ref=e707] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821651/
+          - listitem [ref=e708]:
+            - generic [ref=e709]: "6"
+            - link "被AI抢走工作的人，在忙什么？" [ref=e710] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821662/
+      - generic [ref=e711]:
+        - heading "推荐新闻" [level=4] [ref=e712]:
+          - link "推荐新闻" [ref=e713] [cursor=pointer]:
+            - /url: https://news.cnblogs.com/n/recommend
+        - list [ref=e714]:
+          - listitem [ref=e715]:
+            - generic [ref=e716]: "1"
+            - link "全身麻醉状态下大脑仍具复杂语言处理能力" [ref=e717] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821754/
+          - listitem [ref=e718]:
+            - generic [ref=e719]: "2"
+            - link "“DeepSeek版Claude Code”，Github 2.3k星" [ref=e720] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821714/
+          - listitem [ref=e721]:
+            - generic [ref=e722]: "3"
+            - link "NASA成功测试锂燃料电磁推进器" [ref=e723] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821631/
+          - listitem [ref=e724]:
+            - generic [ref=e725]: "4"
+            - link "Cursor 9秒删库搞崩公司，然后…写了份检讨" [ref=e726] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821449/
+          - listitem [ref=e727]:
+            - generic [ref=e728]: "5"
+            - link "那些骗你点错的“白条”和“月付”们，终于要被制裁了。" [ref=e729] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821393/
+          - listitem [ref=e730]:
+            - generic [ref=e731]: "6"
+            - link "好奇号首次在火星检测到疑似生命起源分子" [ref=e732] [cursor=pointer]:
+              - /url: https://news.cnblogs.com/n/821321/
+      - link [ref=e734] [cursor=pointer]:
+        - /url: https://www.cnblogs.com/cmt/p/19669319
+        - img [ref=e735]
+  - contentinfo [ref=e736]:
+    - generic [ref=e737]:
+      - text: 战略合作：
+      - link "Chat2DB" [ref=e738] [cursor=pointer]:
+        - /url: https://chat2db-ai.com/
+      - link "凌霞软件" [ref=e739] [cursor=pointer]:
+        - /url: //www.lxware.cn
+    - generic [ref=e740]:
+      - text: 友情链接：
+      - link "艾思科蓝" [ref=e741] [cursor=pointer]:
+        - /url: //ais.cn/u/QjqYJr
+      - link "飞致云" [ref=e742] [cursor=pointer]:
+        - /url: //www.fit2cloud.com
+      - link "阿里云" [ref=e743] [cursor=pointer]:
+        - /url: //www.aliyun.com
+      - link "腾讯云" [ref=e744] [cursor=pointer]:
+        - /url: //cloud.tencent.com
+      - link "华为云" [ref=e745] [cursor=pointer]:
+        - /url: //www.huaweicloud.com
+      - link "天翼云" [ref=e746] [cursor=pointer]:
+        - /url: //www.ctyun.cn
+      - link "站长之家" [ref=e747] [cursor=pointer]:
+        - /url: //www.chinaz.com
+      - link "腾讯WeTest" [ref=e748] [cursor=pointer]:
+        - /url: //wetest.qq.com/?from=links_cnblogs
+      - link "IShell" [ref=e749] [cursor=pointer]:
+        - /url: //ishell.cc/
+    - generic [ref=e751]:
+      - generic [ref=e752]: Powered by .NET 10.0 on Kubernetes
+      - generic [ref=e753]:
+        - link "关于博客园" [ref=e754] [cursor=pointer]:
+          - /url: //about.cnblogs.com/
+        - link "联系我们" [ref=e755] [cursor=pointer]:
+          - /url: //about.cnblogs.com/contact
+        - link "商务合作" [ref=e756] [cursor=pointer]:
+          - /url: //about.cnblogs.com/bd
+        - link "企业博客" [ref=e757] [cursor=pointer]:
+          - /url: //about.cnblogs.com/corp-blog
+        - link "企业发布" [ref=e758] [cursor=pointer]:
+          - /url: /corp/posts
+        - text: Copyright © 2004-2026 博客园 版权所有
+      - generic [ref=e759]:
+        - link "浙公网安备 33010602011771号" [ref=e760] [cursor=pointer]:
+          - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602011771
+          - img [ref=e761]
+          - text: 浙公网安备 33010602011771号
+        - link "浙ICP备2021040463号-3" [ref=e762] [cursor=pointer]:
+          - /url: https://beian.miit.gov.cn
+      - generic [ref=e763]:
+        - link "违法和不良信息举报中心" [ref=e764] [cursor=pointer]:
+          - /url: https://www.12377.cn/
+        - text: 举报邮箱：contact@cnblogs.com
+        - link "网站举报中心" [ref=e765] [cursor=pointer]:
+          - /url: https://report.cnblogs.com/

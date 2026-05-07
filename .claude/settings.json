@@ -23,6 +23,7 @@
       "Bash(for *)",
       "Bash(python *)",
       "Bash(python3 *)",
+      "Bash(playwright-cli *)",
       "Bash(git diff *)",
       "Bash(git checkout *)",
       "Bash(git commit *)",
