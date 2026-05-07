@@ -21,6 +21,7 @@
       "Bash(tail *)",
       "Bash(mv *)",
       "Bash(for *)",
+      "Bash(curl *)",
       "Bash(python *)",
       "Bash(python3 *)",
       "Bash(playwright-cli *)",

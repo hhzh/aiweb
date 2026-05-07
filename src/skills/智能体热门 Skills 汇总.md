@@ -98,6 +98,12 @@ AI编程助手的核心效能，主要体现在可扩展的Skills（技能插件
 
 ## 工具与指南类（技能合集、创建、使用指南）
 
+### agent-skills（生产级技能合集）
+
+**地址**：GitHub https://github.com/addyosmani/agent-skills
+
+**简介**：由 Addy Osmani 维护的高质量 AI 编程智能体技能合集，提供生产级工程技能，适配 Claude Code、Cursor 等主流智能体，涵盖代码审查、重构、测试等核心场景，是提升开发效率的必备资源库。
+
 ### everything-claude-code（通用技能合集）
 
 **地址**：https://github.com/affaan-m/everything-claude-code
