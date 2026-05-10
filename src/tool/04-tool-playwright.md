@@ -1,3 +1,8 @@
+---
+title: Playwright CLI 浏览器自动化使用教程
+order: 4
+---
+
 # Playwright CLI 浏览器自动化使用教程
 
 ## 一、概述

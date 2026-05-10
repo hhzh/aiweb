@@ -52,7 +52,23 @@ Categories are displayed as clickable items in the publish dialog. Just click on
 
 ### Tag/Column/Topic Input
 
-Tags, columns, and topics use searchable inputs. Type the name and press Enter to search and add.
+Tags, columns, and topics use searchable inputs. **IMPORTANT**: Do NOT press Enter after typing - it will select the first dropdown option instead of your intended choice. Instead:
+
+1. Type the search term
+2. Wait for the dropdown to appear
+3. Click directly on the desired option button
+
+```bash
+# CORRECT - type, wait, then click the option button
+playwright-cli fill <tag_input_ref> "人工智能"
+sleep 1
+playwright-cli snapshot  # Find the option button ref
+playwright-cli click <option_button_ref>
+
+# WRONG - pressing Enter selects the first dropdown option
+playwright-cli fill <tag_input_ref> "人工智能"
+playwright-cli press "Enter"  # This will select wrong option!
+```
 
 ## Workflow
 
@@ -130,7 +146,7 @@ Search and add topic:
 ```bash
 playwright-cli snapshot
 # Find topic textbox
-playwright-cli fill <topic_input_ref> "AI 编程"
+playwright-cli fill <topic_input_ref> "每日精选文章"
 playwright-cli press "Enter"
 ```
 

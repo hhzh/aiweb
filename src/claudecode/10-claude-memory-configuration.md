@@ -1,3 +1,8 @@
+---
+title: Claude Code 内存配置文档
+order: 10
+---
+
 # Claude Code 内存配置文档
 
 ## 概述

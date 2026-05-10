@@ -1,3 +1,8 @@
+---
+title: Karpathy 编程准则使用教程
+order: 6
+---
+
 # Karpathy 编程准则使用教程：提升 AI 代码质量
 
 # karpathy\-skills 编程准则使用教程

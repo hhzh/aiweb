@@ -1,3 +1,8 @@
+---
+title: Obsidian CLI 与 Obsidian Skills 深度使用教程
+order: 6
+---
+
 # Obsidian CLI 与 Obsidian Skills 深度使用教程
 
 **项目地址**：[https://github.com/kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)

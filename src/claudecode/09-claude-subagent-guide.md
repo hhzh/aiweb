@@ -1,3 +1,8 @@
+---
+title: Claude Code 子代理使用指南
+order: 9
+---
+
 # Claude Code 子代理使用指南（精简实用版）
 
 ## 一、子代理核心概念

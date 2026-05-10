@@ -1,0 +1,648 @@
+- generic [ref=e1]:
+  - generic [ref=e4]:
+    - banner [ref=e5]:
+      - textbox "输入文章标题..." [ref=e6]: Claude Code 快速上手指南（新手友好版）
+      - generic [ref=e7]:
+        - generic "最近保存于 2026/5/10 11:28:52" [ref=e797]: 保存成功
+        - button "草稿箱" [ref=e9] [cursor=pointer]
+        - generic [ref=e10]:
+          - button "发布" [ref=e11] [cursor=pointer]
+          - generic [ref=e646]:
+            - generic [ref=e647]: 发布文章
+            - generic [ref=e648]:
+              - generic [ref=e649]: "* 分类："
+              - generic [ref=e650]:
+                - generic [ref=e651] [cursor=pointer]: 后端
+                - generic [ref=e652] [cursor=pointer]: 前端
+                - generic [ref=e653] [cursor=pointer]: Android
+                - generic [ref=e654] [cursor=pointer]: iOS
+                - generic [ref=e655] [cursor=pointer]: 人工智能
+                - generic [ref=e656] [cursor=pointer]: 开发工具
+                - generic [ref=e657] [cursor=pointer]: 代码人生
+                - generic [ref=e658] [cursor=pointer]: 阅读
+            - generic [ref=e659]:
+              - generic [ref=e660]: "* 添加标签："
+              - generic [ref=e664] [cursor=pointer]:
+                - generic [ref=e665]:
+                  - generic [ref=e798]:
+                    - generic [ref=e799]: 人工智能
+                    - generic [ref=e800]:
+                      - img
+                  - textbox [ref=e667]
+                - generic [ref=e670]:
+                  - img
+                - generic: 人工智能
+            - generic [ref=e671]:
+              - generic [ref=e672]: 文章封面：
+              - generic [ref=e675]:
+                - button "add_cover 上传封面" [ref=e676]:
+                  - generic [ref=e677] [cursor=pointer]:
+                    - img "add_cover" [ref=e678]
+                    - generic [ref=e679]: 上传封面
+                - generic [ref=e680]: 建议尺寸：192*128px (封面仅展示在首页信息流中)
+            - generic [ref=e681]:
+              - generic [ref=e682]: 收录至专栏：
+              - generic [ref=e686] [cursor=pointer]:
+                - generic [ref=e687]:
+                  - generic [ref=e803]: 请搜索添加专栏，同一篇文章最多添加三个专栏
+                  - textbox [active] [ref=e689]
+                - generic [ref=e692]:
+                  - img
+                - generic: 小林AI实战教程
+            - generic [ref=e693]:
+              - generic [ref=e694]: 创作话题：
+              - generic [ref=e698] [cursor=pointer]:
+                - generic [ref=e699]:
+                  - generic [ref=e700]: 请搜索添加话题，最多添加1个话题
+                  - textbox [ref=e701]
+                - generic [ref=e704]:
+                  - img
+            - generic [ref=e705]:
+              - generic [ref=e706]: "*编辑摘要："
+              - generic [ref=e707]:
+                - generic [ref=e708]: 100/100
+                - textbox [ref=e710]: Claude Code 快速上手指南（新手友好版） AI编程工具卷疯啦！而 Claude Code 凭借“任务驱动+终端原生”的神仙特性，成了很多开发者的效率搭子～ 它和传统代码补全工具（比如Copi
+            - generic [ref=e712]:
+              - button "取消" [ref=e713] [cursor=pointer]
+              - button "确定并发布" [ref=e714] [cursor=pointer]
+        - img [ref=e14] [cursor=pointer]
+        - navigation [ref=e17]: 
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - img [ref=e24] [cursor=pointer]
+          - img [ref=e27] [cursor=pointer]
+          - img [ref=e30] [cursor=pointer]
+          - img [ref=e33] [cursor=pointer]
+          - img [ref=e36] [cursor=pointer]
+          - img [ref=e40] [cursor=pointer]
+          - img [ref=e45] [cursor=pointer]
+          - img [ref=e49] [cursor=pointer]
+          - img [ref=e52] [cursor=pointer]
+          - img [ref=e56] [cursor=pointer]
+          - img [ref=e59] [cursor=pointer]
+          - img [ref=e63] [cursor=pointer]
+          - img [ref=e68] [cursor=pointer]
+          - img [ref=e72] [cursor=pointer]
+          - img [ref=e77] [cursor=pointer]
+          - img [ref=e84] [cursor=pointer]
+          - img [ref=e87] [cursor=pointer]
+          - img [ref=e91] [cursor=pointer]
+          - img [ref=e97] [cursor=pointer]
+          - img [ref=e102] [cursor=pointer]
+        - generic [ref=e108]:
+          - img [ref=e110] [cursor=pointer]
+          - img [ref=e114] [cursor=pointer]
+          - img [ref=e119] [cursor=pointer]
+          - img [ref=e122] [cursor=pointer]
+          - img [ref=e125] [cursor=pointer]
+          - img [ref=e128] [cursor=pointer]
+          - img [ref=e131] [cursor=pointer]
+      - generic [ref=e136]:
+        - generic [ref=e138]:
+          - textbox [ref=e139]
+          - generic [ref=e142]: "# Claude Code 快速上手指南（新手友好版） AI编程工具卷疯啦！而 Claude Code 凭借“任务驱动+终端原生”的神仙特性，成了很多开发者的效率搭子～ 它和传统代码补全工具（比如Copilot）不一样，不用装复杂的IDE插件，直接在终端里就能用，能自己规划任务、读代码、执行命令，甚至改文件，完美融入咱们日常开发的节奏。这篇教程就从基础到实操，手把手带新手快速上手，全程避坑，保证30分钟内你就能独立用起来！ ## 一、Claude Code 介绍及核心优势 ### 1.1 什么是 Claude Code 简单说，Claude Code 是 Anthropic 2025年推出的“AI编程小助手”，还是终端原生的那种～ 它不只是能生成、解释、优化代码，还能直接操作文件、运行Shell命令、管Git版本，甚至帮你配开发环境，从项目启动到上线，全程都能搭把手。比起其他AI编程工具，它不用依赖图形界面，就靠命令行操作，Windows、Mac、Linux都能兼容，不管是本地开发还是服务器操作，都能轻松hold住。 ### 1.2 核心优势（新手必知，好记又实用） 和其他AI编程工具比，Claude Code 的优势真的很戳新手，主打一个“好用、灵活、不添乱”： - **任务驱动，不用你多废话**：不用一步步教它怎么做，只要说清楚目标（比如“帮我扫所有.py文件，把requests换成httpx，再更一下依赖”），它自己就会规划步骤、执行操作，省超多重复功夫。 - **终端原生，不打断你的思路**：直接在终端里运行，和Git、npm、Docker这些咱们常用的工具无缝衔接，不用来回切换IDE，开发节奏不被打乱，习惯用终端的小伙伴会爱惨。 - **多模型兼容，想换就换**：支持官方模型（Claude 4.6 Sonnet/Opus/Haiku），也支持国产大模型（DeepSeek、智谱GLM、阿里百炼等），国内小伙伴不用愁网络问题，想省成本、求稳定，换国产模型就好。 - **多语言支持，全能选手**：Python、JavaScript、Java、Go这些主流编程语言都能搞定，生成代码、找Bug、修配置、管Git，一站式解决，不用再切换多个工具。 - **轻量易配置，新手无压力**：安装步骤超简单，只要装个Node.js就够了，配置文件也很清晰，新手几分钟就能搞定初始化，还能自动更新，不用手动维护版本。 小补充：Claude Code 本身就像一个“工具框架”，能力强不强，全看你接入的大模型～ 海外顶级模型（比如Claude 4.6 Opus）适合搞复杂任务，国产模型日常编码完全够用，还便宜、网络稳，新手先从国产模型入手准没错。 ### 1.3 Claude Code 安装与配置流程图"
+        - generic [ref=e145]:
+          - heading "Claude Code 快速上手指南（新手友好版）" [level=1] [ref=e160]
+          - paragraph [ref=e161]: AI编程工具卷疯啦！而 Claude Code 凭借“任务驱动+终端原生”的神仙特性，成了很多开发者的效率搭子～ 它和传统代码补全工具（比如Copilot）不一样，不用装复杂的IDE插件，直接在终端里就能用，能自己规划任务、读代码、执行命令，甚至改文件，完美融入咱们日常开发的节奏。这篇教程就从基础到实操，手把手带新手快速上手，全程避坑，保证30分钟内你就能独立用起来！
+          - heading "一、Claude Code 介绍及核心优势" [level=2] [ref=e162]
+          - heading "1.1 什么是 Claude Code" [level=3] [ref=e163]
+          - paragraph [ref=e164]: 简单说，Claude Code 是 Anthropic 2025年推出的“AI编程小助手”，还是终端原生的那种～ 它不只是能生成、解释、优化代码，还能直接操作文件、运行Shell命令、管Git版本，甚至帮你配开发环境，从项目启动到上线，全程都能搭把手。比起其他AI编程工具，它不用依赖图形界面，就靠命令行操作，Windows、Mac、Linux都能兼容，不管是本地开发还是服务器操作，都能轻松hold住。
+          - heading "1.2 核心优势（新手必知，好记又实用）" [level=3] [ref=e165]
+          - paragraph [ref=e166]: 和其他AI编程工具比，Claude Code 的优势真的很戳新手，主打一个“好用、灵活、不添乱”：
+          - list [ref=e167]:
+            - listitem [ref=e168]:
+              - paragraph [ref=e169]:
+                - strong [ref=e170]: 任务驱动，不用你多废话
+                - text: ：不用一步步教它怎么做，只要说清楚目标（比如“帮我扫所有.py文件，把requests换成httpx，再更一下依赖”），它自己就会规划步骤、执行操作，省超多重复功夫。
+            - listitem [ref=e171]:
+              - paragraph [ref=e172]:
+                - strong [ref=e173]: 终端原生，不打断你的思路
+                - text: ：直接在终端里运行，和Git、npm、Docker这些咱们常用的工具无缝衔接，不用来回切换IDE，开发节奏不被打乱，习惯用终端的小伙伴会爱惨。
+            - listitem [ref=e174]:
+              - paragraph [ref=e175]:
+                - strong [ref=e176]: 多模型兼容，想换就换
+                - text: ：支持官方模型（Claude 4.6 Sonnet/Opus/Haiku），也支持国产大模型（DeepSeek、智谱GLM、阿里百炼等），国内小伙伴不用愁网络问题，想省成本、求稳定，换国产模型就好。
+            - listitem [ref=e177]:
+              - paragraph [ref=e178]:
+                - strong [ref=e179]: 多语言支持，全能选手
+                - text: ：Python、JavaScript、Java、Go这些主流编程语言都能搞定，生成代码、找Bug、修配置、管Git，一站式解决，不用再切换多个工具。
+            - listitem [ref=e180]:
+              - paragraph [ref=e181]:
+                - strong [ref=e182]: 轻量易配置，新手无压力
+                - text: ：安装步骤超简单，只要装个Node.js就够了，配置文件也很清晰，新手几分钟就能搞定初始化，还能自动更新，不用手动维护版本。
+          - paragraph [ref=e183]: 小补充：Claude Code 本身就像一个“工具框架”，能力强不强，全看你接入的大模型～ 海外顶级模型（比如Claude 4.6 Opus）适合搞复杂任务，国产模型日常编码完全够用，还便宜、网络稳，新手先从国产模型入手准没错。
+          - heading "1.3 Claude Code 安装与配置流程图" [level=3] [ref=e184]
+          - document [ref=e186]:
+            - generic [ref=e188]:
+              - generic [ref=e203]:
+                - generic [ref=e207]: 版本 >= 18.0
+                - generic [ref=e211]: 版本 < 18.0
+                - generic [ref=e215]: 官方脚本
+                - generic [ref=e219]: npm 安装
+                - generic [ref=e223]: Homebrew Mac
+                - generic [ref=e227]: 官方账号
+                - generic [ref=e231]: 国产模型
+              - generic [ref=e232]:
+                - generic [ref=e237]: 开始安装 Claude Code
+                - generic [ref=e242]: 检查 Node.js 版本
+                - generic [ref=e247]: 选择安装方式
+                - generic [ref=e252]: 安装/升级 Node.js
+                - generic [ref=e257]: curl -fsSL https://claude.ai/install.sh | bash
+                - generic [ref=e262]: npm install -g @anthropic-ai/claude-code
+                - generic [ref=e267]: brew install --cask claude-code
+                - generic [ref=e272]: "验证安装: claude --version"
+                - generic [ref=e277]: 选择登录方式
+                - generic [ref=e282]: /login 登录 Anthropic 账号
+                - generic [ref=e287]: 配置环境变量切换模型
+                - generic [ref=e292]: 开始使用
+                - generic [ref=e297]: 编辑 settings.json
+                - generic [ref=e302]: 配置 API Key 和 Base URL
+          - heading "二、安装教程（官方+Windows/Mac专属，超详细）" [level=2] [ref=e303]
+          - paragraph [ref=e304]: 安装前先做个小准备，确保你的设备满足要求、装好转需组件，避免安装一半卡壳哦～ 重点说明：Windows和Mac电脑均可以通过Node.js安装Claude Code，步骤通用且简单，具体操作如下。
+          - heading "2.1 安装前准备" [level=3] [ref=e305]
+          - table [ref=e306]:
+            - rowgroup [ref=e307]:
+              - row "要求项 具体说明" [ref=e308]:
+                - columnheader "要求项" [ref=e309]
+                - columnheader "具体说明" [ref=e310]
+            - rowgroup [ref=e311]:
+              - row "操作系统 Windows 10+（需Git Bash或WSL）、MacOS 13+" [ref=e312]:
+                - cell "操作系统" [ref=e313]
+                - cell "Windows 10+（需Git Bash或WSL）、MacOS 13+" [ref=e314]
+              - row "依赖组件 Node.js ≥ 18.0（必装）、Git 2.23+（推荐装）" [ref=e315]:
+                - cell "依赖组件" [ref=e316]
+                - cell "Node.js ≥ 18.0（必装）、Git 2.23+（推荐装）" [ref=e317]
+              - row "硬件要求 RAM ≥ 8GB（保证运行不卡顿）" [ref=e318]:
+                - cell "硬件要求" [ref=e319]
+                - cell "RAM ≥ 8GB（保证运行不卡顿）" [ref=e320]
+          - paragraph [ref=e321]:
+            - text: 先验证下Node.js装没装对：打开终端（Windows用Git Bash/WSL，Mac直接用终端），输入
+            - code [ref=e322]: node -v
+            - text: ，显示版本≥18.0就OK；没装或版本太低，按下面的方法来：
+          - list [ref=e323]:
+            - listitem [ref=e324]:
+              - paragraph [ref=e325]:
+                - text: Mac：用Homebrew安装，终端输
+                - code [ref=e326]: brew install node
+                - text: 就行，很简单。
+            - listitem [ref=e327]:
+              - paragraph [ref=e328]:
+                - text: Windows：去
+                - link "nodejs.org" [ref=e329] [cursor=pointer]:
+                  - /url: https://nodejs.org/
+                - text: 下载LTS版本安装包，安装时记得勾选“Add to PATH”，这样会自动配置环境变量，不用手动弄。
+          - heading "2.2 Node.js通用安装Claude Code（Windows/Mac通用，推荐指令）" [level=3] [ref=e330]
+          - paragraph [ref=e331]: 无论是Windows还是Mac电脑，在安装好Node.js（≥18.0版本）后，都可以通过npm命令快速安装Claude Code，优先使用官方规范指令，步骤统一，新手也能轻松操作：
+          - list [ref=e332]:
+            - listitem [ref=e333]:
+              - paragraph [ref=e334]:
+                - text: 打开终端（Windows用Git Bash/WSL，Mac直接用终端），输入npm官方安装命令，回车执行（贴合官方包命名规范，避免安装异常）：
+                - code [ref=e335]: npm install -g @anthropic-ai/claude-code
+            - listitem [ref=e336]:
+              - paragraph [ref=e337]:
+                - text: 安装过程中若提示权限不足：Mac终端在命令前加
+                - code [ref=e338]: sudo
+                - text: （输入电脑密码即可）；Windows Git Bash以管理员身份运行终端后重试。
+            - listitem [ref=e339]:
+              - paragraph [ref=e340]:
+                - text: 安装完成后验证：输入
+                - code [ref=e341]: claude --version
+                - text: ，能显示版本号（比如v1.8.0），就说明通过Node.js安装成功啦。
+            - listitem [ref=e342]:
+              - paragraph [ref=e343]:
+                - text: 补充说明：若上述官方指令安装失败，可尝试备用指令
+                - code [ref=e344]: npm install -g claude-code
+                - text: ，两种指令均可完成安装，优先推荐官方规范指令。
+          - heading "2.3 官方推荐安装方式（通用款，稳就一个字）" [level=3] [ref=e345]
+          - paragraph [ref=e346]: Anthropic官方推荐的安装脚本，能自动处理依赖、配置环境，还能后台自动更新，不管是Mac还是Windows（Git Bash/WSL环境）都能用，新手优先选这个：
+          - list [ref=e347]:
+            - listitem [ref=e348]:
+              - paragraph [ref=e349]:
+                - text: 打开终端，复制下面的官方命令，粘贴进去回车执行：
+                - code [ref=e350]: curl -fsSL https://claude.ai/install.sh | bash
+            - listitem [ref=e351]:
+              - paragraph [ref=e352]:
+                - text: 注意：访问
+                - code [ref=e353]: https://claude.ai/install.sh
+                - text: 可能出现“区域限制”提示（显示App unavailable），若无法执行该脚本，直接使用上述Node.js安装方式即可。
+            - listitem [ref=e354]:
+              - paragraph [ref=e355]:
+                - text: 安装完验证一下：输入
+                - code [ref=e356]: claude --version
+                - text: ，能显示版本号（比如v1.8.0），就说明装成功啦。
+          - paragraph [ref=e357]:
+            - text: 小提醒：如果Mac终端提示“权限不足”，就在命令前面加
+            - code [ref=e358]: sudo
+            - text: （输入电脑密码就行）；Windows的Git Bash要以管理员身份运行，不然容易出权限错误哦。
+          - heading "2.4 Mac 专属安装方式（Homebrew，懂的都懂）" [level=3] [ref=e359]
+          - paragraph [ref=e360]: 如果你的Mac已经装了Homebrew，直接用它装更简洁，就是需要手动更版本，步骤如下：
+          - list [ref=e361]:
+            - listitem [ref=e362]:
+              - paragraph [ref=e363]:
+                - text: 终端输安装命令：
+                - code [ref=e364]: brew install --cask claude-code
+            - listitem [ref=e365]:
+              - paragraph [ref=e366]:
+                - text: 验证安装：输入
+                - code [ref=e367]: claude --version
+                - text: ，显示版本号就OK。
+            - listitem [ref=e368]:
+              - paragraph [ref=e369]:
+                - text: 版本更新：定期输
+                - code [ref=e370]: brew upgrade claude-code
+                - text: ，就能手动更到最新版本。
+          - heading "2.5 Windows 专属安装方式（两种可选，新手选第一种）" [level=3] [ref=e371]
+          - paragraph [ref=e372]: Windows用Claude Code，需要借助Git Bash或WSL（Windows Subsystem for Linux），两种方式，新手优先选第一种，简单快捷不踩坑。
+          - heading "方式一：Git Bash 安装（新手首选）" [level=4] [ref=e373]
+          - list [ref=e374]:
+            - listitem [ref=e375]:
+              - paragraph [ref=e376]:
+                - text: 先装Git：去
+                - link "git-scm.com" [ref=e377] [cursor=pointer]:
+                  - /url: https://git-scm.com/
+                - text: 下载安装，记得勾选“Git Bash Here”选项，后续用着方便（Git是免费开源的分布式版本控制系统，适配终端操作）。
+            - listitem [ref=e378]:
+              - paragraph [ref=e379]:
+                - text: 右键桌面，选择“Git Bash Here”打开终端，粘贴官方安装脚本执行：
+                - code [ref=e380]: curl -fsSL https://claude.ai/install.sh | bash
+            - listitem [ref=e381]:
+              - paragraph [ref=e382]:
+                - text: 若脚本执行失败（区域限制），直接切换为Node.js安装方式，输入
+                - code [ref=e383]: npm install -g @anthropic-ai/claude-code
+                - text: 即可。
+            - listitem [ref=e384]:
+              - paragraph [ref=e385]:
+                - text: 验证安装：输入
+                - code [ref=e386]: claude --version
+                - text: ，显示版本号就成功啦。
+          - heading "方式二：WSL 安装（适合熟悉Linux的小伙伴）" [level=4] [ref=e387]
+          - list [ref=e388]:
+            - listitem [ref=e389]:
+              - paragraph [ref=e390]: 先启用WSL：打开“设置→应用→可选功能→更多Windows功能”，勾选“适用于Linux的Windows子系统”，重启电脑生效。
+            - listitem [ref=e391]:
+              - paragraph [ref=e392]:
+                - text: 在Microsoft Store搜“Ubuntu”，下载安装，打开Ubuntu终端，执行上面的官方安装脚本或Node.js安装命令（
+                - code [ref=e393]: npm install -g @anthropic-ai/claude-code
+                - text: ）就好。
+            - listitem [ref=e394]:
+              - paragraph [ref=e395]: 验证安装后，就能在Ubuntu终端里用Claude Code啦。
+          - paragraph [ref=e396]: 小补充：如果安装失败，大概率是Node.js版本太低，或者终端没开管理员权限，重新装个≥18.0的Node.js，再用管理员身份运行终端重试，基本都能解决。
+          - heading "三、如何登录 Claude Code（两种方式，按需选）" [level=2] [ref=e397]
+          - paragraph [ref=e398]: Claude Code登录有两种玩法：官方账号登录（能用官方模型）、跳过登录（能用国产/第三方模型），新手根据自己的需求选，步骤都很简单，跟着来就行。
+          - heading "3.1 官方账号登录（推荐，能体验官方模型）" [level=3] [ref=e399]
+          - paragraph [ref=e400]: 需要注册一个Anthropic账号（支持邮箱、Google账号），登录后能用官方模型，新账号一般有5美元免费额度，刚好用来体验功能：
+          - list [ref=e401]:
+            - listitem [ref=e402]:
+              - paragraph [ref=e403]:
+                - text: 打开终端，输入
+                - code [ref=e404]: claude
+                - text: 启动工具，这时右下角会显示“Not logged in · Run /login”（就是没登录的意思）。
+            - listitem [ref=e405]:
+              - paragraph [ref=e406]:
+                - text: 在终端里输入
+                - code [ref=e407]: /login
+                - text: ，回车，会自动弹出浏览器，跳转到Anthropic的登录页面。
+            - listitem [ref=e408]:
+              - paragraph [ref=e409]: 注册或登录Anthropic账号（有账号直接登），登录后点“授权”，就能和终端绑定啦。
+            - listitem [ref=e410]:
+              - paragraph [ref=e411]: 授权成功后，终端会提示“Login successful”，这就登录好啦，直接用官方模型写代码、做任务就行。
+          - heading "3.2 跳过登录（用国产/第三方模型，适合国内小伙伴）" [level=3] [ref=e412]
+          - paragraph [ref=e413]: 如果不想用官方模型，或者访问不了Anthropic官网，直接跳过登录，配置一下环境变量就能用国产模型，步骤如下：
+          - list [ref=e414]:
+            - listitem [ref=e415]:
+              - paragraph [ref=e416]:
+                - text: 启动Claude Code后，要是显示没登录，按
+                - code [ref=e417]: Ctrl + C
+                - text: 退出当前界面就好。
+            - listitem [ref=e418]:
+              - paragraph [ref=e419]:
+                - text: 在终端输入下面两条命令，创建配置文件，假装已经登录（跳过引导）：
+                - code [ref=e420]: "mkdir -p ~/.claude && echo '{\\\"hasCompletedOnboarding\\\": true}' > ~/.claude.json"
+                - code [ref=e421]: "echo '{\\\"primaryApiKey\\\": \\\"any-string\\\"}' > ~/.claude/config.json"
+            - listitem [ref=e422]:
+              - paragraph [ref=e423]:
+                - text: 接下来配置国产模型的API环境变量（后面章节会详细说），配置好后，输入
+                - code [ref=e424]: claude
+                - text: 重新启动，就能正常用啦，不用登录。
+          - paragraph [ref=e425]: 小提醒：跳过登录后，就用不了官方模型了，只能用你配置好的国产/第三方模型哦。
+          - heading "四、如何切换国产大模型（国内小伙伴必看）" [level=2] [ref=e426]
+          - paragraph [ref=e427]: 国内小伙伴用官方模型，可能会遇到网络不稳定、费用高的问题，而Claude Code能通过API兼容接口，轻松切换国产大模型（比如DeepSeek、智谱GLM、阿里百炼），步骤简单，还便宜、网络稳，新手也能轻松搞定。重点说明：Mac电脑切换国产模型时，需额外配置.zshrc文件，并修改settings.json中的对应开关，具体步骤如下。
+          - heading "4.1 切换前提（准备好这两样就行）" [level=3] [ref=e428]
+          - list [ref=e429]:
+            - listitem [ref=e430]:
+              - paragraph [ref=e431]: 获取国产大模型的API Key和Base URL：去对应厂商官网注册账号（比如DeepSeek官网），注册后在控制台就能找到，很简单。
+            - listitem [ref=e432]:
+              - paragraph [ref=e433]: 确保Claude Code已经装好了，而且已经跳过登录（登录后也不影响，切换后会优先用国产模型）。
+          - heading "4.2 通用切换步骤（以DeepSeek为例，其他模型也一样）" [level=3] [ref=e434]
+          - paragraph [ref=e435]: 所有国产模型的切换逻辑都一样，核心就是配置环境变量或修改配置文件，两种方式，新手优先选第一种，临时生效，适合测试。其中Mac电脑需额外完成.zshrc配置和settings.json开关修改，Windows无需此操作。
+          - heading "方式一：环境变量配置（临时生效，重启终端就没了）" [level=4] [ref=e436]
+          - list [ref=e437]:
+            - listitem [ref=e438]:
+              - paragraph [ref=e439]:
+                - text: 打开终端（Mac终端/Git Bash），输入下面的命令，把里面的内容换成你自己的DeepSeek API Key和Base URL： Mac/Linux：
+                - code [ref=e440]: export ANTHROPIC_BASE_URL=\"https://api.deepseek.com/v1\" && export ANTHROPIC_AUTH_TOKEN=\"你的DeepSeek API Key\"
+                - text: Windows Git Bash：
+                - code [ref=e441]: set ANTHROPIC_BASE_URL=\"https://api.deepseek.com/v1\" && set ANTHROPIC_AUTH_TOKEN=\"你的DeepSeek API Key\"
+            - listitem [ref=e442]:
+              - paragraph [ref=e443]:
+                - text: 注意：尝试访问
+                - code [ref=e444]: https://api.deepseek.com/v1
+                - text: 时出现“网页解析失败”，属于正常现象，无需手动访问该链接，只需确保配置的Base URL正确即可。
+            - listitem [ref=e445]:
+              - paragraph [ref=e446]:
+                - text: 输入
+                - code [ref=e447]: claude
+                - text: 启动工具，这时就自动切换成DeepSeek模型了，输个指令（比如“写一段Python冒泡排序代码”）试试，能正常用就OK。
+          - heading "方式二：配置文件配置（永久生效，推荐）" [level=4] [ref=e448]
+          - paragraph [ref=e449]: 修改Claude Code的全局配置文件，一次配置，以后都不用再改，重启终端也不影响。Windows和Mac步骤略有差异，重点注意Mac的额外配置：
+          - heading "Windows配置步骤" [level=5] [ref=e450]
+          - list [ref=e451]:
+            - listitem [ref=e452]:
+              - paragraph [ref=e453]:
+                - text: 先创建全局配置文件夹（如果已经有了，直接跳过）：
+                - code [ref=e454]: mkdir -p ~/.claude
+            - listitem [ref=e455]:
+              - paragraph [ref=e456]:
+                - text: 编辑配置文件
+                - code [ref=e457]: settings.json
+                - text: ： Windows Git Bash：终端输
+                - code [ref=e458]: nano ~/.claude/settings.json
+            - listitem [ref=e459]:
+              - paragraph [ref=e460]:
+                - text: 在配置文件里输入下面的内容，把API Key换成你自己的（以DeepSeek为例）：
+                - code [ref=e461]: "{ \"env\": { \"ANTHROPIC_AUTH_TOKEN\": \"你的DeepSeek API Key\", \"ANTHROPIC_BASE_URL\": \"https://api.deepseek.com/v1\" }, \"permissions\": { \"deny\": [ \"Read(./.env)\", \"Read(./.env.*)\", \"Read(./secrets/**)\" ] } }"
+            - listitem [ref=e462]:
+              - paragraph [ref=e463]:
+                - text: 保存退出：按
+                - code [ref=e464]: Ctrl + O
+                - text: 保存，再按
+                - code [ref=e465]: Ctrl + X
+                - text: 退出编辑就好。
+            - listitem [ref=e466]:
+              - paragraph [ref=e467]:
+                - text: 重启Claude Code（输入
+                - code [ref=e468]: claude
+                - text: ），这样就永久切换成国产模型啦。
+          - heading "Mac配置步骤（需额外配置.zshrc和settings.json开关）" [level=5] [ref=e469]
+          - list [ref=e470]:
+            - listitem [ref=e471]:
+              - paragraph [ref=e472]:
+                - text: 先创建全局配置文件夹（如果已经有了，直接跳过）：
+                - code [ref=e473]: mkdir -p ~/.claude
+            - listitem [ref=e474]:
+              - paragraph [ref=e475]:
+                - text: 编辑配置文件
+                - code [ref=e476]: settings.json
+                - text: ，并修改关键开关： Mac终端输
+                - code [ref=e477]: nano ~/.claude/settings.json
+                - text: ，输入以下内容（重点添加
+                - code [ref=e478]: "\\\"useCustomApi\\\": true"
+                - text: 开关，启用自定义API，即国产模型），并替换自己的API Key：
+          - generic [ref=e479]:
+            - generic [ref=e480]:
+              - img [ref=e483]
+              - generic [ref=e486]: yaml
+            - code [ref=e487]:
+              - text: "1 {"
+              - generic [ref=e488]: "2 \"env\": {"
+              - generic [ref=e489]: "3 \"ANTHROPIC_AUTH_TOKEN\": \"你的DeepSeek API Key\","
+              - generic [ref=e490]: "4 \"ANTHROPIC_BASE_URL\": \"https://api.deepseek.com/v1\""
+              - text: "5 },"
+              - generic [ref=e491]: "6 \"useCustomApi\": true, // 关键开关：启用自定义API，用于切换国产模型，必须添加"
+              - generic [ref=e492]: "7 \"permissions\": {"
+              - generic [ref=e493]: "8 \"deny\": ["
+              - generic [ref=e494]: 9 "Read(./.env)",
+              - generic [ref=e495]: 10 "Read(./.env.*)",
+              - generic [ref=e496]: 11 "Read(./secrets/**)"
+              - text: "12 ] 13 } 14 }"
+          - list [ref=e497]:
+            - listitem [ref=e498]:
+              - paragraph [ref=e499]:
+                - text: 保存退出settings.json：按
+                - code [ref=e500]: Ctrl + O
+                - text: 保存，再按
+                - code [ref=e501]: Ctrl + X
+                - text: 退出编辑。
+            - listitem [ref=e502]:
+              - paragraph [ref=e503]:
+                - text: 配置.zshrc文件（Mac专属，永久生效环境变量）： 终端输
+                - code [ref=e504]: nano ~/.zshrc
+                - text: ，在文件末尾添加以下内容（替换成自己的API Key和Base URL）：
+                - code [ref=e505]: export ANTHROPIC_BASE_URL=\"https://api.deepseek.com/v1\"
+                - code [ref=e506]: export ANTHROPIC_AUTH_TOKEN=\"你的DeepSeek API Key\"
+            - listitem [ref=e507]:
+              - paragraph [ref=e508]:
+                - text: 生效.zshrc配置：终端输
+                - code [ref=e509]: source ~/.zshrc
+                - text: ，让配置立即生效（无需重启终端）。
+            - listitem [ref=e510]:
+              - paragraph [ref=e511]:
+                - text: 重启Claude Code（输入
+                - code [ref=e512]: claude
+                - text: ），即可永久切换成国产模型。
+          - heading "4.3 其他国产模型切换参考（直接抄作业）" [level=3] [ref=e513]
+          - paragraph [ref=e514]:
+            - text: 不用重新学步骤，只要把配置文件里的
+            - code [ref=e515]: ANTHROPIC_BASE_URL
+            - text: 和
+            - code [ref=e516]: ANTHROPIC_AUTH_TOKEN
+            - text: 换掉，就能切换其他国产模型，常用的给大家整理好啦：
+          - list [ref=e517]:
+            - listitem [ref=e518]:
+              - paragraph [ref=e519]:
+                - text: 智谱GLM：Base URL = "
+                - link "https://open.bigmodel.cn/api/paas/v4\"，API" [ref=e520] [cursor=pointer]:
+                  - /url: https://open.bigmodel.cn/api/paas/v4%22%EF%BC%8CAPI
+                - text: Key 去智谱AI官网控制台找就行（注：访问该Base URL时会出现“网页解析失败”，无需手动访问，配置正确即可）。
+            - listitem [ref=e521]:
+              - paragraph [ref=e522]:
+                - text: 阿里百炼：Base URL = "
+                - link "https://dashscope.aliyuncs.com/compatible-mode/v1\"，API" [ref=e523] [cursor=pointer]:
+                  - /url: https://dashscope.aliyuncs.com/compatible-mode/v1%22%EF%BC%8CAPI
+                - text: Key 在阿里云百炼控制台获取（注：访问该Base URL时会出现“网页解析失败”，无需手动访问，配置正确即可）。
+          - paragraph [ref=e524]:
+            - text: 小提醒：不同国产模型的API接口可能有点不一样，要是出现调用失败的情况，去对应厂商的API文档看看，调整一下Base URL格式就好。另外，目前DeepSeek、智谱GLM、阿里百炼的对应API页面暂无法正常解析，建议直接前往对应厂商官网，在控制台获取正确的API信息及使用说明。Mac电脑若切换后无法使用，可检查.zshrc配置是否生效，以及settings.json中的
+            - code [ref=e525]: useCustomApi
+            - text: 开关是否设为
+            - code [ref=e526]: "true"
+            - text: 。
+          - heading "五、常用命令与使用技巧（新手必记，省时间）" [level=2] [ref=e527]
+          - paragraph [ref=e528]: Claude Code的命令分两类：终端启动命令（启动时用）和斜杠命令（交互界面里用），掌握下面这些常用的，能省超多时间，新手先记核心的就好，不用死记硬背。
+          - heading "5.1 核心终端启动命令（记4个就够了）" [level=3] [ref=e529]
+          - table [ref=e530]:
+            - rowgroup [ref=e531]:
+              - row "命令 用途（直白好记） 示例" [ref=e532]:
+                - columnheader "命令" [ref=e533]
+                - columnheader "用途（直白好记）" [ref=e534]
+                - columnheader "示例" [ref=e535]
+            - rowgroup [ref=e536]:
+              - row "claude 启动工具，进入交互模式 claude" [ref=e537]:
+                - cell "claude" [ref=e538]
+                - cell "启动工具，进入交互模式" [ref=e539]
+                - cell "claude" [ref=e540]
+              - row "claude --version 查看当前工具版本 claude --version" [ref=e541]:
+                - cell "claude --version" [ref=e542]
+                - cell "查看当前工具版本" [ref=e543]
+                - cell "claude --version" [ref=e544]
+              - row "claude -c 继续上一次没结束的会话 claude -c" [ref=e545]:
+                - cell "claude -c" [ref=e546]
+                - cell "继续上一次没结束的会话" [ref=e547]
+                - cell "claude -c" [ref=e548]
+              - row "claude --print \"指令\" 单次执行指令，执行完就退出 claude --print \"写一段Python循环代码\"" [ref=e549]:
+                - cell "claude --print \"指令\"" [ref=e550]
+                - cell "单次执行指令，执行完就退出" [ref=e551]
+                - cell "claude --print \"写一段Python循环代码\"" [ref=e552]
+          - heading "5.2 高频斜杠命令（交互界面用，记10个核心）" [level=3] [ref=e553]
+          - paragraph [ref=e554]:
+            - text: 启动Claude Code（输入
+            - code [ref=e555]: claude
+            - text: ）后，输
+            - code [ref=e556]: /
+            - text: 就能看到所有命令，下面这10个新手必记，日常用得最多：
+          - list [ref=e557]:
+            - listitem [ref=e558]:
+              - paragraph [ref=e559]:
+                - code [ref=e560]: /login
+                - text: ：登录Anthropic官方账号（想切换官方模型就用它）。
+            - listitem [ref=e561]:
+              - paragraph [ref=e562]:
+                - code [ref=e563]: /init
+                - text: ：项目初始化，在当前目录生成
+                - code [ref=e564]: CLAUDE.md
+                - text: 文件，把项目技术栈、代码规范写进去，它会一直记住，不用每次都重复说。
+            - listitem [ref=e565]:
+              - paragraph [ref=e566]:
+                - code [ref=e567]: /model
+                - text: ：切换官方模型（只有登录后能用），输
+                - code [ref=e568]: /model sonnet
+                - text: 就能切换到Sonnet模型，日常编码用这个最顺手。
+            - listitem [ref=e569]:
+              - paragraph [ref=e570]:
+                - code [ref=e571]: /compact
+                - text: ：压缩上下文，会话太长、快满的时候用，能回收空间，还不丢核心任务信息。
+            - listitem [ref=e572]:
+              - paragraph [ref=e573]:
+                - code [ref=e574]: /clear
+                - text: ：清空对话历史，想换个任务就用它，从零开始，比
+                - code [ref=e575]: /compact
+                - text: 更彻底。
+            - listitem [ref=e576]:
+              - paragraph [ref=e577]:
+                - code [ref=e578]: /cost
+                - text: ：查看当前会话的Token消耗和费用（只有官方模型能用），避免用超了花钱。
+            - listitem [ref=e579]:
+              - paragraph [ref=e580]:
+                - code [ref=e581]: /context
+                - text: ：查看上下文占用情况（百分比），建议到70%-80%就用
+                - code [ref=e582]: /compact
+                - text: ，避免溢出。
+            - listitem [ref=e583]:
+              - paragraph [ref=e584]:
+                - code [ref=e585]: /diff
+                - text: ：查看它改了哪些文件（和Git diff差不多），方便核对修改内容，避免改错。
+            - listitem [ref=e586]:
+              - paragraph [ref=e587]:
+                - code [ref=e588]: /status
+                - text: ：查看当前配置状态，比如Base URL、API Key对不对，排查问题超好用。
+            - listitem [ref=e589]:
+              - paragraph [ref=e590]:
+                - code [ref=e591]: /exit
+                - text: ：退出交互界面，回到终端。
+          - heading "5.3 实用使用技巧（新手避坑，少走弯路）" [level=3] [ref=e592]
+          - list [ref=e593]:
+            - listitem [ref=e594]:
+              - paragraph [ref=e595]:
+                - strong [ref=e596]: 上下文管理技巧
+                - text: ：长会话里，每完成一个任务，就用
+                - code [ref=e597]: /compact
+                - text: 压缩一下，省Token；换任务就用
+                - code [ref=e598]: /clear
+                - text: 重置，响应更快。
+            - listitem [ref=e599]:
+              - paragraph [ref=e600]:
+                - strong [ref=e601]: 文件引用技巧
+                - text: ：想让它分析某个文件，直接用
+                - code [ref=e602]: "@文件名"
+                - text: （比如“分析@src/user.js的代码逻辑”），它会直接读文件，不用你手动粘贴代码，超方便。
+            - listitem [ref=e603]:
+              - paragraph [ref=e604]:
+                - strong [ref=e605]: 权限控制技巧
+                - text: ：修改
+                - code [ref=e606]: settings.json
+                - text: 配置文件，用
+                - code [ref=e607]: permissions
+                - text: 字段限制它的操作，比如禁止读
+                - code [ref=e608]: .env
+                - text: 敏感文件、禁止执行
+                - code [ref=e609]: rm -rf *
+                - text: 危险命令，更安全。
+            - listitem [ref=e610]:
+              - paragraph [ref=e611]:
+                - strong [ref=e612]: 国产模型优化技巧
+                - text: ：用国产模型时，指令说具体点（比如“写一段Python冒泡排序，注释详细点，兼容Python3.8+”），生成的代码更符合预期；要是报错，直接把错误信息发给它，让它修复就好。Mac用户若报错，优先检查.zshrc配置和settings.json开关。
+            - listitem [ref=e613]:
+              - paragraph [ref=e614]:
+                - strong [ref=e615]: 版本更新技巧
+                - text: ：官方安装的会自动更，Homebrew装的要手动输
+                - code [ref=e616]: brew upgrade claude-code
+                - text: ，Node.js安装的输
+                - code [ref=e617]: npm update -g @anthropic-ai/claude-code
+                - text: （对应官方安装指令），定期更新能修复Bug、加新功能。
+            - listitem [ref=e618]:
+              - paragraph [ref=e619]:
+                - strong [ref=e620]: 问题排查技巧
+                - text: ：启动不了、调用不了模型，先输
+                - code [ref=e621]: /status
+                - text: 查配置，确认API Key和Base URL没错；网络报错，就检查国产模型的API能不能用，或者换个网络。
+          - heading "六、新手常见问题解决（遇到问题不用慌）" [level=2] [ref=e622]
+          - list [ref=e623]:
+            - listitem [ref=e624]:
+              - paragraph [ref=e625]:
+                - strong [ref=e626]: "安装失败，提示“curl: command not found”"
+                - text: ：Windows装个Git Bash（自带curl），Mac要是没有curl，输
+                - code [ref=e627]: brew install curl
+                - text: 装一个就行。
+            - listitem [ref=e628]:
+              - paragraph [ref=e629]:
+                - strong [ref=e630]: 启动后提示“Not logged in”，用不了
+                - text: ：想用官方模型，就输
+                - code [ref=e631]: /login
+                - text: 登录；想用国产模型，按“跳过登录”的步骤配置，再重启工具就好。
+            - listitem [ref=e632]:
+              - paragraph [ref=e633]:
+                - strong [ref=e634]: 切换国产模型后，调用失败
+                - text: ：先检查API Key和Base URL对不对，再去对应厂商官网看看API接口是不是正常的。Mac用户额外检查.zshrc配置是否生效、settings.json中
+                - code [ref=e635]: useCustomApi
+                - text: 开关是否开启。
+            - listitem [ref=e636]:
+              - paragraph [ref=e637]:
+                - strong [ref=e638]: 会话中响应很慢
+                - text: ：输
+                - code [ref=e639]: /compact
+                - text: 压缩上下文，或者换个轻量点的模型（比如Haiku、国产基础模型），减少Token消耗，速度就快了。
+          - heading "七、总结（新手必看）" [level=2] [ref=e640]
+          - paragraph [ref=e641]:
+            - text: Claude Code 作为终端原生的AI编程工具，最大的好处就是“能自己干活、还灵活”，新手只要掌握“安装→登录/配置→常用命令”这三步，就能快速上手。重点记住：Windows和Mac均能通过Node.js安装Claude Code，推荐使用官方规范指令
+            - code [ref=e642]: npm install -g @anthropic-ai/claude-code
+            - text: ；Mac切换国产模型需额外配置.zshrc文件，并开启settings.json中的
+            - code [ref=e643]: useCustomApi
+            - text: 开关。建议新手先从国产模型开始用，网络稳、成本低，熟悉操作和常用命令后，再试试官方模型，体验更复杂的功能。
+          - paragraph [ref=e644]: 这篇教程把新手必备的操作都讲透了，全程避坑，只要跟着步骤来，30分钟内就能独立用它提升编程效率～ 后续大家可以根据自己的需求，探索更多高级功能（比如MCP协议扩展、Hook自动化），让这个小助手发挥更大作用！
+      - generic [ref=e146]:
+        - generic [ref=e147]:
+          - generic [ref=e148]:
+            - text: "字符数:"
+            - strong [ref=e645]: "10821"
+          - generic [ref=e150]:
+            - text: "行数:"
+            - strong [ref=e151]: "331"
+          - generic [ref=e152]:
+            - text: "正文字数:"
+            - strong [ref=e153]: "4834"
+        - generic [ref=e154]:
+          - generic [ref=e155] [cursor=pointer]:
+            - checkbox "同步滚动" [checked] [ref=e156]
+            - text: 同步滚动
+          - text: 回到顶部
+  - button "小林AI实战教程" [ref=e802] [cursor=pointer]

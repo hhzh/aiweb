@@ -1,3 +1,8 @@
+---
+title: Claude Code MCP 使用教程
+order: 7
+---
+
 # Claude Code MCP 使用教程
 
 MCP（Model Context Protocol）是 Claude Code 官方推出的开源标准协议，核心作用是搭建 Claude Code 与外部工具、API、数据库、设计平台等系统的安全连接桥梁，打破 AI 与外部资源的协作壁垒。通过 MCP，开发者无需切换多个工具，即可用自然语言让 Claude Code 调用外部能力，完成跨系统自动化工作流，大幅提升 AI 辅助开发的效率与场景覆盖度。

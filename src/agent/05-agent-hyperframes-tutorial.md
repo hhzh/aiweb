@@ -1,3 +1,8 @@
+---
+title: HyperFrames 视频渲染框架使用教程
+order: 5
+---
+
 # HyperFrames 视频渲染框架使用教程：从初始化到高效渲染
 
 HyperFrames 是 HeyGen 开源的**HTML 原生视频渲染框架**，主打 AI 代理友好、零构建、确定性渲染，用 HTML+CSS+GSAP 即可快速创作、预览、导出 MP4 视频，适配自动化视频生产、AI 驱动剪辑、数据可视化视频等场景，采用 Apache 2.0 开源协议，商用无限制。

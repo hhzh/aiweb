@@ -1,3 +1,8 @@
+---
+title: OpenClaw 快速入门指南
+order: 1
+---
+
 # OpenClaw 快速入门指南：打造你的私有化 AI 智能体网关
 
 ## 一、OpenClaw 简介：不止于聊天的 AI 执行引擎

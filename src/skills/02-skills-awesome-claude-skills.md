@@ -1,3 +1,8 @@
+---
+title: Awesome Claude Skills 使用教程
+order: 2
+---
+
 # Awesome Claude Skills：一键部署全场景自动化技能
 
 Awesome Claude Skills 是由 **ComposioHQ** 维护的开源精选技能库，汇集了可直接复用的 Claude 定制化工作流，覆盖文档处理、开发运维、数据分析、商业营销、跨应用自动化等场景，支持在 [Claude.ai](Claude.ai)、Claude Code、Claude API 全平台使用，让 Claude 从文本生成工具升级为可执行真实操作的智能助手。官方仓库地址：[https://github.com/ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)，可直接克隆获取全部技能资源。

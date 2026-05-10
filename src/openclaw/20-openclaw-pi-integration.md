@@ -1,3 +1,8 @@
+---
+title: OpenClaw Pi 集成架构设计
+order: 20
+---
+
 # OpenClaw Pi 集成架构设计
 
 OpenClaw Pi 集成是将 **pi-coding-agent** 生态（pi-ai、pi-agent-core、pi-tui）深度嵌入 OpenClaw 网关消息架构的核心设计，通过**嵌入式 SDK 调用**而非子进程/RPC 模式，实现对 AI 智能体全生命周期的精细化控制，支持多渠道消息投递、自定义工具注入、会话持久化与故障转移，构建了一套高性能、可扩展的 AI 智能体运行环境。

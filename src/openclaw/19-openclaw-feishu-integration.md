@@ -1,3 +1,8 @@
+---
+title: OpenClaw 接入飞书渠道教程
+order: 19
+---
+
 # OpenClaw 接入飞书渠道教程详解
 
 OpenClaw 支持接入 WhatsApp、Telegram、Discord、飞书等主流聊天渠道，本文以**飞书**为实战案例，完整讲解从开放平台应用创建、OpenClaw 配置、授权配对到安全管控与高级定制的全流程，适配国内飞书与国际版 Lark，开箱即用。

@@ -1,3 +1,8 @@
+---
+title: Everything Claude Code 安装指南
+order: 3
+---
+
 # Everything Claude Code 安装指南：一键部署 AI 编程全能力
 
 还在为 Claude Code 配置繁琐、功能单一而困扰？Everything Claude Code（简称 ECC）给出了完美解决方案——作为 Anthropic 黑客马拉松获奖项目，它是一套经 10 个月实战迭代打磨的生产级 AI 编程配置系统，无需复杂调试，一键解锁超强能力：内置 **47 个专项子智能体**、**181 个可复用技能模块**、**79 个快捷命令**，覆盖技能体系、记忆持久化、持续学习、安全扫描全场景，兼容 Claude Code、Cursor、OpenCode、Gemini 等主流 AI 编程工具，让你的 AI 编程效率翻倍。

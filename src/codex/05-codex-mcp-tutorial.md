@@ -1,3 +1,8 @@
+---
+title: Codex MCP 全流程使用教程
+order: 5
+---
+
 # Codex MCP 全流程使用教程：打通模型与工具
 
 Model Context Protocol（MCP，模型上下文协议）是连接 AI 模型与外部工具、数据源、服务的标准化协议，也是 Codex 扩展能力的核心通道。通过 MCP，Codex 可直接对接开发文档、Figma、浏览器、GitHub 等工具，实现从 “代码生成” 到 “全流程开发协作” 的升级。本文基于官方 MCP 文档，从零讲解 Codex MCP 的核心能力、两种配置方式、实战示例、服务端部署与调试方法，覆盖 CLI 与 IDE 全端通用配置。

@@ -1,3 +1,8 @@
+---
+title: OpenClaw 全流程安装·更新·迁移·卸载教程
+order: 2
+---
+
 # OpenClaw 全流程安装·更新·迁移·卸载教程
 
 OpenClaw 是跨平台 AI 智能体 Gateway 网关，支持 WhatsApp、Telegram、Discord 等多渠道接入。本文基于官方文档，完整覆盖**安装、更新、迁移、卸载**全生命周期操作，适配 macOS/Linux/WSL/Windows 全系统。

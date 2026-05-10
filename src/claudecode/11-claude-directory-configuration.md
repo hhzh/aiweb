@@ -1,3 +1,8 @@
+---
+title: Claude Code 官方 .claude 目录配置指南
+order: 11
+---
+
 # Claude Code 官方 .claude 目录配置指南
 
 .claude 目录配置结构概览：

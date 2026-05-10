@@ -1,3 +1,8 @@
+---
+title: Superpowers Skills 使用教程
+order: 4
+---
+
 # Superpowers Skills 使用教程
 
 在 AI 编码工具普及的当下，很多开发者面临"AI 盲目生成代码、缺乏工程规范、开发流程混乱"的痛点。Superpowers 作为一套面向 AI 编码智能体的标准化软件开发方法论，通过可组合的 Skills 技能集，让 Claude、Cursor、Codex、Copilot CLI、Gemini 等工具具备系统化开发能力，无需手动干预即可遵循规范流程完成开发任务。本文基于官方仓库 `obra/superpowers`核心内容，整理从安装部署到实操落地的全流程教程，帮助开发者快速上手并发挥其核心价值。

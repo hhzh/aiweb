@@ -1,3 +1,8 @@
+---
+title: Claude Code 常见工作流
+order: 4
+---
+
 # Claude Code 常见工作流
 
 Claude Code 覆盖开发全流程，以下流程图展示了核心工作流及其应用场景：

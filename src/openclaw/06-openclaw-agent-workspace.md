@@ -1,3 +1,8 @@
+---
+title: OpenClaw Agent Workspace 智能体工作区详解
+order: 6
+---
+
 # OpenClaw Agent Workspace 智能体工作区详解
 
 智能体工作区（Agent Workspace）是 OpenClaw 智能体的核心运行目录，作为文件工具与上下文处理的**唯一工作目录（cwd）**，承载智能体的人格、记忆、指令、技能与运行资产，是智能体的 "数字家园"。本文基于官方文档，完整拆解工作区的定位、配置、文件体系、隔离机制、备份迁移与最佳实践。

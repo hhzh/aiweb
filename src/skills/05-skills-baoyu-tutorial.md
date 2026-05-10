@@ -1,3 +1,8 @@
+---
+title: baoyu-skills 完整使用教程
+order: 5
+---
+
 # baoyu-skills 完整使用教程：Claude Code 效率技能集实战
 
 baoyu-skills 是由 JimLiu 开发、专为 Claude Code 打造的开源效率技能集，聚焦内容创作、AI 生成与实用工具三大场景，可快速将文本转化为小红书卡片、信息图、SVG diagrams、幻灯片、漫画等多媒体内容，也支持一键发布至社交媒体与格式转换，大幅提升内容生产与办公效率。
