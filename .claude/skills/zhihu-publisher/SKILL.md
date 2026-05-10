@@ -74,25 +74,32 @@ playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.te
 
 ### Step 5: Configure Contribute to Question (Optional)
 
-Click "投稿至问题" button to contribute the article to a related question:
+To contribute the article to a related question, you must click the **combobox** below the "投稿至问题" button (NOT the button itself). The combobox shows "未选择" by default:
 
 ```bash
 playwright-cli snapshot
-# Click "投稿至问题" button
-playwright-cli click <contribute_button_ref>
+# Find the combobox that shows "未选择" (below the "投稿至问题" text)
+# It is a combobox element, NOT the button labeled "投稿至问题"
+playwright-cli click <combobox_ref>
 ```
 
-Then select a question:
+After clicking the combobox, a question search dialog will appear with recommended questions. You can either search or directly select from recommendations:
 
 ```bash
-# Wait for dialog to load
-playwright-cli snapshot
-# Click on the first question's "选择" button
-playwright-cli click <select_button_ref>
+# Option A: Search for a specific question
+playwright-cli fill <search_combobox_ref> "search keyword"
+playwright-cli click <search_button_ref>
 
-# Confirm selection
+# Option B: Directly select from recommended questions (no search needed)
+# Click on the first question's "选择" button
+playwright-cli snapshot
+playwright-cli click <first_select_button_ref>
+
+# Confirm selection by clicking "确定"
 playwright-cli click <confirm_button_ref>
 ```
+
+**Important**: The "投稿至问题" button itself only toggles the section visibility. To actually open the question picker dialog, you must click the combobox (showing "未选择") underneath it.
 
 ### Step 6: Add Topics
 
@@ -180,6 +187,17 @@ If topic dialog doesn't open:
 playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.textContent.includes('添加话题'))?.click()"
 ```
 
+### Question Picker Not Opening
+
+If clicking the "投稿至问题" button doesn't open the question picker dialog:
+```bash
+# The button only toggles section visibility. You must click the combobox below it.
+# Look for a combobox showing "未选择" in the snapshot
+playwright-cli snapshot
+# Find and click the combobox (not the button)
+playwright-cli click <combobox_ref>
+```
+
 ## Common Element Selectors
 
 | Element | Description |
@@ -187,7 +205,9 @@ playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.te
 | Title input | Textbox with placeholder "请输入标题（最多 100 个字）" |
 | Content editor | Textbox for article body |
 | Confirm parse button | Button with text "确认并解析" |
-| Contribute to question | Button "投稿至问题" |
+| Contribute to question button | Button "投稿至问题" (toggles section visibility) |
+| Contribute to question combobox | Combobox showing "未选择" (opens question picker dialog) |
+| Question search input | Combobox "搜索" in question picker dialog |
 | Question select button | Button "选择" in question list |
 | Confirm button | Button "确定" in dialogs |
 | Add topic button | Button "添加话题" |
@@ -219,10 +239,12 @@ playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.te
 sleep 2
 
 # Contribute to question (optional)
-playwright-cli click <contribute_button_ref>
+# IMPORTANT: Click the combobox (showing "未选择"), NOT the "投稿至问题" button
 playwright-cli snapshot
-playwright-cli click <first_select_button_ref>
-playwright-cli click <confirm_button_ref>
+playwright-cli click <combobox_ref>  # Combobox showing "未选择"
+playwright-cli snapshot
+playwright-cli click <first_select_button_ref>  # "选择" button for first question
+playwright-cli click <confirm_button_ref>  # "确定" button
 
 # Add topics
 playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.textContent.includes('添加话题'))?.click()"

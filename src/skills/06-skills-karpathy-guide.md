@@ -5,8 +5,6 @@ order: 6
 
 # Karpathy 编程准则使用教程：提升 AI 代码质量
 
-# karpathy\-skills 编程准则使用教程
-
 karpathy\-skills 是基于 Andrej Karpathy 对 LLM 编码陷阱的观察，专为 Claude Code 打造的**AI 编程行为约束准则**，通过单文件 `CLAUDE\.md` 或插件形式，根治 AI 编码瞎猜需求、过度复杂、随意修改、无验证交付等通病，让代码更简洁、改动更精准、结果可验证，采用 MIT 开源协议，零成本开箱即用。
 
 官网地址：[https://github\.com/forrestchang/andrej\-karpathy\-skills](https://github.com/forrestchang/andrej-karpathy-skills)

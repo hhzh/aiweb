@@ -23,12 +23,24 @@ Automate publishing Markdown articles to SegmentFault using playwright-cli brows
 sed -n '/^# /,$p' /path/to/article.md | pbcopy
 ```
 
-### Editor Type
+### Editor Type (CodeMirror)
 
-SegmentFault uses a rich text editor that supports Markdown syntax. The editor has:
+SegmentFault uses a **CodeMirror** editor that supports Markdown syntax. The editor has:
 - Edit mode (编辑)
 - Preview mode (预览)
 - Fullscreen mode (全屏)
+
+**CRITICAL**: The CodeMirror display layer intercepts pointer events, so `playwright-cli click` on the editor textbox will FAIL. You MUST use the CodeMirror API to focus the editor before pasting content:
+
+```bash
+# Focus the CodeMirror editor via its API
+playwright-cli eval "document.querySelector('.CodeMirror').CodeMirror.focus()"
+
+# Then paste
+playwright-cli press "Meta+v"
+```
+
+Do NOT try `playwright-cli click <editor_ref>` — it will fail with "intercepts pointer events" or paste content into the title field instead.
 
 ### Tag Limit
 
@@ -56,18 +68,25 @@ Title input: `textbox "标题"`
 
 ### Step 3: Fill Article Content
 
-**IMPORTANT**: Skip YAML frontmatter when copying content.
+**IMPORTANT**: Skip YAML frontmatter when copying content. The CodeMirror editor requires special focus handling.
 
 ```bash
 # Skip frontmatter and copy content
 sed -n '/^# /,$p' /path/to/article.md | pbcopy
 
-# Click editor and paste
-playwright-cli click <editor_ref>
+# Focus CodeMirror editor via API (do NOT use playwright-cli click)
+playwright-cli eval "document.querySelector('.CodeMirror').CodeMirror.focus()"
+
+# Paste content
 playwright-cli press "Meta+v"
 ```
 
-Editor: `textbox` in the editor area
+**Why not click?** The CodeMirror display layer (`CodeMirror-lines`, `CodeMirror-scroll`) intercepts pointer events, causing `playwright-cli click` to fail. Clicking may also accidentally focus the title field instead, pasting all content into the title.
+
+To verify content was pasted correctly:
+```bash
+playwright-cli eval "document.querySelector('.CodeMirror')?.CodeMirror?.getValue()?.substring(0, 100)"
+```
 
 ### Step 4: Add Tags
 
@@ -185,12 +204,34 @@ If the published content shows YAML frontmatter (`---` at the beginning):
 2. Copy content without frontmatter: `sed -n '/^# /,$p' article.md | pbcopy`
 3. Paste again: `playwright-cli press "Meta+v"`
 
+### CodeMirror Editor Not Receiving Paste
+
+If pasting results in content appearing in the title field instead of the editor:
+1. Clear the title field: `playwright-cli fill <title_ref> "Correct Title Only"`
+2. Focus CodeMirror via API: `playwright-cli eval "document.querySelector('.CodeMirror').CodeMirror.focus()"`
+3. Re-paste: `playwright-cli press "Meta+v"`
+4. Verify: `playwright-cli eval "document.querySelector('.CodeMirror')?.CodeMirror?.getValue()?.substring(0, 100)"`
+
+### Beforeunload Dialog on Submit
+
+After clicking "提交", a `beforeunload` dialog may appear. Accept it:
+```bash
+playwright-cli dialog-accept
+```
+
+### Article Under Review Prompt
+
+SegmentFault may show a dialog: "你有被拒绝的文章等待编辑，通过之后才能继续撰写文章". This means the article was submitted but needs review. The article URL can be found in the "查看详情" link within the dialog. Accept the dialog to continue:
+```bash
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('确定'))?.click()"
+```
+
 ## Common Element Selectors
 
 | Element | Description |
 |---------|-------------|
 | Title input | `textbox "标题"` |
-| Content editor | `textbox` in editor area |
+| Content editor | CodeMirror — use `CodeMirror.focus()` API, do NOT click |
 | Add tag button | `button "+ 添加标签"` |
 | AI tab | `tab "AI"` |
 | Copyright checkbox | `checkbox "注明版权"` |
@@ -212,8 +253,13 @@ playwright-cli fill <title_ref> "My Article Title"
 
 # Fill content (skip frontmatter)
 sed -n '/^# /,$p' article.md | pbcopy
-playwright-cli click <editor_ref>
+
+# CRITICAL: Use CodeMirror API to focus, NOT playwright-cli click
+playwright-cli eval "document.querySelector('.CodeMirror').CodeMirror.focus()"
 playwright-cli press "Meta+v"
+
+# Verify content was pasted correctly (optional)
+playwright-cli eval "document.querySelector('.CodeMirror')?.CodeMirror?.getValue()?.substring(0, 100)"
 
 # Add tags (AI category)
 playwright-cli click <add_tag_button_ref>
@@ -233,9 +279,11 @@ playwright-cli click <copyright_checkbox_ref>
 playwright-cli snapshot
 playwright-cli click <submit_button_ref>
 
-# Verify
-playwright-cli snapshot
-# Check for success indicators
+# Handle beforeunload dialog if it appears
+playwright-cli dialog-accept
+
+# Handle review prompt dialog if it appears
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('确定'))?.click()"
 ```
 
 ## Tips

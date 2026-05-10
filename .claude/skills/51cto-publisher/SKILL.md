@@ -90,26 +90,38 @@ Common categories:
 
 ### Step 6: Select Secondary Category (二级分类)
 
-After selecting primary category, a secondary category dropdown will appear. Select from the available options.
+After selecting primary category, secondary category options appear but may NOT be visible in the snapshot as clickable elements. Use JavaScript to click them:
 
 ```bash
-playwright-cli snapshot
-# Find and click the secondary category
-playwright-cli click <secondary_category_ref>
+# First, find available secondary categories
+playwright-cli eval "document.querySelector('#twoLever')?.innerHTML"
+
+# Then select one by its value attribute (via JS click)
+playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"
 ```
+
+Common secondary categories for "人工智能":
+- "AI IDE" - value="206"
+- "代码生成" - value="207"
+- "无代码开发" - value="208"
+- "代码编辑" - value="209"
+
+**Important**: The secondary category items (`.second-types-item`) often cannot be clicked via `playwright-cli click` because they are not rendered as standard interactive elements. Use `playwright-cli eval` with JavaScript click instead.
 
 ### Step 7: Configure Personal Category
 
-Select your personal category:
+The personal category field is a **readonly dropdown** — `playwright-cli fill` will NOT work. Click the dropdown first, then select from options:
 
 ```bash
-playwright-cli snapshot
-# Find personal category dropdown
-playwright-cli click "#selfType"
-# Or click on the dropdown ref
-playwright-cli click <personal_category_dropdown_ref>
+# Click the dropdown to open it (readonly input, cannot fill)
+playwright-cli eval "document.querySelector('#selfType')?.click()"
 
-# Wait for dropdown, then select
+# Wait for options to appear
+sleep 1
+playwright-cli snapshot
+# Find and click the personal category option (listitem)
+playwright-cli click <personal_category_item_ref>
+```
 playwright-cli snapshot
 playwright-cli click <personal_category_item_ref>
 ```
@@ -118,25 +130,38 @@ The personal category list is in `#selfType_list`.
 
 ### Step 8: Add Tags
 
-Enter tags directly in the tag input field:
+Tags must be entered **one at a time** with Enter key after each. Do NOT use comma-separated input:
 
 ```bash
-playwright-cli fill "#tag-input" "AI教程"
+# Add tags one by one
+playwright-cli fill <tag_input_ref> "AI"
 playwright-cli press "Enter"
+
+playwright-cli snapshot  # Get fresh ref
+playwright-cli fill <tag_input_ref> "Claude Code"
+playwright-cli press "Enter"
+
+# Repeat for more tags (max 5)
 ```
 
-Tags can be separated by comma, semicolon, or Enter key. Maximum 5 tags allowed.
+**Important**: After each tag is added, the input ref may change. Take a snapshot to get the fresh ref before adding the next tag. Comma-separated input does NOT work as expected.
 
-### Step 9: Select Topic (Optional)
+### Step 9: Select Topic
 
-Select a topic from the dropdown:
+Click the topic input to show dropdown, then select from the list:
 
 ```bash
-playwright-cli click "#subjuct"
+# Click the topic input to show dropdown
+playwright-cli click <topic_input_ref>
+
+# Wait for options to appear
+sleep 1
 playwright-cli snapshot
-# Find and click the topic item
+# Click on the desired topic (listitem)
 playwright-cli click <topic_ref>
 ```
+
+Topic selection is important for 51CTO — articles without a topic may fail to publish.
 
 Common topics:
 - "#我和 AI 的故事#" - value="32"
@@ -202,6 +227,15 @@ If the published content shows YAML frontmatter:
 2. Copy content without frontmatter: `sed -n '/^# /,$p' article.md | pbcopy`
 3. Paste again
 
+### Publish Button Clicked But Page Does Not Change
+
+If clicking "发布" doesn't redirect to a success page, check for missing required fields:
+1. **Secondary category (二级分类)**: Must be selected — use JS: `playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"`
+2. **Topic (话题)**: Should be selected from the dropdown
+3. **Tags**: At least one tag is required
+
+The most common issue is that the secondary category is not actually selected, even though the UI looks like it was clicked. Verify with: `playwright-cli eval "document.querySelector('#twoLever .second-types-item.active')?.textContent"`
+
 ## Common Element Selectors
 
 | Element | Selector/Description |
@@ -242,34 +276,37 @@ playwright-cli click <publish_button_ref>
 # Wait for dialog
 playwright-cli snapshot
 
-# Select article category "代码人生"
-playwright-cli eval "document.querySelector('.select_item[value=\"43\"]')?.click()"
+# Select article category "人工智能"
+playwright-cli eval "document.querySelector('.select_item[value=\"36\"]')?.click()"
 
-# Wait for secondary category to appear
+# Wait for secondary category to appear, then select via JS
 sleep 1
-playwright-cli snapshot
-# Select secondary category
-playwright-cli click <secondary_category_ref>
+playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"
 
-# Select personal category
+# Select personal category (readonly dropdown, click then select)
 playwright-cli eval "document.querySelector('#selfType')?.click()"
+sleep 1
 playwright-cli snapshot
 playwright-cli click <personal_category_item_ref>
 
-# Add tag
-playwright-cli fill "#tag-input" "AI教程"
+# Add tags one by one
+playwright-cli fill <tag_input_ref> "AI"
+playwright-cli press "Enter"
+playwright-cli snapshot
+playwright-cli fill <tag_input_ref> "Claude Code"
 playwright-cli press "Enter"
 
-# Select topic
-playwright-cli eval "document.querySelector('#subjuct')?.click()"
+# Select topic from dropdown
+playwright-cli click <topic_input_ref>
+sleep 1
 playwright-cli snapshot
-playwright-cli eval "document.querySelector('li[value=\"32\"]')?.click()"
+playwright-cli click <topic_ref>  # e.g., "#ChatGPT初体验#"
 
 # Click publish in dialog
 playwright-cli snapshot
 playwright-cli click <dialog_publish_button_ref>
 
-# Verify
+# Verify - should redirect to success page
 playwright-cli eval "window.location.href"
 ```
 
