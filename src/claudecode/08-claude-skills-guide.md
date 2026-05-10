@@ -594,8 +594,10 @@ ls ~/.claude/skills/explain-code/SKILL.md # 查看SKILL.md是否存在
 3. 检查 `description` 关键词：自动触发需对话内容包含 `description` 中的关键词，可精简关键词提高触发精准度。
 
 4. 检查是否被权限规则禁用：查看全局权限配置，确保技能未被拒绝。
-        `> /permissions list Skill # 查看技能权限配置
-> /permissions allow Skill(explain-code) # 允许该技能调用`
+        ```bash
+        > /permissions list Skill # 查看技能权限配置
+        > /permissions allow Skill(explain-code) # 允许该技能调用
+        ```
 
 ### 8.2 问题2：技能触发过于频繁（无关场景也触发）
 
@@ -607,8 +609,7 @@ ls ~/.claude/skills/explain-code/SKILL.md # 查看SKILL.md是否存在
         `# 优化前（过于宽泛）
 description: 解释代码
 # 优化后（精准触发）
-description: 解释JS/TS代码的执行逻辑，用户询问“JS代码如何工作”时触发`
-
+```
 2. 添加 `disable-model-invocation: true`，改为仅手动调用，避免自动误触发。
 
 ### 8.3 问题3：参数不生效（$ARGUMENTS 未被替换）
@@ -623,7 +624,8 @@ description: 解释JS/TS代码的执行逻辑，用户询问“JS代码如何工
         `# 正确调用（参数紧跟技能名）
 > /fix-issue 123
 # 错误调用（参数前有空格）
-> /fix-issue  123（错误）`
+> /fix-issue  123（错误）
+```
 
 ### 8.4 问题4：技能加载不全（部分指令未执行）
 

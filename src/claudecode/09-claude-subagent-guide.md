@@ -279,7 +279,7 @@ tags: [frontend, code-review, team-shared]
 
 核心配置：tools: Read,Edit,Grep,Bash；model: opus；permissionMode: acceptEdits
 
-调用方式：直接输入报错信息，或 `/agent nodejs-debugger 调试报错：\"Cannot find module 'express'\"`
+调用方式：直接输入报错信息，或 `/agent nodejs-debugger 调试报错："Cannot find module 'express'"`
 
 ### 7.3 临时日志分析（CLI 临时代理）
 

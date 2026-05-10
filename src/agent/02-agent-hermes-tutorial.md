@@ -156,23 +156,29 @@ hermes doctor
 
 执行 `hermes` 启动后，进入 TUI 交互界面，以下为 3 个高频实战场景，可直接复制指令执行：
 
-- **案例1：基础对话与技能调用**`# 启动交互后，输入自然语言指令
+```
+# 启动交互后，输入自然语言指令
 hermes
 # 输入：帮我生成一份 Hermes Agent 基础使用清单（含3个核心命令）
 # 执行后，输入 /skills 查看自动生成的技能（命名类似“generate-hermes-basic-usage”）
-# 后续可直接输入 /generate-hermes-basic-usage 快速调用该技能`
+# 后续可直接输入 /generate-hermes-basic-usage 快速调用该技能
+```
 
-- **案例2：切换模型并执行差异化任务**`# 启动交互后，切换至 Kimi 模型处理中文文案
+```
+# 启动交互后，切换至 Kimi 模型处理中文文案
 /model kimi:moonshot-v1
 # 输入：帮我撰写一段 Hermes Agent 的中文推广文案（50字以内）
 # 再切换至 OpenAI GPT-4 处理技术总结
 /model openai:gpt-4
-# 输入：总结 Hermes Agent 与传统 AI 智能体的3个核心区别`
+# 输入：总结 Hermes Agent 与传统 AI 智能体的3个核心区别
+```
 
-- **案例3：使用--yolo flag 绕过审批提示（v0.12.0 新特性）**`# 启动交互时添加 --yolo  flag，无需手动确认即可执行任务
+```
+# 启动交互时添加 --yolo  flag，无需手动确认即可执行任务
 hermes --yolo
 # 输入：批量删除 ~/.hermes/skills 下30天未使用的技能
-# 系统将直接执行，无需二次确认，适合自动化脚本场景`
+# 系统将直接执行，无需二次确认，适合自动化脚本场景
+```
 
 补充操作：多行编辑、命令自动补全；使用 slash 命令：`/new`（新建对话）、`/reset`（重置对话）、`/model [provider:model]`（切换模型）；中断当前任务：`Ctrl+C` 或直接发送新消息；查看技能：`/skills` 或直接输入 `/<skill-name>`。
 
@@ -188,15 +194,19 @@ hermes gateway setup
 hermes gateway start
 ```
 
-- **案例1：Telegram 接收定时任务通知**`# 配置每日18:00推送系统状态报告至Telegram
+```bash
+# 配置每日18:00推送系统状态报告至Telegram
 hermes cron add "每日系统状态" "0 18 * * *" "生成今日系统CPU、内存使用率报告" --platform telegram
-# 启动网关后，每日18:00将自动接收报告，无需手动操作`
+# 启动网关后，每日18:00将自动接收报告，无需手动操作
+```
 
-- **案例2：Microsoft Teams 群聊交互（v0.12.0 新特性）**`# 配置Teams平台（需先获取Teams Bot Token）
+```bash
+# 配置Teams平台（需先获取Teams Bot Token）
 hermes gateway setup --platform teams
 # 启动网关后，在Teams群聊中发送指令
 # 输入：/model nous:hermes-3-pro 切换至Nous自研模型
-# 输入：帮我整理群聊中今日的核心讨论要点，生成简洁总结`
+# 输入：帮我整理群聊中今日的核心讨论要点，生成简洁总结
+```
 
 启动后，通过对应平台发送消息即可与 Hermes 交互，支持的 slash 命令与 CLI 一致，部分平台专属命令：`/status`（查看网关状态）、`/sethome`（设置默认交互目录）。
 
@@ -216,23 +226,27 @@ hermes gateway setup --platform teams
 
 Hermes Agent 的核心能力是自进化，无需手动编写技能，以下为两个实战案例，覆盖科研与日常自动化场景：
 
-1. **案例1：科研场景 - 批量生成 RL 训练轨迹并压缩**`# 启动交互，输入多步骤科研任务
+```
+# 启动交互，输入多步骤科研任务
 hermes --yolo
 # 输入：使用 WebResearchEnv RL 环境（v0.12.0新特性），批量生成10条多步骤网页研究轨迹，每条轨迹包含5个步骤，生成完成后用/compress命令压缩轨迹文件，保存至~/hermes/research-trajectories目录
 # 执行过程：
 # 1. Hermes 自动调用 WebResearchEnv 环境，生成轨迹
 # 2. 完成后自主创建“generate-rl-trajectories”技能
 # 3. 执行 /compress 压缩轨迹，优化存储
-# 后续复用：直接输入 /generate-rl-trajectories 即可快速执行相同任务，Hermes 会根据过往经验优化生成速度`
+# 后续复用：直接输入 /generate-rl-trajectories 即可快速执行相同任务，Hermes 会根据过往经验优化生成速度
+```
 
-2. **案例2：日常场景 - 自动整理每日浏览器浏览记录**`# 启动交互，输入任务
+```
+# 启动交互，输入任务
 hermes
 # 输入：帮我提取今日 Chrome 浏览器的浏览记录，按“网站名称-访问时间-页面标题”整理成表格，排除广告类网站，保存为markdown文件至~/hermes/daily-browsing.md
 # 执行后：
 # 1. Hermes 自动调用浏览器接口提取记录，筛选有效内容
 # 2. 生成“organize-browser-history”技能，存储于~/.hermes/skills/
 # 3. 重复执行3次后，Hermes 会自动优化筛选规则，减少无效内容，提升整理效率
-# 记忆强化：输入 /insights --days 1 查看今日交互洞察，确认技能优化效果`
+# 记忆强化：输入 /insights --days 1 查看今日交互洞察，确认技能优化效果
+```
 
 核心流程总结：执行复杂任务 → 自动创建技能 → 重复使用优化技能 → 记忆强化沉淀知识。
 

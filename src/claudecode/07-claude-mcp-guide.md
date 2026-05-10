@@ -460,7 +460,8 @@ claude mcp add --transport stdio filesystem -- npx -y @modelcontextprotocol/serv
 
 ### 9.1 常见故障排查
 
-- **问题1：MCP 服务器连接失败**原因：协议版本不匹配、配置文件冲突、端口占用、Windows 路径格式错误。解决方案：`# 1. 检查 MCP 协议版本（Claude Code 0.48+ 要求 v2.0）
+```bash
+# 1. 检查 MCP 协议版本（Claude Code 0.48+ 要求 v2.0）
 npm ls @modelcontextprotocol/sdk
 npm update @modelcontextprotocol/sdk@latest # 升级版本
 
@@ -475,13 +476,16 @@ claude mcp add --transport http my-server --header "Port: 3100" https://api.exam
 
 # 4. Windows 路径错误（使用双反斜杠或正斜杠）
 # 错误：C:\\Users\\name\\project
-# 正确：C:\\\\Users\\\\name\\\\project 或 C:/Users/name/project`
+# 正确：C:\\\\Users\\\\name\\\\project 或 C:/Users/name/project
+```
 
-- **问题2：Windows stdio 连接失败**原因：未用 cmd /c 包装命令，权限不足。解决方案：`# 必须用 cmd /c 包装命令
+```bash
+# 必须用 cmd /c 包装命令
 claude mcp add --transport stdio my-server -- cmd /c npx -y @some/package
 
 # 避免安装在 Program Files 目录（需管理员权限）
-# 推荐安装路径：C:/Users/(username)/AppData/Local/claude-mcp/`
+# 推荐安装路径：C:/Users/(username)/AppData/Local/claude-mcp/
+```
 
 - **问题3：认证失败**原因：令牌过期、认证信息错误。解决方案：会话内执行 `/mcp clear-auth 服务器名`，清除授权后重新登录。
 
@@ -490,19 +494,23 @@ claude mcp add --transport stdio my-server -- cmd /c npx -y @some/package
 ### 9.2 优化配置
 
 - **输出令牌限制**：MCP 输出超 10000 令牌触发警告，可通过环境变量扩容：
-        `export MAX_MCP_OUTPUT_TOKENS=50000 # 临时扩容（当前会话有效）
-echo "export MAX_MCP_OUTPUT_TOKENS=50000" >> ~/.bashrc # 永久扩容（Linux/macOS）`
+        ```bash
+        export MAX_MCP_OUTPUT_TOKENS=50000 # 临时扩容（当前会话有效）
+        echo "export MAX_MCP_OUTPUT_TOKENS=50000" >> ~/.bashrc # 永久扩容（Linux/macOS）
+        ```
 
 - **启动超时配置**：默认超时时间较短，可调整超时时间：
         `MCP_TIMEOUT=10000 claude # 超时时间设为 10 秒`
 
 - **中文路径问题**：Windows 中文版系统默认 GBK 编码，导致中文路径解析失败，解决方案：
-        `# 切换到 UTF-8 代码页（Windows）
-chcp 65001
+        ```bash
+        # 切换到 UTF-8 代码页（Windows）
+        chcp 65001
 
-# 创建英文符号链接指向中文目录
-mklink /D C:\\mcp-workspace "C:\\工作空间\\项目"
-# 配置中使用英文路径 C:\\mcp-workspace`
+        # 创建英文符号链接指向中文目录
+        mklink /D C:\mcp-workspace "C:\工作空间\项目"
+        # 配置中使用英文路径 C:\mcp-workspace
+        ```
 
 ### 9.3 安全最佳实践
 

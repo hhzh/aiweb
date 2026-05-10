@@ -159,8 +159,11 @@ Claude Code登录有两种玩法：官方账号登录（能用官方模型）、
 1. 启动Claude Code后，要是显示没登录，按 `Ctrl + C` 退出当前界面就好。
 
 2. 在终端输入下面两条命令，创建配置文件，假装已经登录（跳过引导）：
-   `mkdir -p ~/.claude && echo '{\"hasCompletedOnboarding\": true}' > ~/.claude.json`
-   `echo '{\"primaryApiKey\": \"any-string\"}' > ~/.claude/config.json`
+
+   ```bash
+   mkdir -p ~/.claude && echo '{"hasCompletedOnboarding": true}' > ~/.claude.json
+   echo '{"primaryApiKey": "any-string"}' > ~/.claude/config.json
+   ```
 
 3. 接下来配置国产模型的API环境变量（后面章节会详细说），配置好后，输入 `claude` 重新启动，就能正常用啦，不用登录。
 
@@ -183,8 +186,18 @@ Claude Code登录有两种玩法：官方账号登录（能用官方模型）、
 #### 方式一：环境变量配置（临时生效，重启终端就没了）
 
 1. 打开终端（Mac终端/Git Bash），输入下面的命令，把里面的内容换成你自己的DeepSeek API Key和Base URL：
-   Mac/Linux：`export ANTHROPIC_BASE_URL=\"https://api.deepseek.com/v1\" && export ANTHROPIC_AUTH_TOKEN=\"你的DeepSeek API Key\"`
-   Windows Git Bash：`set ANTHROPIC_BASE_URL=\"https://api.deepseek.com/v1\" && set ANTHROPIC_AUTH_TOKEN=\"你的DeepSeek API Key\"`
+
+   Mac/Linux：
+   ```bash
+   export ANTHROPIC_BASE_URL="https://api.deepseek.com/v1"
+   export ANTHROPIC_AUTH_TOKEN="你的DeepSeek API Key"
+   ```
+
+   Windows Git Bash：
+   ```bash
+   set ANTHROPIC_BASE_URL="https://api.deepseek.com/v1"
+   set ANTHROPIC_AUTH_TOKEN="你的DeepSeek API Key"
+   ```
 
 2. 注意：尝试访问 `https://api.deepseek.com/v1` 时出现“网页解析失败”，属于正常现象，无需手动访问该链接，只需确保配置的Base URL正确即可。
 
@@ -203,7 +216,9 @@ Claude Code登录有两种玩法：官方账号登录（能用官方模型）、
    Windows Git Bash：终端输 `nano ~/.claude/settings.json`
 
 3. 在配置文件里输入下面的内容，把API Key换成你自己的（以DeepSeek为例）：
-   `{
+
+   ```json
+   {
      "env": {
        "ANTHROPIC_AUTH_TOKEN": "你的DeepSeek API Key",
        "ANTHROPIC_BASE_URL": "https://api.deepseek.com/v1"
@@ -215,7 +230,8 @@ Claude Code登录有两种玩法：官方账号登录（能用官方模型）、
          "Read(./secrets/**)"
        ]
      }
-   }`
+   }
+   ```
 
 4. 保存退出：按 `Ctrl + O` 保存，再按 `Ctrl + X` 退出编辑就好。
 
@@ -227,30 +243,34 @@ Claude Code登录有两种玩法：官方账号登录（能用官方模型）、
    `mkdir -p ~/.claude`
 
 2. 编辑配置文件 `settings.json`，并修改关键开关：
-   Mac终端输 `nano ~/.claude/settings.json`，输入以下内容（重点添加`\"useCustomApi\": true`开关，启用自定义API，即国产模型），并替换自己的API Key：
-```yaml
-{
-  "env": {
-    "ANTHROPIC_AUTH_TOKEN": "你的DeepSeek API Key",
-    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/v1"
-  },
-  "useCustomApi": true, // 关键开关：启用自定义API，用于切换国产模型，必须添加
-  "permissions": {
-    "deny": [
-      "Read(./.env)",
-      "Read(./.env.*)",
-      "Read(./secrets/**)"
-    ]
-  }
-}
-```
+   Mac终端输 `nano ~/.claude/settings.json`，输入以下内容（重点添加`"useCustomApi": true`开关，启用自定义API，即国产模型），并替换自己的API Key：
+
+   ```json
+   {
+     "env": {
+       "ANTHROPIC_AUTH_TOKEN": "你的DeepSeek API Key",
+       "ANTHROPIC_BASE_URL": "https://api.deepseek.com/v1"
+     },
+     "useCustomApi": true,
+     "permissions": {
+       "deny": [
+         "Read(./.env)",
+         "Read(./.env.*)",
+         "Read(./secrets/**)"
+       ]
+     }
+   }
+   ```
 
 3. 保存退出settings.json：按 `Ctrl + O` 保存，再按 `Ctrl + X` 退出编辑。
 
 4. 配置.zshrc文件（Mac专属，永久生效环境变量）：
    终端输 `nano ~/.zshrc`，在文件末尾添加以下内容（替换成自己的API Key和Base URL）：
-   `export ANTHROPIC_BASE_URL=\"https://api.deepseek.com/v1\"`
-   `export ANTHROPIC_AUTH_TOKEN=\"你的DeepSeek API Key\"`
+
+   ```bash
+   export ANTHROPIC_BASE_URL="https://api.deepseek.com/v1"
+   export ANTHROPIC_AUTH_TOKEN="你的DeepSeek API Key"
+   ```
 
 5. 生效.zshrc配置：终端输 `source ~/.zshrc`，让配置立即生效（无需重启终端）。
 

@@ -192,7 +192,8 @@ npx hyperframes add data-chart               # 动态图表
 1. 前置准备：已安装 Node.js、FFmpeg，执行 `npx skills add heygen-com/hyperframes` 安装技能，打开 Claude Code（网页版/客户端均可）。
 
 2. 输入提示词（精准控制视频参数，避免 AI 输出无效代码）：
-`使用 /hyperframes 生成15秒短视频，主题为“HyperFrames 框架介绍”，要求：
+```
+使用 /hyperframes 生成15秒短视频，主题为“HyperFrames 框架介绍”，要求：
 
         1. 尺寸1080*1920（竖屏，适配抖音），帧率30fps；
 
@@ -204,7 +205,8 @@ npx hyperframes add data-chart               # 动态图表
 
         5. 添加轻柔背景音乐，音量0.2，无杂音；
 
-        6. 输出完整 HTML 代码（含所有依赖引入）、预览命令、渲染命令，确保代码可直接运行，无需修改。`
+        6. 输出完整 HTML 代码（含所有依赖引入）、预览命令、渲染命令，确保代码可直接运行，无需修改。
+```
 
 3. 执行操作：Claude 输出代码后，复制代码保存为 `index.html`，放在空文件夹中，执行 Claude 给出的预览命令（通常为 `npx hyperframes preview`），浏览器实时查看效果。
 
