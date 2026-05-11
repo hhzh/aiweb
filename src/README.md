@@ -30,11 +30,26 @@ head:
 
 :::
 
-AI 编程工具更新很快，文档分散在官方手册、GitHub README 和社区帖子里，找齐一轮就要花不少时间。这里把常用的工具教程做了结构化整理，方便按需查阅。
+🌟 **【重磅推荐】AI编程工具终极指南！「小林学AI」全网首发，一站式掌握AI辅助开发！** 🌟
+
+无论你是后端开发者、前端工程师，还是全栈程序员，面对AI编程工具的快速迭代，是否总被这些问题困扰？  
+❓ **Claude Code功能太多，不知道从哪里上手？**  
+❓ **OpenClaw配置复杂，模型选择一头雾水？**  
+❓ **AI智能体开发概念抽象，难以落地实践？**  
+**👉 别慌！「小林学AI」来了！最全AI编程工具教程+实战指南，助你效率翻倍！**
 
 ---
 
-### 内容导航
+### **🔥 为什么选择「小林学AI」？**
+1. **全网最全教程**：覆盖Claude Code、Codex、OpenClaw等主流AI工具，从安装到进阶，一网打尽！
+2. **结构化分类**：清晰划分**工具教程**、**配置指南**、**最佳实践**，精准定位学习目标！
+3. **深度源码解析**：拒绝"只会用不懂原理"，深入理解工具设计思想与实现机制！
+4. **持续更新迭代**：紧跟AI工具发展（如Claude 4.x、OpenClaw新特性），拒绝过时内容！
+5. **完全免费开放**：无套路，无付费墙，技术人的纯粹分享社区！
+
+---
+
+### **🚀 网站核心内容一览**
 
 #### 一、Claude Code [进入 →](/claudecode/)
 - **入门**：[安装配置](/claudecode/01-claude-quick-install-guide.html)、[基础命令](/claudecode/05-claude-commands-guide.html)、[权限模式](/claudecode/03-claude-permission-modes.html)
@@ -60,8 +75,10 @@ AI 编程工具更新很快，文档分散在官方手册、GitHub README 和社
 - **工具集成**：[OpenCLI](/agent/01-agent-opencli-tutorial.html)、[gstack](/agent/04-agent-gstack-tutorial.html)
 
 #### 五、开发工具 [进入 →](/tool/)
-- [Git](/tool/01-tool-git.html) · [Markdown](/tool/02-tool-markdown.html) · [Mermaid](/tool/03-tool-mermaid.html) · [Playwright](/tool/04-tool-playwright.html) · [Ollama](/tool/05-tool-ollama.html)
-
+- **版本控制**：[Git常用命令与最佳实践](/tool/01-tool-git.html)！
+- **文档编写**：[Markdown语法](/tool/02-tool-markdown.html)、[Mermaid流程图绘制](/tool/03-tool-mermaid.html)！
+- **浏览器自动化**：[Playwright测试与爬虫实战](/tool/04-tool-playwright.html)！
+- **本地模型**：[Ollama本地大模型部署与使用](/tool/05-tool-ollama.html)！
 ---
 
 ### 适合读者
