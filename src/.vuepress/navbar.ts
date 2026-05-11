@@ -8,27 +8,27 @@ export default navbar([
         link: "/claudecode/",
     },
     {
-        text: "codex",
+        text: "Codex教程",
         icon: "dumbbell",
         link: "/codex/",
     },
     {
-        text: "skills",
+        text: "Skills",
         icon: "laptop-code",
         link: "/skills/",
     },
     {
-        text: "agent",
+        text: "Agent",
         icon: "book",
         link: "/agent/",
     },
     {
-        text: "openclaw",
+        text: "OpenClaw",
         icon: "book",
         link: "/openclaw/",
     },
     {
-        text: "tool",
+        text: "Tool",
         icon: "gears",
         link: "/tool/",
     },

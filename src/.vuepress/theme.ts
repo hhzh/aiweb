@@ -11,7 +11,7 @@ export default hopeTheme({
   //   url: "https://mister-hope.com",
   // },
 
-  logo: "logo_black.png",
+  logo: "logo_black.svg",
 
   // repo: "vuepress-theme-hope/vuepress-theme-hope",
 
