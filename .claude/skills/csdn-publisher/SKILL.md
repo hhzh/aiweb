@@ -43,10 +43,34 @@ The category column (分类专栏) must be created before use. If you don't have
 ### Step 1: Open Browser
 
 ```bash
-playwright-cli open --headed --persistent https://mp.csdn.net/mp_blog/creation/editor
+playwright-cli open --headed --persistent https://editor.csdn.net/md/
 ```
 
 The `--headed` flag shows the browser UI, `--persistent` saves login state.
+
+**Note**: Use `https://editor.csdn.net/md/` to open the Markdown editor directly. The old URL `https://mp.csdn.net/mp_blog/creation/editor` opens the rich text editor which requires an extra step to switch.
+
+### Step 1.1: Handle Template Dialog
+
+CSDN may show a template selection dialog ("插入模版(MarkDown)") on first load. If it appears:
+
+```bash
+playwright-cli snapshot
+# Find the "取消" button in the dialog
+playwright-cli click <cancel_button_ref>
+```
+
+The dialog contains templates like "学习计划模板示例", "系列文章模板" etc. Click "取消" to dismiss it.
+
+### Step 1.2: Close AI Assistant Panel
+
+CSDN shows an AI assistant panel on the right side. Close it to free up space:
+
+```bash
+playwright-cli snapshot
+# Find the "关闭" button at the top of the AI assistant panel
+playwright-cli click <close_button_ref>
+```
 
 ### Step 2: Fill Article Title
 
@@ -64,14 +88,21 @@ Title must be 5-100 characters.
 
 **IMPORTANT**: Skip YAML frontmatter when copying content.
 
+For the Markdown editor (`https://editor.csdn.net/md/`):
+
 ```bash
 # Skip frontmatter and copy content
 sed -n '/^# /,$p' /path/to/article.md | pbcopy
 
-# Click editor and paste
-playwright-cli click "iframe"
+# Focus the CodeMirror editor area
+playwright-cli eval "document.querySelector('[contenteditable=true]')?.focus()"
+
+# Select any existing content and paste
+playwright-cli press "Meta+a"
 playwright-cli press "Meta+v"
 ```
+
+The Markdown editor uses CodeMirror, which doesn't have a traditional textbox. Use `contenteditable` focus + keyboard paste instead of clicking an iframe.
 
 ### Step 4: Add Article Tags
 
@@ -89,10 +120,13 @@ playwright-cli snapshot
 playwright-cli click <tag_option_ref>
 ```
 
-3. Close tag dialog:
+3. Close tag panel:
 ```bash
-playwright-cli press Escape
+# Blur the tag input to close the tag panel
+playwright-cli eval "document.querySelector('.tag__box')?.blur()"
 ```
+
+**WARNING**: Do NOT use `Escape` to close the tag panel — it will close the entire publish dialog and lose all filled data (tags, summary, etc.).
 
 ### Step 5: Fill Article Summary
 
@@ -162,7 +196,8 @@ playwright-cli click <visibility_radio_ref>
 1. Click activity dropdown:
 ```bash
 playwright-cli snapshot
-playwright-cli click <activity_dropdown_ref>
+# If click fails with "intercepts pointer events" error, use JS:
+playwright-cli eval "document.querySelector('input[placeholder=\"请选择创作活动\"]')?.click()"
 ```
 
 2. Smart activity selection logic:
@@ -192,10 +227,16 @@ Note: Topic dropdown may be disabled if the selected activity has no associated 
 
 ### Step 12: Publish
 
-Click the publish button:
+Click the publish button in the dialog:
 ```bash
 playwright-cli snapshot
-playwright-cli click <publish_button_ref>
+# Find the "发布文章" button in the dialog (not the toolbar one)
+playwright-cli click <publish_dialog_button_ref>
+```
+
+**Note**: If click fails with "intercepts pointer events" error (common in the publish dialog), use JavaScript:
+```bash
+playwright-cli eval "document.querySelector('button.btn-b-red')?.click()"
 ```
 
 ### Step 13: Verify Success
@@ -238,13 +279,13 @@ playwright-cli snapshot
 # Use new refs from snapshot
 ```
 
-### AI Assistant Dialog
+### AI Assistant Panel
 
-CSDN shows an AI assistant dialog on page load. Close it if needed:
+CSDN shows an AI assistant panel on the right side of the editor. Close it by clicking the "关闭" button:
 ```bash
 playwright-cli snapshot
-# Find and click close button or press Escape
-playwright-cli press Escape
+# Find the "关闭" button at the top of the AI assistant panel
+playwright-cli click <close_button_ref>
 ```
 
 ### Tag Limit
@@ -262,87 +303,93 @@ playwright-cli open --headed --persistent https://mp.csdn.net/mp_blog/creation/e
 
 ## Common Element Selectors
 
-| Element | Description |
-|---------|-------------|
-| Title input | `textbox "请输入文章标题（5～100个字）"` |
-| Content editor | `iframe` in application area |
+| Element | Selector / Description |
+|---------|----------------------|
+| Title input | `textbox "请输入文章标题（5~100个字）"` |
+| Content editor (MD) | `contenteditable` element, focus via JS |
+| Template cancel | "取消" button in template dialog |
+| AI assistant close | "关闭" button at top of AI panel |
 | Add tag button | `button "添加文章标签"` |
-| Tag input | `textbox "文章标签*"` |
-| Summary textarea | `textbox "文章摘要"` |
-| Category section | `group "分类专栏"` |
-| Article type radio | `radio "原创"` / `radio "转载"` / `radio "翻译"` |
-| Declaration dropdown | `combobox "创作声明"` |
+| Tag input | `textbox "请输入文字搜索，Enter键入可添加自定义标签"` |
+| Summary textarea | `textbox "本内容会在各展现列表中展示..."` |
+| Category section | `button "新建分类专栏"` |
+| Article type | `generic` with text "原创"/"转载"/"翻译" |
+| Declaration dropdown | `textbox "无声明"` |
 | GitCode checkbox | `checkbox "同时备份到GitCode"` |
-| Visibility radio | `radio "全部可见"` etc. |
-| Activity dropdown | First dropdown in "参与活动/话题" section |
-| Topic dropdown | Second dropdown in "参与活动/话题" section |
-| Publish button | `button "发布博客"` |
+| Visibility options | `generic` with text "全部可见"/"仅我可见" etc. |
+| Activity dropdown | `textbox "请选择创作活动"` (use JS click) |
+| Topic dropdown | `textbox "请选择创作话题"` |
+| Publish button (toolbar) | `button "发布文章"` (first one) |
+| Publish button (dialog) | `button "发布文章"` with class `btn-b-red` |
 
 ## Complete Example
 
 ```bash
-# Open browser
-playwright-cli open --headed --persistent https://mp.csdn.net/mp_blog/creation/editor
+# Open Markdown editor
+playwright-cli open --headed --persistent https://editor.csdn.net/md/
 
-# Wait for page load and close AI dialog if needed
-sleep 2
-playwright-cli press Escape
-
-# Get initial snapshot
+# Handle template dialog if it appears
 playwright-cli snapshot
+# Find and click "取消" to dismiss template dialog
+playwright-cli click <cancel_button_ref>
+
+# Close AI assistant panel
+playwright-cli snapshot
+playwright-cli click <close_ai_panel_ref>
 
 # Fill title
+playwright-cli snapshot
 playwright-cli fill <title_ref> "My Article Title"
 
 # Fill content (skip frontmatter)
 sed -n '/^# /,$p' article.md | pbcopy
-playwright-cli click <editor_ref>
+playwright-cli eval "document.querySelector('[contenteditable=true]')?.focus()"
+playwright-cli press "Meta+a"
 playwright-cli press "Meta+v"
 
-# Add tag
-playwright-cli click <add_tag_button_ref>
-playwright-cli fill <tag_input_ref> "ai"
+# Click publish button in toolbar to open dialog
 playwright-cli snapshot
-playwright-cli click <ai_tag_option_ref>
-playwright-cli press Escape
+playwright-cli click <toolbar_publish_ref>
+
+# Add tags in publish dialog
+playwright-cli snapshot
+playwright-cli click <add_tag_button_ref>
+playwright-cli fill <tag_input_ref> "AI编程"
+playwright-cli press "Enter"
+playwright-cli fill <tag_input_ref> "Claude"
+playwright-cli press "Enter"
+playwright-cli fill <tag_input_ref> "AI工具"
+playwright-cli press "Enter"
+playwright-cli eval "document.querySelector('.tag__box')?.blur()"
 
 # Fill summary
-playwright-cli fill <summary_ref> "This is my article summary..."
-
-# Configure backup
-playwright-cli click <gitcode_checkbox_ref>
-
-# Select activity (smart selection: prefer "征文挑战" activities)
-playwright-cli click <activity_dropdown_ref>
 playwright-cli snapshot
-# Check activity options for "征文挑战"
-# If found, click the first matching activity
-# Otherwise, click the second activity
+playwright-cli fill <summary_ref> "Article summary text..."
+
+# Select activity (use JS to bypass overlay)
+playwright-cli eval "document.querySelector('input[placeholder=\"请选择创作活动\"]')?.click()"
+playwright-cli snapshot
+# Find activity containing "征文挑战" and click it
 playwright-cli click <selected_activity_ref>
 
-# Select topic (first option if available)
-playwright-cli click <topic_dropdown_ref>
-playwright-cli snapshot
-playwright-cli click <first_topic_ref>
-
-# Publish
-playwright-cli snapshot
-playwright-cli click <publish_button_ref>
+# Publish (use JS to bypass overlay)
+playwright-cli eval "document.querySelector('button.btn-b-red')?.click()"
 
 # Verify
-playwright-cli snapshot
-# Check for success indicators
+playwright-cli eval "window.location.href"
+# Should be like: https://mp.csdn.net/mp_blog/creation/success/160990174
 ```
 
 ## Tips
 
 1. Always take snapshots to get current element refs
-2. Use `--depth` parameter for partial snapshots when full snapshot is too large
-3. Skip YAML frontmatter when copying Markdown content
-4. Title must be 5-100 characters
-5. Summary is limited to 256 characters
-6. Maximum 8 tags per article
-7. Close browser when done: `playwright-cli close`
-8. The AI assistant dialog may appear - close it with Escape
-9. Use JavaScript evaluation when elements are blocked by overlays
-10. WeChat verification may appear during publish - wait for auto-verification if already bound
+2. Skip YAML frontmatter when copying Markdown content
+3. Title must be 5-100 characters
+4. Summary is limited to 256 characters
+5. Maximum 8 tags per article
+6. Close browser when done: `playwright-cli close`
+7. Use JavaScript evaluation when elements are blocked by `mark-mask-box-div` overlays — this is very common in the publish dialog
+8. Do NOT use `Escape` to close the tag input panel — it will close the entire publish dialog and lose all data. Use `.tag__box` blur instead
+9. WeChat verification may appear during publish — wait for auto-verification if already bound
+10. Tags are entered by typing and pressing Enter — they are added as custom tags, no need to select from dropdown
+11. The Markdown editor URL (`https://editor.csdn.net/md/`) is preferred over the rich text editor URL

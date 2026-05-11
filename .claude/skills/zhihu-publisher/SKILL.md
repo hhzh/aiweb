@@ -25,9 +25,23 @@ sed -n '/^# /,$p' article.md | pbcopy  # Start from first heading
 
 When pasting Markdown content, Zhihu may detect special formats and show a dialog asking to confirm parsing. Click "确认并解析" to continue.
 
+### Creation Assistant Panel
+
+Zhihu shows a "创作助手" (creation assistant) panel on the right side of the editor. Close it to free up space:
+
+```bash
+playwright-cli snapshot
+# Find the "关闭创作助手" button at the top of the panel
+playwright-cli click <close_assistant_ref>
+```
+
 ### Topics Limit
 
 Zhihu allows selecting multiple topics for an article. Topics help with article discovery.
+
+### "投稿至问题" Info Dialog
+
+When opening the question picker for the first time, Zhihu may show an info dialog explaining the rules (e.g., "含好物卡片的文章不支持投稿至问题"). Click "我知道了" to dismiss it before proceeding.
 
 ## Workflow
 
@@ -38,6 +52,16 @@ playwright-cli open --headed --persistent https://zhuanlan.zhihu.com/write
 ```
 
 The `--headed` flag shows the browser UI, `--persistent` saves login state.
+
+### Step 1.1: Close Creation Assistant Panel
+
+Close the creation assistant panel if it's open:
+
+```bash
+playwright-cli snapshot
+# Find the "关闭创作助手" button
+playwright-cli click <close_assistant_ref>
+```
 
 ### Step 2: Fill Article Title
 
@@ -67,9 +91,14 @@ The editor is a rich text editor that supports Markdown syntax.
 If a dialog appears with "识别到特殊格式，请确认是否将 Markdown 解析为正确格式":
 
 ```bash
-playwright-cli snapshot
-# Find the "确认并解析" button
+# Use JS click — the button may be outside the viewport and regular click will timeout
 playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.textContent.includes('确认并解析'))?.click()"
+```
+
+Wait for parsing to complete:
+
+```bash
+sleep 3
 ```
 
 ### Step 5: Configure Contribute to Question (Optional)
@@ -80,26 +109,46 @@ To contribute the article to a related question, you must click the **combobox**
 playwright-cli snapshot
 # Find the combobox that shows "未选择" (below the "投稿至问题" text)
 # It is a combobox element, NOT the button labeled "投稿至问题"
-playwright-cli click <combobox_ref>
 ```
 
-After clicking the combobox, a question search dialog will appear with recommended questions. You can either search or directly select from recommendations:
+If clicking the combobox directly fails with "intercepts pointer events" (Modal backdrop may block the click), use JS:
 
 ```bash
-# Option A: Search for a specific question
-playwright-cli fill <search_combobox_ref> "search keyword"
-playwright-cli click <search_button_ref>
+playwright-cli eval "document.querySelector('#Popover6-toggle')?.click()"
+```
 
-# Option B: Directly select from recommended questions (no search needed)
-# Click on the first question's "选择" button
+#### Handle Info Dialog
+
+When opening the question picker for the first time, an info dialog may appear with rules about contributing to questions. Click "我知道了" to dismiss:
+
+```bash
 playwright-cli snapshot
+# Find the "我知道了" button
+playwright-cli click <dismiss_button_ref>
+```
+
+#### Select a Question
+
+After the dialog is dismissed, click the combobox again to open the question picker. Recommended questions are usually shown by default. If recommended questions are already displayed, directly select the first one (no need to search):
+
+```bash
+playwright-cli snapshot
+# If recommended questions are shown (look for "推荐问题" heading and "选择" buttons)
+# Click the "选择" button for the first recommended question
 playwright-cli click <first_select_button_ref>
+
+# If no recommendations shown, search for a question:
+playwright-cli fill <search_combobox_ref> "search keyword"
+playwright-cli press "Enter"
 
 # Confirm selection by clicking "确定"
 playwright-cli click <confirm_button_ref>
 ```
 
-**Important**: The "投稿至问题" button itself only toggles the section visibility. To actually open the question picker dialog, you must click the combobox (showing "未选择") underneath it.
+**Important**:
+- The "投稿至问题" button itself only toggles the section visibility. To actually open the question picker dialog, you must click the combobox (showing "未选择") underneath it.
+- If recommended questions are already displayed, select directly without searching.
+- The combobox click may be blocked by a Modal backdrop — use JS click as a fallback.
 
 ### Step 6: Add Topics
 
@@ -142,6 +191,14 @@ playwright-cli snapshot
 # Find the "发布" button
 playwright-cli click <publish_button_ref>
 ```
+
+After clicking, the button may change to "发布中..." (publishing). A "确认" button may also appear. If a confirmation dialog or element appears outside the viewport, use JS:
+
+```bash
+playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.textContent === '确认')?.click()"
+```
+
+Wait for the page to navigate to the article view.
 
 ### Step 8: Verify Success
 
@@ -198,6 +255,15 @@ playwright-cli snapshot
 playwright-cli click <combobox_ref>
 ```
 
+If the combobox click is blocked by a Modal backdrop:
+```bash
+playwright-cli eval "document.querySelector('#Popover6-toggle')?.click()"
+```
+
+### "投稿至问题" Info Dialog
+
+When opening the question picker for the first time, an info dialog with rules may appear. Dismiss it by clicking "我知道了" before proceeding with question selection.
+
 ## Common Element Selectors
 
 | Element | Description |
@@ -206,13 +272,15 @@ playwright-cli click <combobox_ref>
 | Content editor | Textbox for article body |
 | Confirm parse button | Button with text "确认并解析" |
 | Contribute to question button | Button "投稿至问题" (toggles section visibility) |
-| Contribute to question combobox | Combobox showing "未选择" (opens question picker dialog) |
+| Contribute to question combobox | Combobox showing "未选择" (opens question picker dialog, use JS click if blocked) |
+| Question info dialog dismiss | Button "我知道了" (first-time info dialog) |
 | Question search input | Combobox "搜索" in question picker dialog |
 | Question select button | Button "选择" in question list |
 | Confirm button | Button "确定" in dialogs |
 | Add topic button | Button "添加话题" |
 | Topic search input | Textbox with placeholder "搜索话题..." |
 | Topic button | Button with topic name (e.g., "AI", "AI技术") |
+| Close creation assistant | Button "关闭创作助手" |
 | Publish button | Button "发布" |
 
 ## Complete Example
@@ -224,6 +292,9 @@ playwright-cli open --headed --persistent https://zhuanlan.zhihu.com/write
 # Get initial snapshot
 playwright-cli snapshot
 
+# Close creation assistant panel
+playwright-cli click <close_assistant_ref>
+
 # Fill title
 playwright-cli fill <title_ref> "My Article Title"
 
@@ -234,14 +305,21 @@ playwright-cli press "Meta+v"
 
 # Confirm Markdown parsing if dialog appears
 playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.textContent.includes('确认并解析'))?.click()"
-
-# Wait for parsing
-sleep 2
+sleep 3
 
 # Contribute to question (optional)
 # IMPORTANT: Click the combobox (showing "未选择"), NOT the "投稿至问题" button
+# If direct click fails (Modal backdrop blocks), use JS:
+playwright-cli eval "document.querySelector('#Popover6-toggle')?.click()"
+
+# Dismiss info dialog if shown ("我知道了" button)
 playwright-cli snapshot
-playwright-cli click <combobox_ref>  # Combobox showing "未选择"
+playwright-cli click <dismiss_button_ref>
+
+# Click combobox again to open question picker
+playwright-cli eval "document.querySelector('#Popover6-toggle')?.click()"
+
+# Select first recommended question (no need to search if recommendations shown)
 playwright-cli snapshot
 playwright-cli click <first_select_button_ref>  # "选择" button for first question
 playwright-cli click <confirm_button_ref>  # "确定" button
@@ -258,6 +336,9 @@ playwright-cli click <ai_topic_ref>
 playwright-cli snapshot
 playwright-cli click <publish_button_ref>
 
+# If confirmation appears outside viewport, use JS
+playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.textContent === '确认')?.click()"
+
 # Verify
 playwright-cli eval "window.location.href"
 # Should contain: /p/ and NOT /edit
@@ -268,6 +349,10 @@ playwright-cli eval "window.location.href"
 1. Always take snapshots to get current element refs
 2. Skip YAML frontmatter when copying Markdown content
 3. Title is limited to 100 characters
-4. Use JavaScript evaluation for elements that are hard to click
+4. Use JavaScript evaluation for elements that are hard to click (outside viewport, blocked by overlays)
 5. Topics help with article discovery
 6. Close browser when done: `playwright-cli close`
+7. Close the creation assistant panel at the start to free up space
+8. When contributing to questions, if recommended questions are already shown, select the first one directly without searching
+9. The combobox for "投稿至问题" may be blocked by a Modal backdrop — use JS click as fallback
+10. The "确认并解析" button may be outside the viewport — use JS click instead of regular click
