@@ -100,13 +100,22 @@ playwright-cli eval "document.querySelector('#twoLever')?.innerHTML"
 playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"
 ```
 
-Common secondary categories for "人工智能":
-- "AI IDE" - value="206"
-- "代码生成" - value="207"
-- "无代码开发" - value="208"
-- "代码编辑" - value="209"
+Common secondary categories for "人工智能" (values may change — always verify with `#twoLever`):
+- "深度学习" - value="92"
+- "机器学习" - value="155"
+- "NLP" - value="150"
+- "计算机视觉" - value="148"
+- "数据分析" - value="151"
+- "数据挖掘" - value="152"
+- "神经网络" - value="153"
+- "数据可视化" - value="154"
+- "PyTorch" - value="149"
+- "数据结构与算法" - value="147"
 
-**Important**: The secondary category items (`.second-types-item`) often cannot be clicked via `playwright-cli click` because they are not rendered as standard interactive elements. Use `playwright-cli eval` with JavaScript click instead.
+**Important**: The secondary category items (`.second-types-item`) often cannot be clicked via `playwright-cli click` because they are not rendered as standard interactive elements. Use `playwright-cli eval` with JavaScript click instead. To verify selection, check for `second-types-item-check` class (NOT `.active`):
+```bash
+playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"
+```
 
 ### Step 7: Configure Personal Category
 
@@ -130,15 +139,26 @@ The personal category list is in `#selfType_list`.
 
 ### Step 8: Add Tags
 
+**CRITICAL**: 51CTO auto-generates tags from article content. These auto-tags are often irrelevant (e.g., "Code", "运行测试", "搜索"). You MUST remove them first before adding your own tags.
+
+```bash
+# Remove all auto-generated tags
+playwright-cli eval "document.querySelectorAll('.has-list .iconeditor').forEach(el => el.click())"
+
+# Verify all tags are removed
+playwright-cli eval "document.querySelectorAll('.has-list > span').length"
+# Should be 0
+```
+
 Tags must be entered **one at a time** with Enter key after each. Do NOT use comma-separated input:
 
 ```bash
 # Add tags one by one
-playwright-cli fill <tag_input_ref> "AI"
+playwright-cli fill <tag_input_ref> "AI编程"
 playwright-cli press "Enter"
 
-playwright-cli snapshot  # Get fresh ref
-playwright-cli fill <tag_input_ref> "Claude Code"
+playwright-cli snapshot  # Get fresh ref after each tag
+playwright-cli fill <tag_input_ref> "Claude"
 playwright-cli press "Enter"
 
 # Repeat for more tags (max 5)
@@ -234,7 +254,7 @@ If clicking "发布" doesn't redirect to a success page, check for missing requi
 2. **Topic (话题)**: Should be selected from the dropdown
 3. **Tags**: At least one tag is required
 
-The most common issue is that the secondary category is not actually selected, even though the UI looks like it was clicked. Verify with: `playwright-cli eval "document.querySelector('#twoLever .second-types-item.active')?.textContent"`
+The most common issue is that the secondary category is not actually selected, even though the UI looks like it was clicked. Verify with: `playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"`
 
 ## Common Element Selectors
 
@@ -318,3 +338,7 @@ playwright-cli eval "window.location.href"
 4. Tags can be entered directly without dropdown selection
 5. Topics are optional but recommended for better visibility
 6. Close browser when done: `playwright-cli close`
+7. 51CTO auto-generates irrelevant tags from content — always remove them first with `document.querySelectorAll('.has-list .iconeditor').forEach(el => el.click())`
+8. After 5 tags, the tag input becomes invisible (`element is not visible` error) — this is normal, just proceed with other fields
+9. Secondary category uses `second-types-item-check` class (not `.active`) — verify with `document.querySelector('.second-types-item-check')?.textContent`
+10. Topic options can be accessed via `#listItemList` after clicking `#subjuct` — use JS click to select

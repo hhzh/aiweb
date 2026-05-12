@@ -156,10 +156,22 @@ playwright-cli click <submit_button_ref>
 
 ### Step 9: Verify Success
 
+After clicking "提交", the page may briefly show a 404 or redirect to the homepage. This is normal — the article takes a few seconds to propagate.
+
 Check for success indicators:
-- URL changes to the article page
-- Success message appears
-- Check for any error dialogs
+- Wait 3-5 seconds, then check the URL
+- The article URL format is: `https://segmentfault.com/a/<article_id>`
+- Page title should contain the article title and blog name (e.g., "Claude Code 指南 - 小林学AI - SegmentFault 思否")
+- If redirected to homepage, navigate directly to the article URL to verify
+
+```bash
+# Wait for propagation
+sleep 3
+# Check current URL
+playwright-cli eval "window.location.href"
+# If on homepage, check article URL directly
+playwright-cli eval "window.location.href = 'https://segmentfault.com/a/<article_id>'"
+```
 
 ## AI Tags Reference
 
@@ -294,3 +306,5 @@ playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textCo
 4. Maximum 5 tags per article
 5. Close browser when done: `playwright-cli close`
 6. The tag panel shows remaining slots available
+7. After submitting, the article may briefly show 404 — wait a few seconds then navigate directly to the article URL to verify
+8. The article ID appears in the redirect URL right after submit (e.g., `/a/1190000047761971`) — capture it for verification

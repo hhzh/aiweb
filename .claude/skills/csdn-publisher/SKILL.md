@@ -137,19 +137,30 @@ playwright-cli fill <summary_ref> "Article summary text (max 256 characters)..."
 
 ### Step 6: Configure Category Column
 
-Click the category area or create a new one:
+**Category is optional** — if no existing categories match, you can skip this step entirely and proceed to publish.
+
+If you have existing categories, select one:
 ```bash
 playwright-cli snapshot
-playwright-cli click <category_section_ref>
-# Select existing category or click "新建分类专栏"
+# Look for category labels in the dialog
+playwright-cli click <category_label_ref>
 ```
 
-**Note**: If clicking the category option fails with "intercepts pointer events" error, use JavaScript:
+If clicking the category option fails with "intercepts pointer events" error, use JavaScript:
 ```bash
 playwright-cli eval "document.querySelector('label.tag__option-label')?.click()"
 ```
 
-Then close the category dialog:
+To create a new category, click "新建分类专栏":
+```bash
+playwright-cli eval "document.querySelectorAll('button.tag__btn-tag')[0]?.click()"
+# If a dialog appears, fill in the category name and confirm
+# If no dialog appears (common issue), skip category and publish without it
+```
+
+**Note**: The "新建分类专栏" button is often blocked by overlay elements. If JS click doesn't trigger a dialog, skip the category — it's not required for publishing.
+
+Close the category dialog if one appeared:
 ```bash
 playwright-cli click <close_button_ref>
 ```
@@ -393,3 +404,6 @@ playwright-cli eval "window.location.href"
 9. WeChat verification may appear during publish — wait for auto-verification if already bound
 10. Tags are entered by typing and pressing Enter — they are added as custom tags, no need to select from dropdown
 11. The Markdown editor URL (`https://editor.csdn.net/md/`) is preferred over the rich text editor URL
+12. Category column (分类专栏) is optional — if you can't create/select one, skip it and publish without
+13. After filling tags, always blur the tag combobox (`.tag__box` blur) before interacting with other dialog elements, otherwise the tag panel may interfere
+14. The publish dialog's "发布文章" button (class `btn-b-red`) is almost always blocked by overlays — always use `document.querySelector('button.btn-b-red')?.click()` JS method
