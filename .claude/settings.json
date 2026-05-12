@@ -20,6 +20,7 @@
       "Bash(tail *)",
       "Bash(mv *)",
       "Bash(cp *)",
+      "Bash(cat *)",
       "Bash(pbcopy *)",
       "Bash(mkdir *)",
       "Bash(touch *)",

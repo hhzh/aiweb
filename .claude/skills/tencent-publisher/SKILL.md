@@ -54,7 +54,7 @@ sed -n '/^# /,$p' article.md
 ```
 ---
 
-> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问 [小林学AI](https://xiaolinxueai.com) 获取更多内容。
+> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。
 ```
 
 The signature is appended after the article content during the base64 encoding step (see Step 3).
@@ -102,7 +102,7 @@ Use base64 encoding for proper UTF-8 handling. **Append the author signature** a
 ```bash
 # Prepare content: skip frontmatter + append author signature
 content=$(sed -n '/^# /,$p' /path/to/article.md)
-signature=$'\n\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问 [小林学AI](https://xiaolinxueai.com) 获取更多内容。'
+signature=$'\n\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。'
 full_content="${content}${signature}"
 
 # Base64 encode

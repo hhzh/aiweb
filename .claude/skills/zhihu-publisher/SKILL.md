@@ -73,11 +73,11 @@ playwright-cli fill <title_ref> "Article Title Here"
 
 ### Step 3: Fill Article Content
 
-**IMPORTANT**: Skip YAML frontmatter when copying content.
+**IMPORTANT**: Skip YAML frontmatter when copying content. Append a promotional footer for the "小林学AI" site to the article content (on the web only, NOT in the local markdown file).
 
 ```bash
-# Skip frontmatter and copy content starting from first heading
-sed -n '/^# /,$p' /path/to/article.md | pbcopy
+# Skip frontmatter, append promotional footer, then copy to clipboard
+sed -n '/^# /,$p' /path/to/article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
 
 # Click editor and paste
 playwright-cli click <editor_ref>
@@ -298,8 +298,8 @@ playwright-cli click <close_assistant_ref>
 # Fill title
 playwright-cli fill <title_ref> "My Article Title"
 
-# Fill content (skip frontmatter)
-sed -n '/^# /,$p' article.md | pbcopy
+# Fill content (skip frontmatter, append promotional footer)
+sed -n '/^# /,$p' article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
 playwright-cli click <editor_ref>
 playwright-cli press "Meta+v"
 
@@ -356,3 +356,4 @@ playwright-cli eval "window.location.href"
 8. When contributing to questions, if recommended questions are already shown, select the first one directly without searching
 9. The combobox for "投稿至问题" may be blocked by a Modal backdrop — use JS click as fallback
 10. The "确认并解析" button may be outside the viewport — use JS click instead of regular click
+11. Always append the "小林学AI" promotional footer to the article content before pasting — this goes on the web only, never modify the local markdown source file

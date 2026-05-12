@@ -57,11 +57,11 @@ playwright-cli fill <title_ref> "Article Title Here"
 
 ### Step 4: Fill Article Content
 
-**IMPORTANT**: Skip YAML frontmatter when copying content.
+**IMPORTANT**: Skip YAML frontmatter when copying content. Append a promotional footer for the "小林学AI" site to the article content (on the web only, NOT in the local markdown file).
 
 ```bash
-# Skip frontmatter and copy content starting from first heading
-sed -n '/^# /,$p' /path/to/article.md | pbcopy
+# Skip frontmatter, append promotional footer, then copy to clipboard
+sed -n '/^# /,$p' /path/to/article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
 
 # Click editor and paste
 playwright-cli click <editor_ref>
@@ -192,8 +192,8 @@ playwright-cli snapshot
 # Fill title
 playwright-cli fill <title_ref> "My Article Title"
 
-# Fill content (skip frontmatter)
-sed -n '/^# /,$p' article.md | pbcopy
+# Fill content (skip frontmatter, append promotional footer)
+sed -n '/^# /,$p' article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
 playwright-cli click <editor_ref>
 playwright-cli press "Meta+v"
 
@@ -227,3 +227,4 @@ playwright-cli eval "window.location.href"
 4. Tags must be created by pressing Enter after typing
 5. Summary is auto-generated but can be customized (max 120 chars)
 6. Close browser when done: `playwright-cli close`
+7. Always append the "小林学AI" promotional footer to the article content before pasting — this goes on the web only, never modify the local markdown source file
