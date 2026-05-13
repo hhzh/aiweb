@@ -3,9 +3,9 @@ title: HyperFrames 视频渲染框架使用教程
 order: 5
 ---
 
-# HyperFrames 视频渲染框架使用教程：从初始化到高效渲染
+# HyperFrames 视频渲染框架使用教程
 
-HyperFrames 是 HeyGen 开源的**HTML 原生视频渲染框架**，主打 AI 代理友好、零构建、确定性渲染，用 HTML+CSS+GSAP 即可快速创作、预览、导出 MP4 视频，适配自动化视频生产、AI 驱动剪辑、数据可视化视频等场景，采用 Apache 2.0 开源协议，商用无限制。
+想用代码生成视频，却被 React 专有框架、复杂构建流程挡在门外？HyperFrames 是 HeyGen 开源的 HTML 原生视频渲染框架——直接用 HTML+CSS+GSAP 编写视频，零构建成本，确定性渲染，天然适配 Claude/Cursor 等 AI 代理，3 行命令即可从创作到导出 MP4。
 
 ---
 
@@ -88,6 +88,8 @@ npx hyperframes render
 ---
 
 ## 四、视频编写核心规范
+
+快速上手后，以下规范确保你编写的视频代码能被 HyperFrames 正确解析与渲染。
 
 ### 1. 基础结构（data 属性定义时间轴）
 
@@ -264,4 +266,4 @@ npx hyperframes add data-chart               # 动态图表
 
 ## 八、总结
 
-HyperFrames 把**视频创作回归前端原生**，零学习成本、AI 友好、可版本管理，特别适合前端开发者、AI 自动化团队快速生产短视频、数据视频、营销视频。其中配合 Claude 使用可大幅降低开发成本，从需求描述到代码生成、调试优化，全程无需手动编写大量代码，仅需通过自然语言提示即可完成视频创作。从初始化到渲染仅需 3 行命令，配合 AI 技能可大幅提升视频生产效率。
+HyperFrames 的核心价值是"HTML 原生 + AI 友好 + 零构建"——用前端原生技术编写视频，确定性渲染确保相同输入产出相同视频，配合 Claude 技能可实现自然语言生成视频代码。建议从 `npx hyperframes init` 创建第一个项目，用 `npx hyperframes preview` 实时预览，再通过 Claude 的 `/hyperframes` 技能体验自然语言驱动的视频创作流程。
