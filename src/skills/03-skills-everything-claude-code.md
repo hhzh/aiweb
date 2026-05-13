@@ -3,11 +3,11 @@ title: Everything Claude Code 安装指南
 order: 3
 ---
 
-# Everything Claude Code 安装指南：一键部署 AI 编程全能力
+# Everything Claude Code 安装指南
 
-还在为 Claude Code 配置繁琐、功能单一而困扰？Everything Claude Code（简称 ECC）给出了完美解决方案——作为 Anthropic 黑客马拉松获奖项目，它是一套经 10 个月实战迭代打磨的生产级 AI 编程配置系统，无需复杂调试，一键解锁超强能力：内置 **47 个专项子智能体**、**181 个可复用技能模块**、**79 个快捷命令**，覆盖技能体系、记忆持久化、持续学习、安全扫描全场景，兼容 Claude Code、Cursor、OpenCode、Gemini 等主流 AI 编程工具，让你的 AI 编程效率翻倍。
+Claude Code 装好了，但每次都要手动配规则、写技能、搭工作流？Everything Claude Code（简称 ECC）把这套流程打包成了一键部署方案——内置 47 个专项子智能体、181 个可复用技能模块、79 个快捷命令，覆盖技能体系、记忆持久化、持续学习、安全扫描全场景，兼容 Claude Code、Cursor、OpenCode、Gemini 等主流 AI 编程工具。
 
-本文将手把手教你完成环境准备、快速安装、核心解析与进阶优化，轻松部署ECC，解锁AI编程的全量潜力。官网地址：[https://github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+官网地址：[https://github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)
 
 ---
 
@@ -33,7 +33,7 @@ order: 3
 /plugin install ecc@ecc
 ```
 
-💡 说明：复制整段命令，在Claude Code终端中逐行执行，执行完成后即可完成插件主体安装。
+说明：复制整段命令，在Claude Code终端中逐行执行，执行完成后即可完成插件主体安装。
 
 ### 步骤 2：安装规则（必需，上游限制无法自动分发）
 
@@ -54,9 +54,9 @@ npm install
 ./install.sh typescript python golang
 ```
 
-💡 说明：复制整段命令，在终端中逐行执行；克隆失败解决方案：打开ECC官网（[https://github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)），点击「Code」→「Download ZIP」，解压后进入解压目录，再执行后续命令。
+说明：复制整段命令，在终端中逐行执行；克隆失败解决方案：打开ECC官网（[https://github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)），点击「Code」→「Download ZIP」，解压后进入解压目录，再执行后续命令。
 
-✅ 验证安装：执行 `ls ~/.claude/rules`，若能看到common及所选语言目录，说明规则安装成功。
+验证安装：执行 `ls ~/.claude/rules`，若能看到common及所选语言目录，说明规则安装成功。
 
 #### Windows（PowerShell）
 
@@ -72,9 +72,9 @@ npm install
 .\install.ps1 typescript python golang
 ```
 
-💡 说明：复制整段命令，在PowerShell中逐行执行；克隆失败解决方案：打开ECC官网（[https://github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)），点击「Code」→「Download ZIP」，解压后进入解压目录，再执行后续命令。
+说明：复制整段命令，在PowerShell中逐行执行；克隆失败解决方案：打开ECC官网（[https://github.com/affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)），点击「Code」→「Download ZIP」，解压后进入解压目录，再执行后续命令。
 
-✅ 验证安装：执行 `Get-ChildItem ~/.claude/rules`，若能看到common及所选语言目录，说明规则安装成功。
+验证安装：执行 `Get-ChildItem ~/.claude/rules`，若能看到common及所选语言目录，说明规则安装成功。
 
 ### 步骤 3：开始使用
 
@@ -86,7 +86,7 @@ npm install
 /plugin list ecc@ecc
 ```
 
-💡 说明：执行第一条命令可快速生成需求的实现方案，第二条命令可查看所有79个快捷命令的详细说明。
+说明：执行第一条命令可快速生成需求的实现方案，第二条命令可查看所有79个快捷命令的详细说明。
 
 安装完成即可使用 **47 个代理、181 个技能、79 个命令**。
 
@@ -99,7 +99,7 @@ npm install
 npx ccg-workflow
 ```
 
-💡 说明：安装完成后，/multi-plan、/multi-execute等多智能体编排命令即可正常使用，用于复杂任务的拆解与协同执行。
+说明：安装完成后，/multi-plan、/multi-execute等多智能体编排命令即可正常使用，用于复杂任务的拆解与协同执行。
 
 ---
 
@@ -124,13 +124,15 @@ mkdir -p ~/.claude/commands
 cp everything-claude-code/commands/*.md ~/.claude/commands/
 ```
 
-💡 说明：适合有自定义需求的用户，可选择性复制组件（如仅复制核心技能和常用代理），避免冗余。
+说明：适合有自定义需求的用户，可选择性复制组件（如仅复制核心技能和常用代理），避免冗余。
 
-⚠️ 手动安装需将 `hooks/hooks.json` 配置合并到 `~/.claude/settings.json`，插件安装则无需操作，避免重复加载。
+注意：手动安装需将 `hooks/hooks.json` 配置合并到 `~/.claude/settings.json`，插件安装则无需操作，避免重复加载。
 
 ---
 
 ## 核心模块全解析
+
+安装完成后，了解 ECC 的六大组件如何协同工作，有助于按需定制。
 
 ECC 由六大核心组件构成，协同打造完整 AI 编程工作流。
 
@@ -138,11 +140,13 @@ ECC 由六大核心组件构成，协同打造完整 AI 编程工作流。
 |---|---|---|---|
 |**Agents（子智能体）**|按角色分工处理专项任务|架构师、代码审查、安全审计、构建错误修复、TDD 指导等 47+ 专用代理|相当于专属开发小助手，各司其职，无需手动分配任务|
 |**Skills（技能）**|封装可复用工作流与领域知识|前后端模式、TDD 流程、安全扫描、持续学习、框架最佳实践（Django/SpringBoot/Laravel）181+|提前封装好的开发模板，直接调用，不用重复写流程|
-|**Commands（命令）**|斜杠快捷指令||
+|**Commands（命令）**|斜杠快捷指令|79 个快捷命令，覆盖 plan、review、TDD 等高频操作|一条命令触发完整工作流，省去手动拼接步骤|
 
 ---
 
 ## 进阶配置优化
+
+默认配置已能满足大部分场景，以下调整适合有特殊需求的用户。
 
 ### 包管理器自定义
 
@@ -177,6 +181,8 @@ export ECC_DISABLED_HOOKS="pre:bash:tmux-reminder,post:edit:typecheck"
 ---
 
 ## 生态工具：效率与安全加倍
+
+除了核心模块，ECC 还提供安全审计与持续学习两个独立工具，按需启用。
 
 ### 技能创建器：从项目生成专属能力
 
@@ -244,7 +250,5 @@ npx ecc-agentshield scan --fix
 
 ## 总结
 
-Everything Claude Code 不是简单的配置合集，而是一套**生产级 AI 编程工作流系统**，通过角色化智能体、标准化技能、自动化钩子与强制规则，大幅提升 Claude Code 等工具的工程化能力，适配全语种、全框架开发场景。
-
-建议先按插件方式快速安装，再根据技术栈定制规则与技能，结合 AgentShield 与持续学习能力，打造专属的 AI 辅助开发体系。
+ECC 把 AI 编程所需的智能体、技能、命令、规则、钩子打包为一套即装即用的系统。建议先按插件方式快速安装，再根据技术栈定制规则与技能，结合 AgentShield 安全扫描与持续学习能力，逐步打造专属的 AI 辅助开发体系。
 
