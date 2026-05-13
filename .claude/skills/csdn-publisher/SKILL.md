@@ -74,13 +74,24 @@ playwright-cli click <close_button_ref>
 
 ### Step 2: Fill Article Title
 
+**IMPORTANT**: `playwright-cli fill '#article-title'` does NOT work on CSDN's Markdown editor — the CSS selector doesn't match any element. Use one of these methods instead:
+
+**Method 1: Click + type (recommended)**
 ```bash
 playwright-cli snapshot
-# Find the title textbox
-playwright-cli fill '#article-title' "Article Title Here"
-# Or use ref:
-playwright-cli fill <title_ref> "Article Title Here"
+# The title area shows a generic element (e.g., ref=e10) with text "【无标题】"
+# Click it to activate the input, then type the title
+playwright-cli click <title_area_ref>
+playwright-cli press "Meta+a"
+playwright-cli type "Article Title Here"
 ```
+
+**Method 2: JavaScript `execCommand`**
+```bash
+playwright-cli eval "(function(){var el=document.querySelector('.article-bar__title');if(el){el.focus();el.select();document.execCommand('selectAll');document.execCommand('insertText',false,'Article Title Here');}})()"
+```
+
+**Note**: If the title shows "【无标题】" prefix after typing, use Method 1 with `Meta+a` to select all existing text first, then type the correct title to overwrite it.
 
 Title must be 5-100 characters.
 
@@ -316,7 +327,7 @@ playwright-cli open --headed --persistent https://mp.csdn.net/mp_blog/creation/e
 
 | Element | Selector / Description |
 |---------|----------------------|
-| Title input | `textbox "请输入文章标题（5~100个字）"` |
+| Title input | Generic element showing "【无标题】", click it then type (do NOT use `fill '#article-title'`) |
 | Content editor (MD) | `contenteditable` element, focus via JS |
 | Template cancel | "取消" button in template dialog |
 | AI assistant close | "关闭" button at top of AI panel |
@@ -348,9 +359,11 @@ playwright-cli click <cancel_button_ref>
 playwright-cli snapshot
 playwright-cli click <close_ai_panel_ref>
 
-# Fill title
+# Fill title (click title area + type, NOT fill)
 playwright-cli snapshot
-playwright-cli fill <title_ref> "My Article Title"
+playwright-cli click <title_area_ref>
+playwright-cli press "Meta+a"
+playwright-cli type "My Article Title"
 
 # Fill content (skip frontmatter)
 sed -n '/^# /,$p' article.md | pbcopy

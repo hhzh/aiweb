@@ -48,44 +48,28 @@ OpenClaw（中文社区昵称 "龙虾"）是一款**自托管的 AI 智能体网
 
 - **Python 3.10+**：部分技能插件可能需要 Python 环境
 
-## 三、快速安装：三种方式任选其一
+## 三、快速安装
 
-### 方式 1：一键脚本安装（推荐，自动配置环境）
+OpenClaw 提供 5 种安装方式，最常用的两种：
+
+### 方式 1：一键脚本安装（推荐）
 
 ```bash
-# macOS/Linux 终端执行
+# macOS/Linux
 curl -fsSL https://openclaw.ai/install.sh | bash
 
-# Windows PowerShell (管理员模式)
+# Windows PowerShell
 iwr -useb https://openclaw.ai/install.ps1 | iex
 ```
 
-### 方式 2：npm 全局安装（已有 Node 环境首选）
+### 方式 2：npm 全局安装
 
 ```bash
-# 配置国内镜像加速（可选，推荐国内用户）
-npm config set registry https://registry.npmmirror.com
-
-# 安装最新版
 npm install -g openclaw@latest
-
-# 验证安装
-openclaw --version  # 显示版本号即成功
+openclaw --version
 ```
 
-### 方式 3：Docker 容器部署（适合服务器环境）
-
-```bash
-# 拉取镜像
-docker pull openclaw/openclaw:latest
-
-# 创建并运行容器
-docker run -d \
-  -p 18789:18789 \
-  -v ~/.openclaw:/root/.openclaw \
-  --name openclaw \
-  openclaw/openclaw:latest
-```
+> 其他安装方式（pnpm/bun/源码/Docker）及安装故障排除，请参考 [全流程安装·更新·迁移·卸载教程](./02-openclaw-installation-guide.md)。
 
 ## 四、新手引导：5 分钟完成核心配置
 
@@ -315,43 +299,13 @@ OpenClaw 会自动保存会话历史并建立长期记忆：
 
 ### 3. 自定义技能开发
 
-创建一个简单的 Hello World 技能：
+OpenClaw 支持纯 Markdown 编写自定义技能，无需代码门槛：
 
-1. 创建技能目录
+1. 创建技能目录：`mkdir -p ~/.openclaw/workspace/skills/hello-greeting`
+2. 编写 `SKILL.md`，声明名称、描述与触发规则
+3. 重启网关或 `/new` 新会话即可生效
 
-    ```bash
-    mkdir -p ~/.openclaw/skills/hello-world
-    cd ~/.openclaw/skills/hello-world
-    ```
-
-2. 创建 `skill.json` 配置文件
-
-    ```json
-    {
-      "name": "hello-world",
-      "version": "1.0.0",
-      "description": "A simple hello world skill",
-      "main": "index.js",
-      "triggers": ["hello", "hi", "你好"]
-    }
-    ```
-
-3. 创建 `index.js` 实现文件
-
-    ```javascript
-    module.exports = {
-      execute: async (context) => {
-        const name = context.message.from.first_name || "Guest";
-        return `Hello ${name}! Welcome to OpenClaw! 🦞`;
-      }
-    };
-    ```
-
-4. 重启网关加载技能
-
-    ```bash
-    openclaw restart
-    ```
+> 完整技能开发教程、SKILL.md 格式、ClawHub 生态与安全规范，请参考 [Skills 技能系统详解](./14-openclaw-skills-system.md)。
 
 ## 八、常见问题与故障排除
 
@@ -405,4 +359,4 @@ OpenClaw 会自动保存会话历史并建立长期记忆：
 
 OpenClaw 的核心价值在于**私有化部署 + 自动化执行**，让 AI 真正成为你可以随时调用的个人助手，而不仅仅是聊天工具。通过本教程，你已经掌握了从安装配置到基础使用的全流程，接下来可以根据自己的需求探索更多高级功能和自定义开发。
 
-记住，OpenClaw 的潜力在于其模块化设计和强大的社区生态——随着你不断学习和使用，它将成为你提升效率、解决问题的得力助手。现在就开始你的 "养龙虾" 之旅吧！🦞
+记住，OpenClaw 的潜力在于其模块化设计和强大的社区生态——随着你不断学习和使用，它将成为你提升效率、解决问题的得力助手。
