@@ -57,14 +57,15 @@ playwright-cli fill <title_ref> "Article Title Here"
 
 ### Step 4: Fill Article Content
 
-**IMPORTANT**: Skip YAML frontmatter when copying content. Append a promotional footer for the "小林学AI" site to the article content (on the web only, NOT in the local markdown file).
+**IMPORTANT**: Skip YAML frontmatter when copying content.
 
 ```bash
-# Skip frontmatter, append promotional footer, then copy to clipboard
-sed -n '/^# /,$p' /path/to/article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
+# Skip frontmatter and copy content starting from first heading
+sed -n '/^# /,$p' /path/to/article.md | pbcopy
 
-# Click editor and paste
-playwright-cli click <editor_ref>
+# Focus the ProseMirror editor and paste
+playwright-cli eval "document.querySelector('.ProseMirror')?.focus()"
+playwright-cli press "Meta+v"
 playwright-cli press "Meta+v"
 ```
 
@@ -167,7 +168,7 @@ playwright-cli snapshot
 |---------|-------------|
 | Create button | Text "立即创作" in header |
 | Title input | Textbox with placeholder "请输入标题" |
-| Content editor | The `.editor` area |
+| Content editor | ProseMirror `.ProseMirror` element, focus via JS |
 | Publish button | Text "发布" in header |
 | Tag input | Textbox with placeholder "输入标签，回车创建" |
 | Summary textarea | Textbox with placeholder about 120 characters limit |
@@ -192,9 +193,9 @@ playwright-cli snapshot
 # Fill title
 playwright-cli fill <title_ref> "My Article Title"
 
-# Fill content (skip frontmatter, append promotional footer)
-sed -n '/^# /,$p' article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
-playwright-cli click <editor_ref>
+# Fill content (skip frontmatter)
+sed -n '/^# /,$p' article.md | pbcopy
+playwright-cli eval "document.querySelector('.ProseMirror')?.focus()"
 playwright-cli press "Meta+v"
 
 # Click publish button
@@ -227,4 +228,5 @@ playwright-cli eval "window.location.href"
 4. Tags must be created by pressing Enter after typing
 5. Summary is auto-generated but can be customized (max 120 chars)
 6. Close browser when done: `playwright-cli close`
-7. Always append the "小林学AI" promotional footer to the article content before pasting — this goes on the web only, never modify the local markdown source file
+7. InfoQ uses a ProseMirror rich text editor — focus it via JS: `document.querySelector('.ProseMirror')?.focus()`, then paste with `Meta+v`
+8. The "编辑" button in the editor may be outside the viewport — use JS click instead: `document.querySelector('._3DSA44lQ')?.click()`

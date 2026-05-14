@@ -49,15 +49,7 @@ sed -n '/^# /,$p' article.md
 
 ### Author Signature (作者签名)
 
-**IMPORTANT**: Append the author's signature at the end of the article content when publishing. This is added in the browser only, NOT in the local Markdown file. The signature helps drive traffic to the author's website.
-
-```
----
-
-> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。
-```
-
-The signature is appended after the article content during the base64 encoding step (see Step 3).
+No author signature or promotional footer should be appended to the article content. Publish the article content as-is, without any additional marketing text.
 
 ### Article Source Selection
 
@@ -97,16 +89,14 @@ playwright-cli fill "textarea.cdc-article-editor__title-input" "Article Title He
 
 ### Step 3: Fill Article Content
 
-Use base64 encoding for proper UTF-8 handling. **Append the author signature** at the end of the content:
+Use base64 encoding for proper UTF-8 handling:
 
 ```bash
-# Prepare content: skip frontmatter + append author signature
+# Prepare content: skip frontmatter
 content=$(sed -n '/^# /,$p' /path/to/article.md)
-signature=$'\n\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。'
-full_content="${content}${signature}"
 
 # Base64 encode
-encoded=$(echo -n "$full_content" | base64 | tr -d '\n')
+encoded=$(echo -n "$content" | base64 | tr -d '\n')
 
 # Set content via JavaScript
 playwright-cli eval "(function(){var b64='${encoded}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
@@ -253,11 +243,9 @@ playwright-cli snapshot
 # Fill title
 playwright-cli fill "textarea.cdc-article-editor__title-input" "My Article Title"
 
-# Fill content with proper UTF-8 encoding + author signature
+# Fill content with proper UTF-8 encoding
 content=$(sed -n '/^# /,$p' article.md)
-signature=$'\n\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。'
-full_content="${content}${signature}"
-encoded=$(echo -n "$full_content" | base64 | tr -d '\n')
+encoded=$(echo -n "$content" | base64 | tr -d '\n')
 playwright-cli eval "(function(){var b64='${encoded}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
 
 # Click "去发布"
@@ -304,4 +292,3 @@ playwright-cli snapshot 2>&1 | grep "发布成功"
 6. After publish, look for "发布成功！" success message
 7. Article goes into review mode after publishing
 8. Close browser when done: `playwright-cli close`
-9. **Always append author signature** at the end of article content (added in browser, not in local md file)

@@ -119,36 +119,48 @@ Available categories: 后端, 前端, Android, iOS, 人工智能, 开发工具, 
 
 ### Step 6: Add Tags (添加标签)
 
-Type in the tag input and press Enter:
+Type in the tag input and press Enter. **IMPORTANT**: Add `sleep 1` after pressing Enter to allow the tag to register before proceeding:
 
 ```bash
 playwright-cli snapshot
 # Find tag textbox
 playwright-cli fill <tag_input_ref> "人工智能"
+sleep 1
 playwright-cli press "Enter"
+sleep 1
 ```
+
+Common tags: AI编程, 人工智能, Claude, AI工具
 
 ### Step 7: Select Column (收录至专栏)
 
-Search and add column:
+Search and add column. Add `sleep 1` after pressing Enter:
 
 ```bash
 playwright-cli snapshot
 # Find column textbox
 playwright-cli fill <column_input_ref> "小林AI实战教程"
+sleep 1
 playwright-cli press "Enter"
+sleep 1
 ```
+
+Common columns: 小林AI实战教程
 
 ### Step 8: Select Topic (创作话题)
 
-Search and add topic:
+Search and add topic. Add `sleep 1` after pressing Enter:
 
 ```bash
 playwright-cli snapshot
 # Find topic textbox
-playwright-cli fill <topic_input_ref> "每日精选文章"
+playwright-cli fill <topic_input_ref> "AI"
+sleep 1
 playwright-cli press "Enter"
+sleep 1
 ```
+
+Common topics: AI 编程
 
 ### Step 9: Fill Summary (摘要)
 
@@ -240,17 +252,23 @@ playwright-cli snapshot
 # Select category "人工智能"
 playwright-cli click <ai_category_ref>
 
-# Add tag "人工智能"
-playwright-cli fill <tag_input_ref> "人工智能"
+# Add tag "AI编程" (wait between fill and Enter)
+playwright-cli fill <tag_input_ref> "AI编程"
+sleep 1
 playwright-cli press "Enter"
+sleep 1
 
 # Add column "小林AI实战教程"
 playwright-cli fill <column_input_ref> "小林AI实战教程"
+sleep 1
 playwright-cli press "Enter"
+sleep 1
 
-# Add topic "AI 编程"
-playwright-cli fill <topic_input_ref> "AI 编程"
+# Add topic "AI"
+playwright-cli fill <topic_input_ref> "AI"
+sleep 1
 playwright-cli press "Enter"
+sleep 1
 
 # Fill summary
 playwright-cli fill <summary_ref> "Article summary text..."
@@ -259,6 +277,7 @@ playwright-cli fill <summary_ref> "Article summary text..."
 playwright-cli click <confirm_publish_ref>
 
 # Verify success
+sleep 2
 playwright-cli eval "window.location.href"
 # Should be: https://juejin.cn/published
 ```
@@ -268,7 +287,9 @@ playwright-cli eval "window.location.href"
 1. Quote the URL with query parameters: `"https://juejin.cn/editor/drafts/new?v=2"`
 2. Use base64 + TextDecoder for Chinese content in CodeMirror
 3. Categories are clicked directly, not from a dropdown
-4. Tags/columns/topics use searchable inputs - type and press Enter
+4. Tags/columns/topics use searchable inputs - type, wait for dropdown, then press Enter. Add `sleep 1` between fill and Enter, and after Enter, to ensure items register properly
 5. Summary is auto-generated but can be customized
 6. After publish, look for "发布成功" on the published page
 7. Close browser when done: `playwright-cli close`
+8. **CRITICAL**: Fill all dialog fields (category, tags, column, topic, summary) in one pass without taking intermediate snapshots that could refresh the dialog. Verify all items are present before clicking "确定并发布". If items appear missing after a dialog refresh, re-fill them.
+9. The article URL format on success page is `/spost/<article_id>`

@@ -100,7 +100,7 @@ playwright-cli eval "document.querySelector('#twoLever')?.innerHTML"
 playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"
 ```
 
-Common secondary categories for "人工智能" (values may change — always verify with `#twoLever`):
+Common secondary categories for "人工智能" (values change dynamically — always verify with `#twoLever` before selecting):
 - "深度学习" - value="92"
 - "机器学习" - value="155"
 - "NLP" - value="150"
@@ -111,6 +111,10 @@ Common secondary categories for "人工智能" (values may change — always ver
 - "数据可视化" - value="154"
 - "PyTorch" - value="149"
 - "数据结构与算法" - value="147"
+- "AI IDE" - value="206" (may appear intermittently)
+- "代码生成" - value="207" (may appear intermittently)
+- "无代码开发" - value="208" (may appear intermittently)
+- "代码编辑" - value="209" (may appear intermittently)
 
 **Important**: The secondary category items (`.second-types-item`) often cannot be clicked via `playwright-cli click` because they are not rendered as standard interactive elements. Use `playwright-cli eval` with JavaScript click instead. To verify selection, check for `second-types-item-check` class (NOT `.active`):
 ```bash
@@ -119,10 +123,10 @@ playwright-cli eval "document.querySelector('.second-types-item-check')?.textCon
 
 ### Step 7: Configure Personal Category
 
-The personal category field is a **readonly dropdown** — `playwright-cli fill` will NOT work. Click the dropdown first, then select from options:
+**IMPORTANT**: Personal category selection is required for publishing. The field is a dropdown — click to open, then select from options:
 
 ```bash
-# Click the dropdown to open it (readonly input, cannot fill)
+# Click the dropdown to open it
 playwright-cli eval "document.querySelector('#selfType')?.click()"
 
 # Wait for options to appear
@@ -131,9 +135,9 @@ playwright-cli snapshot
 # Find and click the personal category option (listitem)
 playwright-cli click <personal_category_item_ref>
 ```
-playwright-cli snapshot
-playwright-cli click <personal_category_item_ref>
-```
+
+Common personal categories:
+- "小林AI实战教程"
 
 The personal category list is in `#selfType_list`.
 
@@ -181,12 +185,17 @@ playwright-cli snapshot
 playwright-cli click <topic_ref>
 ```
 
-Topic selection is important for 51CTO — articles without a topic may fail to publish.
+**IMPORTANT**: Topic selection is required for publishing. Articles without a topic may fail to publish.
 
-Common topics:
-- "#我和 AI 的故事#" - value="32"
-- "#ChatGPT初体验#" - value="15"
-- "#AIGC二三事#" - value="20"
+Common topics (always verify with current dropdown — topics change frequently):
+- "#AI应用从工具到伙伴跨越#"
+- "#我和 AI 的故事#"
+- "#AI代码正在重新定义\"编程\"这件事#"
+- "#这些工具让大模型用起来更顺手#"
+- "#ChatGPT初体验#"
+- "#AIGC二三事#"
+- "##DeepSeek技术实践##"
+- "#你的Agent能解决什么真问题？#"
 
 ### Step 10: Fill Summary (Optional)
 
@@ -224,6 +233,16 @@ playwright-cli snapshot
 ```
 
 ### Category Selection Issues
+
+**CRITICAL**: Secondary category MUST be selected via JavaScript click — `playwright-cli click` on the generic element does NOT trigger the actual selection. Always use:
+```bash
+playwright-cli eval "document.querySelector('.second-types-item[value=\"XXX\"]')?.click()"
+```
+Then verify with:
+```bash
+playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"
+```
+If it returns `undefined`, the selection failed and you must retry with JS click.
 
 If secondary category doesn't appear after selecting primary category:
 ```bash
