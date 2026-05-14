@@ -7,6 +7,10 @@ Automate publishing Markdown articles to Aliyun Developer Community using playwr
 - playwright-cli must be installed globally
 - User must be logged into Aliyun (persistent browser profile handles this)
 
+## Self-Optimization
+
+**发布过程中如果遇到问题，就优化这个 skill。** When issues are encountered during publishing (e.g., elements not found, UI changes, workflow errors), update this skill's SKILL.md to fix the problem so it won't recur in future runs.
+
 ## Important Notes
 
 ### Markdown Frontmatter Handling
