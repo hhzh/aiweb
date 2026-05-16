@@ -4,67 +4,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a VuePress documentation site using vuepress-theme-hope, containing Chinese documentation about AI development tools including Claude Code, Codex, OpenClaw, and related technologies.
+VuePress documentation site (vuepress-theme-hope) for Chinese AI development tutorials ("小林学AI"), covering Claude Code, Codex, OpenClaw, Agent, Skills, and Tool topics.
 
 ## Commands
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server with hot reload
-pnpm run docs:dev
-
-# Start dev server with clean cache
-pnpm run docs:clean-dev
-
-# Build for production
-pnpm run docs:build
-
-# Update theme package
-pnpm run docs:update-package
+pnpm install              # Install dependencies
+pnpm run docs:dev         # Dev server with hot reload
+pnpm run docs:clean-dev   # Dev server with clean cache
+pnpm run docs:build       # Production build (output: src/.vuepress/dist)
+pnpm run docs:update-package  # Update theme package
 ```
+
+No test or lint commands exist in this project.
 
 ## Architecture
 
-- **Source Directory**: `src/` - All documentation content lives here
-- **Config Directory**: `src/.vuepress/` - VuePress configuration files
-  - `config.ts` - Main VuePress config (site title, language, base path)
-  - `theme.ts` - Theme configuration (navbar, sidebar, plugins, markdown features)
-  - `navbar.ts` - Navigation bar structure
-  - `sidebar.ts` - Sidebar structure
-  - `styles/` - Custom SCSS styles
+- **Source**: `src/` — all content and config
+- **Config**: `src/.vuepress/` — VuePress configuration (TypeScript)
+  - `config.ts` — site title, lang (`zh-CN`), base path, head/favicon
+  - `theme.ts` — theme config, markdown extensions, plugins (Giscus comments, Badge/VPCard components, mermaid, Font Awesome 6 icons)
+  - `navbar.ts` / `sidebar.ts` — navigation structure; sidebar uses `children: "structure"` to auto-generate from directory ordering
+- **Styles**: `src/.vuepress/styles/` — palette.scss (theme color `#096dd9`), config.scss, index.scss
+- **Assets**: `src/.vuepress/public/` — logos, favicon
 
-## Documentation Sections
+## Content Conventions
 
-Content is organized into these main directories under `src/`:
+- Each section directory has a `README.md` as its index page
+- Article files use numeric prefix for ordering: `01-`, `02-`, etc. (e.g., `09-claude-subagent-guide.md`)
+- Frontmatter: `title` (display title) and `order` (sidebar ordering) are standard
+- Homepage (`src/README.md`) uses `home: true` with hero config and custom HTML
+- All content is in Chinese (zh-CN)
 
-- `claudecode/` - Claude Code documentation
-- `codex/` - Codex documentation
-- `openclaw/` - OpenClaw documentation
-- `agent/` - Agent-related documentation
-- `skills/` - Skills documentation
-- `tool/` - Tool documentation
-- `writing/` - Writing-related documentation
-- `obsidian/` - Obsidian documentation
-- `demo/` - Demo pages
-- `guide/` - General guide pages
+## Sidebar Auto-generation
+
+Sidebar uses `children: "structure"` which derives ordering from file names and frontmatter `order`. New articles need only be placed in the correct directory with a numbered prefix — no manual sidebar config update required.
 
 ## Deployment
 
-Deployment is handled via GitHub Actions (`.github/workflows/deploy-docs.yml`):
-- Triggers on push to `main` branch
-- Uses Node.js 22 and pnpm
-- Builds to `src/.vuepress/dist`
-- Deploys to `gh-pages` branch
+GitHub Actions (`.github/workflows/deploy-docs.yml`) deploys on push to `main`:
+- Node.js 22, pnpm, `NODE_OPTIONS: --max_old_space_size=8192`
+- Builds to `src/.vuepress/dist`, deploys to `gh-pages` branch
 
-## Markdown Features
+## Key Dependencies
 
-The theme has extended markdown support enabled:
-- GFM (GitHub Flavored Markdown)
-- Code tabs, demo blocks
-- Task lists, footnotes
-- Custom containers (hint, alert)
-- Image lazy loading and size support
-- Mark, spoiler, align, attrs
-- Include files support
+- vuepress `2.0.0-rc.28`, vuepress-theme-hope `2.0.0-rc.106`
+- Vue 3, Vite bundler, sass-embedded, mermaid
+- Package manager: pnpm (specified via `packageManager` field)
