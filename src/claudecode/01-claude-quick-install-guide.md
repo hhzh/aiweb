@@ -87,6 +87,8 @@ flowchart TD
 
 4. 补充说明：若上述官方指令安装失败，可尝试备用指令 `npm install -g claude-code`，两种指令均可完成安装，优先推荐官方规范指令。
 
+5. 后续更新版本：输入 `npm update -g @anthropic-ai/claude-code`（推荐），或使用备用指令 `npm update -g claude-code`，即可更新到最新版本。
+
 ### 2.3 官方推荐安装方式（通用款，稳就一个字）
 
 Anthropic官方推荐的安装脚本，能自动处理依赖、配置环境，还能后台自动更新，不管是Mac还是Windows（Git Bash/WSL环境）都能用，新手优先选这个：
@@ -333,7 +335,7 @@ Claude Code的命令分两类：终端启动命令（启动时用）和斜杠命
 
 - **国产模型优化技巧**：用国产模型时，指令说具体点（比如“写一段Python冒泡排序，注释详细点，兼容Python3.8+”），生成的代码更符合预期；要是报错，直接把错误信息发给它，让它修复就好。Mac用户若报错，优先检查.zshrc配置和settings.json开关。
 
-- **版本更新技巧**：官方安装的会自动更，Homebrew装的要手动输`brew upgrade claude-code`，Node.js安装的输`npm update -g @anthropic-ai/claude-code`（对应官方安装指令），定期更新能修复Bug、加新功能。
+- **版本更新技巧**：官方安装的会自动更，Homebrew装的要手动输`brew upgrade claude-code`，Node.js安装的输`npm update -g @anthropic-ai/claude-code`（推荐，对应官方安装指令），也可用`npm update -g claude-code`（备用指令），定期更新能修复Bug、加新功能。
 
 - **问题排查技巧**：启动不了、调用不了模型，先输`/status`查配置，确认API Key和Base URL没错；网络报错，就检查国产模型的API能不能用，或者换个网络。
 
