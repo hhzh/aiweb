@@ -19,7 +19,8 @@ description: 一键发布 Markdown 文章到所有平台（CSDN、掘金、InfoQ
 ## Input
 
 - **Required**: Markdown file path (e.g., `/path/to/article.md`)
-- Title is extracted from the first `# ` heading in the file
+- **Optional**: `publishTitle` — 发布标题（优化后的标题，用于网站展示，不修改本地文件）
+- If `publishTitle` is not provided, title is extracted from the first `# ` heading in the file
 - Content skips YAML frontmatter automatically
 
 ## Publish Order
@@ -43,7 +44,7 @@ Read the Markdown file to extract the title and verify the file exists:
 
 ```bash
 # Extract title from first heading
-title=$(grep -m1 '^# ' /path/to/article.md | sed 's/^# //')
+originalTitle=$(grep -m1 '^# ' /path/to/article.md | sed 's/^# //')
 
 # Verify file exists
 if [ ! -f "/path/to/article.md" ]; then
@@ -52,12 +53,34 @@ if [ ! -f "/path/to/article.md" ]; then
 fi
 ```
 
+### Step 0.5: Title Optimization (Optional)
+
+If `publishTitle` is not provided in the skill arguments, use the `title-optimizer` skill to generate optimized titles for better click-through rates on publishing platforms. This only changes the title on the website — the local Markdown file is NOT modified.
+
+1. Invoke the `title-optimizer` skill with the original title
+2. Present the 5 optimized titles to the user
+3. Ask the user to select one (or keep the original)
+4. Set `publishTitle` to the user's choice
+
+**Important**: If `publishTitle` is already provided in the skill arguments, skip this step entirely and use the provided title directly.
+
+```
+# Title optimization flow
+If publishTitle is NOT provided:
+  → Invoke Skill: title-optimizer (pass originalTitle)
+  → Present 5 optimized titles to user
+  → User selects one → set publishTitle = user's choice
+  → User declines → set publishTitle = originalTitle
+If publishTitle IS provided:
+  → Skip optimization, use publishTitle directly
+```
+
 ### Step 1: Publish to CSDN
 
 Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Call Skill tool with `csdn-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for the subagent to complete
 - Ensure browser is closed after completion: `playwright-cli close`
 - Record result (success/failure + error message)
@@ -66,7 +89,7 @@ Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Ensure browser from previous step is closed: `playwright-cli close`
 - Call Skill tool with `juejin-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for completion, ensure browser closed
 - Record result
 
@@ -74,7 +97,7 @@ Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Ensure browser closed: `playwright-cli close`
 - Call Skill tool with `infoq-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for completion, ensure browser closed
 - Record result
 
@@ -82,7 +105,7 @@ Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Ensure browser closed: `playwright-cli close`
 - Call Skill tool with `tencent-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for completion, ensure browser closed
 - Record result
 
@@ -90,7 +113,7 @@ Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Ensure browser closed: `playwright-cli close`
 - Call Skill tool with `51cto-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for completion, ensure browser closed
 - Record result
 
@@ -98,7 +121,7 @@ Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Ensure browser closed: `playwright-cli close`
 - Call Skill tool with `zhihu-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for completion, ensure browser closed
 - Record result
 
@@ -106,7 +129,7 @@ Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Ensure browser closed: `playwright-cli close`
 - Call Skill tool with `cnblogs-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for completion, ensure browser closed
 - Record result
 
@@ -114,7 +137,7 @@ Use the Agent tool to dispatch a subagent that publishes to CSDN:
 
 - Ensure browser closed: `playwright-cli close`
 - Call Skill tool with `segmentfault-publisher`
-- Pass the Markdown file path
+- Pass the Markdown file path AND `publishTitle` as context
 - Wait for completion, ensure browser closed
 - Record result
 
@@ -169,12 +192,13 @@ If all 8 platforms fail, there may be a common issue (e.g., playwright-cli not i
 
 When executing this skill, the main agent should:
 
-1. **Extract article info first**: Read the Markdown file to get the title and confirm the file exists
-2. **Process platforms sequentially**: Do NOT parallelize — each platform needs its own browser session
-3. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path as context
-4. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
-5. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)
-6. **Output the summary report** at the end
+1. **Extract article info first**: Read the Markdown file to get the original title and confirm the file exists
+2. **Optimize title if needed**: If `publishTitle` is not provided, invoke `title-optimizer` skill and let user choose; otherwise use the provided `publishTitle` directly
+3. **Process platforms sequentially**: Do NOT parallelize — each platform needs its own browser session
+4. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path AND `publishTitle` as context
+5. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
+6. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)
+7. **Output the summary report** at the end
 
 For each platform, the flow is:
 

@@ -2,6 +2,10 @@
 
 Automate publishing Markdown articles to InfoQ writing community using playwright-cli browser automation.
 
+## Title Override
+
+If `publishTitle` is provided in the skill arguments or context, use it as the article title for publishing (instead of extracting from the Markdown file). This allows publishing with an optimized title without modifying the local Markdown file.
+
 ## Prerequisites
 
 - playwright-cli must be installed globally
@@ -52,6 +56,8 @@ playwright-cli click <create_button_ref>
 This will create a new draft and navigate to the editor page.
 
 ### Step 3: Fill Article Title
+
+**IMPORTANT**: If `publishTitle` is provided in context, use it as the title. Otherwise, extract the title from the first `# ` heading in the Markdown file.
 
 ```bash
 playwright-cli snapshot

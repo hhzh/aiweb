@@ -2,6 +2,10 @@
 
 Automate publishing Markdown articles to Aliyun Developer Community using playwright-cli browser automation.
 
+## Title Override
+
+If `publishTitle` is provided in the skill arguments or context, use it as the article title for publishing (instead of extracting from the Markdown file). This allows publishing with an optimized title without modifying the local Markdown file.
+
 ## Prerequisites
 
 - playwright-cli must be installed globally
@@ -44,6 +48,8 @@ playwright-cli open --headed --persistent https://developer.aliyun.com/article/n
 The `--headed` flag shows the browser UI, `--persistent` saves login state.
 
 ### Step 2: Fill Article Title
+
+**IMPORTANT**: If `publishTitle` is provided in context, use it as the title. Otherwise, extract the title from the first `# ` heading in the Markdown file.
 
 ```bash
 playwright-cli snapshot

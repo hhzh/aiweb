@@ -7,6 +7,10 @@ description: Publish Markdown articles to CSDN using playwright-cli automation. 
 
 Automate publishing Markdown articles to CSDN using playwright-cli browser automation.
 
+## Title Override
+
+If `publishTitle` is provided in the skill arguments or context, use it as the article title for publishing (instead of extracting from the Markdown file). This allows publishing with an optimized title without modifying the local Markdown file.
+
 ## Prerequisites
 
 - playwright-cli must be installed globally
@@ -77,6 +81,8 @@ playwright-cli click <close_button_ref>
 ```
 
 ### Step 2: Fill Article Title
+
+**IMPORTANT**: If `publishTitle` is provided in context, use it as the title. Otherwise, extract the title from the first `# ` heading in the Markdown file.
 
 **IMPORTANT**: `playwright-cli fill '#article-title'` does NOT work on CSDN's Markdown editor — the CSS selector doesn't match any element. Use one of these methods instead:
 
