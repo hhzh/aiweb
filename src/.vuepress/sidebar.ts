@@ -12,7 +12,7 @@ export default sidebar({
             children: "structure",
         },
         {
-            text: "codex",
+            text: "Codex",
             icon: "book",
             prefix: "codex/",
             link: "codex/",
@@ -20,7 +20,7 @@ export default sidebar({
             children: "structure",
         },
         {
-            text: "skills",
+            text: "Skills",
             icon: "book",
             prefix: "skills/",
             link: "skills/",
@@ -28,7 +28,7 @@ export default sidebar({
             children: "structure",
         },
         {
-            text: "agent",
+            text: "Agent",
             icon: "book",
             prefix: "agent/",
             link: "agent/",
@@ -36,7 +36,7 @@ export default sidebar({
             children: "structure",
         },
         {
-            text: "openclaw",
+            text: "OpenClaw",
             icon: "book",
             prefix: "openclaw/",
             link: "openclaw/",
@@ -44,7 +44,7 @@ export default sidebar({
             children: "structure",
         },
         {
-            text: "tool",
+            text: "Tool",
             icon: "gears",
             prefix: "tool/",
             link: "tool/",
