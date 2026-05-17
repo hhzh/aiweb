@@ -27,6 +27,7 @@
       "Bash(wc *)",
       "Bash(for *)",
       "Bash(curl *)",
+      "Bash(perl *)",
       "Bash(python *)",
       "Bash(python3 *)",
       "Bash(playwright-cli *)",
