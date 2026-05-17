@@ -379,9 +379,7 @@ allowed-tools: Bash(python:*)
 ---
 # 代码库可视化流程
 1. 执行Python辅助脚本，生成HTML可视化页面
-```bash
 python ~/.claude/skills/codebase-visualizer/scripts/visualize.py .
-```
 2. 脚本功能说明：
    - 统计项目中不同类型文件（.js、.ts、.json等）的数量与大小
    - 生成交互式目录结构（可展开/折叠）
@@ -528,14 +526,11 @@ argument-hint: "[operation-description]" # 传入操作描述
 ---
 # 会话日志记录流程
 1. 创建日志目录（若不存在）
-```bash
 mkdir -p ~/.claude/session-logs
-```
 2. 写入日志（格式：时间+会话ID+操作描述）
-```bash
 echo "$(date +'%Y-%m-%d %H:%M:%S') - 会话ID: $CLAUDE_SESSION_ID - 操作: $ARGUMENTS" >> ~/.claude/session-logs/session.log
-```
 3. 输出提示：日志已记录至 ~/.claude/session-logs/session.log
+```
 
 ### 7.3 模板3：代码批量格式化技能（个人级）
 
