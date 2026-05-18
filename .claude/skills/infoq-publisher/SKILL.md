@@ -146,6 +146,21 @@ playwright-cli eval "window.location.href"
 # Should contain: /article/
 ```
 
+### Click Fallback Pattern
+
+When `playwright-cli click` fails (e.g., "intercepts pointer events", "element not visible"), automatically fall back to JavaScript evaluation:
+
+```bash
+# Instead of: playwright-cli click <ref>
+# Use: playwright-cli eval "document.querySelector('CSS_SELECTOR')?.click()"
+```
+
+For elements identified by ref (not CSS selector), use text-based JS click:
+
+```bash
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('BUTTON_TEXT'))?.click()"
+```
+
 ## Error Handling
 
 ### Element Not Found

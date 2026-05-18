@@ -290,6 +290,23 @@ When publishing, CSDN may show a WeChat QR code verification dialog for security
 - If WeChat is already bound and verified, it will show "校验成功" and auto-close in 2 seconds
 - Wait a few seconds for the verification to complete automatically
 
+### Click Fallback Pattern
+
+When `playwright-cli click` fails (e.g., "intercepts pointer events", "element not visible", "element is not attached"), automatically fall back to JavaScript evaluation:
+
+```bash
+# Instead of: playwright-cli click <ref>
+# Use: playwright-cli eval "document.querySelector('CSS_SELECTOR')?.click()"
+```
+
+For elements identified by ref (not CSS selector), use text-based JS click:
+
+```bash
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('BUTTON_TEXT'))?.click()"
+```
+
+Common CSDN overlays that block clicks: `mark-mask-box-div`, `.tag__box` combobox panel.
+
 ## Error Handling
 
 ### Element Intercepted/Blocked
@@ -335,24 +352,26 @@ playwright-cli open --headed --persistent https://mp.csdn.net/mp_blog/creation/e
 
 ## Common Element Selectors
 
-| Element | Selector / Description |
-|---------|----------------------|
-| Title input | Generic element showing "【无标题】", click it then type (do NOT use `fill '#article-title'`) |
-| Content editor (MD) | `contenteditable` element, focus via JS |
-| Template cancel | "取消" button in template dialog |
-| AI assistant close | "关闭" button at top of AI panel |
-| Add tag button | `button "添加文章标签"` |
-| Tag input | `textbox "请输入文字搜索，Enter键入可添加自定义标签"` |
-| Summary textarea | `textbox "本内容会在各展现列表中展示..."` |
-| Category section | `button "新建分类专栏"` |
-| Article type | `generic` with text "原创"/"转载"/"翻译" |
-| Declaration dropdown | `textbox "无声明"` |
-| GitCode checkbox | `checkbox "同时备份到GitCode"` |
-| Visibility options | `generic` with text "全部可见"/"仅我可见" etc. |
-| Activity dropdown | `textbox "请选择创作活动"` (use JS click) |
-| Topic dropdown | `textbox "请选择创作话题"` |
-| Publish button (toolbar) | `button "发布文章"` (first one) |
-| Publish button (dialog) | `button "发布文章"` with class `btn-b-red` |
+| Element | Selector / Description | Reliable Method |
+|---------|----------------------|----------------|
+| Title input | Generic element showing "【无标题】", click it then type (do NOT use `fill '#article-title'`) | click + type (NOT fill) |
+| Content editor (MD) | `contenteditable` element, focus via JS | JS focus + paste |
+| Template cancel | "取消" button in template dialog | click |
+| AI assistant close | "关闭" button at top of AI panel | click |
+| Add tag button | `button "添加文章标签"` | click |
+| Tag input | `textbox "请输入文字搜索，Enter键入可添加自定义标签"` | fill + Enter |
+| Summary textarea | `textbox "本内容会在各展现列表中展示..."` | fill |
+| Category section | `button "新建分类专栏"` | JS click (overlay) |
+| Category label | `label.tag__option-label` | JS click (overlay) |
+| Article type | `generic` with text "原创"/"转载"/"翻译" | click |
+| Declaration dropdown | `textbox "无声明"` | click |
+| GitCode checkbox | `checkbox "同时备份到GitCode"` | click |
+| Visibility options | `generic` with text "全部可见"/"仅我可见" etc. | click |
+| Activity dropdown | `textbox "请选择创作活动"` | JS click (overlay) |
+| Topic dropdown | `textbox "请选择创作话题"` | click |
+| Publish button (toolbar) | `button "发布文章"` (first one) | click |
+| Publish button (dialog) | `button "发布文章"` with class `btn-b-red` | JS click (overlay) |
+| Tag combobox | `.tag__box` | blur to close (NOT Escape) |
 
 ## Complete Example
 

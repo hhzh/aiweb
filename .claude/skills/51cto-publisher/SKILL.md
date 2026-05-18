@@ -22,16 +22,47 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 **CRITICAL**: When copying Markdown content, skip the YAML frontmatter (the section between `---` markers). The frontmatter contains metadata like title, date, and tags that should NOT be included in the published article content.
 
 ```bash
-# WRONG - includes frontmatter
-cat article.md | pbcopy
-
 # CORRECT - skip frontmatter
-sed -n '/^# /,$p' article.md | pbcopy  # Start from first heading
+sed -n '/^# /,$p' article.md | pbcopy
+```
+
+### v-note-read-model Overlay (CRITICAL)
+
+51CTO's editor has a `.v-note-read-model` overlay that intercepts ALL pointer events. This overlay MUST be removed before interacting with the editor or any elements behind it:
+
+```bash
+# Remove the overlay FIRST before any editor interaction
+playwright-cli eval "document.querySelectorAll('.v-note-read-model').forEach(el => el.remove())"
+```
+
+Without this step, `playwright-cli click` on the editor will fail with "intercepts pointer events".
+
+### Vue.js Input Reactivity (CRITICAL)
+
+51CTO uses Vue.js, and `playwright-cli fill` on Vue-controlled inputs may NOT trigger Vue's reactivity. Use the native value setter pattern to properly set input values and dispatch events:
+
+```bash
+# For Vue.js inputs where fill doesn't work
+playwright-cli eval "(function(){var el=document.querySelector('SELECTOR');var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,'VALUE');el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
+```
+
+For the content textarea specifically, use base64 encoding with UTF-8 decoding + native setter:
+
+```bash
+# Prepare content
+content=$(sed -n '/^# /,$p' /path/to/article.md | base64 | tr -d '\n')
+
+# Inject via base64 + native setter
+playwright-cli eval "(function(){var b64='${content}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);var el=document.querySelector('textarea[placeholder=\"请输入正文\"]');if(!el){el=document.querySelector('#editor');}var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,content);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
 ```
 
 ### Article Category Selection
 
-51CTO requires selecting both a primary category (一级分类) and a secondary category (二级分类). After selecting the primary category, a secondary category dropdown will appear.
+51CTO requires selecting both a primary category (一级分类) and a secondary category (二级分类). After selecting the primary category, a secondary category dropdown will appear. Both MUST be selected via JavaScript — `playwright-cli click` does NOT work reliably for these elements.
+
+### Click Reliability
+
+Many 51CTO UI elements cannot be clicked via `playwright-cli click` due to Vue.js rendering or overlay interception. Default to using `playwright-cli eval` with JavaScript clicks for reliability.
 
 ## Workflow
 
@@ -43,7 +74,15 @@ playwright-cli open --headed --persistent https://blog.51cto.com/blogger/publish
 
 The `--headed` flag shows the browser UI, `--persistent` saves login state.
 
-### Step 2: Fill Article Title
+### Step 2: Remove Editor Overlay
+
+**MUST do this before any editor interaction:**
+
+```bash
+playwright-cli eval "document.querySelectorAll('.v-note-read-model').forEach(el => el.remove())"
+```
+
+### Step 3: Fill Article Title
 
 **IMPORTANT**: If `publishTitle` is provided in context, use it as the title. Otherwise, extract the title from the first `# ` heading in the Markdown file.
 
@@ -55,22 +94,31 @@ playwright-cli fill <ref> "Article Title Here"
 
 The title input has placeholder "请输入标题，您可以输入100个字".
 
-### Step 3: Fill Article Content
-
-**IMPORTANT**: Skip YAML frontmatter when copying content.
+If `fill` doesn't work (Vue reactivity issue), use JS:
 
 ```bash
-# Skip frontmatter and copy content starting from first heading
-sed -n '/^# /,$p' /path/to/article.md | pbcopy
-
-# Click editor and paste
-playwright-cli click <editor_ref>
-playwright-cli press "Meta+v"
+playwright-cli eval "(function(){var el=document.querySelector('input[placeholder=\"请输入标题，您可以输入100个字\"]');el.focus();document.execCommand('selectAll');document.execCommand('insertText',false,'Article Title Here');})()"
 ```
 
-The content editor has placeholder "请输入正文".
+### Step 4: Fill Article Content
 
-### Step 4: Click Publish Button
+**IMPORTANT**: Skip YAML frontmatter. Use base64 + native setter for reliable content injection.
+
+```bash
+# Prepare content: skip frontmatter, base64 encode
+content=$(sed -n '/^# /,$p' /path/to/article.md | base64 | tr -d '\n')
+
+# Inject via base64 + native setter (handles Chinese + Vue reactivity)
+playwright-cli eval "(function(){var b64='${content}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);var el=document.querySelector('textarea[placeholder=\"请输入正文\"]');if(!el){el=document.querySelector('#editor');}var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,content);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
+```
+
+Verify content was set:
+
+```bash
+playwright-cli eval "document.querySelector('textarea[placeholder=\"请输入正文\"]')?.value?.substring(0,100)"
+```
+
+### Step 5: Click Publish Button
 
 Click the "发布文章" button to open the publish dialog:
 
@@ -80,16 +128,19 @@ playwright-cli snapshot
 playwright-cli click <publish_button_ref>
 ```
 
-This will open a dialog with category and tag settings.
-
-### Step 5: Select Article Category (一级分类)
-
-In the publish dialog, select the primary category:
+If click fails, use JS:
 
 ```bash
-playwright-cli snapshot
-# Find the category item and click it
-playwright-cli click <category_ref>
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('发布文章'))?.click()"
+```
+
+### Step 6: Select Article Category (一级分类)
+
+**Always use JavaScript** — `playwright-cli click` on category items is unreliable:
+
+```bash
+# Select primary category via JS
+playwright-cli eval "document.querySelector('.select_item[value=\"36\"]')?.click()"
 ```
 
 Common categories:
@@ -98,116 +149,124 @@ Common categories:
 - "前端开发" - value="30"
 - "后端开发" - value="31"
 
-### Step 6: Select Secondary Category (二级分类)
+### Step 7: Select Secondary Category (二级分类)
 
-After selecting primary category, secondary category options appear but may NOT be visible in the snapshot as clickable elements. Use JavaScript to click them:
+After selecting primary category, wait for secondary options, then select via JS:
 
 ```bash
-# First, find available secondary categories
+# Wait for secondary category to appear
+sleep 1
+
+# First, check available secondary categories
 playwright-cli eval "document.querySelector('#twoLever')?.innerHTML"
 
-# Then select one by its value attribute (via JS click)
+# Then select one via JS click (NOT playwright-cli click)
 playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"
+
+# Verify selection — look for second-types-item-check class
+playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"
 ```
 
 Common secondary categories for "人工智能" (values change dynamically — always verify with `#twoLever` before selecting):
 - "深度学习" - value="92"
 - "机器学习" - value="155"
 - "NLP" - value="150"
-- "计算机视觉" - value="148"
 - "数据分析" - value="151"
-- "数据挖掘" - value="152"
-- "神经网络" - value="153"
-- "数据可视化" - value="154"
-- "PyTorch" - value="149"
-- "数据结构与算法" - value="147"
 - "AI IDE" - value="206" (may appear intermittently)
 - "代码生成" - value="207" (may appear intermittently)
-- "无代码开发" - value="208" (may appear intermittently)
-- "代码编辑" - value="209" (may appear intermittently)
 
-**Important**: The secondary category items (`.second-types-item`) often cannot be clicked via `playwright-cli click` because they are not rendered as standard interactive elements. Use `playwright-cli eval` with JavaScript click instead. To verify selection, check for `second-types-item-check` class (NOT `.active`):
-```bash
-playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"
-```
+**CRITICAL**: If verification returns `undefined`, the selection failed. Retry with JS click. `playwright-cli click` on `.second-types-item` does NOT trigger the actual selection.
 
-### Step 7: Configure Personal Category
+### Step 8: Configure Personal Category
 
-**IMPORTANT**: Personal category selection is required for publishing. The field is a dropdown — click to open, then select from options:
+Personal category is required. Use JS for the dropdown:
 
 ```bash
 # Click the dropdown to open it
 playwright-cli eval "document.querySelector('#selfType')?.click()"
 
-# Wait for options to appear
+# Wait for options, then select first item via JS
 sleep 1
-playwright-cli snapshot
-# Find and click the personal category option (listitem)
-playwright-cli click <personal_category_item_ref>
+playwright-cli eval "document.querySelector('#selfType_list li')?.click()"
 ```
 
 Common personal categories:
 - "小林AI实战教程"
 
-The personal category list is in `#selfType_list`.
-
-### Step 8: Add Tags
-
-**CRITICAL**: 51CTO auto-generates tags from article content. These auto-tags are often irrelevant (e.g., "Code", "运行测试", "搜索"). You MUST remove them first before adding your own tags.
+If JS click doesn't work, try from snapshot:
 
 ```bash
-# Remove all auto-generated tags
-playwright-cli eval "document.querySelectorAll('.has-list .iconeditor').forEach(el => el.click())"
+playwright-cli snapshot
+# Find and click the personal category option (listitem)
+playwright-cli click <personal_category_item_ref>
+```
+
+### Step 9: Add Tags
+
+**CRITICAL**: 51CTO auto-generates irrelevant tags from article content (e.g., "Code", "运行测试", "搜索"). You MUST remove them first.
+
+```bash
+# Remove all auto-generated tags — use innerHTML clearing for reliability
+playwright-cli eval "document.querySelector('.has-list').innerHTML = ''"
 
 # Verify all tags are removed
 playwright-cli eval "document.querySelectorAll('.has-list > span').length"
 # Should be 0
 ```
 
-Tags must be entered **one at a time** with Enter key after each. Do NOT use comma-separated input:
+Tags must be entered **one at a time** with Enter key. Use `playwright-cli run-code` for reliable Vue input handling:
 
 ```bash
-# Add tags one by one
-playwright-cli fill <tag_input_ref> "AI编程"
-playwright-cli press "Enter"
+# Add tags using run-code for proper Vue event dispatch
+playwright-cli run-code "const input = page.locator('#tag-input'); await input.click(); await input.fill('AI编程'); await page.keyboard.press('Enter');"
 
-playwright-cli snapshot  # Get fresh ref after each tag
-playwright-cli fill <tag_input_ref> "Claude"
-playwright-cli press "Enter"
+sleep 1
+
+playwright-cli run-code "const input = page.locator('#tag-input'); await input.click(); await input.fill('Claude'); await page.keyboard.press('Enter');"
+
+sleep 1
 
 # Repeat for more tags (max 5)
 ```
 
-**Important**: After each tag is added, the input ref may change. Take a snapshot to get the fresh ref before adding the next tag. Comma-separated input does NOT work as expected.
-
-### Step 9: Select Topic
-
-Click the topic input to show dropdown, then select from the list:
+If `run-code` is unavailable, fallback to fill + Enter with snapshot refresh between each tag:
 
 ```bash
-# Click the topic input to show dropdown
-playwright-cli click <topic_input_ref>
-
-# Wait for options to appear
-sleep 1
 playwright-cli snapshot
-# Click on the desired topic (listitem)
-playwright-cli click <topic_ref>
+playwright-cli fill <tag_input_ref> "AI编程"
+playwright-cli press "Enter"
+playwright-cli snapshot
+playwright-cli fill <tag_input_ref> "Claude"
+playwright-cli press "Enter"
 ```
 
-**IMPORTANT**: Topic selection is required for publishing. Articles without a topic may fail to publish.
+**Important**: After 5 tags, the tag input becomes invisible — this is normal, proceed with other fields.
+
+### Step 10: Select Topic
+
+Topic selection is required for publishing. Use JS to interact with the dropdown:
+
+```bash
+# Click topic dropdown via JS
+playwright-cli eval "document.querySelector('#subjuct')?.click()"
+
+# Wait for options
+sleep 1
+
+# Get available topics
+playwright-cli eval "document.querySelector('#listItemList')?.innerText"
+
+# Select first topic via JS
+playwright-cli eval "document.querySelector('#listItemList li')?.click()"
+```
 
 Common topics (always verify with current dropdown — topics change frequently):
 - "#AI应用从工具到伙伴跨越#"
 - "#我和 AI 的故事#"
 - "#AI代码正在重新定义\"编程\"这件事#"
 - "#这些工具让大模型用起来更顺手#"
-- "#ChatGPT初体验#"
-- "#AIGC二三事#"
-- "##DeepSeek技术实践##"
-- "#你的Agent能解决什么真问题？#"
 
-### Step 10: Fill Summary (Optional)
+### Step 11: Fill Summary (Optional)
 
 ```bash
 playwright-cli fill "#abstractData" "Article summary text..."
@@ -215,7 +274,7 @@ playwright-cli fill "#abstractData" "Article summary text..."
 
 If left empty, the first 200 characters will be used automatically.
 
-### Step 11: Publish
+### Step 12: Publish
 
 Click the publish button in the dialog:
 
@@ -225,45 +284,89 @@ playwright-cli snapshot
 playwright-cli click <publish_button_ref>
 ```
 
-### Step 12: Verify Success
+If click fails, use JS:
+
+```bash
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('发布') && !b.textContent.includes('发布文章'))?.click()"
+```
+
+### Step 13: Verify Success
 
 Check for success indicators:
-- URL should change to article view page
+- URL should change to article view page (contains `/success/` or article ID)
 - Success message appears
+
+```bash
+playwright-cli eval "window.location.href"
+```
 
 ## Error Handling
 
-### Dialog Not Appearing
+### Editor Click Intercepted
 
-If the publish dialog doesn't appear:
+If `playwright-cli click` on the editor fails with "intercepts pointer events":
+
 ```bash
-playwright-cli snapshot
-# Ensure title and content are filled
-# Try clicking publish button again
+# Remove the overlay
+playwright-cli eval "document.querySelectorAll('.v-note-read-model').forEach(el => el.remove())"
+# Then retry the interaction
+```
+
+### Vue.js Fill Not Working
+
+If `playwright-cli fill` doesn't update the input value (Vue reactivity not triggered):
+
+```bash
+# Use native setter pattern for textareas
+playwright-cli eval "(function(){var el=document.querySelector('SELECTOR');var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,'VALUE');el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
+
+# For text inputs, use HTMLInputElement.prototype
+playwright-cli eval "(function(){var el=document.querySelector('SELECTOR');var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;nativeSetter.call(el,'VALUE');el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
+```
+
+### Browser Crashed
+
+If the browser crashes during publishing:
+
+```bash
+playwright-cli close 2>/dev/null || true
+playwright-cli open --headed --persistent https://blog.51cto.com/blogger/publish
+# Remove overlay, then re-fill title and content using the base64 + native setter method
 ```
 
 ### Category Selection Issues
 
-**CRITICAL**: Secondary category MUST be selected via JavaScript click — `playwright-cli click` on the generic element does NOT trigger the actual selection. Always use:
+**CRITICAL**: Secondary category MUST be selected via JavaScript click — `playwright-cli click` does NOT trigger the actual selection. Always use:
+
 ```bash
 playwright-cli eval "document.querySelector('.second-types-item[value=\"XXX\"]')?.click()"
 ```
+
 Then verify with:
+
 ```bash
 playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"
 ```
+
 If it returns `undefined`, the selection failed and you must retry with JS click.
 
-If secondary category doesn't appear after selecting primary category:
+### Publish Button Clicked But Page Does Not Change
+
+If clicking "发布" doesn't redirect to a success page, check for missing required fields:
+1. **Secondary category (二级分类)**: Must be selected and verified
+2. **Topic (话题)**: Should be selected from the dropdown
+3. **Tags**: At least one tag is required
+
+The most common issue is that the secondary category is not actually selected. Verify with:
+
 ```bash
-# Wait a moment and take snapshot again
-sleep 1
-playwright-cli snapshot
+playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"
 ```
 
 ### Element Not Found
 
 If element refs are stale:
+
 ```bash
 playwright-cli snapshot
 # Use new refs from snapshot
@@ -272,35 +375,25 @@ playwright-cli snapshot
 ### Content Contains Frontmatter
 
 If the published content shows YAML frontmatter:
-1. Clear the editor
-2. Copy content without frontmatter: `sed -n '/^# /,$p' article.md | pbcopy`
-3. Paste again
-
-### Publish Button Clicked But Page Does Not Change
-
-If clicking "发布" doesn't redirect to a success page, check for missing required fields:
-1. **Secondary category (二级分类)**: Must be selected — use JS: `playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"`
-2. **Topic (话题)**: Should be selected from the dropdown
-3. **Tags**: At least one tag is required
-
-The most common issue is that the secondary category is not actually selected, even though the UI looks like it was clicked. Verify with: `playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"`
+1. Re-inject content using the base64 + native setter method (which skips frontmatter)
 
 ## Common Element Selectors
 
-| Element | Selector/Description |
-|---------|----------|
-| Title input | Textbox with placeholder "请输入标题，您可以输入100个字" |
-| Content editor | Textbox with placeholder "请输入正文" |
-| Publish button | Button with text "发布文章" |
-| Category dropdown | `.select_item` items in `#oneLever` |
-| Secondary category | Items in `#twoLever` |
-| Personal category dropdown | `#selfType` |
-| Personal category list | `#selfType_list` |
-| Tag input | `#tag-input` |
-| Topic dropdown | `#subjuct` |
-| Topic list | `#listItemList` |
-| Summary textarea | `#abstractData` |
-| Dialog publish button | Button in `.dialog-editor` |
+| Element | Selector/Description | Reliable Method |
+|---------|----------|------------|
+| Title input | `input[placeholder="请输入标题，您可以输入100个字"]` | fill or JS native setter |
+| Content editor | `textarea[placeholder="请输入正文"]` | Base64 + native setter ONLY |
+| Publish button | Button with text "发布文章" | click or JS |
+| Category dropdown | `.select_item` items in `#oneLever` | JS click ONLY |
+| Secondary category | `.second-types-item` in `#twoLever` | JS click ONLY |
+| Personal category dropdown | `#selfType` | JS click ONLY |
+| Personal category list | `#selfType_list` | JS click or snapshot ref |
+| Tag input | `#tag-input` | run-code or fill + Enter |
+| Topic dropdown | `#subjuct` | JS click ONLY |
+| Topic list | `#listItemList` | JS click ONLY |
+| Summary textarea | `#abstractData` | fill |
+| Dialog publish button | Button in `.dialog-editor` | click or JS |
+| Editor overlay | `.v-note-read-model` | Must remove before editor interaction |
 
 ## Complete Example
 
@@ -308,48 +401,46 @@ The most common issue is that the secondary category is not actually selected, e
 # Open browser
 playwright-cli open --headed --persistent https://blog.51cto.com/blogger/publish
 
-# Get initial snapshot
-playwright-cli snapshot
+# Remove editor overlay FIRST
+playwright-cli eval "document.querySelectorAll('.v-note-read-model').forEach(el => el.remove())"
 
 # Fill title
+playwright-cli snapshot
 playwright-cli fill <title_ref> "My Article Title"
 
-# Fill content (skip frontmatter)
-sed -n '/^# /,$p' article.md | pbcopy
-playwright-cli click <editor_ref>
-playwright-cli press "Meta+v"
+# Fill content (skip frontmatter, base64 + native setter)
+content=$(sed -n '/^# /,$p' article.md | base64 | tr -d '\n')
+playwright-cli eval "(function(){var b64='${content}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);var el=document.querySelector('textarea[placeholder=\"请输入正文\"]');var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,content);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
 
 # Click publish to open dialog
+playwright-cli snapshot
 playwright-cli click <publish_button_ref>
 
-# Wait for dialog
-playwright-cli snapshot
-
-# Select article category "人工智能"
+# Select article category "人工智能" via JS
 playwright-cli eval "document.querySelector('.select_item[value=\"36\"]')?.click()"
 
-# Wait for secondary category to appear, then select via JS
+# Select secondary category via JS
 sleep 1
 playwright-cli eval "document.querySelector('.second-types-item[value=\"206\"]')?.click()"
 
-# Select personal category (readonly dropdown, click then select)
+# Verify secondary category selection
+playwright-cli eval "document.querySelector('.second-types-item-check')?.textContent"
+
+# Select personal category via JS
 playwright-cli eval "document.querySelector('#selfType')?.click()"
 sleep 1
-playwright-cli snapshot
-playwright-cli click <personal_category_item_ref>
+playwright-cli eval "document.querySelector('#selfType_list li')?.click()"
 
-# Add tags one by one
-playwright-cli fill <tag_input_ref> "AI"
-playwright-cli press "Enter"
-playwright-cli snapshot
-playwright-cli fill <tag_input_ref> "Claude Code"
-playwright-cli press "Enter"
-
-# Select topic from dropdown
-playwright-cli click <topic_input_ref>
+# Remove auto-generated tags, then add custom tags
+playwright-cli eval "document.querySelector('.has-list').innerHTML = ''"
+playwright-cli run-code "const input = page.locator('#tag-input'); await input.click(); await input.fill('AI编程'); await page.keyboard.press('Enter');"
 sleep 1
-playwright-cli snapshot
-playwright-cli click <topic_ref>  # e.g., "#ChatGPT初体验#"
+playwright-cli run-code "const input = page.locator('#tag-input'); await input.click(); await input.fill('Claude'); await page.keyboard.press('Enter');"
+
+# Select topic via JS
+playwright-cli eval "document.querySelector('#subjuct')?.click()"
+sleep 1
+playwright-cli eval "document.querySelector('#listItemList li')?.click()"
 
 # Click publish in dialog
 playwright-cli snapshot
@@ -361,13 +452,13 @@ playwright-cli eval "window.location.href"
 
 ## Tips
 
-1. Always take snapshots to get current element refs
-2. Skip YAML frontmatter when copying Markdown content
-3. Primary category selection triggers secondary category dropdown
-4. Tags can be entered directly without dropdown selection
-5. Topics are optional but recommended for better visibility
-6. Close browser when done: `playwright-cli close`
-7. 51CTO auto-generates irrelevant tags from content — always remove them first with `document.querySelectorAll('.has-list .iconeditor').forEach(el => el.click())`
-8. After 5 tags, the tag input becomes invisible (`element is not visible` error) — this is normal, just proceed with other fields
-9. Secondary category uses `second-types-item-check` class (not `.active`) — verify with `document.querySelector('.second-types-item-check')?.textContent`
-10. Topic options can be accessed via `#listItemList` after clicking `#subjuct` — use JS click to select
+1. Always remove `.v-note-read-model` overlay before interacting with the editor
+2. Use base64 + native setter for content injection — regular fill/paste is unreliable
+3. Use JS clicks for category, secondary category, personal category, and topic — `playwright-cli click` doesn't work for these Vue.js elements
+4. Remove auto-generated tags with `innerHTML = ''` — individual close icon clicks are unreliable
+5. Use `run-code` for tag input if available — it properly dispatches Vue events
+6. Always verify secondary category selection with `.second-types-item-check`
+7. Close browser when done: `playwright-cli close`
+8. If browser crashes, reopen and re-fill title + content using the base64 method
+9. After 5 tags, the tag input becomes invisible — this is normal, proceed with other fields
+10. Default to `playwright-cli eval` over `playwright-cli click` for most 51CTO elements — it's more reliable

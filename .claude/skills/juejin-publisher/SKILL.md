@@ -201,6 +201,21 @@ playwright-cli eval "window.location.href"
 
 The article URL will be shown in the success page (format: `/spost/<article_id>`).
 
+### Click Fallback Pattern
+
+When `playwright-cli click` fails (e.g., "intercepts pointer events", "element not visible"), automatically fall back to JavaScript evaluation:
+
+```bash
+# Instead of: playwright-cli click <ref>
+# Use: playwright-cli eval "document.querySelector('CSS_SELECTOR')?.click()"
+```
+
+For elements identified by ref (not CSS selector), use text-based JS click:
+
+```bash
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('BUTTON_TEXT'))?.click()"
+```
+
 ## Error Handling
 
 ### Editor Intercepted
@@ -224,17 +239,17 @@ If the title field contains article content:
 
 ## Common Element Selectors
 
-| Element | Description |
-|---------|-------------|
-| Title input | Textbox with placeholder "输入文章标题..." |
-| Content editor | `.CodeMirror` (use CodeMirror.setValue) |
-| "发布" button | Button to open publish dialog |
-| Category items | Clickable category names (e.g., "人工智能") |
-| Tag input | Textbox for searching/adding tags |
-| Column input | Textbox for searching/adding columns |
-| Topic input | Textbox for searching/adding topics |
-| Summary textarea | Textarea for article summary |
-| "确定并发布" button | Button to confirm and publish |
+| Element | Description | Reliable Method |
+|---------|-------------|-----------------|
+| Title input | Textbox with placeholder "输入文章标题..." | fill |
+| Content editor | `.CodeMirror` (use CodeMirror.setValue) | Base64 + CodeMirror.setValue |
+| "发布" button | Button to open publish dialog | click or JS |
+| Category items | Clickable category names (e.g., "人工智能") | click directly |
+| Tag input | Textbox for searching/adding tags | fill + Enter with sleep |
+| Column input | Textbox for searching/adding columns | fill + Enter with sleep |
+| Topic input | Textbox for searching/adding topics | fill + Enter with sleep |
+| Summary textarea | Textarea for article summary | fill |
+| "确定并发布" button | Button to confirm and publish | click or JS |
 
 ## Complete Example
 
