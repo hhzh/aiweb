@@ -233,13 +233,13 @@ playwright-cli eval "document.querySelector('input[placeholder=\"请选择创作
 ```
 
 2. Smart activity selection logic:
-   - **Priority 1**: Select the first activity containing "征稿", "征文", or "创作" keywords
+   - **Priority 1**: Select the first activity containing "征稿", "征文", "挑战", or "创作" keywords
    - **Priority 2**: If no matching activity exists, select the second activity
 
 ```bash
 playwright-cli snapshot
 # From the snapshot, find all activity options
-# Look for activities containing "征稿", "征文", or "创作" in their text
+# Look for activities containing "征稿", "征文", "挑战", or "创作" in their text
 # If found, click the first matching one
 # If not found, click the second activity option
 playwright-cli click <selected_activity_ref>
@@ -422,7 +422,7 @@ playwright-cli fill <summary_ref> "Article summary text..."
 # Select activity (use JS to bypass overlay)
 playwright-cli eval "document.querySelector('input[placeholder=\"请选择创作活动\"]')?.click()"
 playwright-cli snapshot
-# Find activity containing "征稿", "征文", or "创作" and click it
+# Find activity containing "征稿", "征文", "挑战", or "创作" and click it
 playwright-cli click <selected_activity_ref>
 
 # Publish (use JS to bypass overlay)

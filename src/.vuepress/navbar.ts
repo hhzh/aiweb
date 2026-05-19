@@ -32,4 +32,9 @@ export default navbar([
         icon: "gears",
         link: "/tool/",
     },
+    {
+        text: "关于",
+        icon: "gears",
+        link: "/about/",
+    },
 ]);

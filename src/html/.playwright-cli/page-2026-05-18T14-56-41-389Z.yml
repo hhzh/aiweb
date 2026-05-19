@@ -1,0 +1,50 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e10]: "{ }"
+  - generic [ref=e11]: </>
+  - generic [ref=e12]:
+    - generic [ref=e13]: BEGINNER FRIENDLY
+    - generic [ref=e14]:
+      - text: Claude Code
+      - text: 快速上手指南
+    - generic [ref=e15]: 30 分钟从零到独立使用 · 全程避坑
+    - generic [ref=e16]:
+      - generic [ref=e17]: ⚡ 任务驱动
+      - generic [ref=e18]: 🖥️ 终端原生
+      - generic [ref=e19]: 🔄 多模型兼容
+      - generic [ref=e20]: 🇨🇳 国产模型
+    - generic [ref=e21]:
+      - generic [ref=e22]: $
+      - generic [ref=e23]: npm install -g @anthropic-ai/claude-code
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: "1"
+        - text: 安装 Node.js
+      - generic [ref=e27]:
+        - generic [ref=e28]: "2"
+        - text: 安装 Claude Code
+      - generic [ref=e29]:
+        - generic [ref=e30]: "3"
+        - text: 登录/配模型
+      - generic [ref=e31]:
+        - generic [ref=e32]: "4"
+        - text: 开始编程
+  - generic [ref=e34]:
+    - generic [ref=e39]: Claude Code
+    - generic [ref=e40]:
+      - generic [ref=e41]: $ claude
+      - generic [ref=e42]: ╭─────────────────────────────╮
+      - generic [ref=e43]: │ Claude Code v1.8.0 │
+      - generic [ref=e44]: "│ Model: Claude 4.6 Sonnet │"
+      - generic [ref=e45]: ╰─────────────────────────────╯
+      - generic [ref=e46]: "> 写一个Python冒泡排序"
+      - generic [ref=e47]:
+        - generic [ref=e48]: "def bubble_sort(arr):"
+        - generic [ref=e49]: "for i in range(len(arr)):"
+        - generic [ref=e50]: "for j in range(len(arr)-i-1):"
+        - generic [ref=e51]: "if arr[j] > arr[j+1]:"
+        - generic [ref=e52]: arr[j], arr[j+1] = arr[j+1], arr[j]
+        - generic [ref=e53]: return arr
+      - generic [ref=e54]: "# ✅ 代码已写入 sort.py"
+  - generic [ref=e55]:
+    - generic [ref=e56]: 小林学AI
+    - generic [ref=e57]: AI 教程 · 学习 · 分享 · 成长

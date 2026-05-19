@@ -106,21 +106,22 @@ playwright-cli snapshot
 playwright-cli click <add_tag_button_ref>
 ```
 
-2. Click "AI" tab to show AI-related tags:
+2. Click "AI" tab using JS (since the tab may be outside viewport):
 ```bash
-playwright-cli click <ai_tab_ref>  # tab "AI"
+playwright-cli eval 'Array.from(document.querySelectorAll(".nav-link")).find(function(a){return a.textContent.trim()==="AI"}).click()'
 ```
 
-3. Select tags from the AI category:
+3. Select tags from the AI category using **JS single-line eval** (do NOT use `playwright-cli click` on tag links — some broad category tags like "人工智能" trigger page navigation instead of adding the tag):
+
 ```bash
-playwright-cli snapshot
-# Click on each desired tag
-playwright-cli click <tag_ref>  # e.g., link "人工智能"
-playwright-cli click <tag_ref>  # e.g., link "chatgpt"
-playwright-cli click <tag_ref>  # e.g., link "openai"
-playwright-cli click <tag_ref>  # e.g., link "prompt"
-playwright-cli click <tag_ref>  # e.g., link "claude"
+# Use JS eval (single-line) — click specific secondary tags (二级标签), NOT broad category tags
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="chatgpt"}).click()'
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="openai"}).click()'
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="prompt"}).click()'
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="claude"}).click()'
 ```
+
+**CRITICAL**: Tag links are `<a class="badge-tag m-1" href="###">` elements. Broad category tags (人工智能, 机器学习, etc.) will navigate away from the editor when clicked, triggering a beforeunload dialog. Only use sub-tags (chatgpt, openai, prompt, claude, llm, etc.) which correctly add to the article. Also, `playwright-cli eval` does NOT support multi-line JS — use single-line expressions only.
 
 4. Close tag panel:
 ```bash
@@ -256,6 +257,19 @@ After clicking "提交", a `beforeunload` dialog may appear. Accept it:
 playwright-cli dialog-accept
 ```
 
+### Tag Link Causes Navigation
+
+If clicking a tag link in the AI tab navigates away from the editor (triggering beforeunload dialog):
+- **Cause**: Some broad category tags (e.g., "人工智能", "机器学习") navigate to their tag page instead of adding the tag
+- **Fix**: Use JS eval (single-line) to click only sub-tags (chatgpt, openai, prompt, claude, etc.), not broad category tags
+- Accept the beforeunload dialog, navigate back to the editor, and re-fill content
+
+### JS Eval Multi-Line Syntax Error
+
+`playwright-cli eval` does NOT support multi-line JavaScript. If you get `SyntaxError: Unexpected token 'var'` or similar:
+- **Fix**: Write all JS on a single line
+- Use `Array.from()` and chained `.find()` calls instead of multi-statement blocks
+
 ### Article Under Review Prompt
 
 SegmentFault may show a dialog: "你有被拒绝的文章等待编辑，通过之后才能继续撰写文章". This means the article was submitted but needs review. The article URL can be found in the "查看详情" link within the dialog. Accept the dialog to continue:
@@ -298,15 +312,13 @@ playwright-cli press "Meta+v"
 # Verify content was pasted correctly (optional)
 playwright-cli eval "document.querySelector('.CodeMirror')?.CodeMirror?.getValue()?.substring(0, 100)"
 
-# Add tags (AI category)
+# Add tags (AI category) — use JS eval for sub-tags only
 playwright-cli click <add_tag_button_ref>
-playwright-cli click <ai_tab_ref>
-playwright-cli snapshot
-playwright-cli click <tag_人工智能_ref>
-playwright-cli click <tag_chatgpt_ref>
-playwright-cli click <tag_openai_ref>
-playwright-cli click <tag_prompt_ref>
-playwright-cli click <tag_claude_ref>
+playwright-cli eval 'Array.from(document.querySelectorAll(".nav-link")).find(function(a){return a.textContent.trim()==="AI"}).click()'
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="chatgpt"}).click()'
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="openai"}).click()'
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="prompt"}).click()'
+playwright-cli eval 'Array.from(document.querySelectorAll(".tab-pane.active a")).find(function(a){return a.textContent.trim()==="claude"}).click()'
 playwright-cli press Escape
 
 # Configure copyright

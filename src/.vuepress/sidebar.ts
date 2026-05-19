@@ -51,5 +51,13 @@ export default sidebar({
             collapsible: true,
             children: "structure",
         },
+        {
+            text: "关于",
+            icon: "gears",
+            prefix: "about/",
+            link: "about/",
+            collapsible: true,
+            children: "structure",
+        },
     ],
 });
