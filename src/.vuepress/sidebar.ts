@@ -45,7 +45,7 @@ export default sidebar({
         },
         {
             text: "Tool",
-            icon: "gears",
+            icon: "toolbox",
             prefix: "tool/",
             link: "tool/",
             collapsible: true,
@@ -53,7 +53,7 @@ export default sidebar({
         },
         {
             text: "关于",
-            icon: "gears",
+            icon: "circle-info",
             prefix: "about/",
             link: "about/",
             collapsible: true,

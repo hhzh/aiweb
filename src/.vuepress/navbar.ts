@@ -29,12 +29,12 @@ export default navbar([
     },
     {
         text: "Tool",
-        icon: "gears",
+        icon: "toolbox",
         link: "/tool/",
     },
     {
         text: "关于",
-        icon: "gears",
+        icon: "circle-info",
         link: "/about/",
     },
 ]);
