@@ -18,14 +18,6 @@ order: 2
 - **Agent**（6 篇）：智能体框架实战，包括 OpenCLI、Hermes Agent、Agency Agents、gstack 等主流方案
 - **Tool**（6 篇）：配套工具链——Git、Markdown、Mermaid、Playwright、Ollama
 
-站点功能：
-
-- 基于 VuePress + vuepress-theme-hope 构建
-- Giscus 评论系统集成
-- Mermaid 流程图支持
-- 响应式布局适配多端
-- GitHub Actions 自动部署
-
 ### 05-17
 
 - 完成 Codex 全部 16 篇文章编写
@@ -40,7 +32,6 @@ order: 2
 
 ### 05-10
 
-- 配置 GitHub Actions 自动部署流水线
 - 站点部署至 xiaolinxueai.com
 
 ### 05-07
@@ -50,6 +41,4 @@ order: 2
 
 ### 05-04
 
-- 项目初始化，搭建 VuePress 工程骨架
-- 确定站点架构与内容规划
-- 完成 Claude Code 入门系列前 5 篇
+- 五一劳动节完成项目初始化
