@@ -7,7 +7,7 @@ order: 2
 
 ## 2026-05
 
-### 05-19 网站正式上线
+- 05-20 网站正式上线
 
 站点 v1.0 正式发布，完成六大内容板块建设：
 
@@ -17,28 +17,3 @@ order: 2
 - **Skills**（6 篇）：技能系统概览、自定义技能开发、Superpowers 与 baoyu-skills 热门技能集教程
 - **Agent**（6 篇）：智能体框架实战，包括 OpenCLI、Hermes Agent、Agency Agents、gstack 等主流方案
 - **Tool**（6 篇）：配套工具链——Git、Markdown、Mermaid、Playwright、Ollama
-
-### 05-17
-
-- 完成 Codex 全部 16 篇文章编写
-
-### 05-16
-
-- 新增 Tool 工具链板块，上线 Git、Markdown、Mermaid、Playwright、Ollama 6 篇教程
-
-### 05-13
-
-- 新增 Skills 技能系统板块（6 篇）与 Agent 智能体板块（6 篇）
-
-### 05-10
-
-- 站点部署至 xiaolinxueai.com
-
-### 05-07
-
-- 完成 OpenClaw 核心教程（Session、Context、Agent 工作区等）
-- 完成 Claude Code 进阶系列（Hooks、MCP、Skills、Subagent）
-
-### 05-04
-
-- 五一劳动节完成项目初始化

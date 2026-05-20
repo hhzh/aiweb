@@ -122,7 +122,7 @@ This will open a dialog with publication settings.
 
 ### Step 5: Select Article Source (文章来源)
 
-Select "原创" (original) for the article source:
+**CRITICAL**: Even though "原创" appears pre-selected, you MUST explicitly click it — otherwise the publish button may not work.
 
 ```bash
 playwright-cli eval "document.querySelector('input[value=\"1\"][type=\"radio\"]')?.click()"
@@ -130,24 +130,21 @@ playwright-cli eval "document.querySelector('input[value=\"1\"][type=\"radio\"]'
 
 ### Step 6: Add Tags (文章标签)
 
-Add tags by typing and pressing Enter:
+**CRITICAL**: The tag system only accepts **predefined tags from the dropdown**. Custom tags (e.g., "Claude", "子代理") will NOT be added when you type and press Enter — they silently fail. Type a keyword, wait for the dropdown, then select from the available options.
 
 ```bash
 playwright-cli snapshot
 # Find tag input ref
 playwright-cli fill <tag_input_ref> "AIGC"
 playwright-cli press "Enter"
-
-playwright-cli fill <tag_input_ref> "腾讯混元大模型"
-playwright-cli press "Enter"
 ```
 
-Common tags:
+Verified predefined tags:
 - AIGC
 - 腾讯混元大模型
-- 腾讯混元大模型AIGC
-- chatgpt
-- 玩转腾讯混元大模型A
+- 腾讯混元AIGC达人秀
+
+**Do NOT** waste time trying to add custom tags like "Claude", "AI编程", "子代理" — they will not work.
 
 ### Step 7: Add Custom Keywords (自定义关键字)
 
@@ -158,10 +155,10 @@ playwright-cli press "Enter"
 
 ### Step 8: Select Column (专栏)
 
-Use JavaScript to click the column checkbox:
+**CRITICAL**: `playwright-cli click` on the checkbox will fail with "intercepts pointer events". Use JS to both set `checked=true` AND dispatch a `change` event:
 
 ```bash
-playwright-cli eval "document.querySelector('input[value=\"COLUMN_ID\"][type=\"checkbox\"]')?.click()"
+playwright-cli eval "(function(){var cb=document.querySelector('input[value=\"107616\"][type=\"checkbox\"]');cb.checked=true;cb.dispatchEvent(new Event('change',{bubbles:true}));})()"
 ```
 
 Common columns:
@@ -175,10 +172,17 @@ playwright-cli fill <summary_ref> "Article summary text..."
 
 ### Step 10: Confirm Publish
 
-Use JavaScript to click the confirm button:
+The confirm button is `button "确认发布"` (NOT `button.cdc-btn--primary`):
 
 ```bash
-playwright-cli eval "document.querySelectorAll('button.cdc-btn--primary')[1]?.click()"
+playwright-cli snapshot
+# Find button "确认发布" ref
+playwright-cli click <confirm_button_ref>
+```
+
+Or with JS fallback:
+```bash
+playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent === '确认发布')?.click()"
 ```
 
 ### Step 11: Verify Success
@@ -254,7 +258,7 @@ If title field contains article content:
 | Keyword input | Textbox in 自定义关键词 section |
 | Column checkbox | `input[value="<column_id>"][type="checkbox"]` |
 | Summary textarea | Textbox with placeholder "请输入文章摘要" |
-| Confirm publish button | Second `button.cdc-btn--primary` |
+| Confirm publish button | Button `"确认发布"` in dialog (NOT `.cdc-btn--primary`) |
 
 ## Complete Example
 
@@ -294,13 +298,14 @@ playwright-cli fill <keyword_input_ref> "AI教程"
 playwright-cli press "Enter"
 
 # Select column
-playwright-cli eval "document.querySelector('input[value=\"107616\"][type=\"checkbox\"]')?.click()"
+playwright-cli eval "(function(){var cb=document.querySelector('input[value=\"107616\"][type=\"checkbox\"]');cb.checked=true;cb.dispatchEvent(new Event('change',{bubbles:true}));})()"
 
 # Fill summary
 playwright-cli fill <summary_ref> "Article summary text..."
 
-# Confirm publish
-playwright-cli eval "document.querySelectorAll('button.cdc-btn--primary')[1]?.click()"
+# Confirm publish — use button text, NOT cdc-btn--primary
+playwright-cli snapshot
+playwright-cli click <confirm_button_ref>  # button "确认发布"
 
 # Verify success
 sleep 2
