@@ -37,6 +37,7 @@
       "Bash(playwright-cli * && *)",
       "Bash(playwright-cli *; *)",
       "Bash(* | playwright-cli *)",
+      "Read(/tmp/*)",
       "Skill(*publisher*)",
       "Bash(git diff *)",
       "Bash(git checkout *)",

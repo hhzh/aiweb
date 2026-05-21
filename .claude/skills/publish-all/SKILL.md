@@ -205,24 +205,164 @@ If all 8 platforms fail, there may be a common issue (e.g., playwright-cli not i
 2. The Markdown file path is correct
 3. Browser sessions are not stuck
 
+## 强制步骤清单（MANDATORY CHECKLIST）
+
+**这是最重要的规则：发布每个平台前，必须先创建 TaskCreate 逐项打勾，完成后逐项标记 completed。缺少任何一项都不得进入下一步。**
+
+在加载每个平台的 publisher skill 后，**立即**根据该平台对应的强制清单创建 TaskCreate，然后在执行中逐项标记完成。
+
+### 腾讯云强制清单
+```
+□ 打开浏览器 → https://cloud.tencent.com/developer/article/write-new
+□ 填写标题
+□ 填写内容（base64 + CodeMirror.setValue）
+□ 点击"去发布"
+□ 选择文章来源 → 点击"原创" radio
+□ 添加标签 → 输入 "AIGC"，按 Enter
+□ 添加自定义关键词 → 输入 "Claude Code"，按 Enter
+□ 选择专栏 → 勾选 "小林AI实战教程" checkbox（JS eval 方式）
+□ 填写摘要
+□ 点击"确认发布"
+□ 验证成功（URL 变化或用户确认）
+□ 关闭浏览器
+```
+
+### 知乎强制清单
+```
+□ 打开浏览器 → https://zhuanlan.zhihu.com/write
+□ 关闭创作助手
+□ 填写标题
+□ 复制内容（含推广尾注）→ pbcopy
+□ CodeMirror.focus() → Meta+v 粘贴
+□ 确认 Markdown 解析（如弹窗点击"确认并解析"）
+□ 投稿至问题 → 点击 combobox "未选择" → 关掉"我知道了"提示（如有）
+   → 再次点击 combobox → 选择第一个推荐问题 → 点击"确定"
+□ 添加话题 → 搜索 "AI" → 选择 "AI" 话题
+□ 点击"发布"
+□ 确认 beforeunload 弹窗（如有）
+□ 验证成功（URL 变为 /p/ 无 /edit）
+□ 关闭浏览器
+```
+
+### 51CTO 强制清单
+```
+□ 打开浏览器 → https://blog.51cto.com/blogger/publish
+□ 移除 .v-note-read-model 覆盖层
+□ 填写标题
+□ 填写内容（base64 + native setter）
+□ 点击"发布文章"打开弹窗
+□ 选择一级分类（JS eval）
+□ 选择二级分类（JS eval + 验证）
+□ 选择个人分类
+□ 删除自动标签 → innerHTML = ''
+□ 添加自定义标签（逐个 run-code 或 fill + Enter，最多5个）
+□ 选择话题
+□ 点击发布
+□ 验证成功
+□ 关闭浏览器
+```
+
+### CSDN 强制清单
+```
+□ 打开浏览器 → https://editor.csdn.net/md/
+□ 关闭模板弹窗（如有）
+□ 关闭 AI 助手面板
+□ 填写标题（click 标题区域 + type，不能用 fill）
+□ 填写内容（focus contenteditable + Meta+v 粘贴）
+□ 点击"发布文章"打开弹窗
+□ 添加标签 → fill + Enter（多个标签）
+□ blur 标签面板（不能用 Escape）
+□ 填写摘要
+□ 选择创作活动 → 查找到含"征稿/征文/挑战/创作"的活动
+□ 点击"发布文章"（btn-b-red，JS eval）
+□ 验证成功
+□ 关闭浏览器
+```
+
+### 掘金强制清单
+```
+□ 打开浏览器 → "https://juejin.cn/editor/drafts/new?v=2"
+□ 填写标题
+□ 填写内容（base64 + CodeMirror.setValue）
+□ 点击"发布"
+□ 选择分类 → 点击"人工智能"
+□ 添加标签 → fill "AI编程" → sleep 1 → Enter → sleep 1
+□ 添加专栏 → fill "小林AI实战教程" → sleep 1 → Enter → sleep 1
+□ 添加话题 → fill "AI" → sleep 1 → Enter → sleep 1
+□ 填写摘要
+□ 点击"确定并发布"
+□ 验证成功（URL 变为 juejin.cn/published）
+□ 关闭浏览器
+```
+
+### InfoQ 强制清单
+```
+□ 打开浏览器 → https://xie.infoq.cn/draft/
+□ 点击"立即创作"
+□ 填写标题
+□ 填写内容（pbcopy + ProseMirror.focus + Meta+v 粘贴）
+□ 点击"发布"
+□ 添加标签（fill + Enter，最多5个）
+□ 填写摘要（可选）
+□ 点击"确定"
+□ 验证成功（URL 包含 /article/）
+□ 关闭浏览器
+```
+
+### 博客园强制清单
+```
+□ 打开浏览器 → https://i.cnblogs.com/posts/edit
+□ 填写标题
+□ 填写内容（CodeMirror.setValue）
+□ 选择个人分类 → 点击 nz-tree-select → 选"小林AI实战教程"
+□ 勾选合集 → "小林AI实战教程" checkbox
+□ 勾选投稿 → "投稿至首页候选区" checkbox
+□ 选择网站分类 → "AI综合" radio（JS eval）
+□ 添加标签 → 点击 nz-select → 选"AI实战教程"
+□ 按 Cmd+Enter 发布
+□ 点击"确定"确认弹窗
+□ 验证成功（URL 含 isPublished=true）
+□ 关闭浏览器
+```
+
+### 思否强制清单
+```
+□ 打开浏览器 → "https://segmentfault.com/write?freshman=1"
+□ 填写标题
+□ 填写内容（pbcopy + CodeMirror.focus + Meta+v）
+□ 点击"+ 添加标签"
+□ 点击 AI tab（JS eval）
+□ 添加子标签：chatgpt, openai, claude（JS eval）
+□ Escape 关闭标签面板
+□ 确认"注明版权"已勾选
+□ 确认"原创"已选中
+□ 点击"提交"
+□ 验证成功（URL 变为 /a/ 文章页）
+□ 关闭浏览器
+```
+
 ## Implementation Notes for the Agent
 
-When executing this skill, the main agent should:
+When executing this skill, the main agent must:
 
 1. **Extract article info & prepare content first**: Read the Markdown file to get the original title, confirm the file exists, and prepare all content formats (plain text, base64, JSON) in `/tmp/` for reuse across platforms
 2. **Optimize title if needed**: If `publishTitle` is not provided, invoke `title-optimizer` skill and let user choose; otherwise use the provided `publishTitle` directly
 3. **Process platforms sequentially**: Do NOT parallelize — each platform needs its own browser session
 4. **51CTO first**: Start with 51CTO as it's the most error-prone platform — handle it while attention is fresh
-5. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path AND `publishTitle` as context
-6. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
-7. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)
-8. **Output the summary report** at the end
+5. **CRITICAL — Create TaskCreate checklist before each platform**: After loading each platform's publisher skill, immediately create TaskCreate tasks from the platform's 强制清单 above. Mark each item completed as you go. Do NOT skip any item.
+6. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path AND `publishTitle` as context
+7. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
+8. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)
+9. **Output the summary report** at the end
 
 For each platform, the flow is:
 
 ```
 playwright-cli close 2>/dev/null || true   # Cleanup any leftover session
 → Invoke Skill: <platform>-publisher       # Execute the platform-specific skill
+→ READ 强制清单 for this platform            # Review the mandatory steps
+→ Create TaskCreate with all checklist items # Create todos
+→ Execute each step, marking completed       # Work through checklist
 → playwright-cli close                      # Close browser after completion
 → Record result                             # Track success/failure
 ```

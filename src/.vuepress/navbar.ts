@@ -9,7 +9,7 @@ export default navbar([
     },
     {
         text: "Codex教程",
-        icon: "dumbbell",
+        icon: "computer",
         link: "/codex/",
     },
     {
@@ -19,12 +19,12 @@ export default navbar([
     },
     {
         text: "Agent",
-        icon: "book",
+        icon: "store",
         link: "/agent/",
     },
     {
         text: "OpenClaw",
-        icon: "book",
+        icon: "paper",
         link: "/openclaw/",
     },
     {
