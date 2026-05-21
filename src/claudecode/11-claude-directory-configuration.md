@@ -3,7 +3,7 @@ title: Claude Code 官方 .claude 目录配置指南
 order: 11
 ---
 
-# Claude Code 官方 .claude 目录配置指南
+# Claude Code 官方 .claude 配置指南
 
 Claude Code 的配置项分散在多个文件中——CLAUDE.md 管项目规范，settings.json 管权限，skills 管自定义技能，agents 管子代理……新手往往不知道该改哪个文件，甚至改错了位置导致配置不生效。.claude 目录正是统一管理这些配置的核心入口，本指南帮你理清目录结构、配置优先级和最佳实践。
 
