@@ -4,12 +4,12 @@ export default navbar([
     "/",
     {
         text: "Claude Code教程",
-        icon: "lightbulb",
+        icon: "snowflake",
         link: "/claudecode/",
     },
     {
         text: "Codex教程",
-        icon: "computer",
+        icon: "file-code",
         link: "/codex/",
     },
     {
@@ -24,7 +24,7 @@ export default navbar([
     },
     {
         text: "OpenClaw",
-        icon: "paper",
+        icon: "diagram-project",
         link: "/openclaw/",
     },
     {
