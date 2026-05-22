@@ -1,0 +1,390 @@
+---
+name: publish-all
+description: 一键发布 Markdown 文章到所有平台（CSDN、掘金、InfoQ、腾讯云、51CTO、知乎、博客园、思否）。提供 Markdown 文件路径即可自动串行发布到 8 个平台。
+---
+
+# Publish All Skill
+
+一键发布 Markdown 文章到所有平台。提供 Markdown 文件路径，自动串行发布到 8 个平台。
+
+## Prerequisites
+
+- playwright-cli must be installed globally
+- User must be logged into ALL target platforms (persistent browser profile handles this)
+
+## Self-Optimization
+
+**发布过程中如果遇到问题，就优化这个 skill。** When issues are encountered during publishing (e.g., elements not found, UI changes, workflow errors), update this skill's SKILL.md to fix the problem so it won't recur in future runs.
+
+## Input
+
+- **Required**: Markdown file path (e.g., `/path/to/article.md`)
+- **Optional**: `publishTitle` — 发布标题（优化后的标题，用于网站展示，不修改本地文件）
+- If `publishTitle` is not provided, title is extracted from the first `# ` heading in the file
+- Content skips YAML frontmatter automatically
+
+## Publish Order
+
+Publish to platforms in this fixed serial order (problematic platforms first for early error detection):
+
+1. 51CTO (most error-prone, handle first while attention is fresh)
+2. CSDN
+3. 掘金 (Juejin)
+4. InfoQ
+5. 腾讯云 (Tencent Cloud)
+6. 知乎 (Zhihu)
+7. 博客园 (Cnblogs)
+8. 思否 (SegmentFault)
+
+## Workflow
+
+### Step 0: Extract Article Info & Prepare Content
+
+Read the Markdown file to extract the title, verify the file exists, and prepare all content formats upfront:
+
+```bash
+# Extract title from first heading
+originalTitle=$(grep -m1 '^# ' /path/to/article.md | sed 's/^# //')
+
+# Verify file exists
+if [ ! -f "/path/to/article.md" ]; then
+  echo "Error: File not found"
+  exit 1
+fi
+
+# Prepare content without frontmatter (skip YAML --- blocks)
+sed -n '/^# /,$p' /path/to/article.md > /tmp/publish_content.md
+
+# Prepare JSON-encoded content (for CodeMirror API injection - cnblogs)
+python3 -c "
+import json
+with open('/tmp/publish_content.md', 'r') as f:
+    content = f.read()
+print(json.dumps(content))
+" > /tmp/publish_content.json
+
+# Prepare base64-encoded content (for CodeMirror editors - juejin, tencent)
+cat /tmp/publish_content.md | base64 | tr -d '\n' > /tmp/publish_content_b64.txt
+
+# Copy plain text content to clipboard (for paste-based editors - csdn, infoq, zhihu, 51cto, segmentfault)
+cat /tmp/publish_content.md | pbcopy
+```
+
+This pre-preparation avoids re-processing the Markdown file for each platform (previously 8x `sed` + `base64` + `pbcopy`, now 1x).
+
+### Step 0.5: Title Optimization (Optional)
+
+If `publishTitle` is not provided in the skill arguments, use the `title-optimizer` skill to generate optimized titles for better click-through rates on publishing platforms. This only changes the title on the website — the local Markdown file is NOT modified.
+
+1. Invoke the `title-optimizer` skill with the original title
+2. Present the 5 optimized titles to the user
+3. Ask the user to select one (or keep the original)
+4. Set `publishTitle` to the user's choice
+
+**Important**: If `publishTitle` is already provided in the skill arguments, skip this step entirely and use the provided title directly.
+
+```
+# Title optimization flow
+If publishTitle is NOT provided:
+  → Invoke Skill: title-optimizer (pass originalTitle)
+  → Present 5 optimized titles to user
+  → User selects one → set publishTitle = user's choice
+  → User declines → set publishTitle = originalTitle
+If publishTitle IS provided:
+  → Skip optimization, use publishTitle directly
+```
+
+### Step 1: Publish to 51CTO
+
+- Ensure no leftover browser session: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `51cto-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed: `playwright-cli close`
+- Record result (success/failure + error message)
+
+### Step 2: Publish to CSDN
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `csdn-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 3: Publish to 掘金 (Juejin)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `juejin-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 4: Publish to InfoQ
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `infoq-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 5: Publish to 腾讯云 (Tencent Cloud)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `tencent-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 6: Publish to 知乎 (Zhihu)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `zhihu-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 7: Publish to 博客园 (Cnblogs)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `cnblogs-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 8: Publish to 思否 (SegmentFault)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `segmentfault-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 9: Output Summary Report
+
+After all platforms are processed, output a summary report:
+
+```
+============================================
+发布结果汇总
+============================================
+✅ 51CTO       - 发布成功
+✅ CSDN        - 发布成功
+✅ 掘金        - 发布成功
+❌ InfoQ       - 失败: element not found
+✅ 腾讯云      - 发布成功
+✅ 知乎        - 发布成功
+✅ 博客园      - 发布成功
+✅ 思否        - 发布成功
+--------------------------------------------
+成功: 7/8  失败: 1/8
+失败平台: InfoQ
+============================================
+```
+
+## Error Handling
+
+### Single Platform Failure
+
+If a platform publish fails:
+1. Record the platform name and error reason
+2. Ensure browser is closed: `playwright-cli close`
+3. Continue to the next platform
+4. Do NOT stop the entire process
+
+### Browser Not Closed
+
+Before starting each platform, ensure no leftover browser session:
+
+```bash
+playwright-cli close 2>/dev/null || true
+```
+
+### All Platforms Failed
+
+If all 8 platforms fail, there may be a common issue (e.g., playwright-cli not installed, file path wrong). Output an error message suggesting the user check:
+1. playwright-cli is installed globally
+2. The Markdown file path is correct
+3. Browser sessions are not stuck
+
+## 强制步骤清单（MANDATORY CHECKLIST）
+
+**这是最重要的规则：发布每个平台前，必须先创建 TaskCreate 逐项打勾，完成后逐项标记 completed。缺少任何一项都不得进入下一步。**
+
+在加载每个平台的 publisher skill 后，**立即**根据该平台对应的强制清单创建 TaskCreate，然后在执行中逐项标记完成。
+
+### 腾讯云强制清单
+```
+□ 打开浏览器 → https://cloud.tencent.com/developer/article/write-new
+□ 填写标题
+□ 填写内容（base64 + CodeMirror.setValue）
+□ 点击"去发布"
+□ 选择文章来源 → 点击"原创" radio
+□ 添加标签 → 输入 "AIGC"，按 Enter
+□ 添加自定义关键词 → 输入 "Codex"，按 Enter
+□ 选择专栏 → 勾选 "小林AI实战教程" checkbox（JS eval 方式）
+□ 填写摘要
+□ 点击"确认发布"
+□ 验证成功（URL 变化或用户确认）
+□ 关闭浏览器
+```
+
+### 知乎强制清单
+```
+□ 打开浏览器 → https://zhuanlan.zhihu.com/write
+□ 关闭创作助手
+□ 填写标题
+□ 复制内容（含推广尾注）→ pbcopy
+□ CodeMirror.focus() → Meta+v 粘贴
+□ 确认 Markdown 解析（如弹窗点击"确认并解析"）
+□ 投稿至问题 → 点击 combobox "未选择" → 关掉"我知道了"提示（如有）
+   → 再次点击 combobox → 选择第一个推荐问题 → 点击"确定"
+□ 添加话题（可选）→ 尝试搜索或选推荐话题，搜不到则跳过
+□ 点击"发布"（即使无话题也可发布）
+□ 确认 beforeunload 弹窗（如有）
+□ 验证成功（URL 变为 /p/ 无 /edit）
+□ 关闭浏览器
+```
+
+### 51CTO 强制清单
+```
+□ 打开浏览器 → https://blog.51cto.com/blogger/publish
+□ 移除 .v-note-read-model 覆盖层
+□ 填写标题
+□ 填写内容（base64 + native setter）
+□ 点击"发布文章"打开弹窗
+□ 选择一级分类（JS eval）
+□ 选择二级分类（JS eval + 验证）
+□ 选择个人分类
+□ 删除自动标签 → innerHTML = ''
+□ 添加自定义标签（逐个 run-code 或 fill + Enter，最多5个）
+□ 选择话题
+□ 点击发布
+□ 验证成功
+□ 关闭浏览器
+```
+
+### CSDN 强制清单
+```
+□ 打开浏览器 → https://editor.csdn.net/md/
+□ 关闭模板弹窗（如有）
+□ 关闭 AI 助手面板
+□ 填写标题（click 标题区域 + type，不能用 fill）
+□ 填写内容（focus contenteditable + Meta+v 粘贴）
+□ 点击"发布文章"打开弹窗
+□ 添加标签 → fill + Enter（多个标签）
+□ blur 标签面板（不能用 Escape）
+□ 填写摘要
+□ 选择创作活动 → 查找到含"征稿/征文/挑战/创作"的活动
+□ 点击"发布文章"（btn-b-red，JS eval）
+□ 验证成功
+□ 关闭浏览器
+```
+
+### 掘金强制清单
+```
+□ 打开浏览器 → "https://juejin.cn/editor/drafts/new?v=2"
+□ 填写标题
+□ 填写内容（base64 + CodeMirror.setValue）
+□ 点击"发布"
+□ 选择分类 → 点击"人工智能"
+□ 添加标签 → fill "AI编程" → sleep 1 → Enter → sleep 1
+□ 添加专栏 → fill "小林AI实战教程" → sleep 1 → Enter → sleep 1
+□ 添加话题 → fill "AI" → sleep 1 → Enter → sleep 1
+□ 填写摘要
+□ 点击"确定并发布"
+□ 验证成功（URL 变为 juejin.cn/published）
+□ 关闭浏览器
+```
+
+### InfoQ 强制清单
+```
+□ 打开浏览器 → https://xie.infoq.cn/draft/
+□ 点击"立即创作"
+□ 填写标题
+□ 填写内容（pbcopy + ProseMirror.focus + Meta+v 粘贴）
+□ 点击"发布"
+□ 添加标签（fill + Enter，最多5个）
+□ 填写摘要（可选）
+□ 点击"确定"
+□ 验证成功（URL 包含 /article/）
+□ 关闭浏览器
+```
+
+### 博客园强制清单
+```
+□ 打开浏览器 → https://i.cnblogs.com/posts/edit
+□ 填写标题
+□ 填写内容（CodeMirror.setValue）
+□ 选择个人分类 → 点击 ant-select-selector → MouseEvent dispatch 选"小林AI实战教程"（普通 click 无效）
+□ 勾选合集 → "小林AI实战教程" checkbox
+□ 勾选投稿 → "投稿至首页候选区" checkbox
+□ 选择网站分类 → "AI综合" radio（JS eval）
+□ 添加标签 → 点击 nz-select → 选"AI实战教程"
+□ 按 Cmd+Enter 发布
+□ 点击"确定"确认弹窗
+□ 验证成功（URL 含 isPublished=true）
+□ 关闭浏览器
+```
+
+### 思否强制清单
+```
+□ 打开浏览器 → "https://segmentfault.com/write?freshman=1"
+□ 填写标题
+□ 填写内容（pbcopy + CodeMirror.focus + Meta+v）
+□ 点击"+ 添加标签"
+□ 点击 AI tab（JS eval）
+□ 添加子标签：chatgpt, openai, Codex（JS eval）
+□ Escape 关闭标签面板
+□ 确认"注明版权"已勾选
+□ 确认"原创"已选中
+□ 点击"提交"
+□ 验证成功（URL 变为 /a/ 文章页）
+□ 关闭浏览器
+```
+
+## Implementation Notes for the Agent
+
+When executing this skill, the main agent must:
+
+1. **Extract article info & prepare content first**: Read the Markdown file to get the original title, confirm the file exists, and prepare all content formats (plain text, base64, JSON) in `/tmp/` for reuse across platforms
+2. **Optimize title if needed**: If `publishTitle` is not provided, invoke `title-optimizer` skill and let user choose; otherwise use the provided `publishTitle` directly
+3. **Process platforms sequentially**: Do NOT parallelize — each platform needs its own browser session
+4. **51CTO first**: Start with 51CTO as it's the most error-prone platform — handle it while attention is fresh
+5. **CRITICAL — Create TaskCreate checklist before each platform**: After loading each platform's publisher skill, immediately create TaskCreate tasks from the platform's 强制清单 above. Mark each item completed as you go. Do NOT skip any item.
+6. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path AND `publishTitle` as context
+7. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
+8. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)
+9. **Output the summary report** at the end
+
+For each platform, the flow is:
+
+```
+playwright-cli close 2>/dev/null || true   # Cleanup any leftover session
+→ Invoke Skill: <platform>-publisher       # Execute the platform-specific skill
+→ READ 强制清单 for this platform            # Review the mandatory steps
+→ Create TaskCreate with all checklist items # Create todos
+→ Execute each step, marking completed       # Work through checklist
+→ playwright-cli close                      # Close browser after completion
+→ Record result                             # Track success/failure
+```
+
+## Content Format Reference
+
+The pre-prepared content files in `/tmp/`:
+
+| File | Format | Used By |
+|------|--------|---------|
+| `/tmp/publish_content.md` | Plain text (no frontmatter) | All platforms as source |
+| `/tmp/publish_content.json` | JSON-encoded string | cnblogs (CodeMirror.setValue) |
+| `/tmp/publish_content_b64.txt` | Base64-encoded (UTF-8) | juejin, tencent (CodeMirror + TextDecoder) |
+| Clipboard | Plain text (pbcopy) | csdn, infoq, zhihu, 51cto, segmentfault (paste-based) |
+
+## Tips
+
+1. Each platform takes 1-3 minutes to complete — total time is approximately 15-25 minutes for all 8
+2. Do NOT skip the `playwright-cli close` step between platforms — leftover sessions cause issues
+3. If a platform consistently fails, the user may need to re-login to that platform manually first
+4. The article content is pasted from the same Markdown file for all platforms — each platform skill handles frontmatter skipping internally
+5. Tags, categories, and other platform-specific settings use the defaults defined in each individual publisher skill
+6. **Fail fast to JS eval**: When `playwright-cli click <ref>` fails with "intercepts pointer events" or "Unknown engine ref", immediately fall back to `playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textContent.includes('TEXT'))?.click()"` — do not waste time trying different ref selectors
+7. **Zhihu topics are optional**: The "发布" button is enabled even without topics. If topic search doesn't show results, skip it
+8. **Cnblogs tree-select**: The personal category dropdown uses Angular `nz-tree-node` — regular `.click()` doesn't work. Use `dispatchEvent(new MouseEvent('mousedown', {bubbles:true}))` + mouseup + click
