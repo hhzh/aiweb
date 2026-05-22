@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Claude Code Cover</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 1600px;
+      height: 900px;
+      overflow: hidden;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      color: #f8fbff;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(59, 130, 246, 0.34), transparent 30%),
+        radial-gradient(circle at 88% 16%, rgba(16, 185, 129, 0.24), transparent 28%),
+        linear-gradient(135deg, #07111f 0%, #10243f 42%, #122b2e 100%);
+    }
+    .cover {
+      position: relative;
+      width: 1600px;
+      height: 900px;
+      padding: 76px 88px;
+      overflow: hidden;
+    }
+    .grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+    }
+    .topline {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #b9e4ff;
+      font-size: 30px;
+      font-weight: 700;
+    }
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border: 1px solid rgba(125, 211, 252, 0.45);
+      border-radius: 16px;
+      background: rgba(8, 20, 39, 0.74);
+      box-shadow: 0 0 32px rgba(45, 212, 191, 0.22);
+    }
+    .mark::before {
+      content: ">";
+      color: #67e8f9;
+      font-size: 34px;
+      font-family: Menlo, Consolas, monospace;
+      font-weight: 800;
+    }
+    h1 {
+      position: relative;
+      width: 880px;
+      margin: 84px 0 0;
+      font-size: 112px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    .accent {
+      color: #8be9fd;
+      text-shadow: 0 0 28px rgba(103, 232, 249, 0.28);
+    }
+    .subtitle {
+      position: relative;
+      width: 790px;
+      margin-top: 34px;
+      color: #d6e8f6;
+      font-size: 34px;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+    .loop {
+      position: absolute;
+      left: 90px;
+      bottom: 74px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 166px;
+      height: 58px;
+      padding: 0 22px;
+      border: 1px solid rgba(167, 243, 208, 0.34);
+      border-radius: 8px;
+      background: rgba(6, 20, 34, 0.72);
+      color: #dcfce7;
+      font-size: 25px;
+      font-weight: 800;
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.18);
+    }
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 16px rgba(52, 211, 153, 0.8);
+      flex: none;
+    }
+    .arrow {
+      color: #7dd3fc;
+      font-size: 36px;
+      font-weight: 900;
+    }
+    .terminal {
+      position: absolute;
+      right: 92px;
+      top: 122px;
+      width: 560px;
+      height: 506px;
+      border: 1px solid rgba(148, 214, 255, 0.24);
+      border-radius: 8px;
+      background: rgba(4, 11, 22, 0.82);
+      box-shadow:
+        0 34px 90px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
+    .bar {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .light {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+    }
+    .red { background: #fb7185; }
+    .yellow { background: #facc15; }
+    .green { background: #34d399; }
+    .terminal-content {
+      padding: 30px;
+      font-family: Menlo, Consolas, monospace;
+      font-size: 24px;
+      line-height: 1.7;
+      color: #d7f3ff;
+    }
+    .prompt { color: #67e8f9; font-weight: 800; }
+    .cmd { color: #f8fafc; }
+    .ok { color: #86efac; }
+    .muted { color: #93a9ba; }
+    .panel {
+      position: absolute;
+      right: 172px;
+      bottom: 84px;
+      width: 470px;
+      padding: 28px 30px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background: rgba(9, 23, 39, 0.72);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+      backdrop-filter: blur(14px);
+    }
+    .panel-title {
+      margin-bottom: 18px;
+      color: #e0f2fe;
+      font-size: 26px;
+      font-weight: 900;
+    }
+    .chips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      border: 1px solid rgba(125, 211, 252, 0.26);
+      border-radius: 8px;
+      background: rgba(14, 165, 233, 0.1);
+      color: #cffafe;
+      font-size: 21px;
+      font-weight: 800;
+    }
+    .ring {
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 520px;
+      height: 520px;
+      border: 2px solid rgba(103, 232, 249, 0.2);
+      border-radius: 50%;
+    }
+    .ring::before,
+    .ring::after {
+      content: "";
+      position: absolute;
+      inset: 72px;
+      border: 2px dashed rgba(52, 211, 153, 0.18);
+      border-radius: 50%;
+    }
+    .ring::after {
+      inset: 154px;
+      border-style: solid;
+      border-color: rgba(251, 191, 36, 0.22);
+    }
+  </style>
+</head>
+<body>
+  <main class="cover">
+    <div class="grid"></div>
+    <div class="ring"></div>
+    <div class="topline">
+      <div class="mark"></div>
+      <div>终端 AI 代理 · 官方工作原理</div>
+    </div>
+    <h1><span class="accent">Claude Code</span><br />工作原理与使用指南</h1>
+    <div class="subtitle">理解需求、调用工具、自主执行，再用测试与反馈完成验证闭环。</div>
+    <section class="loop">
+      <div class="step"><span class="dot"></span>收集上下文</div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="dot"></span>采取行动</div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="dot"></span>验证结果</div>
+    </section>
+    <section class="terminal">
+      <div class="bar">
+        <span class="light red"></span>
+        <span class="light yellow"></span>
+        <span class="light green"></span>
+      </div>
+      <div class="terminal-content">
+        <div><span class="prompt">$</span> <span class="cmd">claude "修复登录模块"</span></div>
+        <div class="muted">scan src/auth/</div>
+        <div class="muted">read tests and git state</div>
+        <div><span class="ok">✓</span> context mapped</div>
+        <br />
+        <div><span class="prompt">agent</span> choose tools</div>
+        <div class="muted">edit · shell · search · test</div>
+        <div><span class="ok">✓</span> patch applied</div>
+        <br />
+        <div><span class="prompt">$</span> <span class="cmd">npm test</span></div>
+        <div><span class="ok">✓</span> all checks passed</div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-title">模型 + 工具双驱动</div>
+      <div class="chips">
+        <div class="chip">Agentic Loop</div>
+        <div class="chip">Shell 执行</div>
+        <div class="chip">上下文管理</div>
+        <div class="chip">安全权限</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
