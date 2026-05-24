@@ -22,12 +22,34 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 
 ## Important Notes
 
+### playwright-cli eval 语法限制（CRITICAL）
+
+`playwright-cli eval` wraps code as `() => (CODE)`. This means:
+- **No** `var`, `let`, `const` at top level — use `(function(){...})()` IIFE
+- **No** semicolons (`;`) at top level — use comma operator or IIFE
+- **No** multi-line statements — write everything on one line or use IIFE
+
+```bash
+# WRONG — will throw SyntaxError
+playwright-cli eval "var x = 1; return x;"
+
+# CORRECT — use IIFE
+playwright-cli eval "(function(){var x = 1; return x;})()"
+```
+
 ### Markdown Frontmatter Handling
 
 **CRITICAL**: When copying Markdown content, skip the YAML frontmatter (the section between `---` markers). The frontmatter contains metadata like title, date, and tags that should NOT be included in the published article content.
 
+**Prefer reading from `/tmp/publish_content.md`** (pre-prepared by publish-all):
+
 ```bash
-# Skip frontmatter and copy content starting from first heading
+# BEST — use pre-prepared content
+cat /tmp/publish_content.md | pbcopy
+```
+
+```bash
+# FALLBACK — parse from source file directly
 sed -n '/^# /,$p' /path/to/article.md | pbcopy
 ```
 
@@ -111,14 +133,24 @@ Title must be 5-100 characters.
 
 For the Markdown editor (`https://editor.csdn.net/md/`):
 
+**Prefer reading from `/tmp/publish_content.md`** (pre-prepared by publish-all):
+
 ```bash
-# Skip frontmatter and copy content
-sed -n '/^# /,$p' /path/to/article.md | pbcopy
+# BEST — use pre-prepared content
+cat /tmp/publish_content.md | pbcopy
 
 # Focus the CodeMirror editor area
 playwright-cli eval "document.querySelector('[contenteditable=true]')?.focus()"
 
 # Select any existing content and paste
+playwright-cli press "Meta+a"
+playwright-cli press "Meta+v"
+```
+
+```bash
+# FALLBACK — parse from source file directly
+sed -n '/^# /,$p' /path/to/article.md | pbcopy
+playwright-cli eval "document.querySelector('[contenteditable=true]')?.focus()"
 playwright-cli press "Meta+a"
 playwright-cli press "Meta+v"
 ```

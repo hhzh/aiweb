@@ -17,6 +17,21 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 
 ## Important Notes
 
+### playwright-cli eval 语法限制（CRITICAL）
+
+`playwright-cli eval` wraps code as `() => (CODE)`. This means:
+- **No** `var`, `let`, `const` at top level — use `(function(){...})()` IIFE
+- **No** semicolons (`;`) at top level — use comma operator or IIFE
+- **No** multi-line statements — write everything on one line or use IIFE
+
+```bash
+# WRONG — will throw SyntaxError
+playwright-cli eval "var x = 1; return x;"
+
+# CORRECT — use IIFE
+playwright-cli eval "(function(){var x = 1; return x;})()"
+```
+
 ### Markdown Frontmatter Handling
 
 **CRITICAL**: When copying Markdown content, skip the YAML frontmatter (the section between `---` markers). The frontmatter contains metadata like title, date, and tags that should NOT be included in the published article content.
@@ -28,6 +43,29 @@ cat article.md | pbcopy
 # CORRECT - skip frontmatter
 sed -n '/^# /,$p' article.md | pbcopy  # Start from first heading
 ```
+
+### Content Preparation（优先使用 /tmp/ 预准备文件）
+
+如果 `/tmp/publish_content.md` 存在（由 publish-all 预准备），直接读取它而不是重新解析源文件：
+
+```bash
+# BEST — use pre-prepared content
+cat /tmp/publish_content.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI...") | pbcopy
+```
+
+```bash
+# FALLBACK — parse from source file
+sed -n '/^# /,$p' /path/to/article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI...") | pbcopy
+```
+
+### 点击编辑器会创建草稿，元素 ref 会失效（CRITICAL）
+
+当点击内容编辑器时，知乎会自动创建草稿并跳转到 `/p/xxx/edit` 页面。**跳转后所有之前的元素 ref 都会失效**，必须在跳转后重新 `playwright-cli snapshot` 获取新的 ref。
+
+工作流修正：
+1. 点击编辑器触发草稿创建 → 页面跳转
+2. **立即 `playwright-cli snapshot` 刷新 ref**
+3. 使用新的 ref 继续后续操作（粘贴内容等）
 
 ### Special Format Detection
 
@@ -87,14 +125,20 @@ playwright-cli fill <title_ref> "Article Title Here"
 
 ```bash
 # Skip frontmatter, append promotional footer, then copy to clipboard
-sed -n '/^# /,$p' /path/to/article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
+cat /tmp/publish_content.md 2>/dev/null || sed -n '/^# /,$p' /path/to/article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
 
-# Click editor and paste
+# Click editor — THIS WILL CREATE A DRAFT and NAVIGATE to /p/xxx/edit
 playwright-cli click <editor_ref>
+
+# CRITICAL: Page navigation invalidated all refs — take a fresh snapshot
+playwright-cli snapshot
+
+# Find the editor ref in the NEW page and paste
+playwright-cli click <new_editor_ref>
 playwright-cli press "Meta+v"
 ```
 
-The editor is a rich text editor that supports Markdown syntax.
+The editor is a rich text editor that supports Markdown syntax. After clicking the editor for the first time, Zhihu creates a draft and navigates — always re-snapshot after this step.
 
 ### Step 4: Confirm Markdown Parsing
 
@@ -324,8 +368,9 @@ playwright-cli click <close_assistant_ref>
 playwright-cli fill <title_ref> "My Article Title"
 
 # Fill content (skip frontmatter, append promotional footer)
-sed -n '/^# /,$p' article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
+cat /tmp/publish_content.md 2>/dev/null || sed -n '/^# /,$p' article.md | cat - <(echo -e "\n---\n\n> 本文作者：小林学AI，更多AI实战教程干货持续更新中，欢迎访问官网地址 [小林学AI](https://xiaolinxueai.com) 获取更多内容。") | pbcopy
 playwright-cli click <editor_ref>
+playwright-cli snapshot  # Re-snapshot after page navigation
 playwright-cli press "Meta+v"
 
 # Confirm Markdown parsing if dialog appears

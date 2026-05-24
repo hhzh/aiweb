@@ -17,6 +17,21 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 
 ## Important Notes
 
+### playwright-cli eval 语法限制（CRITICAL）
+
+`playwright-cli eval` wraps code as `() => (CODE)`. This means:
+- **No** `var`, `let`, `const` at top level — use `(function(){...})()` IIFE
+- **No** semicolons (`;`) at top level — use comma operator or IIFE
+- **No** multi-line statements — write everything on one line or use IIFE
+
+```bash
+# WRONG — will throw SyntaxError
+playwright-cli eval "var x = 1; return x;"
+
+# CORRECT — use IIFE
+playwright-cli eval "(function(){var x = 1; return x;})()"
+```
+
 ### URL with Query Parameters
 
 The URL has query parameters, so quote it properly:
@@ -35,13 +50,19 @@ playwright-cli fill <title_ref> "Article Title"
 
 ### Content Editor (CodeMirror)
 
-The content editor uses CodeMirror. For Chinese content, use base64 encoding with UTF-8 decoding:
+The content editor uses CodeMirror. For Chinese content, use base64 encoding with UTF-8 decoding.
+
+**Prefer reading from `/tmp/publish_content_b64.txt`** (pre-prepared by publish-all):
 
 ```bash
-# Encode content as base64
-content=$(sed -n '/^# /,$p' article.md | base64 | tr -d '\n')
+# BEST — use pre-prepared base64
+b64=$(cat /tmp/publish_content_b64.txt)
+playwright-cli eval "(function(){var b64='${b64}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
+```
 
-# Set content via JavaScript with UTF-8 decoding
+```bash
+# FALLBACK — encode directly from file
+content=$(sed -n '/^# /,$p' article.md | base64 | tr -d '\n')
 playwright-cli eval "(function(){var b64='$content';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
 ```
 
@@ -57,6 +78,23 @@ sed -n '/^# /,$p' article.md
 ### Category Selection
 
 Categories are displayed as clickable items in the publish dialog. Just click on the category name directly.
+
+### 掘金的 byte-select 标签组件（Vue 3 响应式问题）
+
+掘金的标签/专栏/话题输入框使用 Vue 3 的 `byte-select` 组件。`fill` + `press Enter` 可能会在 DOM 中创建标签元素，但 Vue 3 的内部 `selected` 数组可能未被同步更新，导致"确定并发布"时标签实际上未提交。
+
+如果 `fill + Enter` 添加标签后，发布时标签丢失，尝试直接调用 Vue 组件的方法：
+
+```bash
+# 1. 找到 byte-select 组件实例（标签通常是第1个，即index=0）
+playwright-cli eval "(function(){var sel=document.querySelector('.byte-select');var vue=sel.__vueParentComponent||sel.__vue_component__||Object.values(sel).find(function(v){return v&&v.setupState});return 'found'})()"
+# 2. 通过 handleQueryChange 加载选项，然后 selectOption
+playwright-cli eval "(function(){var el=document.querySelector('.byte-select');var uid=17;var vue=null;Object.values(el).forEach(function(v){if(v&&v.uid===uid)vue=v});if(vue&&vue.setupState){vue.setupState.handleQueryChange('Claude')}})()"
+sleep 1
+playwright-cli eval "(function(){var el=document.querySelector('.byte-select');var vue=null;Object.values(el).forEach(function(v){if(v&&v.uid===17)vue=v});if(vue&&vue.setupState&&vue.setupState.options&&vue.setupState.options.value){vue.setupState.selectOption(vue.setupState.options.value[0])}})()"
+```
+
+**优先尝试 `fill + Enter + sleep 1` 方案**，仅在标签提交丢失时回退到 Vue 组件方法。
 
 ### Tag/Column/Topic Input
 

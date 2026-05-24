@@ -26,8 +26,15 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 
 **CRITICAL**: When copying Markdown content, skip the YAML frontmatter (the section between `---` markers). The frontmatter contains metadata like title, date, and tags that should NOT be included in the published article content.
 
+**Prefer reading from `/tmp/publish_content.md`** (pre-prepared by publish-all):
+
 ```bash
-# Skip frontmatter and copy content starting from first heading
+# BEST — use pre-prepared content
+cat /tmp/publish_content.md | pbcopy
+```
+
+```bash
+# FALLBACK — parse from source file directly
 sed -n '/^# /,$p' /path/to/article.md | pbcopy
 ```
 
@@ -81,8 +88,8 @@ Title input: `textbox "标题"`
 **IMPORTANT**: Skip YAML frontmatter when copying content. The CodeMirror editor requires special focus handling.
 
 ```bash
-# Skip frontmatter and copy content
-sed -n '/^# /,$p' /path/to/article.md | pbcopy
+# Skip frontmatter and copy content (prefer /tmp/ pre-prepared file)
+cat /tmp/publish_content.md 2>/dev/null || sed -n '/^# /,$p' /path/to/article.md | pbcopy
 
 # Focus CodeMirror editor via API (do NOT use playwright-cli click)
 playwright-cli eval "document.querySelector('.CodeMirror').CodeMirror.focus()"
@@ -239,7 +246,7 @@ playwright-cli open --headed --persistent "https://segmentfault.com/write?freshm
 
 If the published content shows YAML frontmatter (`---` at the beginning):
 1. Clear the editor
-2. Copy content without frontmatter: `sed -n '/^# /,$p' article.md | pbcopy`
+2. Copy content without frontmatter: `cat /tmp/publish_content.md 2>/dev/null || sed -n '/^# /,$p' article.md | pbcopy`
 3. Paste again: `playwright-cli press "Meta+v"`
 
 ### CodeMirror Editor Not Receiving Paste
@@ -302,8 +309,8 @@ playwright-cli snapshot
 # Fill title
 playwright-cli fill <title_ref> "My Article Title"
 
-# Fill content (skip frontmatter)
-sed -n '/^# /,$p' article.md | pbcopy
+# Fill content (skip frontmatter, prefer /tmp/ pre-prepared file)
+cat /tmp/publish_content.md 2>/dev/null || sed -n '/^# /,$p' article.md | pbcopy
 
 # CRITICAL: Use CodeMirror API to focus, NOT playwright-cli click
 playwright-cli eval "document.querySelector('.CodeMirror').CodeMirror.focus()"

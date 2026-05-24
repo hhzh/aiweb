@@ -17,6 +17,24 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 
 ## Important Notes
 
+### playwright-cli eval 语法限制（CRITICAL）
+
+`playwright-cli eval` wraps code as `() => (CODE)`. This means:
+- **No** `var`, `let`, `const` at top level — use `(function(){...})()` IIFE
+- **No** semicolons (`;`) at top level — use comma operator or IIFE
+- **No** multi-line statements — write everything on one line or use IIFE
+
+```bash
+# WRONG — will throw SyntaxError
+playwright-cli eval "var x = 1; return x;"
+
+# CORRECT — use IIFE
+playwright-cli eval "(function(){var x = 1; return x;})()"
+
+# Also CORRECT — comma operator for simple expressions
+playwright-cli eval "(expr1, expr2, resultExpr)"
+```
+
 ### Title Input Selector
 
 The title input is a **textarea** with class `cdc-article-editor__title-input`:
@@ -27,13 +45,19 @@ playwright-cli fill "textarea.cdc-article-editor__title-input" "Article Title"
 
 ### Content Editor (CodeMirror)
 
-The content editor uses CodeMirror. For Chinese content, use base64 encoding with UTF-8 decoding to avoid garbled characters:
+The content editor uses CodeMirror. For Chinese content, use base64 encoding with UTF-8 decoding to avoid garbled characters.
+
+**Prefer reading from `/tmp/publish_content_b64.txt`** (pre-prepared by publish-all) over re-encoding the file:
 
 ```bash
-# Encode content as base64
-content=$(sed -n '/^# /,$p' article.md | base64)
+# BEST — use pre-prepared base64 (avoids re-encoding)
+b64=$(cat /tmp/publish_content_b64.txt)
+playwright-cli eval "(function(){var b64='${b64}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
+```
 
-# Set content via JavaScript with UTF-8 decoding
+```bash
+# FALLBACK — encode content directly from file
+content=$(sed -n '/^# /,$p' article.md | base64)
 playwright-cli eval "(function(){var b64='$content';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
 ```
 
@@ -99,16 +123,18 @@ playwright-cli fill "textarea.cdc-article-editor__title-input" "Article Title He
 
 ### Step 3: Fill Article Content
 
-Use base64 encoding for proper UTF-8 handling:
+Use base64 encoding for proper UTF-8 handling. **Prefer reading from `/tmp/publish_content_b64.txt`** (pre-prepared by publish-all):
 
 ```bash
-# Prepare content: skip frontmatter
+# BEST — use pre-prepared base64 (avoids re-encoding)
+b64=$(cat /tmp/publish_content_b64.txt)
+playwright-cli eval "(function(){var b64='${b64}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
+```
+
+```bash
+# FALLBACK — encode directly from file
 content=$(sed -n '/^# /,$p' /path/to/article.md)
-
-# Base64 encode
 encoded=$(echo -n "$content" | base64 | tr -d '\n')
-
-# Set content via JavaScript
 playwright-cli eval "(function(){var b64='${encoded}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
 ```
 
@@ -187,11 +213,18 @@ playwright-cli eval "[...document.querySelectorAll('button')].find(b => b.textCo
 
 ### Step 11: Verify Success
 
-After successful publish, a success message appears:
+After clicking "确认发布", Tencent Cloud shows a **modal success dialog** (`.cdc-publish-modal`) rather than navigating to a new URL. **Do NOT wait for URL change** — check the modal content instead:
 
 ```bash
-playwright-cli snapshot 2>&1 | grep "发布成功"
-# Should show: "发布成功！"
+# Check success modal FIRST (publish succeeds even if URL doesn't change)
+playwright-cli eval "document.querySelector('.cdc-publish-modal')?.innerText?.includes('发布成功')"
+# Should return: true
+```
+
+If the modal is present, the article published successfully. Get the article URL:
+
+```bash
+playwright-cli eval "[...document.querySelectorAll('a')].find(function(a){return a.textContent.includes('详情')})?.href"
 ```
 
 The message includes:

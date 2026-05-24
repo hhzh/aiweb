@@ -20,6 +20,39 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 
 **发布过程中如果遇到问题，就优化这个 skill。** When issues are encountered during publishing (e.g., elements not found, UI changes, workflow errors), update this skill's SKILL.md to fix the problem so it won't recur in future runs.
 
+## Important Notes
+
+### playwright-cli eval 语法限制（CRITICAL）
+
+`playwright-cli eval` wraps code as `() => (CODE)`. This means:
+- **No** `var`, `let`, `const` at top level — use `(function(){...})()` IIFE
+- **No** semicolons (`;`) at top level — use comma operator or IIFE
+- **No** multi-line statements — write everything on one line or use IIFE
+
+```bash
+# WRONG — will throw SyntaxError
+playwright-cli eval "var x = 1; return x;"
+
+# CORRECT — use IIFE
+playwright-cli eval "(function(){var x = 1; return x;})()"
+```
+
+### Markdown Frontmatter Handling
+
+**CRITICAL**: When copying Markdown content, skip the YAML frontmatter (the section between `---` markers). The frontmatter contains metadata like title, date, and tags that should NOT be included in the published article content.
+
+**Prefer reading from `/tmp/publish_content.md`** (pre-prepared by publish-all):
+
+```bash
+# BEST — use pre-prepared content
+cat /tmp/publish_content.md | pbcopy
+```
+
+```bash
+# FALLBACK — parse from source file directly
+sed -n '/^# /,$p' /path/to/article.md | pbcopy
+```
+
 ## Workflow
 
 ### Step 1: Open Browser
@@ -42,10 +75,20 @@ playwright-cli fill <ref> "Article Title Here"
 
 ### Step 3: Fill Article Content
 
-Copy content to clipboard, then paste into editor:
+**IMPORTANT**: Skip YAML frontmatter when copying content.
+
+**Prefer reading from `/tmp/publish_content.md`** (pre-prepared by publish-all):
 
 ```bash
-cat /path/to/article.md | pbcopy
+# BEST — use pre-prepared content
+cat /tmp/publish_content.md | pbcopy
+playwright-cli click ".CodeMirror-code"
+playwright-cli press "Meta+v"
+```
+
+```bash
+# FALLBACK — parse from source file directly
+sed -n '/^# /,$p' /path/to/article.md | pbcopy
 playwright-cli click ".CodeMirror-code"
 playwright-cli press "Meta+v"
 ```
@@ -183,8 +226,8 @@ playwright-cli open --headed --persistent https://i.cnblogs.com/posts/edit
 # Fill title
 playwright-cli fill '#post-title' "My Article Title"
 
-# Fill content
-cat article.md | pbcopy
+# Fill content (skip frontmatter, prefer /tmp/ pre-prepared file)
+cat /tmp/publish_content.md 2>/dev/null || sed -n '/^# /,$p' article.md | pbcopy
 playwright-cli click ".CodeMirror-code"
 playwright-cli press "Meta+v"
 

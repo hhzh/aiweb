@@ -17,13 +17,51 @@ If `publishTitle` is provided in the skill arguments or context, use it as the a
 
 ## Important Notes
 
+### playwright-cli eval 语法限制（CRITICAL）
+
+`playwright-cli eval` wraps code as `() => (CODE)`. This means:
+- **No** `var`, `let`, `const` at top level — use `(function(){...})()` IIFE
+- **No** semicolons (`;`) at top level — use comma operator or IIFE
+- **No** multi-line statements — write everything on one line or use IIFE
+
+```bash
+# WRONG — will throw SyntaxError
+playwright-cli eval "var x = 1; return x;"
+
+# CORRECT — use IIFE
+playwright-cli eval "(function(){var x = 1; return x;})()"
+```
+
 ### Markdown Frontmatter Handling
 
 **CRITICAL**: When copying Markdown content, skip the YAML frontmatter (the section between `---` markers). The frontmatter contains metadata like title, date, and tags that should NOT be included in the published article content.
 
+**Prefer reading from `/tmp/publish_content.md`** (pre-prepared by publish-all):
+
 ```bash
-# CORRECT - skip frontmatter
-sed -n '/^# /,$p' article.md | pbcopy
+# BEST — use pre-prepared content
+cat /tmp/publish_content.md | pbcopy
+```
+
+```bash
+# FALLBACK — parse from source file directly
+sed -n '/^# /,$p' /path/to/article.md | pbcopy
+```
+
+### Content Editor (Base64 + Native Setter)
+
+For Chinese content, use base64 encoding with UTF-8 decoding to avoid garbled characters. **Prefer reading from `/tmp/publish_content_b64.txt`** (pre-prepared by publish-all):
+
+```bash
+# BEST — use pre-prepared base64
+b64=$(cat /tmp/publish_content_b64.txt)
+playwright-cli eval "(function(){var b64='${b64}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);var el=document.querySelector('textarea[placeholder=\"请输入正文\"]');if(!el){el=document.querySelector('#editor');}var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,content);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
+```
+
+```bash
+# FALLBACK — encode directly from file
+content=$(sed -n '/^# /,$p' /path/to/article.md | base64 | tr -d '\n')
+playwright-cli eval "(function(){var b64='${content}';...})()"
 ```
 
 ### v-note-read-model Overlay (CRITICAL)
@@ -104,11 +142,17 @@ playwright-cli eval "(function(){var el=document.querySelector('input[placeholde
 
 **IMPORTANT**: Skip YAML frontmatter. Use base64 + native setter for reliable content injection.
 
-```bash
-# Prepare content: skip frontmatter, base64 encode
-content=$(sed -n '/^# /,$p' /path/to/article.md | base64 | tr -d '\n')
+**Prefer reading from `/tmp/publish_content_b64.txt`** (pre-prepared by publish-all):
 
-# Inject via base64 + native setter (handles Chinese + Vue reactivity)
+```bash
+# BEST — use pre-prepared base64
+b64=$(cat /tmp/publish_content_b64.txt)
+playwright-cli eval "(function(){var b64='${b64}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);var el=document.querySelector('textarea[placeholder=\"请输入正文\"]');if(!el){el=document.querySelector('#editor');}var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,content);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
+```
+
+```bash
+# FALLBACK — encode directly from file
+content=$(sed -n '/^# /,$p' /path/to/article.md | base64 | tr -d '\n')
 playwright-cli eval "(function(){var b64='${content}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);var el=document.querySelector('textarea[placeholder=\"请输入正文\"]');if(!el){el=document.querySelector('#editor');}var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(el,content);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));})()"
 ```
 

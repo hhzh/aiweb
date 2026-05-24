@@ -1,11 +1,11 @@
 ---
 name: publish-all
-description: 一键发布 Markdown 文章到所有平台（CSDN、掘金、InfoQ、腾讯云、51CTO、知乎、博客园、思否）。提供 Markdown 文件路径即可自动串行发布到 8 个平台。
+description: 一键发布 Markdown 文章到所有平台（CSDN、掘金、InfoQ、腾讯云、51CTO、知乎、博客园、思否、阿里云）。提供 Markdown 文件路径即可自动串行发布到 9 个平台。
 ---
 
 # Publish All Skill
 
-一键发布 Markdown 文章到所有平台。提供 Markdown 文件路径，自动串行发布到 8 个平台。
+一键发布 Markdown 文章到所有平台。提供 Markdown 文件路径，自动串行发布到 9 个平台。
 
 ## Prerequisites
 
@@ -25,16 +25,17 @@ description: 一键发布 Markdown 文章到所有平台（CSDN、掘金、InfoQ
 
 ## Publish Order
 
-Publish to platforms in this fixed serial order (problematic platforms first for early error detection):
+Publish to platforms in this fixed serial order. Problematic and session-sensitive platforms go first for early error detection:
 
 1. 51CTO (most error-prone, handle first while attention is fresh)
-2. CSDN
-3. 掘金 (Juejin)
-4. InfoQ
-5. 腾讯云 (Tencent Cloud)
-6. 知乎 (Zhihu)
-7. 博客园 (Cnblogs)
-8. 思否 (SegmentFault)
+2. **思否 (SegmentFault)** (session expires easily, check early)
+3. CSDN
+4. 掘金 (Juejin)
+5. InfoQ
+6. 腾讯云 (Tencent Cloud)
+7. 阿里云 (Aliyun)
+8. 知乎 (Zhihu)
+9. 博客园 (Cnblogs)
 
 ## Workflow
 
@@ -72,6 +73,26 @@ cat /tmp/publish_content.md | pbcopy
 
 This pre-preparation avoids re-processing the Markdown file for each platform (previously 8x `sed` + `base64` + `pbcopy`, now 1x).
 
+### Step 0.25: 检查各平台登录态（Session Health Check）
+
+**在各平台发布前，先快速检查所有平台的登录态**，避免发布到一半才发现 session 过期。
+
+对于 session 容易过期的平台（思否、51CTO），使用 `playwright-cli open` 快速访问并检查是否被重定向到登录页。如果发现 session 过期，提示用户手动登录：
+
+```bash
+# 检查思否登录态
+playwright-cli open --headed --persistent "https://segmentfault.com/write?freshman=1"
+sleep 2
+url=$(playwright-cli eval "window.location.href" | grep -o 'segmentfault.com/[^"]*')
+if [[ "$url" == *"/user/login"* ]]; then
+  echo "⚠️ 思否 session 已过期，请在浏览器中手动登录..."
+  # 等待用户手动登录
+fi
+playwright-cli close
+```
+
+如果 session 可用，记录结果；如果过期，要求用户登录后再继续。
+
 ### Step 0.5: Title Optimization (Optional)
 
 If `publishTitle` is not provided in the skill arguments, use the `title-optimizer` skill to generate optimized titles for better click-through rates on publishing platforms. This only changes the title on the website — the local Markdown file is NOT modified.
@@ -102,55 +123,7 @@ If publishTitle IS provided:
 - Wait for completion, ensure browser closed: `playwright-cli close`
 - Record result (success/failure + error message)
 
-### Step 2: Publish to CSDN
-
-- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
-- Call Skill tool with `csdn-publisher`
-- Pass the Markdown file path AND `publishTitle` as context
-- Wait for completion, ensure browser closed
-- Record result
-
-### Step 3: Publish to 掘金 (Juejin)
-
-- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
-- Call Skill tool with `juejin-publisher`
-- Pass the Markdown file path AND `publishTitle` as context
-- Wait for completion, ensure browser closed
-- Record result
-
-### Step 4: Publish to InfoQ
-
-- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
-- Call Skill tool with `infoq-publisher`
-- Pass the Markdown file path AND `publishTitle` as context
-- Wait for completion, ensure browser closed
-- Record result
-
-### Step 5: Publish to 腾讯云 (Tencent Cloud)
-
-- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
-- Call Skill tool with `tencent-publisher`
-- Pass the Markdown file path AND `publishTitle` as context
-- Wait for completion, ensure browser closed
-- Record result
-
-### Step 6: Publish to 知乎 (Zhihu)
-
-- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
-- Call Skill tool with `zhihu-publisher`
-- Pass the Markdown file path AND `publishTitle` as context
-- Wait for completion, ensure browser closed
-- Record result
-
-### Step 7: Publish to 博客园 (Cnblogs)
-
-- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
-- Call Skill tool with `cnblogs-publisher`
-- Pass the Markdown file path AND `publishTitle` as context
-- Wait for completion, ensure browser closed
-- Record result
-
-### Step 8: Publish to 思否 (SegmentFault)
+### Step 2: Publish to 思否 (SegmentFault)
 
 - Ensure browser closed: `playwright-cli close 2>/dev/null || true`
 - Call Skill tool with `segmentfault-publisher`
@@ -158,7 +131,63 @@ If publishTitle IS provided:
 - Wait for completion, ensure browser closed
 - Record result
 
-### Step 9: Output Summary Report
+### Step 3: Publish to CSDN
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `csdn-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 4: Publish to 掘金 (Juejin)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `juejin-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 5: Publish to InfoQ
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `infoq-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 6: Publish to 腾讯云 (Tencent Cloud)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `tencent-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 7: Publish to 阿里云 (Aliyun)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `aliyun-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 8: Publish to 知乎 (Zhihu)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `zhihu-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 9: Publish to 博客园 (Cnblogs)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `cnblogs-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 10: Output Summary Report
 
 After all platforms are processed, output a summary report:
 
@@ -167,16 +196,16 @@ After all platforms are processed, output a summary report:
 发布结果汇总
 ============================================
 ✅ 51CTO       - 发布成功
+✅ 思否        - 发布成功
 ✅ CSDN        - 发布成功
 ✅ 掘金        - 发布成功
-❌ InfoQ       - 失败: element not found
+✅ InfoQ       - 发布成功
 ✅ 腾讯云      - 发布成功
+✅ 阿里云      - 发布成功
 ✅ 知乎        - 发布成功
 ✅ 博客园      - 发布成功
-✅ 思否        - 发布成功
 --------------------------------------------
-成功: 7/8  失败: 1/8
-失败平台: InfoQ
+成功: 9/9  失败: 0/9
 ============================================
 ```
 
@@ -200,7 +229,7 @@ playwright-cli close 2>/dev/null || true
 
 ### All Platforms Failed
 
-If all 8 platforms fail, there may be a common issue (e.g., playwright-cli not installed, file path wrong). Output an error message suggesting the user check:
+If all 9 platforms fail, there may be a common issue (e.g., playwright-cli not installed, file path wrong). Output an error message suggesting the user check:
 1. playwright-cli is installed globally
 2. The Markdown file path is correct
 3. Browser sessions are not stuck
@@ -224,6 +253,19 @@ If all 8 platforms fail, there may be a common issue (e.g., playwright-cli not i
 □ 填写摘要
 □ 点击"确认发布"
 □ 验证成功（URL 变化或用户确认）
+□ 关闭浏览器
+```
+
+### 阿里云强制清单
+```
+□ 打开浏览器 → https://developer.aliyun.com/article/new#/
+□ 填写标题
+□ 填写内容（pbcopy + 粘贴进富文本编辑器）
+□ 填写摘要（最多300字，或用 AI 生成）
+□ 选择子社区 → 下拉选"千问大模型"（AI内容）
+□ 点击"发布文章"
+□ 确认发布弹窗 → 点击"确认"
+□ 验证成功（URL 包含 /article/）
 □ 关闭浏览器
 ```
 
@@ -345,15 +387,17 @@ If all 8 platforms fail, there may be a common issue (e.g., playwright-cli not i
 
 When executing this skill, the main agent must:
 
-1. **Extract article info & prepare content first**: Read the Markdown file to get the original title, confirm the file exists, and prepare all content formats (plain text, base64, JSON) in `/tmp/` for reuse across platforms
-2. **Optimize title if needed**: If `publishTitle` is not provided, invoke `title-optimizer` skill and let user choose; otherwise use the provided `publishTitle` directly
-3. **Process platforms sequentially**: Do NOT parallelize — each platform needs its own browser session
-4. **51CTO first**: Start with 51CTO as it's the most error-prone platform — handle it while attention is fresh
-5. **CRITICAL — Create TaskCreate checklist before each platform**: After loading each platform's publisher skill, immediately create TaskCreate tasks from the platform's 强制清单 above. Mark each item completed as you go. Do NOT skip any item.
-6. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path AND `publishTitle` as context
-7. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
-8. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)
-9. **Output the summary report** at the end
+1. **Login health check first**: Before any publishing, check session status for all platforms (Step 0.25). Prioritize platforms with easily-expired sessions (思否, 51CTO). If session expired, ask user to re-login before proceeding.
+2. **Extract article info & prepare content first**: Read the Markdown file to get the original title, confirm the file exists, and prepare all content formats (plain text, base64, JSON) in `/tmp/` for reuse across platforms
+3. **Optimize title if needed**: If `publishTitle` is not provided, invoke `title-optimizer` skill and let user choose; otherwise use the provided `publishTitle` directly
+4. **Process platforms sequentially**: Do NOT parallelize — each platform needs its own browser session
+5. **51CTO first, 思否 second**: Start with 51CTO (most error-prone), then 思否 (session-sensitive), then the rest
+6. **CRITICAL — Create TaskCreate checklist before each platform**: After loading each platform's publisher skill, immediately create TaskCreate tasks from the platform's 强制清单 above. Mark each item completed as you go. Do NOT skip any item.
+7. **阿里云 goes after 腾讯云**: Both are cloud platforms — group them together in the sequence
+8. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path AND `publishTitle` as context. Also mention the pre-prepared `/tmp/` files.
+9. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
+10. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)
+11. **Output the summary report** at the end
 
 For each platform, the flow is:
 
@@ -380,7 +424,7 @@ The pre-prepared content files in `/tmp/`:
 
 ## Tips
 
-1. Each platform takes 1-3 minutes to complete — total time is approximately 15-25 minutes for all 8
+1. Each platform takes 1-3 minutes to complete — total time is approximately 18-30 minutes for all 9
 2. Do NOT skip the `playwright-cli close` step between platforms — leftover sessions cause issues
 3. If a platform consistently fails, the user may need to re-login to that platform manually first
 4. The article content is pasted from the same Markdown file for all platforms — each platform skill handles frontmatter skipping internally
