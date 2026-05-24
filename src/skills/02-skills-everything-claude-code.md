@@ -1,6 +1,6 @@
 ---
 title: Everything Claude Code 安装指南
-order: 3
+order: 2
 ---
 
 # Everything Claude Code 安装指南

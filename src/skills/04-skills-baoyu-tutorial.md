@@ -1,6 +1,6 @@
 ---
 title: baoyu-skills 完整使用教程
-order: 5
+order: 4
 ---
 
 # baoyu-skills 完整使用教程

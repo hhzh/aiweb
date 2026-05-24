@@ -1,6 +1,6 @@
 ---
 title: Superpowers Skills 使用教程
-order: 4
+order: 3
 ---
 
 # Superpowers Skills 使用教程

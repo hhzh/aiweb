@@ -1,6 +1,6 @@
 ---
 title: Awesome Claude Skills 使用教程
-order: 2
+order: 1
 ---
 
 # Awesome Claude Skills：一键部署全场景自动化技能
