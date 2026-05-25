@@ -1,5 +1,5 @@
 ---
-title: Claude Code 快速上手指南（新手友好版）
+title: Claude Code 快速上手指南
 order: 1
 ---
 

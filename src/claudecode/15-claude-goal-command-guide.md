@@ -1,5 +1,5 @@
 ---
-title: 别再逐轮手写指令了！Claude Code `/goal` 一键设定目标，全自动迭代到完成
+title: Claude Code /goal 一键设定目标，全自动迭代到完成
 order: 15
 ---
 

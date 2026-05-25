@@ -1,5 +1,5 @@
 ---
-title: Claude Code Hooks 实战教程
+title: Claude Code Hooks 钩子教程
 order: 6
 ---
 

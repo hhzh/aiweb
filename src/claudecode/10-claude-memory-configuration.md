@@ -1,5 +1,5 @@
 ---
-title: Claude Code 内存配置文档
+title: Claude Code memory 内存记忆配置
 order: 10
 ---
 

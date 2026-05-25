@@ -1,5 +1,5 @@
 ---
-title: Claude Code 官方工作原理与使用指南
+title: Claude Code 工作原理与使用指南
 order: 2
 ---
 

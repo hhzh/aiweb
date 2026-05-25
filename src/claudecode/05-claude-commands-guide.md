@@ -1,5 +1,5 @@
 ---
-title: Claude Code 斜杠命令实战使用教程
+title: Claude Code 常用命令教程
 order: 5
 ---
 

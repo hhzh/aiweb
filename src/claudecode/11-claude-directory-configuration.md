@@ -1,5 +1,5 @@
 ---
-title: Claude Code 官方 .claude 目录配置指南
+title: Claude Code 官方 .claude 配置指南
 order: 11
 ---
 

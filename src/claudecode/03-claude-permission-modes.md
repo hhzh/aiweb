@@ -1,5 +1,5 @@
 ---
-title: Claude Code 权限模式完全指南
+title: Claude Code 六大权限模式
 order: 3
 ---
 
