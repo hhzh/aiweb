@@ -138,6 +138,15 @@ encoded=$(echo -n "$content" | base64 | tr -d '\n')
 playwright-cli eval "(function(){var b64='${encoded}';var bytes=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));var content=new TextDecoder('utf-8').decode(bytes);document.querySelector('.CodeMirror').CodeMirror.setValue(content);})()"
 ```
 
+### Step 3.5: Clean Up Stray Modals (Pre-Publish Check)
+
+Before clicking "去发布", check for and dismiss any stray modals/overlays (e.g., `.cdc-switch-modal` triggered by accidentally clicking "使用旧版编辑器") that intercept pointer events:
+
+```bash
+# Dismiss any stray modals that may block clicks
+playwright-cli eval "(function(){var modals=document.querySelectorAll('.cdc-modal,.cdc-switch-modal');modals.forEach(function(m){var cancelBtn=m.querySelector('button');if(cancelBtn)cancelBtn.click()});})()"
+```
+
 ### Step 4: Click "去发布" Button
 
 ```bash

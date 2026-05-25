@@ -246,7 +246,7 @@ playwright-cli snapshot
 playwright-cli click <publish_button_ref>
 ```
 
-After clicking, the button may change to "发布中..." (publishing). A "确认" button may also appear. If a confirmation dialog or element appears outside the viewport, use JS:
+After clicking, the button may change to "发布中..." (publishing) and become disabled. **If the button stays at "发布中..." and the page doesn't navigate**, a hidden "确认" confirmation button exists elsewhere (possibly outside viewport). Click it via JS to complete publication:
 
 ```bash
 playwright-cli eval "[...document.querySelectorAll('button')].find(btn => btn.textContent === '确认')?.click()"
