@@ -1,9 +1,9 @@
 ---
-title: Markdown 高效指南
+title: Markdown 快速入门教程
 order: 2
 ---
 
-# Markdown 高效指南
+# Markdown 快速入门教程
 
 你是否曾因一份排版混乱的技术文档而被同事反复追问？或在 GitHub 上看到一个 README 清晰到让人想立刻 Star 的项目？Markdown 就是这两者之间的分水岭。本文从核心语法到工程实践，覆盖 Markdown 高效使用的完整技巧。
 

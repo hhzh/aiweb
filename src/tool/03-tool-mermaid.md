@@ -1,9 +1,9 @@
 ---
-title: Mermaid 流程图快速绘制教程
+title: Mermaid 流程图绘制教程
 order: 3
 ---
 
-# Mermaid 流程图快速绘制教程
+# Mermaid 流程图绘制教程
 
 ## 引言
 

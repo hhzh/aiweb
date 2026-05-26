@@ -1,9 +1,9 @@
 ---
-title: Ollama 全面使用教程
+title: Ollama 快速实现本地跑大模型
 order: 5
 ---
 
-# Ollama 全面使用教程
+# Ollama 快速实现本地跑大模型
 
 想在本地跑大模型，却被环境配置、GPU 驱动、模型格式转换劝退？Ollama 把这些全部简化为一行命令——支持 Windows、macOS、Linux 全平台，一键部署 Llama 3、Qwen2.5、DeepSeek、Gemma 4 等上百款主流大语言模型，显存不足还可调用云端模型。本文从安装到实战覆盖新手必备的全流程操作。
 

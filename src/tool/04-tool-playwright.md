@@ -1,9 +1,9 @@
 ---
-title: Playwright CLI 浏览器自动化使用教程
+title: Playwright CLI 浏览器自动化教程
 order: 4
 ---
 
-# Playwright CLI 浏览器自动化使用教程
+# Playwright CLI 浏览器自动化教程
 
 浏览器自动化工具不少，但给编码代理用的却很稀缺——要么把整页 HTML 塞进上下文窗口浪费 Token，要么缺少会话管理导致登录状态丢失。Playwright CLI 专为编码代理设计，主打”令牌高效”：无需将页面数据强制传入 LLM，通过简洁命令实现浏览器自动化、测试执行、会话管理，同时也支持手动操作。
 
