@@ -44,6 +44,14 @@ export default sidebar({
             children: "structure",
         },
         {
+            text: "Hermes Agent",
+            icon: "book",
+            prefix: "hermes/",
+            link: "hermes/",
+            collapsible: true,
+            children: "structure",
+        },
+        {
             text: "Tool",
             icon: "toolbox",
             prefix: "tool/",

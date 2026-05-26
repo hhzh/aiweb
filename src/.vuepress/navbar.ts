@@ -28,6 +28,11 @@ export default navbar([
         link: "/openclaw/",
     },
     {
+        text: "Hermes Agent",
+        icon: "adn",
+        link: "/hermes/",
+    },
+    {
         text: "Tool",
         icon: "toolbox",
         link: "/tool/",
