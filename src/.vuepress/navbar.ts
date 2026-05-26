@@ -29,7 +29,7 @@ export default navbar([
     },
     {
         text: "Hermes Agent",
-        icon: "adn",
+        icon: "horse-head",
         link: "/hermes/",
     },
     {
