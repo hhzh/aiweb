@@ -1,3 +1,8 @@
+---
+title: Hermes Agent Profiles：多实例配置教程
+order: 9
+---
+
 # Hermes Agent Profiles：多实例配置教程
 
 

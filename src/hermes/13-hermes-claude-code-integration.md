@@ -1,6 +1,11 @@
+---
+title: Hermes Agent 接入 Claude Code 教程
+order: 13
+---
+
 # Hermes Agent 接入 Claude Code 教程
 
-Claude Code 是 Anthrop 推出的自主编码 CLI 代理，可完成代码编写、重构、审查、测试等全流程开发任务。Hermes Agent 内置 `autonomous-ai-agents-claude-code` 技能，支持无缝接入 Claude Code，将编码任务委托给 Claude Code 独立执行，无需手动操作。本文从环境准备、两种交互模式、核心命令、实战示例到最佳实践，带你全面掌握 Hermes 接入 Claude Code 的方法。
+Claude Code 是 Anthropic 推出的自主编码 CLI 代理，可完成代码编写、重构、审查、测试等全流程开发任务。Hermes Agent 内置 `autonomous-ai-agents-claude-code` 技能，支持无缝接入 Claude Code，将编码任务委托给 Claude Code 独立执行，无需手动操作。本文从环境准备、两种交互模式、核心命令、实战示例到最佳实践，带你全面掌握 Hermes 接入 Claude Code 的方法。
 
 ## 一、前提条件
 

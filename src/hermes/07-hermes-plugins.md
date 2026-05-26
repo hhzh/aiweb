@@ -1,3 +1,8 @@
+---
+title: Hermes Agent 插件使用教程
+order: 7
+---
+
 # Hermes Agent 插件使用教程
 
 

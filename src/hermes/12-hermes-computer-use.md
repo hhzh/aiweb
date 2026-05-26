@@ -1,4 +1,9 @@
-# Hermes Agent 电脑操控（macOS）使用教程
+---
+title: Hermes Agent 电脑操控使用教程
+order: 12
+---
+
+# Hermes Agent 电脑操控使用教程
 
 Hermes Agent 电脑操控（Computer Use）是一项**后台桌面自动化能力**，可在不干扰用户当前操作的前提下，实现 Mac 桌面的点击、输入、滚动、拖拽等操作，让 Agent 与你协同工作。本文从核心原理、安装配置、基础用法、安全机制到性能优化，带你全面掌握电脑操控功能。
 

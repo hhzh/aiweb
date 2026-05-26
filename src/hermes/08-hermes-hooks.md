@@ -1,3 +1,8 @@
+---
+title: Hermes Agent Hooks 钩子使用教程
+order: 8
+---
+
 # Hermes Agent Hooks 钩子使用教程
 
 

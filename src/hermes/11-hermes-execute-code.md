@@ -1,3 +1,8 @@
+---
+title: Hermes Agent 代码工具（execute_code）使用教程
+order: 11
+---
+
 # Hermes Agent 代码工具（execute_code）使用教程
 
 `execute_code` 是 Hermes Agent 的核心程序化工具，允许智能编写 Python 脚本并在**隔离沙箱子进程**中执行，通过 RPC 调用各类工具，将多步骤复杂工作流合并为单次 LLM 调用，大幅减少 Token 消耗，提升批量任务处理效率。本文从核心原理、快速上手、实用示例、配置优化、安全机制到场景对比，带你全面掌握代码工具用法。

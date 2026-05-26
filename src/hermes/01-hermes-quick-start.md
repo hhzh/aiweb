@@ -1,4 +1,9 @@
-# Hermes Agent 快速入门教程：从环境准备到基础配置
+---
+title: Hermes Agent 快速入门教程
+order: 1
+---
+
+# Hermes Agent 快速入门教程
 
 
 ## 一、Hermes Agent 概述

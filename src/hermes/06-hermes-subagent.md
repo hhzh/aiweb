@@ -1,4 +1,9 @@
-# Hermes Agent SubAgent 子委派使用教程
+---
+title: Hermes Agent SubAgent 子代理使用教程
+order: 6
+---
+
+# Hermes Agent SubAgent 子代理使用教程
 
 
 SubAgent（子代理）是 Hermes Agent 的核心能力，通过 `delegate_task` 工具可将复杂、并行或隔离的任务委派给独立子代理执行，实现**上下文隔离、并行处理、主会话轻量化**，大幅提升多任务处理效率与复杂问题解决能力。本文从核心原理、基础用法、并行任务、高级配置、实战场景到最佳实践，带你全面掌握 SubAgent 委派用法。
