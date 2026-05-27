@@ -37,18 +37,18 @@ Aliyun may require a security verification (slider captcha) before publishing. T
 
 After publishing, articles enter a content review state ("内容审核中，请耐心等待"). This is normal and articles will be available after review.
 
-### Editor Type: Textarea (NOT Rich Text / CodeMirror)
+### Editor Type: Textarea (class `textarea`, NOT `article-content`)
 
-Aliyun's editor is a **native textarea** (not a rich text editor or CodeMirror). Content can be set directly via the native value setter pattern to avoid encoding issues:
+Aliyun's editor is a **native textarea** with class `textarea` (NOT `textarea.article-content`). Use the correct selector:
 
 ```bash
-playwright-cli eval "(function(){var ta=document.querySelector('textarea.article-content');if(ta){var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(ta,content);ta.dispatchEvent(new Event('input',{bubbles:true}));ta.dispatchEvent(new Event('change',{bubbles:true}));}})()"
+playwright-cli eval "(function(){var ta=document.querySelector('textarea.textarea');if(ta){var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(ta,content);ta.dispatchEvent(new Event('input',{bubbles:true}));ta.dispatchEvent(new Event('change',{bubbles:true}));}})()"
 ```
 
 For paste-based approach, focus the textarea first then paste:
 
 ```bash
-playwright-cli eval "document.querySelector('textarea.article-content')?.focus()"
+playwright-cli eval "document.querySelector('textarea.textarea')?.focus()"
 playwright-cli press "Meta+v"
 ```
 
@@ -71,6 +71,8 @@ playwright-cli eval "document.querySelector('.next-select.medium')?.click()"
 playwright-cli snapshot
 playwright-cli eval "[...document.querySelectorAll('.next-menu-item')].find(el => el.textContent.includes('千问大模型'))?.click()"
 ```
+
+**Note**: After selecting a main sub-community (e.g., "千问大模型"), a second dropdown may appear for a sub-section (e.g., "默认版块"). You must also select this second dropdown by clicking it via JS eval and choosing the appropriate option. The publish button becomes disabled if any required community/sub-section is not selected.
 
 ## Workflow
 
@@ -96,32 +98,30 @@ playwright-cli fill <title_ref> "Article Title Here"
 
 **IMPORTANT**: Skip YAML frontmatter when copying content.
 
-Aliyun's editor is a **native textarea** (not rich text or CodeMirror). Use the native value setter pattern for reliable content injection:
+Aliyun's editor is a **native textarea** with class `textarea` (NOT `article-content`). Use the correct selector:
 
 ```bash
 # BEST — use native value setter to avoid encoding issues
 content=$(sed -n '/^# /,$p' /path/to/article.md | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
-playwright-cli eval "(function(){var ta=document.querySelector('textarea.article-content');if(!ta)return;var content=$content;var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(ta,content);ta.dispatchEvent(new Event('input',{bubbles:true}));ta.dispatchEvent(new Event('change',{bubbles:true}));})()"
+playwright-cli eval "(function(){var ta=document.querySelector('textarea.textarea');if(!ta)return;var content=$content;var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(ta,content);ta.dispatchEvent(new Event('input',{bubbles:true}));ta.dispatchEvent(new Event('change',{bubbles:true}));})()"
 ```
 
 ```bash
 # FALLBACK — focus textarea and paste
 sed -n '/^# /,$p' /path/to/article.md | pbcopy
-playwright-cli eval "document.querySelector('textarea.article-content')?.focus()"
+playwright-cli eval "document.querySelector('textarea.textarea')?.focus()"
 playwright-cli press "Meta+v"
 ```
 
-The editor is a textarea (NOT a rich text editor or CodeMirror).
-
 ### Step 4: Fill Summary
 
-Fill the summary field (max 300 characters):
+Fill the summary field (max 300 characters). **Recommend writing manually** — the "AI生成摘要" button is unreliable and may return placeholder text instead of a real summary.
 
 ```bash
-playwright-cli fill '[placeholder="请填写摘要"]' "Article summary text..."
+playwright-cli snapshot
+# Find the summary textbox (placeholder: "请填写摘要")
+playwright-cli fill <summary_ref> "Article summary text..."
 ```
-
-If left empty, you can click "AI生成摘要" to auto-generate.
 
 ### Step 5: Select Sub-Community
 
@@ -148,6 +148,8 @@ playwright-cli click <community_option_ref>
 # Or use JS eval if options are blocked:
 playwright-cli eval "[...document.querySelectorAll('.next-menu-item')].find(el => el.textContent.includes('千问大模型'))?.click()"
 ```
+
+**Important**: After selecting a main community (e.g., "千问大模型"), a **second sub-community dropdown** may appear (e.g., "默认版块"). You must also select this second dropdown — the publish button will be disabled if any required sub-section is not selected. Repeat the same click/select pattern for the second dropdown.
 
 Common sub-communities:
 - 千问大模型 - for AI related content
@@ -243,7 +245,7 @@ If security verification keeps failing:
 | Element | Description |
 |---------|-------------|
 | Title input | Textbox with placeholder "请填写标题" |
-| Content editor | `textarea.article-content` (native textarea, NOT rich text) |
+| Content editor | `textarea.textarea` (native textarea, NOT `textarea.article-content`) |
 | Summary textarea | Textbox with placeholder "请填写摘要" |
 | Sub-community dropdown | `.next-select.medium` element (use JS eval if click fails) |
 | AI generate summary | Button text "AI生成摘要" |
@@ -258,32 +260,40 @@ If security verification keeps failing:
 # Open browser
 playwright-cli open --headed --persistent https://developer.aliyun.com/article/new#/
 
-# Get initial snapshot
+# Get initial snapshot to find element refs
 playwright-cli snapshot
 
-# Fill title
+# Step 2: Fill title
 playwright-cli fill <title_ref> "My Article Title"
 
-# Fill content (skip frontmatter, use native value setter for textarea)
-content=$(sed -n '/^# /,$p' article.md | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
-playwright-cli eval "(function(){var ta=document.querySelector('textarea.article-content');if(!ta)return;var content=$content;var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(ta,content);ta.dispatchEvent(new Event('input',{bubbles:true}));ta.dispatchEvent(new Event('change',{bubbles:true}));})()"
+# Step 3: Fill content (skip frontmatter, use native value setter for textarea)
+content=$(sed -n '/^# /,$p' /path/to/article.md | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
+playwright-cli eval "(function(){var ta=document.querySelector('textarea.textarea');if(!ta)return;var content=$content;var nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value').set;nativeSetter.call(ta,content);ta.dispatchEvent(new Event('input',{bubbles:true}));ta.dispatchEvent(new Event('change',{bubbles:true}));})()"
 
-# Fill summary
-playwright-cli fill '[placeholder="请填写摘要"]' "Article summary text..."
+# Step 4: Fill summary (manual — AI生成摘要 is unreliable)
+playwright-cli fill <summary_ref> "Article summary text..."
 
-# Select sub-community (use JS eval fallback if click fails)
+# Step 5a: Select primary sub-community
 playwright-cli eval "document.querySelector('.next-select.medium')?.click()"
 playwright-cli snapshot
 playwright-cli eval "[...document.querySelectorAll('.next-menu-item')].find(el => el.textContent.includes('千问大模型'))?.click()"
 
-# Click publish button (use JS eval to bypass AI disclaimer overlay if present)
-playwright-cli eval "document.querySelector('button.next-btn-primary')?.click()"
+# Step 5b: If a second sub-community dropdown appears, select it too
+playwright-cli snapshot
+# If another .next-select.medium exists, click and select
+playwright-cli eval "(function(){var s=document.querySelectorAll('.next-select.medium');if(s.length>1)s[1].click()})()"
+playwright-cli snapshot
+playwright-cli eval "[...document.querySelectorAll('.next-menu-item')].find(el => el.textContent.includes('默认版块'))?.click()"
 
-# Confirm dialog
+# Step 6: Click publish button
+playwright-cli snapshot
+playwright-cli click <publish_button_ref>
+
+# Step 7: Confirm dialog
 playwright-cli snapshot
 playwright-cli click <confirm_button_ref>
 
-# Wait for verification and verify success
+# Step 8: Verify success
 sleep 3
 playwright-cli eval "window.location.href"
 # Should contain: /article/

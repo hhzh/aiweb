@@ -1,0 +1,1725 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: https://www.qianwenai.com/
+        - paragraph
+      - banner [ref=e8]:
+        - button "打开菜单" [ref=e9] [cursor=pointer]
+        - link [ref=e12] [cursor=pointer]:
+          - /url: https://www.aliyun.com/
+          - img [ref=e13]
+        - generic [ref=e17]:
+          - text: 
+          - generic [ref=e18]:
+            - navigation:
+              - link "大模型" [ref=e19] [cursor=pointer]:
+                - /url: https://www.aliyun.com/product/tongyi
+              - link "产品" [ref=e20] [cursor=pointer]:
+                - /url: https://www.aliyun.com/product/list
+              - link "解决方案" [ref=e21] [cursor=pointer]:
+                - /url: https://www.aliyun.com/solution/tech-solution/
+              - link "权益" [ref=e22] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit
+              - link "定价" [ref=e23] [cursor=pointer]:
+                - /url: https://www.aliyun.com/price
+              - link "云市场" [ref=e24] [cursor=pointer]:
+                - /url: https://market.aliyun.com/
+              - link "伙伴" [ref=e25] [cursor=pointer]:
+                - /url: https://partner.aliyun.com/management/v2
+              - link "服务" [ref=e26] [cursor=pointer]:
+                - /url: https://www.aliyun.com/service
+              - link "了解阿里云" [ref=e27] [cursor=pointer]:
+                - /url: https://www.aliyun.com/about
+          - button "" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: 
+        - generic [ref=e35]:
+          - textbox "大模型" [ref=e477] [cursor=pointer]
+          - button [ref=e38] [cursor=pointer]:
+            - img [ref=e39]:
+              - img [ref=e40]
+        - generic [ref=e44]:
+          - link [ref=e45] [cursor=pointer]:
+            - /url: https://www.aliyun.com/ai-assistant?displayMode=side
+            - img [ref=e48]
+          - button "" [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: 
+          - button "" [ref=e51] [cursor=pointer]:
+            - generic [ref=e52]: 
+          - link "文档" [ref=e53] [cursor=pointer]:
+            - /url: https://help.aliyun.com/
+          - link "备案" [ref=e54] [cursor=pointer]:
+            - /url: https://beian.aliyun.com/
+          - link "控制台" [ref=e55] [cursor=pointer]:
+            - /url: https://home.console.aliyun.com/home/dashboard/ProductAndService
+          - button "头像 小林学AI" [ref=e56] [cursor=pointer]:
+            - img "头像" [ref=e57]
+            - generic [ref=e58]: 小林学AI
+    - navigation [ref=e60]:
+      - generic [ref=e64]:
+        - generic:
+          - link "开发者社区" [ref=e66] [cursor=pointer]:
+            - /url: https://developer.aliyun.com/
+          - generic [ref=e69]:
+            - link "首页" [ref=e71] [cursor=pointer]:
+              - /url: https://developer.aliyun.com/
+            - generic [ref=e72]:
+              - generic [ref=e73]: 探索云世界 
+              - text:       
+            - link "问产品" [ref=e75] [cursor=pointer]:
+              - /url: https://developer.aliyun.com/ask/hottestQuestionsWithProduct
+            - link "动手实践" [ref=e77] [cursor=pointer]:
+              - /url: https://developer.aliyun.com/adc/
+            - link "官方博客" [ref=e79] [cursor=pointer]:
+              - /url: https://developer.aliyun.com/blog/
+            - link "考认证" [ref=e81] [cursor=pointer]:
+              - /url: https://edu.aliyun.com/
+            - link "TIANCHI大赛" [ref=e83] [cursor=pointer]:
+              - /url: https://tianchi.aliyun.com/
+            - generic [ref=e84]:
+              - generic [ref=e85]: 活动广场 
+              - text:     
+            - generic [ref=e86]:
+              - generic [ref=e87]: 下载 
+              - text:   
+        - generic [ref=e406]:
+          - textbox [ref=e407] [cursor=pointer]
+          - generic [ref=e409] [cursor=pointer]: 
+        - generic [ref=e88]:
+          - link " 个人" [ref=e91] [cursor=pointer]:
+            - /url: /my#
+            - generic [ref=e92]: 
+            - generic [ref=e93]: 个人
+          - link " 积分" [ref=e95] [cursor=pointer]:
+            - /url: /score
+            - generic [ref=e96]: 
+            - generic [ref=e97]: 积分
+          - link " 消息" [ref=e100] [cursor=pointer]:
+            - /url: https://developer.aliyun.com/my?#/message
+            - generic [ref=e101]: 
+            - generic [ref=e102]: 消息
+          - link " 发布" [ref=e105] [cursor=pointer]:
+            - /url: https://developer.aliyun.com/article/new#
+            - generic [ref=e106]: 
+            - generic [ref=e107]: 发布
+      - text: 
+  - generic [ref=e110]:
+    - generic [ref=e111]:
+      - link "开发者社区" [ref=e112] [cursor=pointer]:
+        - /url: /#/
+      - text: ">"
+      - link "发表文章" [ref=e113] [cursor=pointer]:
+        - /url: javascript:;
+    - generic [ref=e114]:
+      - generic [ref=e115]:
+        - generic [ref=e116]: 标题
+        - textbox "标题" [ref=e119] [cursor=pointer]:
+          - /placeholder: 请填写标题
+          - text: Claude Code 必知的 14 个高效工作流，让你的开发效率提升 300%
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - generic [ref=e123]: 正文
+          - generic [ref=e124]: 切换语雀编辑器
+        - generic [ref=e129]:
+          - list [ref=e131]:
+            - generic "粗体 shift+alt+b" [ref=e132] [cursor=pointer]: 
+            - generic "斜体 shift+alt+i" [ref=e133] [cursor=pointer]: 
+            - generic "下划线 shift+alt+e" [ref=e134] [cursor=pointer]: 
+            - generic "删除线 shift+alt+d" [ref=e135] [cursor=pointer]: 
+            - generic "标题 shift+alt+1" [ref=e136] [cursor=pointer]: 
+            - generic "引用 shift+alt+q" [ref=e137] [cursor=pointer]: 
+            - generic "代码 shift+alt+c" [ref=e138] [cursor=pointer]: 
+            - generic "有序列表 shift+alt+o" [ref=e139] [cursor=pointer]: 
+            - generic "无序列表 shift+alt+u" [ref=e140] [cursor=pointer]: 
+            - generic "链接 shift+alt+l" [ref=e141] [cursor=pointer]: 
+            - generic "表格 shift+alt+t" [ref=e142] [cursor=pointer]: 
+            - generic "分隔线 shift+alt+h" [ref=e143] [cursor=pointer]: 
+            - generic "图片 shift+alt+p" [ref=e144] [cursor=pointer]: 
+            - generic "全屏 shift+alt+f" [ref=e145] [cursor=pointer]: 
+            - generic "预览 shift+alt+v" [ref=e146] [cursor=pointer]: 
+            - generic "分屏 shift+alt+s" [ref=e147] [cursor=pointer]: 
+            - generic "数学公式 undefined" [ref=e148] [cursor=pointer]: 
+            - generic "居中 undefined" [ref=e149] [cursor=pointer]: 
+            - generic "帮助文档 shift+alt+/" [ref=e150] [cursor=pointer]: 
+          - generic [ref=e151]:
+            - textbox [ref=e153]
+            - generic [ref=e155]: 预览区域
+            - text:  
+      - generic [ref=e156]:
+        - generic [ref=e159]: 摘要
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - textbox "请填写摘要" [ref=e164]: 掌握 Claude Code 的 14 个高效工作流，覆盖代码理解、开发调试、安全重构、计划模式、自动化测试、PR 创建、文档生成等全流程。从陌生项目快速上手的探索技巧，到子代理委派、思考模式、图像辅助开发等进阶玩法，一文带你解锁 Claude Code 的真正实力，让 AI 从聊天工具变成真正的开发伙伴。
+            - generic [ref=e166]: 154/300
+          - generic [ref=e410]:
+            - generic [ref=e411]:
+              - textbox "AI正在思考中，内容由AI自动生成" [disabled] [ref=e412]: 请提供需要编写简介的具体内容，我将为您撰写一段240字符以内的中文简介。
+              - generic [ref=e414]: 36/300
+            - generic [ref=e419]:
+              - generic [ref=e420] [cursor=pointer]: 使用
+              - generic [ref=e421] [cursor=pointer]:  重新生成
+              - generic [ref=e422] [cursor=pointer]:  放弃
+      - paragraph [ref=e417]: 已于19:00保存了草稿
+      - generic [ref=e167]:
+        - generic [ref=e168]: 发布子社区
+        - generic [ref=e170]:
+          - generic [ref=e171] [cursor=pointer]:
+            - generic [ref=e172]: 千问大模型 
+            - generic [ref=e173]: 
+          - generic [ref=e470] [cursor=pointer]:
+            - generic [ref=e471]: 默认版块 
+            - generic [ref=e472]: 
+      - generic [ref=e174]:
+        - generic [ref=e175]: 文章图片
+        - generic [ref=e177]:
+          - button "上传图片" [ref=e178] [cursor=pointer]
+          - paragraph [ref=e179]: 图片建议尺寸为200*120
+      - generic [ref=e180]:
+        - generic [ref=e181]: 文章阅读设置
+        - generic [ref=e184] [cursor=pointer]:
+          - generic [ref=e185]: 原创
+          - generic [ref=e186]: 
+    - generic [ref=e189]:
+      - generic [ref=e190]:
+        - generic [ref=e191]:
+          - generic [ref=e193] [cursor=pointer]: 
+          - checkbox " 已同意用户免责声明" [checked] [ref=e194] [cursor=pointer]
+        - generic [ref=e195]:
+          - text: 已同意用户
+          - link "免责声明" [ref=e196] [cursor=pointer]:
+            - /url: javascript:;
+      - generic [ref=e197]:
+        - paragraph [ref=e198] [cursor=pointer]: 草稿箱
+        - button "存为草稿" [ref=e199] [cursor=pointer]
+        - button "发布文章" [ref=e200] [cursor=pointer]
+  - contentinfo "PC 端页尾" [ref=e203]:
+    - generic [ref=e204]:
+      - generic [ref=e205]:
+        - navigation "页脚导航" [ref=e206]:
+          - generic [ref=e207]:
+            - heading "为什么选择阿里云" [level=3] [ref=e208]
+            - link "什么是云计算" [ref=e209] [cursor=pointer]:
+              - /url: https://www.aliyun.com/about/what-is-cloud-computing
+            - link "全球基础设施" [ref=e210] [cursor=pointer]:
+              - /url: https://infrastructure.aliyun.com/
+            - link "技术领先" [ref=e211] [cursor=pointer]:
+              - /url: https://www.aliyun.com/why-us/leading-technology
+            - link "稳定可靠" [ref=e212] [cursor=pointer]:
+              - /url: https://www.aliyun.com/why-us/reliability
+            - link "安全合规" [ref=e213] [cursor=pointer]:
+              - /url: https://www.aliyun.com/why-us/security-compliance
+            - link "分析师报告" [ref=e214] [cursor=pointer]:
+              - /url: https://www.aliyun.com/analyst-reports
+          - generic [ref=e215]:
+            - heading "大模型" [level=3] [ref=e216]
+            - link "千问大模型" [ref=e217] [cursor=pointer]:
+              - /url: https://www.aliyun.com/product/tongyi
+            - link "大模型服务" [ref=e218] [cursor=pointer]:
+              - /url: https://bailian.console.aliyun.com/?tab=model#/model-market
+            - link "AI应用构建" [ref=e219] [cursor=pointer]:
+              - /url: https://bailian.console.aliyun.com/app-center?tab=app#/app-center
+          - generic [ref=e220]:
+            - heading "产品和定价" [level=3] [ref=e221]
+            - link "全部产品" [ref=e222] [cursor=pointer]:
+              - /url: https://www.aliyun.com/product/list
+            - link "免费试用" [ref=e223] [cursor=pointer]:
+              - /url: https://free.aliyun.com/
+            - link "产品动态" [ref=e224] [cursor=pointer]:
+              - /url: https://www.aliyun.com/product/news/
+            - link "产品定价" [ref=e225] [cursor=pointer]:
+              - /url: https://www.aliyun.com/price/detail
+            - link "配置报价器" [ref=e226] [cursor=pointer]:
+              - /url: https://www.aliyun.com/price/cpq/list
+            - link "云上成本管理" [ref=e227] [cursor=pointer]:
+              - /url: https://www.aliyun.com/price/cost-management
+          - generic [ref=e228]:
+            - heading "技术内容" [level=3] [ref=e229]
+            - link "技术解决方案" [ref=e230] [cursor=pointer]:
+              - /url: https://www.aliyun.com/solution/tech-solution
+            - link "帮助文档" [ref=e231] [cursor=pointer]:
+              - /url: https://help.aliyun.com/
+            - link "开发者社区" [ref=e232] [cursor=pointer]:
+              - /url: https://developer.aliyun.com/
+            - link "天池大赛" [ref=e233] [cursor=pointer]:
+              - /url: https://tianchi.aliyun.com/
+            - link "阿里云认证" [ref=e234] [cursor=pointer]:
+              - /url: https://edu.aliyun.com/
+          - generic [ref=e235]:
+            - heading "权益" [level=3] [ref=e236]
+            - link "免费试用" [ref=e237] [cursor=pointer]:
+              - /url: https://free.aliyun.com/
+            - link "解决方案免费试用" [ref=e238] [cursor=pointer]:
+              - /url: https://www.aliyun.com/solution/free
+            - link "高校计划" [ref=e239] [cursor=pointer]:
+              - /url: https://university.aliyun.com/
+            - link "5亿算力补贴" [ref=e240] [cursor=pointer]:
+              - /url: https://www.aliyun.com/benefit/form/index
+            - link "推荐返现计划" [ref=e241] [cursor=pointer]:
+              - /url: https://dashi.aliyun.com/?ambRef=shouYeDaoHang2&pageCode=yunparterIndex
+          - generic [ref=e242]:
+            - heading "服务" [level=3] [ref=e243]
+            - link "基础服务" [ref=e244] [cursor=pointer]:
+              - /url: https://www.aliyun.com/service
+            - link "企业增值服务" [ref=e245] [cursor=pointer]:
+              - /url: https://www.aliyun.com/service/supportplans
+            - link "迁云服务" [ref=e246] [cursor=pointer]:
+              - /url: https://www.aliyun.com/service/devopsimpl/devopsimpl_cloudmigration_public_cn
+            - link "官网公告" [ref=e247] [cursor=pointer]:
+              - /url: https://www.aliyun.com/notice/
+            - link "健康看板" [ref=e248] [cursor=pointer]:
+              - /url: https://status.aliyun.com/
+            - link "信任中心" [ref=e249] [cursor=pointer]:
+              - /url: https://security.aliyun.com/trust-center
+        - article [ref=e250]:
+          - heading "关注阿里云" [level=3] [ref=e251]
+          - paragraph [ref=e252]: 关注阿里云公众号或下载阿里云APP，关注云资讯，随时随地运维管控云服务
+          - img "阿里云APP" [ref=e253]
+          - img "阿里云微信" [ref=e254]
+          - paragraph [ref=e255]: 联系我们：4008013260
+      - generic [ref=e256]:
+        - link "法律声明" [ref=e257] [cursor=pointer]:
+          - /url: https://help.aliyun.com/product/67275.html
+        - link "Cookies政策" [ref=e258] [cursor=pointer]:
+          - /url: https://terms.alicdn.com/legal-agreement/terms/platform_service/20220906101446934/20220906101446934.html
+        - link "廉正举报" [ref=e259] [cursor=pointer]:
+          - /url: https://aliyun.jubao.alibaba.com/
+        - link "安全举报" [ref=e260] [cursor=pointer]:
+          - /url: https://report.aliyun.com/
+        - link "联系我们" [ref=e261] [cursor=pointer]:
+          - /url: https://www.aliyun.com/contact
+        - link "加入我们" [ref=e262] [cursor=pointer]:
+          - /url: https://careers.aliyun.com/
+      - generic [ref=e263]:
+        - link "阿里巴巴集团" [ref=e264] [cursor=pointer]:
+          - /url: https://www.alibabagroup.com/cn/global/home
+        - link "淘宝网" [ref=e265] [cursor=pointer]:
+          - /url: https://www.taobao.com/
+        - link "天猫" [ref=e266] [cursor=pointer]:
+          - /url: https://www.tmall.com/
+        - link "全球速卖通" [ref=e267] [cursor=pointer]:
+          - /url: https://www.aliexpress.com/
+        - link "阿里巴巴国际交易市场" [ref=e268] [cursor=pointer]:
+          - /url: https://www.alibaba.com/
+        - link "1688" [ref=e269] [cursor=pointer]:
+          - /url: https://www.1688.com/
+        - link "阿里妈妈" [ref=e270] [cursor=pointer]:
+          - /url: https://www.alimama.com/index.htm
+        - link "飞猪" [ref=e271] [cursor=pointer]:
+          - /url: https://www.fliggy.com/
+        - link "阿里云计算" [ref=e272] [cursor=pointer]:
+          - /url: https://www.aliyun.com/
+        - link "万网" [ref=e273] [cursor=pointer]:
+          - /url: https://wanwang.aliyun.com/
+        - link "高德" [ref=e274] [cursor=pointer]:
+          - /url: https://mobile.amap.com/
+        - link "UC" [ref=e275] [cursor=pointer]:
+          - /url: https://www.uc.cn/
+        - link "友盟" [ref=e276] [cursor=pointer]:
+          - /url: https://www.umeng.com/
+        - link "优酷" [ref=e277] [cursor=pointer]:
+          - /url: https://www.youku.com/
+        - link "钉钉" [ref=e278] [cursor=pointer]:
+          - /url: https://www.dingtalk.com/
+        - link "支付宝" [ref=e279] [cursor=pointer]:
+          - /url: https://www.alipay.com/
+        - link "达摩院" [ref=e280] [cursor=pointer]:
+          - /url: https://damo.alibaba.com/
+        - link "淘宝海外" [ref=e281] [cursor=pointer]:
+          - /url: https://world.taobao.com/
+        - link "阿里云盘" [ref=e282] [cursor=pointer]:
+          - /url: https://www.aliyundrive.com/
+        - link "淘宝闪购" [ref=e283] [cursor=pointer]:
+          - /url: https://www.ele.me/
+      - paragraph [ref=e284]:
+        - text: © 2009-现在 Aliyun.com 版权所有 增值电信业务经营许可证：
+        - link "浙B2-20080101" [ref=e285] [cursor=pointer]:
+          - /url: http://beian.miit.gov.cn/
+        - text: 域名注册服务机构许可：
+        - link "浙D3-20210002" [ref=e286] [cursor=pointer]:
+          - /url: "https://domain.miit.gov.cn/域名注册服务机构/互联网域名/阿里云计算有限公司 "
+      - paragraph [ref=e287]:
+        - link [ref=e288] [cursor=pointer]:
+          - /url: https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do?showType=p&serial=91330106673959654P-SAIC_SHOW_10000091330106673959654P1710919400712&signData=MEUCIQDEkCd8cK7%2Fyqe6BNMWvoMPtAnsgKa7FZetfPkjZMsvhAIgOX1G9YC6FKyndE7o7hL0KaBVn4f%20V%2Fiof3iAgpsV09o%3D
+        - link "浙公网安备 33010602009975号 浙公网安备 33010602009975号" [ref=e289] [cursor=pointer]:
+          - /url: http://www.beian.gov.cn/portal/registerSystemInfo
+          - img "浙公网安备 33010602009975号" [ref=e290]
+          - text: 浙公网安备 33010602009975号
+        - link "浙B2-20080101-4" [ref=e291] [cursor=pointer]:
+          - /url: https://beian.miit.gov.cn/
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading "大模型" [level=3]:
+              - link "大模型":
+                - /url: https://www.aliyun.com/product/tongyi
+                - text: 大模型
+                - generic: 
+            - paragraph: 一站式为企业和开发者提供大模型能力体系，大模型原生应用以及最佳解决方案，助力云上开发者轻松完成 AI 落地。
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - link "AI 体验馆 免费体验前沿 AI 应用和最新通义系列大模型，开启智能创新":
+                      - /url: https://www.aliyun.com/exp/
+                      - heading "AI 体验馆" [level=4]:
+                        - text: AI 体验馆
+                        - generic: 
+                      - paragraph: 免费体验前沿 AI 应用和最新通义系列大模型，开启智能创新
+                  - generic:
+                    - link "大模型服务平台百炼 为企业打造的大模型服务与应用开发平台":
+                      - /url: https://www.aliyun.com/product/bailian
+                      - heading "大模型服务平台百炼" [level=4]:
+                        - text: 大模型服务平台百炼
+                        - generic: 
+                      - paragraph: 为企业打造的大模型服务与应用开发平台
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading "大模型" [level=4]
+                      - generic:
+                        - generic:
+                          - link "Qwen3.7-Max HOT 智能体时代全能旗舰模型":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/qwen3.7-max?serviceSite=asia-pacific-china
+                            - heading "Qwen3.7-Max HOT" [level=5]:
+                              - text: Qwen3.7-Max
+                              - emphasis: HOT
+                            - paragraph: 智能体时代全能旗舰模型
+                          - link "Qwen3.6-Plus 原生视觉语言模型，Vibe Coding体验显著提升":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/qwen3.6-plus
+                            - heading "Qwen3.6-Plus" [level=5]
+                            - paragraph: 原生视觉语言模型，Vibe Coding体验显著提升
+                          - link "Qwen3.5-LiveTranslate 低延迟音色克隆同传模型":
+                            - /url: https://pre-bailian.console.aliyun.com/cn-beijing?tab=model#/model-market/detail/qwen3.5-livetranslate-flash-realtime?serviceSite=asia-pacific-china
+                            - heading "Qwen3.5-LiveTranslate" [level=5]
+                            - paragraph: 低延迟音色克隆同传模型
+                        - generic:
+                          - link "HappyHorse-1.0-T2V NEW 文生视频，精准理解语义，细节丰富画质流畅":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/happyhorse-1.0-t2v?serviceSite=asia-pacific-china
+                            - heading "HappyHorse-1.0-T2V NEW" [level=5]:
+                              - text: HappyHorse-1.0-T2V
+                              - emphasis: NEW
+                            - paragraph: 文生视频，精准理解语义，细节丰富画质流畅
+                          - link "HappyHorse-1.0-I2V NEW 图生视频，流畅自然，细节丰富":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/happyhorse-1.0-i2v?serviceSite=asia-pacific-china
+                            - heading "HappyHorse-1.0-I2V NEW" [level=5]:
+                              - text: HappyHorse-1.0-I2V
+                              - emphasis: NEW
+                            - paragraph: 图生视频，流畅自然，细节丰富
+                          - link "Qwen3-VL-Plus 视觉 Coding、空间感知、多模态思考等全面升级":
+                            - /url: https://bailian.console.aliyun.com/?tab=model#/efm/model_experience_center/vision?currentTab=imageComprehend&modelId=qwen3-vl-plus
+                            - heading "Qwen3-VL-Plus" [level=5]
+                            - paragraph: 视觉 Coding、空间感知、多模态思考等全面升级
+                        - generic:
+                          - link "Wan2.7-Image 全新图像生成与编辑模型":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/wan2.7-image
+                            - heading "Wan2.7-Image" [level=5]
+                            - paragraph: 全新图像生成与编辑模型
+                          - link "Wan2.7-Video 全新视频生成模型，超强编辑能力":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/wan2.7-videoedit
+                            - heading "Wan2.7-Video" [level=5]
+                            - paragraph: 全新视频生成模型，超强编辑能力
+                          - link "Fun-ASR 支持中英文自由切换，具备更强的噪声鲁棒性":
+                            - /url: https://bailian.console.aliyun.com/?tab=model#/efm/model_experience_center/voice?currentTab=voiceAsr&modelId=fun-asr-realtime
+                            - heading "Fun-ASR" [level=5]
+                            - paragraph: 支持中英文自由切换，具备更强的噪声鲁棒性
+                        - generic:
+                          - link "Deepseek-v4-pro 旗舰 MoE 大模型，百万上下文与顶尖推理能力":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/deepseek-v4-pro?serviceSite=asia-pacific-china
+                            - heading "Deepseek-v4-pro" [level=5]
+                            - paragraph: 旗舰 MoE 大模型，百万上下文与顶尖推理能力
+                          - link "Kimi-k2.6 全能进阶，多项权威基准测试行业领先":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/kimi%2Fkimi-k2.6?serviceSite=asia-pacific-china
+                            - heading "Kimi-k2.6" [level=5]
+                            - paragraph: 全能进阶，多项权威基准测试行业领先
+                          - link "MiniMax-M2.7 自主构建复杂 Agent 架构，驾驭高难度生产力任务":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=model#/model-market/detail/MiniMax%2FMiniMax-M2.7?serviceSite=asia-pacific-china
+                            - heading "MiniMax-M2.7" [level=5]
+                            - paragraph: 自主构建复杂 Agent 架构，驾驭高难度生产力任务
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading "大模型服务" [level=4]:
+                        - link "大模型服务":
+                          - /url: https://bailian.console.aliyun.com/?tab=model#/model-market
+                          - text: 大模型服务
+                          - generic: 
+                      - generic:
+                        - generic:
+                          - link "大模型服务平台百炼-Token Plan 面向企业和开发者打造的多模态 AI 订阅服务":
+                            - /url: https://bailian.console.aliyun.com/cn-beijing/?tab=plan#/efm/subscription/overview
+                            - heading "大模型服务平台百炼-Token Plan" [level=5]
+                            - paragraph: 面向企业和开发者打造的多模态 AI 订阅服务
+                          - link "大模型服务平台百炼-应用模版 丰富多元化的应用模版和解决方案":
+                            - /url: https://bailian.console.aliyun.com/?tab=app#/app-market/newTemplate
+                            - heading "大模型服务平台百炼-应用模版" [level=5]
+                            - paragraph: 丰富多元化的应用模版和解决方案
+                          - link "大模型服务平台百炼-微调与部署 一站式大模型服务平台，支持界面化微调与部署":
+                            - /url: https://bailian.console.aliyun.com/?tab=model#/efm/model_manager
+                            - heading "大模型服务平台百炼-微调与部署" [level=5]
+                            - paragraph: 一站式大模型服务平台，支持界面化微调与部署
+                    - generic:
+                      - heading "AI 应用构建" [level=4]:
+                        - link "AI 应用构建":
+                          - /url: https://bailian.console.aliyun.com/?tab=app#/app-center
+                          - text: AI 应用构建
+                          - generic: 
+                      - generic:
+                        - generic:
+                          - link "大模型服务平台百炼 - 模型体验 在线体验全尺寸、多种模态的模型效果":
+                            - /url: https://bailian.console.aliyun.com/?tab=demohouse#/experience/llm
+                            - heading "大模型服务平台百炼 - 模型体验" [level=5]
+                            - paragraph: 在线体验全尺寸、多种模态的模型效果
+                          - link "大模型服务平台百炼-智能体 灵活可视化地构建企业级 Agent":
+                            - /url: https://bailian.console.aliyun.com/?tab=app#/app-center
+                            - heading "大模型服务平台百炼-智能体" [level=5]
+                            - paragraph: 灵活可视化地构建企业级 Agent
+                          - link "人工智能平台 PAI AI Native 的算法工程平台，一站式完成建模、训练、推理服务部署":
+                            - /url: https://www.aliyun.com/product/bigdata/learn
+                            - heading "人工智能平台 PAI" [level=5]
+                            - paragraph: AI Native 的算法工程平台，一站式完成建模、训练、推理服务部署
+                    - generic:
+                      - heading "大模型原生应用" [level=4]
+                      - generic:
+                        - generic:
+                          - link "Qoder HOT 面向真实软件的智能体编程平台":
+                            - /url: https://www.aliyun.com/product/qoder
+                            - heading "Qoder HOT" [level=5]:
+                              - text: Qoder
+                              - emphasis: HOT
+                            - paragraph: 面向真实软件的智能体编程平台
+                          - link "通义听悟 智能会议助手，实时转写会议记录，支持搜索定位":
+                            - /url: https://tongyi.aliyun.com/tingwu
+                            - heading "通义听悟" [level=5]
+                            - paragraph: 智能会议助手，实时转写会议记录，支持搜索定位
+                          - link "通义晓蜜 智能客服平台，对话机器人、对话分析、智能外呼":
+                            - /url: https://tongyi.aliyun.com/xiaomi
+                            - heading "通义晓蜜" [level=5]
+                            - paragraph: 智能客服平台，对话机器人、对话分析、智能外呼
+                        - generic:
+                          - link "通义灵码 智能编码助手，支持企业专属部署":
+                            - /url: https://www.aliyun.com/product/lingma
+                            - heading "通义灵码" [level=5]
+                            - paragraph: 智能编码助手，支持企业专属部署
+                          - link "大模型服务平台百炼 - 全妙 多模态内容创作工具，已接入 DeepSeek":
+                            - /url: https://bailian.aliyun.com/quanmiao?from=bailian#/home
+                            - heading "大模型服务平台百炼 - 全妙" [level=5]
+                            - paragraph: 多模态内容创作工具，已接入 DeepSeek
+                          - link "大模型服务平台百炼 - 法睿 法律智能助手，支持合同审查、法律咨询与检索、智能阅卷等":
+                            - /url: https://tongyi.aliyun.com/farui/home
+                            - heading "大模型服务平台百炼 - 法睿" [level=5]
+                            - paragraph: 法律智能助手，支持合同审查、法律咨询与检索、智能阅卷等
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading "大模型解决方案" [level=4]
+                      - generic:
+                        - generic:
+                          - link "快速部署 Dify，高效搭建 AI 应用 依托云原生高可用架构,实现Dify私有化部署":
+                            - /url: https://www.aliyun.com/solution/tech-solution/rapidly-deploy-dify-to-accelerate-ai-application-development
+                            - heading "快速部署 Dify，高效搭建 AI 应用" [level=5]
+                            - paragraph: 依托云原生高可用架构,实现Dify私有化部署
+                          - link "10 分钟在聊天系统中增加一个 AI 助手 在企业官网、通讯软件中为客户提供 AI 客服":
+                            - /url: https://www.aliyun.com/solution/tech-solution/build-a-chatbot-for-your-website-or-chat-system
+                            - heading "10 分钟在聊天系统中增加一个 AI 助手" [level=5]
+                            - paragraph: 在企业官网、通讯软件中为客户提供 AI 客服
+                        - generic:
+                          - link "10分钟微调：让0.6B模型媲美235B模型 用1%尺寸在特定领域达到大模型90%以上效果":
+                            - /url: https://www.aliyun.com/solution/tech-solution/qwen3-distill
+                            - heading "10分钟微调：让0.6B模型媲美235B模型" [level=5]
+                            - paragraph: 用1%尺寸在特定领域达到大模型90%以上效果
+                          - link "即刻拥有 DeepSeek-R1 满血版 多种方案随心选，轻松解锁专属 DeepSeek":
+                            - /url: https://www.aliyun.com/solution/tech-solution/deepseek-r1-for-platforms
+                            - heading "即刻拥有 DeepSeek-R1 满血版" [level=5]
+                            - paragraph: 多种方案随心选，轻松解锁专属 DeepSeek
+                        - generic:
+                          - link "多模态数据信息提取 从文本、图片、视频中提取结构化的属性信息":
+                            - /url: https://www.aliyun.com/solution/tech-solution/information-extraction
+                            - heading "多模态数据信息提取" [level=5]
+                            - paragraph: 从文本、图片、视频中提取结构化的属性信息
+                          - link "超强辅助，Bolt.diy 一步搞定创意建站 通过自然语言交互简化开发流程,全栈开发支持":
+                            - /url: https://www.aliyun.com/solution/tech-solution/bolt-diy
+                            - heading "超强辅助，Bolt.diy 一步搞定创意建站" [level=5]
+                            - paragraph: 通过自然语言交互简化开发流程,全栈开发支持
+                        - generic:
+                          - link "与 AI 智能体进行实时音视频通话 构建支持视频理解的 AI 音视频实时通话应用":
+                            - /url: https://www.aliyun.com/solution/tech-solution/real-time-interaction
+                            - heading "与 AI 智能体进行实时音视频通话" [level=5]
+                            - paragraph: 构建支持视频理解的 AI 音视频实时通话应用
+                          - link "构建大模型应用的安全防护体系 通过阿里云安全产品对 AI 应用进行安全防护":
+                            - /url: https://www.aliyun.com/solution/tech-solution/build-large-model-application-security-system
+                            - heading "构建大模型应用的安全防护体系" [level=5]
+                            - paragraph: 通过阿里云安全产品对 AI 应用进行安全防护
+        - generic:
+          - generic:
+            - heading "产品" [level=3]:
+              - link "产品":
+                - /url: https://www.aliyun.com/product/list
+                - text: 产品
+                - generic: 
+            - generic:
+              - textbox "搜索云产品"
+              - generic: 
+            - generic:
+              - generic:
+                - button "精选产品"
+                - link "人工智能与机器学习":
+                  - /url: https://ai.aliyun.com/
+                  - text: 人工智能与机器学习
+                  - generic: 
+                - link "计算":
+                  - /url: https://www.aliyun.com/product/list/ecs
+                  - text: 计算
+                  - generic: 
+                - link "容器":
+                  - /url: https://www.aliyun.com/product/aliware/containerservice
+                  - text: 容器
+                  - generic: 
+                - link "存储":
+                  - /url: https://www.aliyun.com/storage/storage?spm=5176.19720258.J_2686872250.30.3f0e4ff6AwBQKs
+                  - text: 存储
+                  - generic: 
+                - link "网络与CDN":
+                  - /url: https://www.aliyun.com/product/network/network
+                  - text: 网络与CDN
+                  - generic: 
+                - link "安全":
+                  - /url: "https://www.aliyun.com/product/list/security "
+                  - text: 安全
+                  - generic: 
+                - link "中间件":
+                  - /url: https://www.aliyun.com/product/list/aliware
+                  - text: 中间件
+                  - generic: 
+                - link "数据库":
+                  - /url: https://www.aliyun.com/product/outline/index?spm=5176.19720258.J_2686872250.45.3f0e4ff6AwBQKs
+                  - text: 数据库
+                  - generic: 
+                - link "大数据计算":
+                  - /url: https://www.aliyun.com/product/bigdata/apsarabigdata
+                  - text: 大数据计算
+                  - generic: 
+                - button "媒体服务"
+                - link "企业服务与云通信":
+                  - /url: https://www.aliyun.com/product/list/ent-cmc
+                  - text: 企业服务与云通信
+                  - generic: 
+                - button "域名与网站"
+                - button "终端用户计算"
+                - button "Serverless"
+                - link "开发工具":
+                  - /url: https://www.aliyun.com/product/list/developertools
+                  - text: 开发工具
+                  - generic: 
+                - link "迁移与运维管理":
+                  - /url: https://www.aliyun.com/product/list/operation-mainenance
+                  - text: 迁移与运维管理
+                  - generic: 
+                - link "专有云":
+                  - /url: https://apsara-stack.aliyun.com
+                  - text: 专有云
+                  - generic: 
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "精选产品" [level=4]
+                  - generic:
+                    - generic:
+                      - link "大模型服务平台百炼 大模型 大模型服务与应用平台":
+                        - /url: https://www.aliyun.com/product/bailian
+                        - heading "大模型服务平台百炼 大模型" [level=5]:
+                          - text: 大模型服务平台百炼
+                          - emphasis: 大模型
+                        - paragraph: 大模型服务与应用平台
+                      - link "云服务器 ECS 安全可靠、弹性可伸缩的云计算服务":
+                        - /url: https://www.aliyun.com/product/ecs
+                        - heading "云服务器 ECS" [level=5]
+                        - paragraph: 安全可靠、弹性可伸缩的云计算服务
+                      - link "云数据库 RDS 全托管，含MySQL、PostgreSQL、SQL Server、MariaDB多引擎":
+                        - /url: https://www.aliyun.com/product/rds
+                        - heading "云数据库 RDS" [level=5]
+                        - paragraph: 全托管，含MySQL、PostgreSQL、SQL Server、MariaDB多引擎
+                      - link "人工智能平台 PAI 大模型 一站式AI开发、训练和推理服务":
+                        - /url: https://www.aliyun.com/product/bigdata/learn
+                        - heading "人工智能平台 PAI 大模型" [level=5]:
+                          - text: 人工智能平台 PAI
+                          - emphasis: 大模型
+                        - paragraph: 一站式AI开发、训练和推理服务
+                      - link "函数计算 FC 事件驱动的Serverless计算服务":
+                        - /url: https://www.aliyun.com/product/fc
+                        - heading "函数计算 FC" [level=5]
+                        - paragraph: 事件驱动的Serverless计算服务
+                      - link "云原生大数据计算服务 MaxCompute 面向分析的企业级SaaS模式云数据仓库":
+                        - /url: https://www.aliyun.com/product/maxcompute
+                        - heading "云原生大数据计算服务 MaxCompute" [level=5]
+                        - paragraph: 面向分析的企业级SaaS模式云数据仓库
+                      - link "容器服务 Kubernetes 版 ACK 提供一站式管理容器应用的 K8s 服务":
+                        - /url: https://www.aliyun.com/product/kubernetes
+                        - heading "容器服务 Kubernetes 版 ACK" [level=5]
+                        - paragraph: 提供一站式管理容器应用的 K8s 服务
+                    - generic:
+                      - link "域名与网站 提供智能易用的域名与建站服务":
+                        - /url: https://wanwang.aliyun.com/
+                        - heading "域名与网站" [level=5]
+                        - paragraph: 提供智能易用的域名与建站服务
+                      - link "千问大模型 大模型 多元化、高性能、安全可靠的大模型服务":
+                        - /url: https://www.aliyun.com/product/tongyi
+                        - heading "千问大模型 大模型" [level=5]:
+                          - text: 千问大模型
+                          - emphasis: 大模型
+                        - paragraph: 多元化、高性能、安全可靠的大模型服务
+                      - link "数字证书管理服务（原SSL证书） 实现全站 HTTPS，呈现可信的 Web 访问":
+                        - /url: https://www.aliyun.com/product/cas
+                        - heading "数字证书管理服务（原SSL证书）" [level=5]
+                        - paragraph: 实现全站 HTTPS，呈现可信的 Web 访问
+                      - link "Qoder 面向真实软件的智能体编程平台":
+                        - /url: https://www.aliyun.com/product/qoder
+                        - heading "Qoder" [level=5]
+                        - paragraph: 面向真实软件的智能体编程平台
+                      - link "云解析 DNS 覆盖公网/内网、递归/权威、移动APP等全场景解析服务":
+                        - /url: https://www.aliyun.com/product/dns
+                        - heading "云解析 DNS" [level=5]
+                        - paragraph: 覆盖公网/内网、递归/权威、移动APP等全场景解析服务
+                      - link "大数据开发治理平台 DataWorks Data Agent 驱动的一站式 Data+AI 开发治理平台":
+                        - /url: https://www.aliyun.com/product/dide
+                        - heading "大数据开发治理平台 DataWorks" [level=5]
+                        - paragraph: Data Agent 驱动的一站式 Data+AI 开发治理平台
+                    - generic:
+                      - link "轻量应用服务器 快速构建应用程序和网站，即刻迈出上云第一步":
+                        - /url: https://www.aliyun.com/product/swas
+                        - heading "轻量应用服务器" [level=5]
+                        - paragraph: 快速构建应用程序和网站，即刻迈出上云第一步
+                      - link "对象存储 OSS 稳定、安全、高性价比、高性能的云存储服务":
+                        - /url: https://www.aliyun.com/product/oss
+                        - heading "对象存储 OSS" [level=5]
+                        - paragraph: 稳定、安全、高性价比、高性能的云存储服务
+                      - link "无影云电脑 随时随地安全接入的云上超级电脑":
+                        - /url: https://www.aliyun.com/product/ecs/gws
+                        - heading "无影云电脑" [level=5]
+                        - paragraph: 随时随地安全接入的云上超级电脑
+                      - link "短信服务 国内短信简单易用，安全可靠，秒级触达，全球覆盖200+国家和地区。":
+                        - /url: https://www.aliyun.com/product/sms
+                        - heading "短信服务" [level=5]
+                        - paragraph: 国内短信简单易用，安全可靠，秒级触达，全球覆盖200+国家和地区。
+                      - link "云数据传输 网络带宽统一计费平台":
+                        - /url: https://www.aliyun.com/product/network/cdt
+                        - heading "云数据传输" [level=5]
+                        - paragraph: 网络带宽统一计费平台
+                      - link "云原生数据库 PolarDB 100%兼容MySQL、PostgreSQL，兼容Oracle，支持集中和分布式":
+                        - /url: https://www.aliyun.com/product/polardb
+                        - heading "云原生数据库 PolarDB" [level=5]
+                        - paragraph: 100%兼容MySQL、PostgreSQL，兼容Oracle，支持集中和分布式
+              - generic:
+                - generic:
+                  - heading "产品动态 " [level=4]:
+                    - link "产品动态 ":
+                      - /url: https://www.aliyun.com/product/news/
+                      - text: 产品动态
+                      - generic: 
+                  - link "云防火墙发布 Agent 防火墙功能 云防火墙发布 Agent 防火墙功能":
+                    - /url: https://www.aliyun.com/product/news/29086
+                    - img "云防火墙发布 Agent 防火墙功能"
+                    - text: 云防火墙发布 Agent 防火墙功能
+                  - link "MaxCompute 管理的 Iceberg LakeTable MaxCompute 管理的 Iceberg LakeTable":
+                    - /url: https://www.aliyun.com/product/news/29071
+                    - img "MaxCompute 管理的 Iceberg LakeTable"
+                    - text: MaxCompute 管理的 Iceberg LakeTable
+                  - link "RDS for PostgreSQL 支持 Ontology 一站式能力 RDS for PostgreSQL 支持 Ontology 一站式能力":
+                    - /url: https://www.aliyun.com/product/news/29069
+                    - img "RDS for PostgreSQL 支持 Ontology 一站式能力"
+                    - text: RDS for PostgreSQL 支持 Ontology 一站式能力
+                  - link "“智能编码助手通义灵码”产品名称变更为“Qoder CN” “智能编码助手通义灵码”产品名称变更为“Qoder CN”":
+                    - /url: https://www.aliyun.com/product/news/28971
+                    - img "“智能编码助手通义灵码”产品名称变更为“Qoder CN”"
+                    - text: “智能编码助手通义灵码”产品名称变更为“Qoder CN”
+                  - link "实时数仓 Hologres 发布 AI 助手 实时数仓 Hologres 发布 AI 助手":
+                    - /url: https://www.aliyun.com/product/news/29039
+                    - img "实时数仓 Hologres 发布 AI 助手"
+                    - text: 实时数仓 Hologres 发布 AI 助手
+                  - link "访问控制智能体身份 AgentIdentity 用户池发布 访问控制智能体身份 AgentIdentity 用户池发布":
+                    - /url: https://www.aliyun.com/product/news/28946
+                    - img "访问控制智能体身份 AgentIdentity 用户池发布"
+                    - text: 访问控制智能体身份 AgentIdentity 用户池发布
+                  - link "HappyHorse-1.0 上架百炼模型广场 HappyHorse-1.0 上架百炼模型广场":
+                    - /url: https://www.aliyun.com/product/news/28924
+                    - img "HappyHorse-1.0 上架百炼模型广场"
+                    - text: HappyHorse-1.0 上架百炼模型广场
+        - generic:
+          - generic:
+            - heading "解决方案" [level=3]:
+              - link "解决方案":
+                - /url: https://www.aliyun.com/solution/tech-solution/
+                - text: 解决方案
+                - generic: 
+            - generic:
+              - textbox "搜索解决方案"
+              - generic: 
+            - generic:
+              - generic:
+                - button "精选解决方案"
+                - link "AI":
+                  - /url: https://www.aliyun.com/solution/tech-solution/ai
+                  - text: AI
+                  - generic: 
+                - button "互联网应用开发"
+                - button "大数据"
+                - button "现代化应用"
+                - button "安全"
+                - button "网络"
+                - button "可观测"
+                - button "上云与迁云"
+                - link "企业出海":
+                  - /url: https://www.aliyun.com/goglobal
+                  - text: 企业出海
+                  - generic: 
+                - button "政企业务"
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "精选解决方案" [level=4]
+                  - generic:
+                    - generic:
+                      - link "HappyHorse 打造一站式影视创作平台 NEW 可视化编排打通从文字构思到成片全链路闭环":
+                        - /url: https://www.aliyun.com/solution/tech-solution/infinite-canvas
+                        - heading "HappyHorse 打造一站式影视创作平台 NEW" [level=5]:
+                          - generic "HappyHorse 打造一站式影视创作平台"
+                          - emphasis: NEW
+                        - paragraph: 可视化编排打通从文字构思到成片全链路闭环
+                      - link "JVS Claw 免费获取，开启私享 AI 助理 免除繁琐配置，快速拥有专属 JVS Claw":
+                        - /url: https://www.aliyun.com/solution/tech-solution/jvsclaw
+                        - heading "JVS Claw 免费获取，开启私享 AI 助理" [level=5]:
+                          - generic "JVS Claw 免费获取，开启私享 AI 助理"
+                        - paragraph: 免除繁琐配置，快速拥有专属 JVS Claw
+                      - link "自然语言编程：人人都能做 Web 开发 自然语言驱动的沉浸式在线编程应用":
+                        - /url: https://www.aliyun.com/solution/tech-solution/web-vibe-coding
+                        - heading "自然语言编程：人人都能做 Web 开发" [level=5]:
+                          - generic "自然语言编程：人人都能做 Web 开发"
+                        - paragraph: 自然语言驱动的沉浸式在线编程应用
+                      - link "10 分钟在聊天系统中增加一个 AI 助手 在企业官网、通讯软件中为客户提供 AI 客服":
+                        - /url: https://www.aliyun.com/solution/tech-solution/build-a-chatbot-for-your-website-or-chat-system
+                        - heading "10 分钟在聊天系统中增加一个 AI 助手" [level=5]:
+                          - generic "10 分钟在聊天系统中增加一个 AI 助手"
+                        - paragraph: 在企业官网、通讯软件中为客户提供 AI 客服
+                    - generic:
+                      - link "Hermes Agent，打造自进化智能体 NEW 自主进化，持久记忆，越用越聪明":
+                        - /url: https://www.aliyun.com/solution/tech-solution/hermes-agent
+                        - heading "Hermes Agent，打造自进化智能体 NEW" [level=5]:
+                          - generic "Hermes Agent，打造自进化智能体"
+                          - emphasis: NEW
+                        - paragraph: 自主进化，持久记忆，越用越聪明
+                      - link "5 分钟轻松部署专属 QwenPaw HOT 从聊天伙伴进化为能主动干活的本地数字员工":
+                        - /url: https://www.aliyun.com/solution/tech-solution/copaw
+                        - heading "5 分钟轻松部署专属 QwenPaw HOT" [level=5]:
+                          - generic "5 分钟轻松部署专属 QwenPaw"
+                          - emphasis: HOT
+                        - paragraph: 从聊天伙伴进化为能主动干活的本地数字员工
+                      - link "深度研究：生成你的独家洞察报告 智能生成洞察、分析等深度研究与决策报告":
+                        - /url: https://www.aliyun.com/solution/tech-solution/deep-research
+                        - heading "深度研究：生成你的独家洞察报告" [level=5]:
+                          - generic "深度研究：生成你的独家洞察报告"
+                        - paragraph: 智能生成洞察、分析等深度研究与决策报告
+                      - link "高效搭建 AI 智能体与工作流应用 通过阿里云百炼高效搭建AI应用,助力高效开发":
+                        - /url: https://www.aliyun.com/solution/tech-solution/build-ai-applications-based-on-alibaba-cloud-model-studio
+                        - heading "高效搭建 AI 智能体与工作流应用" [level=5]:
+                          - generic "高效搭建 AI 智能体与工作流应用"
+                        - paragraph: 通过阿里云百炼高效搭建AI应用,助力高效开发
+                    - generic:
+                      - link "基于 Spark 和 PyTorch 的模型训练方案 Serverless 分布式 AI 训练平台,突破算力运维与成本瓶颈":
+                        - /url: https://www.aliyun.com/solution/tech-solution/spark-ai-train
+                        - heading "基于 Spark 和 PyTorch 的模型训练方案" [level=5]:
+                          - generic "基于 Spark 和 PyTorch 的模型训练方案"
+                        - paragraph: Serverless 分布式 AI 训练平台,突破算力运维与成本瓶颈
+                      - link "极速搭建专属 SBTI 测评网站 快来测试全新SBTI人格画像":
+                        - /url: https://www.aliyun.com/solution/tech-solution/sbti
+                        - heading "极速搭建专属 SBTI 测评网站" [level=5]:
+                          - generic "极速搭建专属 SBTI 测评网站"
+                        - paragraph: 快来测试全新SBTI人格画像
+                      - link "快速拥有专属 OpenClaw HOT 让AI从“聊天伙伴”进化为能干活的“数字员工”":
+                        - /url: https://www.aliyun.com/solution/tech-solution/clawdbot
+                        - heading "快速拥有专属 OpenClaw HOT" [level=5]:
+                          - generic "快速拥有专属 OpenClaw"
+                          - emphasis: HOT
+                        - paragraph: 让AI从“聊天伙伴”进化为能干活的“数字员工”
+                      - link "低代码高效构建企业门户网站 以可视化方式快速构建移动和 PC 门户网站":
+                        - /url: https://www.aliyun.com/solution/tech-solution/build-a-website
+                        - heading "低代码高效构建企业门户网站" [level=5]:
+                          - generic "低代码高效构建企业门户网站"
+                        - paragraph: 以可视化方式快速构建移动和 PC 门户网站
+                    - generic:
+                      - link "Claude Code + GStack 打造工程团队 安装技能 GStack，拥有专属 AI 工程团队":
+                        - /url: https://www.aliyun.com/solution/tech-solution/gstack
+                        - heading "Claude Code + GStack 打造工程团队" [level=5]:
+                          - generic "Claude Code + GStack 打造工程团队"
+                        - paragraph: 安装技能 GStack，拥有专属 AI 工程团队
+                      - link "效率翻倍，一句话生成专业 PPT 输入一句话想法, 轻松生成专业的 PPT":
+                        - /url: https://www.aliyun.com/solution/tech-solution/vibe-ppt
+                        - heading "效率翻倍，一句话生成专业 PPT" [level=5]:
+                          - generic "效率翻倍，一句话生成专业 PPT"
+                        - paragraph: 输入一句话想法, 轻松生成专业的 PPT
+                      - link "漫剧工坊：一站式动画创作平台 快速生产连贯的高质量长漫剧":
+                        - /url: https://www.aliyun.com/solution/tech-solution/use-bailian-to-intelligently-create-comics
+                        - heading "漫剧工坊：一站式动画创作平台" [level=5]:
+                          - generic "漫剧工坊：一站式动画创作平台"
+                        - paragraph: 快速生产连贯的高质量长漫剧
+                      - link "10 分钟搭建微信、支付宝小程序 高效部署网站，快速应用到小程序":
+                        - /url: https://www.aliyun.com/solution/tech-solution/develop-your-wechat-mini-program-in-10-minutes
+                        - heading "10 分钟搭建微信、支付宝小程序" [level=5]:
+                          - generic "10 分钟搭建微信、支付宝小程序"
+                        - paragraph: 高效部署网站，快速应用到小程序
+        - generic [ref=e292]:
+          - generic [ref=e293]:
+            - heading "权益" [level=3] [ref=e294]:
+              - link "权益" [ref=e295] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit
+                - text: 权益
+                - generic [ref=e296]: 
+            - paragraph [ref=e297]: 上云优选，普惠好价，为开发者和企业提供多款超值优选上云必备产品；超 140 款免费试用产品；初创企业最高可得 100 万抵扣金。
+          - generic [ref=e301]:
+            - generic [ref=e303]:
+              - heading "普惠上云" [level=4] [ref=e304]
+              - link "普惠上云 官方力荐 云服务器38元/年起，超值低价云产品抢先购" [ref=e305] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/select/cloud-discount
+                - heading "普惠上云 官方力荐" [level=5] [ref=e306]
+                - paragraph [ref=e307]: 云服务器38元/年起，超值低价云产品抢先购
+              - link "一键部署 OpenClaw 三步轻松构建 AI 助理，低至9.9元起" [ref=e308] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/scene/moltbot
+                - heading "一键部署 OpenClaw" [level=5] [ref=e309]
+                - paragraph [ref=e310]: 三步轻松构建 AI 助理，低至9.9元起
+              - link "官方推荐返现计划 推荐新用户得奖励，单订单最高返9万" [ref=e311] [cursor=pointer]:
+                - /url: https://dashi.aliyun.com/
+                - heading "官方推荐返现计划" [level=5] [ref=e312]
+                - paragraph [ref=e313]: 推荐新用户得奖励，单订单最高返9万
+            - generic [ref=e315]:
+              - heading "免费试用" [level=4] [ref=e316]
+              - link "解决方案免费试用 新老同享 最高领取价值200元试用点，立即开启云上创新" [ref=e317] [cursor=pointer]:
+                - /url: https://www.aliyun.com/solution/free
+                - heading "解决方案免费试用 新老同享" [level=5] [ref=e318]
+                - paragraph [ref=e319]: 最高领取价值200元试用点，立即开启云上创新
+              - link "AI 产品 免费试用 7000+万大模型 tokens 和30+款产品免费体验" [ref=e320] [cursor=pointer]:
+                - /url: https://free.aliyun.com/product/ai
+                - heading "AI 产品 免费试用" [level=5] [ref=e321]
+                - paragraph [ref=e322]: 7000+万大模型 tokens 和30+款产品免费体验
+              - link "140+云产品 免费试用 产品新客免费试用，最长12个月" [ref=e323] [cursor=pointer]:
+                - /url: https://free.aliyun.com/
+                - heading "140+云产品 免费试用" [level=5] [ref=e324]
+                - paragraph [ref=e325]: 产品新客免费试用，最长12个月
+            - generic [ref=e327]:
+              - heading "AI 特惠" [level=4] [ref=e328]
+              - link "智启 AI 普惠权益 至高享 7000 万免费 tokens，加速 Al 应用落地" [ref=e329] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/ai/discount
+                - heading "智启 AI 普惠权益" [level=5] [ref=e330]
+                - paragraph [ref=e331]: 至高享 7000 万免费 tokens，加速 Al 应用落地
+              - link "阿里云 OPC 创新助力计划 HOT 至高百万元 Token 补贴，加速一人公司成长" [ref=e332] [cursor=pointer]:
+                - /url: https://opc.aliyun.com/
+                - heading "阿里云 OPC 创新助力计划 HOT" [level=5] [ref=e333]:
+                  - text: 阿里云 OPC 创新助力计划
+                  - emphasis [ref=e334]: HOT
+                - paragraph [ref=e335]: 至高百万元 Token 补贴，加速一人公司成长
+              - link "阿里云百炼 Token Plan HOT 多模型灵活切换，兼容主流 AI 工具，多档套餐选择" [ref=e336] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/scene/tokenplan
+                - heading "阿里云百炼 Token Plan HOT" [level=5] [ref=e337]:
+                  - text: 阿里云百炼 Token Plan
+                  - emphasis [ref=e338]: HOT
+                - paragraph [ref=e339]: 多模型灵活切换，兼容主流 AI 工具，多档套餐选择
+              - link "Qwen3.7-Max 发布，限时5折 NEW 智能体新前沿，让复杂任务更轻松" [ref=e340] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/scene/qwen3
+                - heading "Qwen3.7-Max 发布，限时5折 NEW" [level=5] [ref=e341]:
+                  - text: Qwen3.7-Max 发布，限时5折
+                  - emphasis [ref=e342]: NEW
+                - paragraph [ref=e343]: 智能体新前沿，让复杂任务更轻松
+              - link "HappyHorse 系列模型限时 8 折 NEW 新一代 AI 视频生成模型" [ref=e344] [cursor=pointer]:
+                - /url: "https://www.aliyun.com/benefit/scene/happyhorse "
+                - heading "HappyHorse 系列模型限时 8 折 NEW" [level=5] [ref=e345]:
+                  - text: HappyHorse 系列模型限时 8 折
+                  - emphasis [ref=e346]: NEW
+                - paragraph [ref=e347]: 新一代 AI 视频生成模型
+            - generic [ref=e349]:
+              - heading "企业成长" [level=4] [ref=e350]
+              - link "企业上云第一站 数字化转型从这里起步" [ref=e351] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/enterprise/start
+                - heading "企业上云第一站" [level=5] [ref=e352]
+                - paragraph [ref=e353]: 数字化转型从这里起步
+              - link "大模型ACA认证体验 助力企业全员 AI 认知与能力提升" [ref=e354] [cursor=pointer]:
+                - /url: https://edu.aliyun.com/learning/topic/llm-free-trial
+                - heading "大模型ACA认证体验" [level=5] [ref=e355]
+                - paragraph [ref=e356]: 助力企业全员 AI 认知与能力提升
+            - generic [ref=e358]:
+              - heading "AI 场景体验" [level=4] [ref=e359]
+              - link "AI 电商营销 从图文生成到视频创作，一键激活电商全链路生产力" [ref=e360] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/aiuse/e-commerce
+                - heading "AI 电商营销" [level=5] [ref=e361]
+                - paragraph [ref=e362]: 从图文生成到视频创作，一键激活电商全链路生产力
+              - link "AI 广告创作 图文、视频一站生成，高效打造优质广告素材" [ref=e363] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/aiuse/ad
+                - heading "AI 广告创作" [level=5] [ref=e364]
+                - paragraph [ref=e365]: 图文、视频一站生成，高效打造优质广告素材
+              - link "AI 短剧/漫剧 AI助力短剧漫剧创作，剧本、分镜、视频高效生成" [ref=e366] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/scene/playlet
+                - heading "AI 短剧/漫剧" [level=5] [ref=e367]
+                - paragraph [ref=e368]: AI助力短剧漫剧创作，剧本、分镜、视频高效生成
+              - link "AI Coding HOT 智能编程，一键开启高性价比 AI 编程新体验" [ref=e369] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/scene/coding
+                - heading "AI Coding HOT" [level=5] [ref=e370]:
+                  - text: AI Coding
+                  - emphasis [ref=e371]: HOT
+                - paragraph [ref=e372]: 智能编程，一键开启高性价比 AI 编程新体验
+              - link "AI 办公 AI智能应用，一键激活高效办公新体验" [ref=e373] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/aiuse/office
+                - heading "AI 办公" [level=5] [ref=e374]
+                - paragraph [ref=e375]: AI智能应用，一键激活高效办公新体验
+              - link "智能客服 自动承接线索、识别商机，让客服更高效、服务更出色。" [ref=e376] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/scene/callcenter
+                - heading "智能客服" [level=5] [ref=e377]
+                - paragraph [ref=e378]: 自动承接线索、识别商机，让客服更高效、服务更出色。
+            - generic [ref=e380]:
+              - heading "AI 活动" [level=4] [ref=e381]
+              - link "AI 生产力先锋 先锋实践拓展 AI 生产力的边界" [ref=e382] [cursor=pointer]:
+                - /url: https://www.aliyun.com/activity/ai-seminar/home
+                - heading "AI 生产力先锋" [level=5] [ref=e383]
+                - paragraph [ref=e384]: 先锋实践拓展 AI 生产力的边界
+              - link "飞天发布时刻 所见，即是所愿" [ref=e385] [cursor=pointer]:
+                - /url: https://summit.aliyun.com/apsaramoment
+                - heading "飞天发布时刻" [level=5] [ref=e386]
+                - paragraph [ref=e387]: 所见，即是所愿
+              - link "AI 实训营 从基础到进阶，Agent 创客手把手教你" [ref=e388] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/aihands-on/mainpage
+                - heading "AI 实训营" [level=5] [ref=e389]
+                - paragraph [ref=e390]: 从基础到进阶，Agent 创客手把手教你
+            - generic [ref=e392]:
+              - heading "创新加速" [level=4] [ref=e393]
+              - link "上云场景组合购 覆盖90%+业务场景，专享组合折扣价" [ref=e394] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/client/package
+                - heading "上云场景组合购" [level=5] [ref=e395]
+                - paragraph [ref=e396]: 覆盖90%+业务场景，专享组合折扣价
+              - link "老友焕新 权益中心 100+款云产品超值低价" [ref=e397] [cursor=pointer]:
+                - /url: https://www.aliyun.com/benefit/client/index
+                - heading "老友焕新 权益中心" [level=5] [ref=e398]
+                - paragraph [ref=e399]: 100+款云产品超值低价
+        - generic:
+          - generic:
+            - heading "定价" [level=3]:
+              - link "定价":
+                - /url: https://www.aliyun.com/price
+                - text: 定价
+                - generic: 
+            - paragraph: 提供灵活的计费方式和清晰的计费规则，满足不同的业务场景需求；支持自助估算价格、高效采购；专业的成本管理工具，持续优化云上成本。
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - link "产品定价 了解云产品的定价详情":
+                      - /url: https://www.aliyun.com/price/detail
+                      - heading "产品定价" [level=4]:
+                        - text: 产品定价
+                        - generic: 
+                      - paragraph: 了解云产品的定价详情
+                    - link "云上成本管理 管理和优化成本":
+                      - /url: https://www.aliyun.com/price/cost-management
+                      - heading "云上成本管理" [level=4]:
+                        - text: 云上成本管理
+                        - generic: 
+                      - paragraph: 管理和优化成本
+                  - generic:
+                    - link "价格计算器 自助选配和估算价格":
+                      - /url: https://www.aliyun.com/price/product
+                      - heading "价格计算器" [level=4]:
+                        - text: 价格计算器
+                        - generic: 
+                      - paragraph: 自助选配和估算价格
+                    - link "价格优势 推动算力普惠，释放技术红利":
+                      - /url: https://www.aliyun.com/price/advantage
+                      - heading "价格优势" [level=4]:
+                        - text: 价格优势
+                        - generic: 
+                      - paragraph: 推动算力普惠，释放技术红利
+                  - generic:
+                    - link "配置报价器 一站式生成采购清单，支持单品或批量购买":
+                      - /url: https://www.aliyun.com/price/cpq/list
+                      - heading "配置报价器" [level=4]:
+                        - text: 配置报价器
+                        - generic: 
+                      - paragraph: 一站式生成采购清单，支持单品或批量购买
+              - generic:
+                - link "全模态模型订阅计划 全模态模型订阅计划 Token Plan：支持多模型动态切换，无缝对接主流 AI 工具，低至 198 元/月起":
+                  - /url: https://www.aliyun.com/benefit/client/index/ai
+                  - img "全模态模型订阅计划"
+                  - generic:
+                    - heading "全模态模型订阅计划" [level=5]
+                    - paragraph: Token Plan：支持多模型动态切换，无缝对接主流 AI 工具，低至 198 元/月起
+        - generic:
+          - generic:
+            - heading "云市场" [level=3]:
+              - link "云市场":
+                - /url: https://market.aliyun.com/
+                - text: 云市场
+                - generic: 
+            - paragraph: 提供与阿里云能力融合和互补的优质伙伴产品和服务，满足企业上云和各类业务应用开发需求。
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading "精选商城" [level=4]:
+                        - link "精选商城":
+                          - /url: https://market.aliyun.com/xinxuan
+                          - text: 精选商城
+                          - generic: 
+                      - link "网站建设":
+                        - /url: https://market.aliyun.com/xinxuan/webdesign
+                      - link "多端小程序":
+                        - /url: https://market.aliyun.com/xinxuan/application/miniapps
+                      - link "Salesforce 国际版订阅":
+                        - /url: https://market.aliyun.com/products/56790007/cmfw00037956.html?innerSource=search_salesforce#sku=yuncode3195600001
+                      - link "友盟天域":
+                        - /url: https://market.aliyun.com/products/56842011/cmfw00040027.html
+                      - link "观测云":
+                        - /url: https://market.aliyun.com/products/56838014/cmgj00053362.html
+                      - link "Tuya 物联网平台阿里云版":
+                        - /url: https://www.aliyun.com/research/tuya
+                      - link "蓝凌 OA":
+                        - /url: https://market.aliyun.com/xinxuan/lanling-oa
+                      - link "电子合同":
+                        - /url: https://market.aliyun.com/xinxuan/wyy-2023
+                      - link "畅捷通":
+                        - /url: https://market.aliyun.com/products/56764034/cmgj00042861.html
+                      - link "Tableau 订阅":
+                        - /url: https://market.aliyun.com/products/56024006/cmfw00062543.html
+                      - link "AI空中课堂在线直播课堂（旗舰版）":
+                        - /url: https://market.aliyun.com/products/201204006/cmgj00070018.html
+                  - generic:
+                    - generic:
+                      - heading "生态解决方案" [level=4]:
+                        - link "生态解决方案":
+                          - /url: https://market.aliyun.com/industry
+                          - text: 生态解决方案
+                          - generic: 
+                      - link "行业生态解决方案":
+                        - /url: https://market.aliyun.com/industry
+                      - link "开发者生态解决方案":
+                        - /url: https://market.aliyun.com/developer/shouye
+                      - link "AI 开发和 AI 应用解决方案":
+                        - /url: https://market.aliyun.com/developer/AIGC
+                  - generic:
+                    - generic:
+                      - heading "数据与 API" [level=4]:
+                        - link "数据与 API":
+                          - /url: https://market.aliyun.com/data
+                          - text: 数据与 API
+                          - generic: 
+                      - link "数据集":
+                        - /url: https://market.aliyun.com/dataexchange
+                      - link "手机三要素":
+                        - /url: https://market.aliyun.com/products?k=手机三要素&scene=market
+                      - link "身份实名认证":
+                        - /url: https://market.aliyun.com/products?k=身份实名认证&scene=market
+                      - link "短信":
+                        - /url: https://market.aliyun.com/products?k=短信&scene=market
+                      - link "OCR 文字识别":
+                        - /url: https://market.aliyun.com/products?k=OCR文字识别&scene=market
+                      - link "发票查验":
+                        - /url: https://market.aliyun.com/products?k=发票查验&scene=market
+                      - link "天气预报查询":
+                        - /url: https://market.aliyun.com/products?k=天气预报查询&scene=market
+                      - link "快递物流查询":
+                        - /url: https://market.aliyun.com/products?k=快递物流查询&scene=market
+                  - generic:
+                    - generic:
+                      - heading "企业应用" [level=4]:
+                        - link "企业应用":
+                          - /url: https://market.aliyun.com/enterprise
+                          - text: 企业应用
+                          - generic: 
+                      - link "ERP":
+                        - /url: https://market.aliyun.com/products?k=ERP&scene=market
+                      - link "CRM":
+                        - /url: https://market.aliyun.com/products?k=CRM&scene=market
+                      - link "OA 办公系统":
+                        - /url: https://market.aliyun.com/products?k=OA办公系统&scene=market
+                      - link "财税管理":
+                        - /url: https://market.aliyun.com/products/56764034?page=1&scene=market
+                      - link "400电话":
+                        - /url: https://market.aliyun.com/products?k=400电话&scene=market
+                      - link "广告营销":
+                        - /url: https://market.aliyun.com/products/56842011?page=1&scene=market
+                  - generic:
+                    - generic:
+                      - heading "基础软件" [level=4]:
+                        - link "基础软件":
+                          - /url: https://market.aliyun.com/software
+                          - text: 基础软件
+                          - generic: 
+                      - link "Windows":
+                        - /url: https://market.aliyun.com/products?k=Windows&scene=market
+                      - link "宝塔 Linux":
+                        - /url: https://market.aliyun.com/products?k=%E5%AE%9D%E5%A1%94+Linux&scene=market
+                      - link "CentOS":
+                        - /url: https://market.aliyun.com/products?k=CentOS&scene=market
+                      - link "Docker":
+                        - /url: https://market.aliyun.com/products?k=Docker&scene=market
+                      - link "JAVA":
+                        - /url: https://market.aliyun.com/products?k=JAVA&scene=market
+                      - link "全能环境":
+                        - /url: https://market.aliyun.com/products?k=%E5%85%A8%E8%83%BD%E7%8E%AF%E5%A2%83&scene=market
+                      - link "操作系统":
+                        - /url: https://market.aliyun.com/products?k=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F&scene=market
+                      - link "WordPress":
+                        - /url: https://market.aliyun.com/products?k=WordPress&scene=market
+                      - link "Ubuntu":
+                        - /url: https://market.aliyun.com/products?k=Ubuntu&scene=market
+                      - link "Red Hat":
+                        - /url: https://market.aliyun.com/products?k=Red+Hat&scene=market
+                      - link "SUSE":
+                        - /url: https://market.aliyun.com/products?k=SUSE&scene=market
+                  - generic:
+                    - generic:
+                      - heading "建站小程序" [level=4]:
+                        - link "建站小程序":
+                          - /url: https://market.aliyun.com/jianzhan
+                          - text: 建站小程序
+                          - generic: 
+                      - link "模板建站":
+                        - /url: https://market.aliyun.com/products/56598032?page=1&scene=market
+                      - link "定制建站":
+                        - /url: https://market.aliyun.com/products/52738005?page=1&scene=market
+                      - link "模板小程序":
+                        - /url: https://market.aliyun.com/products/205798005?page=1&scene=market
+                      - link "定制小程序":
+                        - /url: https://market.aliyun.com/products/52752001?page=1&scene=market
+                      - link "APP 开发":
+                        - /url: https://market.aliyun.com/products/55514022?page=1&scene=market
+                      - link "建站系统":
+                        - /url: https://market.aliyun.com/products/57342011?page=1&scene=market
+                  - generic:
+                    - generic:
+                      - heading "专业服务" [level=4]:
+                        - link "专业服务":
+                          - /url: https://market.aliyun.com/service
+                          - text: 专业服务
+                          - generic: 
+                      - link "域名":
+                        - /url: https://market.aliyun.com/products?k=域名&scene=market
+                      - link "商标":
+                        - /url: https://market.aliyun.com/products?k=商标&scene=market
+                      - link "备案":
+                        - /url: https://market.aliyun.com/products?k=备案&scene=market
+                      - link "公司注册":
+                        - /url: https://market.aliyun.com/products?k=公司注册&scene=market
+                      - link "上云迁移":
+                        - /url: https://market.aliyun.com/products/52738004?page=1&scene=market
+                      - link "代维服务":
+                        - /url: https://market.aliyun.com/products/52732002?page=1&scene=market
+                  - generic:
+                    - generic:
+                      - heading "安全" [level=4]:
+                        - link "安全":
+                          - /url: https://market.aliyun.com/security
+                          - text: 安全
+                          - generic: 
+                      - link "VPN":
+                        - /url: https://market.aliyun.com/products?k=VPN&scene=market
+                      - link "SSL 证书":
+                        - /url: https://market.aliyun.com/products?k=SSL证书&scene=market
+                      - link "堡垒机":
+                        - /url: https://market.aliyun.com/products?k=堡垒机&scene=market
+                      - link "防火墙":
+                        - /url: https://market.aliyun.com/products?k=防火墙&scene=market
+                      - link "主机安全":
+                        - /url: https://market.aliyun.com/products?k=主机安全&scene=market
+                  - generic:
+                    - generic:
+                      - heading "AI 应用及服务市场" [level=4]:
+                        - link "AI 应用及服务市场":
+                          - /url: https://market.aliyun.com/common/ai
+                          - text: AI 应用及服务市场
+                          - generic: 
+                      - link "AI 应用":
+                        - /url: https://market.aliyun.com/products?k=AI应用&scene=market
+                      - link "大模型":
+                        - /url: https://market.aliyun.com/products?k=大模型&scene=market
+                      - link "自然语言处理":
+                        - /url: https://market.aliyun.com/products?k=自然语言处理&scene=market
+                      - link "数据标注":
+                        - /url: https://market.aliyun.com/products/201198004?page=1&scene=market
+                      - link "机器学习":
+                        - /url: https://market.aliyun.com/products?k=机器学习&scene=market
+        - generic:
+          - generic:
+            - heading "伙伴" [level=3]:
+              - link "伙伴":
+                - /url: https://partner.aliyun.com/management/v2
+                - text: 伙伴
+                - generic: 
+            - paragraph: 坚持伙伴优先，为伙伴提供产品、销售和服务的商业合作模式；与伙伴紧密合作，共同为客户提供更完备的产品、更完善的服务。
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading "成为销售伙伴" [level=4]
+                      - link "分销伙伴":
+                        - /url: https://partner.aliyun.com/programs/reseller_P
+                      - link "通用与行业 ISV 伙伴":
+                        - /url: https://partner.aliyun.com/program/ISV_partner
+                      - link "咨询伙伴":
+                        - /url: https://partner.aliyun.com/program/consult_partner
+                  - generic:
+                    - generic:
+                      - heading "销售伙伴合作计划" [level=4]
+                      - link "无影生态合作计划":
+                        - /url: https://partner.aliyun.com/management/epp_wuying
+                      - link "Salesforce On Alibaba Cloud Consulting Partner 合作计划":
+                        - /url: https://partner.aliyun.com/program/Salesforce_program
+                      - link "AI 大模型销售与服务生态合作计划":
+                        - /url: https://partner.aliyun.com/program/aimsp
+                  - generic:
+                    - generic:
+                      - heading "成为产品伙伴" [level=4]
+                      - link "产品生态集成认证中心":
+                        - /url: https://partner.aliyun.com/program/PEIC
+                      - link "产品生态伙伴":
+                        - /url: https://chanpinshengtai.aliyun.com/partner/partner
+                      - link "产品生态伙伴工作台":
+                        - /url: https://aps.aliyun.com/#/
+                  - generic:
+                    - generic:
+                      - heading "产品伙伴合作计划" [level=4]
+                      - link "阿里云 AI 伙伴计划（繁花）":
+                        - /url: https://chanpinshengtai.aliyun.com/partner/ai
+                      - link "弹性计算合作计划":
+                        - /url: https://partner.aliyun.com/program/txjs_program
+                      - link "云存储合作计划":
+                        - /url: https://partner.aliyun.com/program/cunchu
+                      - link "数据库合作计划":
+                        - /url: https://partner.aliyun.com/program/sjk_program
+                      - link "云网络合作计划":
+                        - /url: https://chanpinshengtai.aliyun.com/chanpinpartner/network
+                      - link "Salesforce On Alibaba Cloud ISV 合作计划":
+                        - /url: https://partner.aliyun.com/program/Salesforce-ISV
+                  - generic:
+                    - generic:
+                      - heading "成为服务伙伴" [level=4]:
+                        - link "成为服务伙伴":
+                          - /url: https://gts.aliyun.com/
+                          - text: 成为服务伙伴
+                          - generic: 
+                      - link "服务生态伙伴":
+                        - /url: https://gts.aliyun.com/
+                  - generic:
+                    - generic:
+                      - heading "服务伙伴合作计划" [level=4]
+                      - link "伙伴信用分合作计划":
+                        - /url: https://www.aliyun.com/gts/msp/Creditscoresystem
+                  - generic:
+                    - generic:
+                      - heading "更多支持" [level=4]
+                      - link "合作伙伴培训与认证":
+                        - /url: https://edu.aliyun.com/certification/partner
+                      - link "查询合作伙伴":
+                        - /url: https://partner.aliyun.com/management/query#/
+                      - link "登录合作伙伴管理后台":
+                        - /url: https://account.aliyun.com/login/qr_login.htm?oauth_callback=https://partner.aliyun.com/management/v2
+        - generic:
+          - generic:
+            - heading "服务" [level=3]:
+              - link "服务":
+                - /url: https://www.aliyun.com/service
+                - text: 服务
+                - generic: 
+            - paragraph: 提供多样化的支持计划和专家服务，满足上云咨询、迁移上云、云上运维等场景的全链路服务需求。
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading "售前咨询" [level=4]
+                      - link "在线服务":
+                        - /url: https://smartservice.console.aliyun.com/pre-sale/chat?entrance=201&referrer=https%3A%2F%2Fwww.aliyun.com%2F%3Fspm%3Da1z2e.12184483.navigationzhcn.dnavigationzhcn6.469d3247dm8YgK
+                  - generic:
+                    - generic:
+                      - heading "售后服务" [level=4]
+                      - link "自助服务":
+                        - /url: https://smartservice.console.aliyun.com/tourist-self/self-service-center?from=webnav
+                      - link "在线服务":
+                        - /url: https://smartservice.console.aliyun.com/service/robot-chat
+                      - link "工单服务":
+                        - /url: https://smartservice.console.aliyun.com/service/create-ticket
+                      - link "短信专区":
+                        - /url: https://smartservice.console.aliyun.com/tourist-self/self-service-center/topic?topicCode=dysms&from=webnav
+                  - generic:
+                    - generic:
+                      - heading "企业增值服务" [level=4]
+                      - link "企业支持计划":
+                        - /url: https://www.aliyun.com/service/supportplans
+                      - link "专家技术服务":
+                        - /url: https://www.aliyun.com/service/list
+                      - link "企业增值服务台":
+                        - /url: https://custservice.console.aliyun.com/value-added/home
+                  - generic:
+                    - generic:
+                      - heading "企业成长" [level=4]
+                      - link "服务实践":
+                        - /url: https://www.aliyun.com/service/customer-case
+                      - link "创新中心":
+                        - /url: https://chuangke.aliyun.com/
+                  - generic:
+                    - generic:
+                      - heading "阿里云认证" [level=4]:
+                        - link "阿里云认证":
+                          - /url: https://edu.aliyun.com/
+                          - text: 阿里云认证
+                          - generic: 
+                      - link "大模型认证":
+                        - /url: https://edu.aliyun.com/certification/llm
+                      - link "全部认证":
+                        - /url: https://edu.aliyun.com/certification/
+                      - link "训练营":
+                        - /url: https://edu.aliyun.com/trainingcamp
+                  - generic:
+                    - generic:
+                      - heading "信息公告" [level=4]
+                      - link "官网公告":
+                        - /url: https://www.aliyun.com/notice/
+                      - link "健康状态":
+                        - /url: https://status.aliyun.com/
+                  - generic:
+                    - generic:
+                      - heading "开发者社区" [level=4]:
+                        - link "开发者社区":
+                          - /url: https://developer.aliyun.com/
+                          - text: 开发者社区
+                          - generic: 
+                      - link "博文":
+                        - /url: https://developer.aliyun.com/indexFeed/
+                      - link "问答":
+                        - /url: https://developer.aliyun.com/ask/
+                      - link "电子书":
+                        - /url: https://developer.aliyun.com/ebook/
+                      - link "镜像站":
+                        - /url: https://developer.aliyun.com/mirror/
+                  - generic:
+                    - generic:
+                      - heading "我要反馈" [level=4]
+                      - link "我要建议":
+                        - /url: https://www.aliyun.com/connect/home
+                      - link "我要投诉":
+                        - /url: https://www.aliyun.com/complaint
+        - generic:
+          - generic:
+            - heading "了解阿里云" [level=3]:
+              - link "了解阿里云":
+                - /url: https://www.aliyun.com/about
+                - text: 了解阿里云
+                - generic: 
+            - paragraph: 作为全球领先的全栈人工智能服务商，阿里云坚持让计算成为公共服务，助力全球客户加速价值创新。
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading "为什么选择阿里云" [level=4]:
+                        - link "为什么选择阿里云":
+                          - /url: https://www.aliyun.com/why-us
+                          - text: 为什么选择阿里云
+                          - generic: 
+                      - link "什么是云计算":
+                        - /url: https://www.aliyun.com/about/what-is-cloud-computing
+                      - link "技术领先":
+                        - /url: https://www.aliyun.com/why-us/leading-technology
+                      - link "稳定可靠":
+                        - /url: https://www.aliyun.com/why-us/reliability
+                      - link "安全合规":
+                        - /url: https://www.aliyun.com/why-us/security-compliance
+                      - link "分析师报告":
+                        - /url: https://www.aliyun.com/analyst-reports
+                      - link "研究报告与白皮书":
+                        - /url: https://www.aliyun.com/reports
+                  - generic:
+                    - generic:
+                      - heading "天池大赛" [level=4]:
+                        - link "天池大赛":
+                          - /url: https://tianchi.aliyun.com/
+                          - text: 天池大赛
+                          - generic: 
+                      - link "AI 算法大赛":
+                        - /url: https://tianchi.aliyun.com/competition/algorithmList/
+                      - link "云开发大赛":
+                        - /url: https://tianchi.aliyun.com/competition/programList
+                      - link "入门学习赛":
+                        - /url: https://tianchi.aliyun.com/competition/coupleList
+                  - generic:
+                    - generic:
+                      - heading "最佳实践" [level=4]
+                      - link "云上春晚":
+                        - /url: https://www.aliyun.com/about/gala
+                      - link "云上奥运之旅":
+                        - /url: https://www.aliyun.com/about/games
+                      - link "云栖战略参考":
+                        - /url: https://www.aliyun.com/about/magazines
+                      - link "云上的中国":
+                        - /url: https://www.aliyun.com/about/ysdzg
+                      - link "看见新力量":
+                        - /url: https://startup.aliyun.com/special/seenewpower
+                      - link "金融模力时刻":
+                        - /url: https://summit.aliyun.com/market/financial-agent
+                      - link "客户案例":
+                        - /url: https://www.aliyun.com/customer-stories/customer-case-index
+                  - generic:
+                    - generic:
+                      - heading "市场活动" [level=4]
+                      - link "2026 阿里云峰会":
+                        - /url: https://summit.aliyun.com/2026
+                      - link "阿里云中企出海大会":
+                        - /url: https://summit.aliyun.com/go-global
+                      - link "云栖大会":
+                        - /url: https://yunqi.aliyun.com/
+                      - link "活动全景":
+                        - /url: https://www.aliyun.com/about/events
+                  - generic:
+                    - generic:
+                      - heading "魔搭 ModelScope" [level=4]
+                      - link "魔搭 ModelScope":
+                        - /url: https://modelscope.cn/home
+                  - generic:
+                    - generic:
+                      - heading "高校合作" [level=4]
+                      - link "云工开物":
+                        - /url: https://university.aliyun.com/
+                      - link "科研合作":
+                        - /url: https://university.aliyun.com/activity/air
+                  - generic:
+                    - generic:
+                      - heading "加入我们" [level=4]:
+                        - link "加入我们":
+                          - /url: https://careers.aliyun.com/
+                          - text: 加入我们
+                          - generic: 
+                      - link "Careers":
+                        - /url: https://careers.aliyun.com/en/home
+                      - link "社会招聘":
+                        - /url: https://careers.aliyun.com/off-campus/home
+                      - link "校园招聘":
+                        - /url: https://careers.aliyun.com/campus/home
+      - button "":
+        - generic: 
+    - generic:
+      - generic:
+        - generic:
+          - heading "中国站 | aliyun.com" [level=3]
+          - link "简体中文":
+            - /url: https://www.aliyun.com
+        - generic:
+          - heading "国际站 | alibabacloud.com" [level=3]
+          - link "English":
+            - /url: https://www.alibabacloud.com/en?_p_lc=1
+          - link "简体中文":
+            - /url: https://www.alibabacloud.com/zh?_p_lc=1
+          - link "繁體中文":
+            - /url: https://www.alibabacloud.com/tc?_p_lc=2
+          - link "日本語":
+            - /url: https://www.alibabacloud.com/ja?_p_lc=1
+          - link "한국어":
+            - /url: https://www.alibabacloud.com/ko?_p_lc=1
+          - link "Deutsch":
+            - /url: https://www.alibabacloud.com/de?_p_lc=1
+          - link "Français":
+            - /url: https://www.alibabacloud.com/fr?_p_lc=1
+          - link "Bahasa Indonesia":
+            - /url: https://www.alibabacloud.com/id?_p_lc=9
+          - link "ไทย":
+            - /url: https://www.alibabacloud.com/th?_p_lc=14
+          - link "Español":
+            - /url: https://www.alibabacloud.com/es?_p_lc=17
+    - generic:
+      - generic:
+        - heading "联系我们" [level=3]
+        - generic:
+          - generic: 
+          - text: "4008013260"
+        - link " 售前咨询":
+          - /url: https://smartservice.console.aliyun.com/pre-sale/chat?entrance=201&referrer=https%3A%2F%2Fdeveloper.aliyun.com%2Farticle%2Fnew%3Faccounttraceid%3Dfef1f61d5d3045ca950c347bbfc38489clhw%23%2F
+          - generic: 
+          - text: 售前咨询
+        - link " 售后在线":
+          - /url: https://smartservice.console.aliyun.com/service/robot-chat?entrance=201&referrer=https%3A%2F%2Fdeveloper.aliyun.com%2Farticle%2Fnew%3Faccounttraceid%3Dfef1f61d5d3045ca950c347bbfc38489clhw%23%2F
+          - generic: 
+          - text: 售后在线
+      - generic:
+        - heading "其他服务" [level=3]
+        - link " 我要建议":
+          - /url: https://www.aliyun.com/connect/home
+          - generic: 
+          - text: 我要建议
+        - link " 我要投诉":
+          - /url: https://www.aliyun.com/complaint
+          - generic: 
+          - text: 我要投诉
+    - generic:
+      - generic:
+        - generic:
+          - heading "账号 退出登录" [level=3]:
+            - link "账号":
+              - /url: https://myaccount.console.aliyun.com/overview
+              - generic: 
+              - text: 账号
+              - generic: 
+            - generic:
+              - link "退出登录":
+                - /url: https://account.aliyun.com/logout/logout.htm?oauth_callback=https%3A%2F%2Fdeveloper.aliyun.com%2Farticle%2Fnew%3Faccounttraceid%3Dfef1f61d5d3045ca950c347bbfc38489clhw%23%2F
+          - generic:
+            - img "头像"
+            - generic:
+              - paragraph:
+                - generic: 小林学AI
+                - generic:
+                  - generic: 
+              - paragraph:
+                - generic: 账号 ID：1234278138113237
+                - generic:
+                  - generic: 
+              - paragraph:
+                - generic: 主账号
+                - generic: 个人认证
+        - generic:
+          - heading "权限与安全" [level=3]:
+            - generic:
+              - generic: 
+              - text: 权限与安全
+          - paragraph:
+            - link "安全管理":
+              - /url: https://yundun.console.aliyun.com/?p=scnew#/
+            - link "访问控制":
+              - /url: https://ram.console.aliyun.com
+            - link "AccessKey":
+              - /url: https://ram.console.aliyun.com/profile/access-keys
+        - generic:
+          - heading "费用与成本" [level=3]:
+            - link "费用与成本":
+              - /url: https://billing-cost.console.aliyun.com/home
+              - generic: 
+              - text: 费用与成本
+              - generic: 
+          - generic:
+            - heading "可用额度" [level=4]
+            - paragraph:
+              - link "¥ 0.00":
+                - /url: https://usercenter2.aliyun.com/home
+              - link "充值汇款":
+                - /url: https://usercenter2.aliyun.com/finance/fund-management/recharge
+          - generic:
+            - heading "本月账单 持续出账中" [level=4]:
+              - text: 本月账单
+              - emphasis: 持续出账中
+            - paragraph:
+              - link "查看":
+                - /url: https://usercenter2.aliyun.com/home
+              - link "成本管理":
+                - /url: https://usercenter2.aliyun.com/expense-manage/cost-summary
+          - generic:
+            - generic:
+              - heading "待支付" [level=4]
+              - link "0":
+                - /url: https://usercenter2.aliyun.com/order/list?orderStatus=UNPAID
+            - generic:
+              - heading "待续费" [level=4]
+              - link "0":
+                - /url: https://billing-cost.console.aliyun.com/renew/manual?expiresIn=30
+            - generic:
+              - heading "待办工单" [level=4]
+              - link "0":
+                - /url: https://smartservice.console.aliyun.com/service/list
+            - generic:
+              - heading "未读消息" [level=4]
+              - link "3":
+                - /url: https://notifications.console.aliyun.com/#/innerMsg/unread/0
+          - generic:
+            - heading "常用工具" [level=4]
+            - paragraph:
+              - link "发票":
+                - /url: https://usercenter2.aliyun.com/invoice/list/aliyun
+              - link "合同":
+                - /url: https://usercenter2.aliyun.com/contract/manage
+              - link "卡券":
+                - /url: https://usercenter2.aliyun.com/coupons/coupon
+              - link "订单":
+                - /url: https://usercenter2.aliyun.com/order/list
+              - link "配置清单":
+                - /url: https://www.aliyun.com/price/cpq/detail?isDefault=true
+              - link "试用":
+                - /url: https://usercenter2.aliyun.com/home/myfreetier
+        - generic:
+          - heading "我的权益" [level=3]:
+            - link "我的权益":
+              - /url: https://home.console.aliyun.com/home/dashboard/Benefit
+              - generic: 
+              - text: 我的权益
+              - generic: 
+          - generic:
+            - generic:
+              - heading "可用券" [level=4]
+              - paragraph:
+                - link "0":
+                  - /url: https://home.console.aliyun.com/home/dashboard/Benefit
+            - generic:
+              - heading "试用中产品" [level=4]
+              - paragraph:
+                - link "0":
+                  - /url: https://billing-cost.console.aliyun.com/home/myfreetier
+  - img
+  - iframe [ref=e400]:
+    
+  - iframe [ref=e401]:
+    
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - link "控制台 forward-line":
+                - /url: https://home.console.aliyun.com
+                - text: 控制台
+                - img "forward-line":
+                  - img
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                      - generic: 最近访问
+                    - generic:
+                      - img "layer-line":
+                        - img
+                      - generic: 暂无最近访问
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic "迁移与运维管理":
+                          - img "migrationom"
+                          - generic: 迁移与运维管理
+                        - generic:
+                          - generic:
+                            - link "访问控制 RAM star-fill":
+                              - /url: //ram.console.aliyun.com
+                              - generic:
+                                - generic "访问控制 RAM"
+                              - generic:
+                                - img "star-fill":
+                                  - img
+                            - generic:
+                              - link "1 角色":
+                                - /url: //ram.console.aliyun.com/roles
+                                - generic: "1"
+                                - generic: 角色
+      - button
+  - iframe [ref=e402]:
+    
