@@ -1,5 +1,5 @@
 ---
-title: Hermes Agent SubAgent 子代理使用教程
+title: Hermes Agent SubAgent 子代理
 order: 6
 ---
 

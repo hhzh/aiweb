@@ -1,5 +1,5 @@
 ---
-title: Hermes Agent 配置教程：从基础到进阶
+title: Hermes Agent 配置教程
 order: 3
 ---
 

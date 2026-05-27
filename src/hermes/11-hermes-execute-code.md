@@ -1,5 +1,5 @@
 ---
-title: Hermes Agent 代码工具（execute_code）使用教程
+title: Hermes Agent 代码工具使用教程
 order: 11
 ---
 

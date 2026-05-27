@@ -223,5 +223,3 @@ rm -rf 安装目录/hermes-agent
 ## 八、总结
 
 Hermes Agent 安装核心是**国内镜像 + 环境适配**，新手优先用 WSL2 + 一键脚本，省心稳定。安装后配置国产模型即可直接使用，无需海外网络。后续可进阶配置消息网关、自定义技能、接入 MCP 工具，打造专属 AI 助手。
-
-更多细节参考官方中文文档：[https://hermesagent.org.cn](https://hermesagent.org.cn)
