@@ -6,7 +6,7 @@ order: 2
 # Hermes Agent 安装教程
 
 
-Hermes Agent 是 Nous Research 开发的开源自进化 AI 智能体，支持持久记忆、技能自动沉淀、200 + 模型一键切换，可接入飞书 / 钉钉等 15 + 平台。本文从环境准备、多平台安装、配置验证到更新卸载，提供全流程实操指南，适配国内网络环境，兼顾新手与进阶用户。
+你是否遇到过这些问题——AI 智能体装了一堆，但每次对话都"失忆"？换了模型就得重新配置？想接入飞书/钉钉却无从下手？Hermes Agent 正是为解决这些痛点而生。它是一款开源自进化 AI 智能体，支持持久记忆、技能自动沉淀、200 + 模型一键切换，可接入飞书 / 钉钉等 15 + 平台。本文从环境准备、多平台安装、配置验证到更新卸载，提供全流程实操指南，适配国内网络环境，兼顾新手与进阶用户。
 
 ## 一、核心优势与同类工具对比
 
@@ -66,6 +66,25 @@ Hermes Agent 是 Nous Research 开发的开源自进化 AI 智能体，支持持
 git --version  # 输出版本即正常
 ```
 
+**图1：Hermes Agent 多平台安装流程**
+
+```mermaid
+flowchart TD
+    A[开始安装] --> B{操作系统}
+    B -->|macOS| C[执行一键安装脚本]
+    B -->|Linux| C
+    B -->|Windows| D{选择环境}
+    D -->|WSL2 推荐| C
+    D -->|原生 PowerShell| E[执行 Beta 安装脚本]
+    C --> F[source ~/.bashrc 刷新]
+    E --> F
+    F --> G[hermes --version 验证]
+    G --> H[hermes model 配置模型]
+    H --> I[hermes 启动对话]
+```
+
+掌握了系统环境和依赖检查，接下来进入核心环节——根据你的操作系统选择对应的一键安装方式。
+
 ## 三、多平台一键安装（国内镜像，推荐）
 
 ### 1. macOS / Linux / WSL2（最稳）
@@ -105,6 +124,8 @@ hermes --version  # 输出版本（v0.14+）成功
 hermes doctor     # 自动检测依赖/配置问题
 ```
 
+安装验证通过后，还需要配置大模型才能开始对话。以下是安装后必须完成的基础配置。
+
 ## 四、安装后基础配置
 
 ### 1. 配置大模型（必做）
@@ -141,10 +162,12 @@ hermes model  # 交互式选择模型提供商
 
 ### 3. 首次启动对话
 
-```bash
-hermes  # 进入交互式会话
+```text
+hermes                    # 进入交互式会话
 ❯ 你好，帮我总结 Hermes 功能
 ```
+
+以上是标准安装流程，满足多数场景。如果你需要从源码构建或生产环境部署，可以参考以下进阶安装方式。
 
 ## 五、进阶安装（手动 / Docker）
 
@@ -200,24 +223,24 @@ rm -rf 安装目录/hermes-agent
 
 ## 七、常见问题排查
 
-1. **hermes: command not found**
+**问题1：hermes: command not found**
 执行 `source ~/.bashrc`，或检查 `~/.local/bin` 是否加入 PATH。
 
-2. **依赖下载失败（国内）**
+**问题2：依赖下载失败（国内）**
 切换网络，关闭代理 / VPN，或用清华镜像：
 
-    ```bash
-    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn
-    ```
+```bash
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn
+```
 
-3. **Windows PowerShell 编码错误**
+**问题3：Windows PowerShell 编码错误**
 管理员身份执行：
 
-    ```powershell
-    reg add "HKLM\SYSTEM\CurrentControlSet\Control\Nls\CodePage" /v ACP /t REG_SZ /d 65001 /f
-    ```
+```powershell
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Nls\CodePage" /v ACP /t REG_SZ /d 65001 /f
+```
 
-4. **WSL2 网络问题（本地模型连不上）**
+**问题4：WSL2 网络问题（本地模型连不上）**
 用 WSL2 的 Windows 主机 IP 连接（如 `http://192.168.1.100:11434`）。
 
 ## 八、总结

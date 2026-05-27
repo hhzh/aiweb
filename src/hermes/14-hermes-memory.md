@@ -5,7 +5,7 @@ order: 14
 
 # Hermes Agent 记忆使用教程
 
-Hermes Agent 记忆（Memory）系统是实现**跨会话持久化、个性化交互**的核心能力，分为**内置文件记忆**与**外部记忆提供商**两部分。内置记忆开箱即用，轻量高效；外部记忆提供语义搜索、知识图谱等高级能力，可按需扩展。本文从核心原理、基础用法、高级配置到最佳实践，带你全面掌握记忆系统使用。
+每次对话都要重新交代一遍项目背景和个人偏好，这种重复让人不胜其烦。Hermes Agent 记忆（Memory）系统是实现**跨会话持久化、个性化交互**的核心能力，分为**内置文件记忆**与**外部记忆提供商**两部分。内置记忆开箱即用，轻量高效；外部记忆提供语义搜索、知识图谱等高级能力，可按需扩展。本文从核心原理、基础用法、高级配置到最佳实践，带你全面掌握记忆系统使用。
 
 ## 一、记忆系统核心原理
 
@@ -23,7 +23,7 @@ Hermes 采用**双文件内置记忆 + 可扩展外部记忆**架构，兼顾轻
 
 会话启动时，记忆以**冻结快照**形式一次性注入系统提示，会话内不再变更，兼顾性能与一致性：
 
-```Plain Text
+```text
 ══════════════════════════════════════════════
 MEMORY (智能体笔记) [67% — 1474/2200 chars]
 ══════════════════════════════════════════════
@@ -42,6 +42,31 @@ USER PROFILE（用户档案）[42% — 577/1375 chars]
 
 - **会话搜索**：所有历史对话（含工具调用）存 SQLite，支持全文检索，**按需查询**。
 
+**图1：记忆系统架构**
+
+```mermaid
+flowchart TB
+    subgraph BuiltIn[内置记忆 · 文件持久化]
+        Memory[MEMORY.md<br/>智能体笔记<br/>2200 字符上限] --> Snapshot[冻结快照<br/>会话启动一次性注入]
+        UserMD[USER.md<br/>用户档案<br/>1375 字符上限] --> Snapshot
+    end
+
+    subgraph External[外部记忆提供商 · 按需扩展]
+        Honcho[Honcho<br/>辩证用户建模]
+        Mem0[Mem0<br/>LLM 自动提取]
+        Viking[OpenViking<br/>分层检索]
+        Holographic[Holographic<br/>本地全文搜索]
+    end
+
+    subgraph SessionSearch[会话搜索 · 历史回溯]
+        SQLite[SQLite 全文检索<br/>所有历史对话 + 工具调用]
+    end
+
+    Snapshot --> Agent[智能体会话]
+    External --> Agent
+    SQLite -->|按需查询| Agent
+```
+
 ## 二、内置记忆基础用法
 
 无需额外配置，开箱即用，支持增删改查与容量管理。
@@ -50,7 +75,7 @@ USER PROFILE（用户档案）[42% — 577/1375 chars]
 
 #### 1. 添加记忆（add）
 
-```Plain Text
+```text
 请记住：我当前项目是Hermes文档站，技术栈VitePress+Vue3，部署在Vercel
 ```
 
@@ -58,13 +83,13 @@ USER PROFILE（用户档案）[42% — 577/1375 chars]
 
 通过**子字符串匹配**定位并更新：
 
-```Plain Text
+```text
 把记忆中"部署在Vercel"更新为"部署在阿里云"
 ```
 
 #### 3. 删除记忆（remove）
 
-```Plain Text
+```text
 删除记忆中关于旧项目的内容
 ```
 
@@ -86,13 +111,13 @@ cat ~/.hermes/memories/USER.md
 
 - **清理示例**：
 
-```Plain Text
+```text
 压缩MEMORY.md，删除已完成任务条目，保留项目核心信息
 ```
 
 ### 2.4 会话搜索（历史回溯）
 
-```Plain Text
+```text
 搜索我们之前讨论的Hermes部署方案
 ```
 

@@ -5,7 +5,7 @@ order: 11
 
 # Hermes Agent 代码工具（execute_code）使用教程
 
-`execute_code` 是 Hermes Agent 的核心程序化工具，允许智能编写 Python 脚本并在**隔离沙箱子进程**中执行，通过 RPC 调用各类工具，将多步骤复杂工作流合并为单次 LLM 调用，大幅减少 Token 消耗，提升批量任务处理效率。本文从核心原理、快速上手、实用示例、配置优化、安全机制到场景对比，带你全面掌握代码工具用法。
+批量处理数据时，每次只做一个操作、反复与 LLM 交互，不仅 Token 消耗惊人，效率也让人着急。`execute_code` 是 Hermes Agent 的核心程序化工具，允许智能编写 Python 脚本并在**隔离沙箱子进程**中执行，通过 RPC 调用各类工具，将多步骤复杂工作流合并为单次 LLM 调用，大幅减少 Token 消耗，提升批量任务处理效率。本文从核心原理、快速上手、实用示例、配置优化、安全机制到场景对比，带你全面掌握代码工具用法。
 
 ## 一、核心工作原理
 
@@ -18,6 +18,23 @@ order: 11
 3. **脚本执行**：子进程运行脚本，工具调用通过 UDS 回传给主进程处理。
 
 4. **结果返回**：仅脚本 `print()` 输出返回给 LLM，中间工具结果不进入上下文，节省 Token。
+
+**图1：execute_code 沙箱架构流程**
+
+```mermaid
+flowchart TB
+    LLM[LLM 生成脚本] -->|创建子进程| Sandbox[沙箱子进程]
+
+    subgraph Sandbox[沙箱隔离环境]
+        Python[Python 脚本执行] -->|工具调用 RPC| Stub[hermes_tools 存根]
+        Stub <-->|Unix 域套接字| Main[Hermes 主进程]
+    end
+
+    Main -->|执行| Tools[内置工具<br/>web_search / terminal / file]
+    Tools -->|返回结果| Main
+    Main -->|RPC 响应| Python
+    Python -->|print 输出| LLM
+```
 
 ### 核心优势
 
@@ -47,7 +64,7 @@ order: 11
 
 直接向 Hermes 发送任务，智能体自动生成并执行脚本：
 
-```Plain Text
+```text
 搜索2025年Rust异步运行时对比，提取前5篇文章核心观点并汇总
 ```
 
@@ -55,7 +72,7 @@ order: 11
 
 显式调用 `execute_code`，指定脚本逻辑：
 
-```Plain Text
+```text
 execute_code:
 from hermes_tools import web_search, web_extract
 # 搜索并汇总
@@ -73,7 +90,7 @@ print(summaries)
 
 **场景**：批量替换 Python 项目中废弃 API
 
-```Plain Text
+```text
 execute_code:
 from hermes_tools import search_files, patch
 # 搜索并替换
@@ -89,7 +106,7 @@ print(f"修复完成：{fixed}/{len(matches)} 个文件")
 
 **场景**：多源搜索并提取网页核心内容
 
-```Plain Text
+```text
 execute_code:
 from hermes_tools import web_search, web_extract
 import json
@@ -106,7 +123,7 @@ print(json.dumps(summary, indent=2, ensure_ascii=False))
 
 **场景**：运行测试并解析结果生成报告
 
-```Plain Text
+```text
 execute_code:
 from hermes_tools import terminal
 # 运行pytest测试

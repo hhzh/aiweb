@@ -5,7 +5,7 @@ order: 13
 
 # Hermes Agent 接入 Claude Code 教程
 
-Claude Code 是 Anthropic 推出的自主编码 CLI 代理，可完成代码编写、重构、审查、测试等全流程开发任务。Hermes Agent 内置 `autonomous-ai-agents-claude-code` 技能，支持无缝接入 Claude Code，将编码任务委托给 Claude Code 独立执行，无需手动操作。本文从环境准备、两种交互模式、核心命令、实战示例到最佳实践，带你全面掌握 Hermes 接入 Claude Code 的方法。
+编码任务既要写又要改还要审查，每次切换工具都打断思路，手动操作反而降低了效率。Claude Code 是 Anthropic 推出的自主编码 CLI 代理，可完成代码编写、重构、审查、测试等全流程开发任务。Hermes Agent 内置 `autonomous-ai-agents-claude-code` 技能，支持无缝接入 Claude Code，将编码任务委托给 Claude Code 独立执行，无需手动操作。本文从环境准备、两种交互模式、核心命令、实战示例到最佳实践，带你全面掌握 Hermes 接入 Claude Code 的方法。
 
 ## 一、前提条件
 
@@ -43,6 +43,29 @@ Claude Code 为 Hermes 内置技能，默认随框架安装，无需额外配置
 ## 二、两种交互模式
 
 Hermes 支持**打印模式（非交互式）与tmux 交互式**两种接入模式，适配不同编码场景。
+
+**图1：两种交互模式对比**
+
+```mermaid
+flowchart TB
+    Query[编码任务] --> Choice{选择模式}
+
+    subgraph Print[打印模式 -p]
+        P1[一次性执行] --> P2[任务完成自动退出]
+        P2 --> P3[返回 JSON 结构化结果]
+    end
+
+    subgraph Tmux[交互式 tmux]
+        T1[创建 tmux 会话] --> T2[启动 Claude Code REPL]
+        T2 --> T3[发送任务指令]
+        T3 --> T4{多轮迭代}
+        T4 -->|发送后续指令| T3
+        T4 -->|任务完成| T5[退出会话]
+    end
+
+    Choice -->|简单 / 一次性| Print
+    Choice -->|复杂 / 多轮| Tmux
+```
 
 ### 模式一：打印模式（-p，推荐）
 

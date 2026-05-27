@@ -6,7 +6,7 @@ order: 8
 # Hermes Agent Hooks 钩子使用教程
 
 
-Hermes Agent Hooks（钩子）是一套**生命周期回调系统**，允许在智能体运行的关键节点注入自定义逻辑，实现日志审计、安全拦截、消息告警、上下文注入等扩展能力。本文从钩子类型、核心事件、开发流程、实战示例到最佳实践，带你全面掌握 Hooks 用法，灵活扩展 Agent 功能。
+写了一个安全过滤逻辑，不知道往哪塞？每次 Agent 执行工具调用都想记录日志，难道要改框架源码？Hermes Agent Hooks（钩子）就是为解决这类问题而生的 **生命周期回调系统**，允许在智能体运行的关键节点注入自定义逻辑，实现日志审计、安全拦截、消息告警、上下文注入等扩展能力。本文从钩子类型、核心事件、开发流程、实战示例到最佳实践，带你全面掌握 Hooks 用法，灵活扩展 Agent 功能。
 
 ## 一、钩子系统总览
 
@@ -38,6 +38,33 @@ Hermes 提供**两套独立钩子系统**，覆盖网关与全会话场景，均
 
 - ✅ **灵活适配**：支持日志、告警、安全、集成等多场景扩展。
 
+图1：钩子系统架构图
+
+```mermaid
+graph TB
+    subgraph "钩子系统总览"
+        direction TB
+        GW[网关钩子 Gateway Hooks] -->|仅消息平台| TG[Telegram]
+        GW --> DC[Discord]
+        GW --> FS[飞书 / 钉钉]
+        PL[插件钩子 Plugin Hooks] -->|CLI + 网关全场景| SH[pre_tool_call 拦截]
+        PL --> PH[post_tool_call 审计]
+        PL --> LH[pre_llm_call 注入]
+        PL --> SH2[on_session_end 清理]
+    end
+    
+    subgraph "注册方式"
+        R1[HOOK.yaml + handler.py<br/>~/.hermes/hooks/ 目录] --> GW
+        R2[ctx.register_hook<br/>Python 插件代码] --> PL
+    end
+    
+    subgraph "设计特点"
+        N[非阻塞设计<br/>异常自动捕获 不影响主流程]
+    end
+```
+
+清楚了钩子的整体架构，先从网关钩子入手，看它如何在消息平台中发挥作用。
+
 ## 二、网关钩子（Gateway Hooks）
 
 网关钩子仅在消息平台网关运行，适合监控网关级事件、发送平台告警。
@@ -46,7 +73,7 @@ Hermes 提供**两套独立钩子系统**，覆盖网关与全会话场景，均
 
 每个网关钩子为独立目录，存放于 `~/.hermes/hooks/`：
 
-```Plain Text
+```text
 ~/.hermes/hooks/
 └── task-alert/          # 钩子名称
     ├── HOOK.yaml         # 事件配置
@@ -134,12 +161,14 @@ def handle(event_type: str, context: dict):
 
 3. **创建自检文件（~/.hermes/\[BOOT.md\](BOOT.md)）**
 
-```Plain Text
+```text
 1. 检查定时任务状态：hermes cron list
 2. 发送启动通知到飞书
 ```
 
 4. **生效**：重启网关 `hermes gateway restart`
+
+网关钩子专注于消息平台场景，而插件钩子则覆盖 CLI 和网关的全会话场景。
 
 ## 三、插件钩子（Plugin Hooks）
 
@@ -227,6 +256,8 @@ def register(ctx):
     ctx.register_hook("post_tool_call", audit_tool)
 ```
 
+插件钩子覆盖了核心场景，但 Hermes 还提供了 Shell 钩子、优先级控制等高级能力。
+
 ## 四、高级用法
 
 ### 4.1 Shell 钩子（无代码）
@@ -252,6 +283,8 @@ hooks:
 - 钩子异常自动捕获，仅记录日志，不影响主流程。
 
 - `pre_llm_call` 钩子可注入上下文，其他钩子返回值忽略。
+
+回顾了全部用法后，最后总结几项最佳实践，帮你科学地运用钩子系统。
 
 ## 五、最佳实践
 
