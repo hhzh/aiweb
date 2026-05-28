@@ -1,6 +1,6 @@
 ---
 title: Karpathy 编程准则使用教程
-order: 5
+order: 7
 ---
 
 # Karpathy 编程准则使用教程
