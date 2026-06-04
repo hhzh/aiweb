@@ -14,13 +14,13 @@ order: 9
 
 ### 1.1 Profile 隔离核心
 
-每个 Profile 对应独立目录（默认路径 `~/.hermes/profiles/\[配置名\]`），包含：
+每个 Profile 对应独立目录（默认路径 `~/.hermes/profiles/[配置名]`），包含：
 
 - 独立配置：`config.yaml`（模型、工具、网关设置）
 
 - 独立密钥：`.env`（API Key、机器人令牌）
 
-- 独立记忆：`memories/`（\[MEMORY.md\](MEMORY.md)、\[USER.md\](USER.md)）
+- 独立记忆：`memories/`（[MEMORY.md](MEMORY.md)、[USER.md](USER.md)）
 
 - 独立会话：`state.db`（SQLite 会话数据库）
 

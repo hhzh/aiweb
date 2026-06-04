@@ -1,6 +1,6 @@
 ---
 name: publish-all
-description: 一键发布 Markdown 文章到所有平台（CSDN、掘金、InfoQ、腾讯云、51CTO、知乎、博客园、思否、阿里云）。提供 Markdown 文件路径即可自动串行发布到 9 个平台。
+description: 一键发布 Markdown 文章到所有平台（CSDN、掘金、InfoQ、腾讯云、51CTO、知乎、博客园、思否、阿里云）。提供 Markdown 文件路径即可自动串行发布到 9 个平台。阿里云放在最后一个发布（需手动登录）。
 ---
 
 # Publish All Skill
@@ -33,9 +33,9 @@ Publish to platforms in this fixed serial order. Problematic and session-sensiti
 4. 掘金 (Juejin)
 5. InfoQ
 6. 腾讯云 (Tencent Cloud)
-7. 阿里云 (Aliyun)
-8. 知乎 (Zhihu)
-9. 博客园 (Cnblogs)
+7. 知乎 (Zhihu)
+8. 博客园 (Cnblogs)
+9. 阿里云 (Aliyun) (session expires often, needs manual login — put last)
 
 ## Workflow
 
@@ -163,15 +163,7 @@ If publishTitle IS provided:
 - Wait for completion, ensure browser closed
 - Record result
 
-### Step 7: Publish to 阿里云 (Aliyun)
-
-- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
-- Call Skill tool with `aliyun-publisher`
-- Pass the Markdown file path AND `publishTitle` as context
-- Wait for completion, ensure browser closed
-- Record result
-
-### Step 8: Publish to 知乎 (Zhihu)
+### Step 7: Publish to 知乎 (Zhihu)
 
 - Ensure browser closed: `playwright-cli close 2>/dev/null || true`
 - Call Skill tool with `zhihu-publisher`
@@ -179,7 +171,21 @@ If publishTitle IS provided:
 - Wait for completion, ensure browser closed
 - Record result
 
-### Step 9: Publish to 博客园 (Cnblogs)
+### Step 8: Publish to 博客园 (Cnblogs)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `cnblogs-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
+
+### Step 9: Publish to 阿里云 (Aliyun)
+
+- Ensure browser closed: `playwright-cli close 2>/dev/null || true`
+- Call Skill tool with `aliyun-publisher`
+- Pass the Markdown file path AND `publishTitle` as context
+- Wait for completion, ensure browser closed
+- Record result
 
 - Ensure browser closed: `playwright-cli close 2>/dev/null || true`
 - Call Skill tool with `cnblogs-publisher`
@@ -201,9 +207,9 @@ After all platforms are processed, output a summary report:
 ✅ 掘金        - 发布成功
 ✅ InfoQ       - 发布成功
 ✅ 腾讯云      - 发布成功
-✅ 阿里云      - 发布成功
 ✅ 知乎        - 发布成功
 ✅ 博客园      - 发布成功
+✅ 阿里云      - 发布成功
 --------------------------------------------
 成功: 9/9  失败: 0/9
 ============================================
@@ -253,19 +259,6 @@ If all 9 platforms fail, there may be a common issue (e.g., playwright-cli not i
 □ 填写摘要
 □ 点击"确认发布"
 □ 验证成功（URL 变化或用户确认）
-□ 关闭浏览器
-```
-
-### 阿里云强制清单
-```
-□ 打开浏览器 → https://developer.aliyun.com/article/new#/
-□ 填写标题
-□ 填写内容（pbcopy + 粘贴进富文本编辑器）
-□ 填写摘要（最多300字，或用 AI 生成）
-□ 选择子社区 → 下拉选"千问大模型"（AI内容）
-□ 点击"发布文章"
-□ 确认发布弹窗 → 点击"确认"
-□ 验证成功（URL 包含 /article/）
 □ 关闭浏览器
 ```
 
@@ -383,6 +376,19 @@ If all 9 platforms fail, there may be a common issue (e.g., playwright-cli not i
 □ 关闭浏览器
 ```
 
+### 阿里云强制清单
+```
+□ 打开浏览器 → https://developer.aliyun.com/article/new#/
+□ 填写标题
+□ 填写内容（pbcopy + 粘贴进富文本编辑器）
+□ 填写摘要（最多300字，或用 AI 生成）
+□ 选择子社区 → 下拉选"千问大模型"（AI内容）
+□ 点击"发布文章"
+□ 确认发布弹窗 → 点击"确认"
+□ 验证成功（URL 包含 /article/）
+□ 关闭浏览器
+```
+
 ## Implementation Notes for the Agent
 
 When executing this skill, the main agent must:
@@ -393,7 +399,7 @@ When executing this skill, the main agent must:
 4. **Process platforms sequentially**: Do NOT parallelize — each platform needs its own browser session
 5. **51CTO first, 思否 second**: Start with 51CTO (most error-prone), then 思否 (session-sensitive), then the rest
 6. **CRITICAL — Create TaskCreate checklist before each platform**: After loading each platform's publisher skill, immediately create TaskCreate tasks from the platform's 强制清单 above. Mark each item completed as you go. Do NOT skip any item.
-7. **阿里云 goes after 腾讯云**: Both are cloud platforms — group them together in the sequence
+7. **阿里云放最后**: 阿里云 session 容易过期且需要手动登录，放到所有平台之后最后一个发布
 8. **Use Skill tool for each platform**: Call the Skill tool with the appropriate publisher skill name, passing the Markdown file path AND `publishTitle` as context. Also mention the pre-prepared `/tmp/` files.
 9. **Close browser between platforms**: Run `playwright-cli close` after each platform completes (success or failure)
 10. **Track results**: Maintain a list of results as you go (platform, success/failure, error message)

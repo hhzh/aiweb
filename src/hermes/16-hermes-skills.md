@@ -40,7 +40,7 @@ order: 16
 └── .hub/               # 技能仓库缓存
 ```
 
-## 二、技能格式规范（\[SKILL.md\](SKILL.md)）
+## 二、技能格式规范（[SKILL.md](SKILL.md)）
 
 每个技能必须包含 `SKILL.md`，采用 **YAML 前置元数据 + Markdown 正文** 格式，定义技能属性与执行逻辑。
 

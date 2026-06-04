@@ -91,7 +91,7 @@ events:
   - agent:step  # 监听工具调用迭代事件
 ```
 
-### 2.3 处理脚本（\[handler.py\](handler.py)）
+### 2.3 处理脚本（[handler.py](handler.py)）
 
 实现钩子逻辑，需固定 `handle` 函数，支持同步 / 异步：
 
@@ -144,7 +144,7 @@ events:
   - gateway:startup
 ```
 
-2. **创建 \[handler.py\](handler.py)**
+2. **创建 [handler.py](handler.py)**
 
 ```python
 import subprocess
@@ -159,7 +159,7 @@ def handle(event_type: str, context: dict):
     subprocess.run(["hermes", "chat", "--quiet", BOOT_FILE.read_text()])
 ```
 
-3. **创建自检文件（~/.hermes/\[BOOT.md\](BOOT.md)）**
+3. **创建自检文件（~/.hermes/[BOOT.md](BOOT.md)）**
 
 ```text
 1. 检查定时任务状态：hermes cron list

@@ -5,6 +5,14 @@ order: 2
 
 # 更新日志
 
+## 2026-06
+
+- 06-01 新增 Hermes Agent 教程
+
+### Agent 板块更新
+
+新增 [Hermes Agent 教程](/agent/02-agent-hermes-tutorial.html)：从入门到企业级应用实战，覆盖环境部署、MCP 集成、记忆系统、飞书/钉钉集成、Web 搜索等核心功能。
+
 ## 2026-05
 
 - 05-10 网站正式上线
