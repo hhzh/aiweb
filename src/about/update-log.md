@@ -11,7 +11,7 @@ order: 2
 
 ### Agent 板块更新
 
-新增 [Hermes Agent 教程](/agent/02-agent-hermes-tutorial.html)：从入门到企业级应用实战，覆盖环境部署、MCP 集成、记忆系统、飞书/钉钉集成、Web 搜索等核心功能。
+新增 [Hermes Agent 教程](/hermes/)：从入门到企业级应用实战，覆盖环境部署、MCP 集成、记忆系统、飞书/钉钉集成、Web 搜索等核心功能。
 
 ## 2026-05
 

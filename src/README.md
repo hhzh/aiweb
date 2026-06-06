@@ -93,4 +93,5 @@ head:
 🔗 **网站地址**：[https://xiaolinxueai.com](https://xiaolinxueai.com)
 📅 **持续更新**：关注网站，获取最新AI工具教程与技术解析！
 📧 **联系反馈**：如有问题或建议，欢迎邮件联系 **xiaolinxueai@163.com**
+🌐 **友情链接**：[AI3927 - AI网站导航](https://ai3927.com) — 精选AI工具与资源导航站
 
