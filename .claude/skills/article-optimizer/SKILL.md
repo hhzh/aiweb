@@ -99,6 +99,7 @@ flowchart TD
 5. 用 Markdown 排版规范（第五章）逐项扫描，标记排版问题
 6. 根据用户额外的优化要求，标记需要调整的内容
 7. **分析可视化需求**：判断文章内容是否适合增加 Mermaid 流程图/时序图/架构图来辅助理解（见第八章指南）
+8. **检查 frontmatter 与文件名**：检查文章开头是否有完整的 YAML frontmatter（title、order 等字段）；检查文件名是否符合当前项目的编号规范（如 `01-xxx.md` 模式）
 
 输出诊断报告：
 
@@ -113,6 +114,10 @@ flowchart TD
 - ✅ {已具备的步骤}
 - ❌ {缺失的步骤}
 - ⚠️ {存在但薄弱的步骤}
+
+**文件与元数据**：
+- {文件名是否符合编号规范}
+- {是否缺少 title / order 等 frontmatter}
 
 **写作技巧问题**：
 - {问题1}
@@ -152,6 +157,9 @@ flowchart TD
 | 代码示例英文描述 | 改为中文描述，保留代码本身的英文 |
 | 引用不存在的命令 | 替换为通用方案并确认真实存在 |
 | 缺少图表/可视化 | 分析文章逻辑流程，按第八章指南增加 Mermaid 流程图/时序图/架构图 |
+| 缺少 frontmatter | 补充 `title` 和 `order` 字段，确保与目录编号体系一致 |
+| 文件名未编号 | 按项目命名规范重命名文件（如 `NN-short-name.md`） |
+| 免责声明开头 | 改为痛点切入/场景代入，原免责信息转为 `> **访问提示**` 提示框 |
 
 ### 步骤3：执行优化
 
@@ -171,7 +179,13 @@ flowchart TD
   ```
   ```
 
-**注意 frontmatter**：如果原文有 YAML frontmatter（`---` 之间的内容），不要修改或删除它。
+**批量反斜杠清理技巧**：遇到全文大量反斜杠时，不必逐处修改。直接用 Edit 工具的 `replace_all: true` 分三步批量处理：
+   - 第一步：replace_all `\.` → `.`（修复标题编号和域名中的转义点号）
+   - 第二步：replace_all `\+` → `+`（修复加号前的转义）
+   - 第三步：replace_all `\-` → `-`（修复连字符前的转义）
+   - ⚠️ 执行前确认代码块内没有需要保留的反斜杠（正则表达式等）
+
+**注意 frontmatter**：如果原文已有 YAML frontmatter（`---` 之间的内容），保留并更新其中的 `title` 和 `order` 字段；如果缺少 frontmatter，**补充** title（与 H1 一致）和 order（与编号一致）。
 
 ### 步骤4：输出优化报告
 
@@ -281,6 +295,20 @@ flowchart TD
 2. 保持与原文风格一致
 3. 添加过渡句保证衔接自然
 
+### 用户要求补充 frontmatter 或规范化文件名
+
+当文章需要纳入已有编号体系时：
+1. 检查目录中其他文件的编号规律（如 `01-`、`02-` 等），确定下一个可用编号
+2. 在文章开头补充 YAML frontmatter（如果已有则更新）：
+   ```yaml
+   ---
+   title: {文章标题}
+   order: {编号}
+   ---
+   ```
+3. 将文件重命名为 `NN-short-descriptive-name.md`（如 `08-skills-frontend-design-pro-tutorial.md`），并使用 `git mv` 保持 git 跟踪
+4. 确保 frontmatter 的 `title` 与文章的 H1 标题保持一致
+
 ## 七、常见优化模板
 
 ### 重写开篇（痛点切入型）
@@ -381,5 +409,27 @@ graph LR
     end
     A --> C
     B --> D
+```
+```
+
+**分层架构图（flowchart + subgraph）**：
+```text
+**图4：XXX 核心能力架构**
+
+```mermaid
+flowchart LR
+    subgraph 输入层
+        A[用户输入]
+    end
+    subgraph 能力层
+        B[功能1]
+        C[功能2]
+        D[功能3]
+    end
+    subgraph 输出层
+        E[成品输出]
+    end
+    A --> B & C & D
+    B & C & D --> E
 ```
 ```

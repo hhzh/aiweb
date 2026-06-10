@@ -122,25 +122,27 @@ playwright-cli click <publish_button_ref>
 
 ### Step 6: Add Tags
 
-In the publish dialog, add tags by typing and pressing Enter:
+In the publish dialog, add tags by typing and pressing Enter.
+
+**CRITICAL — 月更标签强制要求**：**「月更」必须在第一个添加**，这是 InfoQ 月更活动的必须标签。不添加或不放在首位可能导致文章未被月更活动收录。
 
 ```bash
-# Fill tag input
+# CRITICAL: 必须先将"月更"作为第一个标签添加
+playwright-cli fill <tag_input_ref> "月更"
+playwright-cli press "Enter"
+
+# Add more relevant tags
 playwright-cli fill <tag_input_ref> "AI"
 playwright-cli press "Enter"
 
-# Add more tags
 playwright-cli fill <tag_input_ref> "AI教程"
 playwright-cli press "Enter"
 
 playwright-cli fill <tag_input_ref> "AI 编程"
 playwright-cli press "Enter"
-
-playwright-cli fill <tag_input_ref> "月更"
-playwright-cli press "Enter"
 ```
 
-The tag input has placeholder "输入标签，回车创建". Maximum 5 tags allowed.
+The tag input has placeholder "输入标签，回车创建". Maximum 5 tags allowed. "月更" must always be the first tag added.
 
 ### Step 7: Configure Summary (Optional)
 
