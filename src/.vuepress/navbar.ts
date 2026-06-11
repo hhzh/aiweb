@@ -4,7 +4,7 @@ export default navbar([
     "/",
     {
         text: "Claude Code教程",
-        icon: "snowflake",
+        icon: "star-of-life",
         link: "/claudecode/",
     },
     {
@@ -31,6 +31,11 @@ export default navbar([
         text: "Hermes Agent",
         icon: "horse-head",
         link: "/hermes/",
+    },
+    {
+        text: "OpenCode",
+        icon: "square",
+        link: "/opencode/",
     },
     {
         text: "Tool",

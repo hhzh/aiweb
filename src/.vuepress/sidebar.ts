@@ -52,6 +52,14 @@ export default sidebar({
             children: "structure",
         },
         {
+            text: "OpenCode",
+            icon: "book",
+            prefix: "opencode/",
+            link: "opencode/",
+            collapsible: true,
+            children: "structure",
+        },
+        {
             text: "Tool",
             icon: "toolbox",
             prefix: "tool/",
