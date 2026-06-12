@@ -7,11 +7,16 @@ order: 2
 
 ## 2026-06
 
+- 06-12 新增 OpenCode 教程
 - 06-01 新增 Hermes Agent 教程
 
 ### Agent 板块更新
 
 新增 [Hermes Agent 教程](/hermes/)：从入门到企业级应用实战，覆盖环境部署、MCP 集成、记忆系统、飞书/钉钉集成、Web 搜索等核心功能。
+
+### OpenCode 板块更新
+
+新增 [OpenCode 教程](/opencode/)：共 11 篇，从零基础到高级功能深入，覆盖安装配置、命令使用、工具权限、Skill 技能、插件开发、模型切换、Rule 规则、代理配置、UI 界面与 IDE 集成等核心主题。
 
 ## 2026-05
 
