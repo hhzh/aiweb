@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Hermes Agent cron 定时任务使用教程</title>
+</head>
+<body>
+<section style="max-width: 100%; box-sizing: border-box; padding: 0 8px; font-size: 16px; line-height: 1.75; color: #333; letter-spacing: 0.5px;">
+
+  <h1 style="font-size: 24px; font-weight: bold; color: #1a1a1a; margin: 35px 0 20px; text-align: center;">Hermes Agent cron 定时任务使用教程</h1>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">每天定时汇总数据、检查服务器状态、推送周报——这些重复性工作占据大量时间，却又不得不做。Hermes Agent 内置 <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">cron</code> 定时任务系统，支持<strong style="color: #1a1a1a;">自然语言调度、标准 Cron 表达式、任务全生命周期管理</strong>，自动执行数据汇总、系统监控、消息推送等重复性工作，让你彻底告别人工值守。本文从快速创建、生命周期管理、高级配置到场景实践，带你全面掌握定时任务用法，实现自动化办公与运维。</p>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">一、核心功能概览</h2>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">Hermes cron 采用统一 <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">cronjob</code> 工具管理，核心能力包括：</p>
+
+  <ul style="margin-left: 20px; margin-bottom: 15px; padding-left: 0; list-style: none;">
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">✅ <strong style="color: #1a1a1a;">多格式调度</strong>：支持自然语言、标准 Cron 表达式、相对延迟、ISO 时间戳。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">✅ <strong style="color: #1a1a1a;">全生命周期</strong>：创建、暂停、恢复、立即执行、删除、状态查询。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">✅ <strong style="color: #1a1a1a;">技能集成</strong>：任务执行时自动加载技能，复用成熟工作流。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">✅ <strong style="color: #1a1a1a;">多渠道投递</strong>：结果可发送至 CLI、文件、飞书、钉钉、Telegram 等。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">✅ <strong style="color: #1a1a1a;">环境隔离</strong>：支持指定工作目录、用户配置文件，任务独立会话运行。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">✅ <strong style="color: #1a1a1a;">低成本模式</strong>：支持纯脚本执行，无需 LLM，节省资源。</li>
+  </ul>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">二、快速创建定时任务</h2>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">2.1 自然语言创建（最便捷）</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">直接用日常语言描述任务与调度，Hermes 自动解析：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;">每天早上9点汇总AI行业新闻，发送到飞书
+每隔30分钟检查服务器CPU使用率，超过90%发钉钉告警
+每周五下午6点生成本周工作周报，保存到本地</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">2.2 斜杠命令创建（对话内）</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">在交互式会话中用 <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">/cron</code> 命令快速创建：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 间隔任务：每2小时检查接口状态
+/cron add "every 2h" "检查https://api.example.com接口可用性"
+
+# 每日任务：工作日9点发送日报
+/cron add "0 9 * * 1-5" "汇总昨日数据，生成日报"
+
+# 一次性任务：30分钟后提醒会议
+/cron add 30m "提醒10点项目会议"</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">2.3 CLI 命令创建（终端）</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 基础间隔任务
+hermes cron create "every 6h" "备份数据库"
+
+# 带技能任务：加载博客监控技能
+hermes cron create "0 8 * * *" "汇总新博客" --skill blogwatcher
+
+# 指定工作目录与配置文件
+hermes cron create "every 1d" "审计代码" --workdir ~/project --profile dev</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">2.4 调度格式大全</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">1. 相对延迟（一次性）</strong></p>
+
+  <ul style="margin-left: 20px; margin-bottom: 15px; padding-left: 0; list-style: none;">
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">30m</code>：30 分钟后执行</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">2h</code>：2 小时后执行</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">1d</code>：1 天后执行</li>
+  </ul>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">2. 间隔调度（重复）</strong></p>
+
+  <ul style="margin-left: 20px; margin-bottom: 15px; padding-left: 0; list-style: none;">
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">every 30m</code>：每 30 分钟</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">every 2h</code>：每 2 小时</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">every 1d</code>：每天</li>
+  </ul>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">3. 标准 Cron 表达式</strong></p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 分 时 日 月 周
+0 9 * * *       # 每天9点
+0 9 * * 1-5     # 工作日9点
+0 */6 * * *     # 每6小时
+30 8 1 * *      # 每月1日8:30</code></pre>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">4. ISO 时间戳（一次性）</strong></p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;">2026-12-31T18:00:00  # 2026年12月31日18点执行</code></pre>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">三、任务生命周期管理</h2>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">图1：Cron 任务生命周期流程</strong></p>
+
+  <blockquote style="margin: 20px 0; padding: 15px 20px; background: #f9f9f9; border-left: 4px solid #07c160; color: #666; font-size: 15px;">
+    <p style="margin: 0; font-size: 15px; color: #666; text-align: justify; line-height: 1.75;">流程图说明：创建任务 → 运行中。运行中可暂停 → 已暂停（可恢复 → 运行中），或立即执行 → 执行一次（回到运行中），或删除 → 已删除。已暂停也可直接删除 → 已删除。</p>
+  </blockquote>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">3.1 查看任务列表</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 简要列表
+hermes cron list
+
+# 详细状态（含上次/下次执行时间）
+hermes cron status</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">3.2 编辑任务</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 修改调度时间
+hermes cron edit &lt;任务ID&gt; --schedule "every 4h"
+
+# 修改任务内容
+hermes cron edit &lt;任务ID&gt; --prompt "更新数据备份脚本"
+
+# 追加技能
+hermes cron edit &lt;任务ID&gt; --add-skill database
+
+# 移除技能
+hermes cron edit &lt;任务ID&gt; --remove-skill blogwatcher</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">3.3 暂停 / 恢复任务</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 暂停（保留配置，停止调度）
+hermes cron pause &lt;任务ID&gt;
+
+# 恢复（重新计算下次执行时间）
+hermes cron resume &lt;任务ID&gt;</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">3.4 立即执行任务</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 跳过调度，立即运行
+hermes cron run &lt;任务ID&gt;</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">3.5 删除任务</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 单个删除
+hermes cron remove &lt;任务ID&gt;
+
+# 批量删除已暂停任务
+hermes cron remove --paused</code></pre>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">四、高级核心配置</h2>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">4.1 技能集成（复用工作流）</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">任务可加载 1 个或多个技能，自动复用成熟流程：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 加载单个技能
+hermes cron create "0 9 * * *" "汇总资讯" --skill news-watcher
+
+# 加载多个技能
+hermes cron create "every 12h" "生成报告" --skill data-process --skill report-generate</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">4.2 指定执行环境</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">1. 工作目录</strong></p>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">指定任务运行目录，自动加载目录下 <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">AGENTS.md</code> 规范：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;">hermes cron create "every 1d" "审计代码" --workdir ~/my-project</code></pre>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">2. 用户配置文件</strong></p>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">绑定指定 Profile，使用独立配置 / 密钥：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;">hermes cron create "0 2 * * *" "备份数据" --profile prod</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">4.3 结果投递配置</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">支持多渠道发送结果，默认返回创建会话：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 发送到飞书
+hermes cron create "0 9 * * *" "发送日报" --deliver feishu
+
+# 保存到本地文件
+hermes cron create "every 6h" "备份日志" --deliver local
+
+# 发送到指定Telegram群组
+hermes cron create "every 1h" "监控告警" --deliver telegram:-100123456</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">4.4 静默模式（仅异常通知）</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">任务正常时不发送通知，失败 / 异常才告警：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;">每5分钟检查Nginx状态，正常输出，异常发送告警</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">4.5 无 Agent 模式（纯脚本）</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">无需 LLM，直接执行 Shell/Python 脚本，节省资源：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 每5分钟检查内存，脚本路径~/.hermes/scripts
+hermes cron create "every 5m" --no-agent --script memory-check.sh</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">4.6 任务串联（依赖执行）</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">后一个任务继承前一个任务输出，实现流水线：</p>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 任务1：每日7点抓取新闻
+hermes cron create "0 7 * * *" "抓取新闻" --name news-fetch
+
+# 任务2：7:30汇总任务1结果
+hermes cron create "30 7 * * *" "汇总新闻" --context-from news-fetch</code></pre>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">五、工作原理与安全</h2>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">5.1 调度机制</h3>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">定时任务由 <strong style="color: #1a1a1a;">Gateway 守护进程</strong> 统一调度，每 60 秒扫描到期任务：</p>
+
+  <ol style="margin-left: 20px; margin-bottom: 15px; padding-left: 0;">
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">从 <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">~/.hermes/cron/jobs.json</code> 加载任务</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">对比当前时间，筛选到期任务</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">独立会话运行任务，隔离上下文</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;">执行完成后投递结果，更新下次执行时间</li>
+  </ol>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">5.2 安全防护</h3>
+
+  <ul style="margin-left: 20px; margin-bottom: 15px; padding-left: 0; list-style: none;">
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">提示注入扫描</strong>：拦截含恶意指令、凭证泄露的任务。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">脚本沙箱</strong>：无 Agent 模式脚本仅允许 <code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">~/.hermes/scripts</code> 目录。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">任务隔离</strong>：每个任务独立会话，互不干扰。</li>
+  </ul>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">六、场景实践示例</h2>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">6.1 日常数据汇总</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 工作日9点汇总昨日业务数据，发送飞书
+hermes cron create "0 9 * * 1-5" \
+"查询数据库，汇总订单、用户数据，生成Markdown报表" \
+--deliver feishu</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">6.2 系统监控告警</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 每10分钟检查服务器CPU/内存，超阈值发钉钉告警
+hermes cron create "every 10m" \
+"检查CPU（&gt;90%）、内存（&gt;85%），异常发送告警" \
+--deliver dingtalk</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">6.3 自动化备份</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 每日2点备份数据库，保存到本地+同步到云
+hermes cron create "0 2 * * *" \
+"执行PostgreSQL备份，保存到~/backup并同步到阿里云OSS" \
+--workdir ~/scripts</code></pre>
+
+  <h3 style="font-size: 18px; font-weight: bold; color: #333; margin: 25px 0 10px; padding-left: 10px; border-left: 4px solid #07c160;">6.4 内容自动生成</h3>
+
+  <pre style="background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"><code style="background: transparent; padding: 0; font-family: monospace; font-size: 14px; color: #333; white-space: pre-wrap;"># 每周五18点生成本周技术周报，保存到本地
+hermes cron create "0 18 * * 5" \
+"汇总本周代码提交、接口变更，生成Markdown周报" \
+--deliver local</code></pre>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">七、常见问题排查</h2>
+
+  <ol style="margin-left: 20px; margin-bottom: 15px; padding-left: 0;">
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">任务不执行</strong>：检查 Gateway 是否运行（<code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">hermes gateway status</code>）。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">技能加载失败</strong>：确认技能已安装（<code style="background: #f6f8fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 14px;">hermes skills list</code>）。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">投递失败</strong>：检查渠道配置（如飞书 AppID / 密钥）。</li>
+    <li style="margin-bottom: 10px; font-size: 16px; line-height: 1.75; color: #333;"><strong style="color: #1a1a1a;">无 Agent 模式报错</strong>：确认脚本存在、有执行权限。</li>
+  </ol>
+
+  <h2 style="font-size: 20px; font-weight: bold; color: #1a1a1a; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 1px solid #eee;">八、总结</h2>
+
+  <p style="margin-bottom: 20px; text-align: justify; font-size: 16px; line-height: 1.75; color: #333;">Hermes cron 以<strong style="color: #1a1a1a;">自然语言调度、全生命周期管理、高可用集成</strong>为核心，无需复杂配置即可实现各类自动化任务。无论是日常办公、系统运维还是数据处理，都能通过简单指令实现无人值守，大幅提升工作效率。结合技能集成、环境隔离、任务串联等高级能力，可构建完整自动化流水线，适配复杂业务场景。</p>
+
+</section>
+</body>
+</html>
