@@ -106,9 +106,9 @@ docker run -it --rm ghcr.io/anomalyco/opencode
 
 2. 在界面中输入命令连接模型：
 
-    ```bash
-    /connect
-    ```
+```bash
+/connect
+```
 
 3. 选择 `opencode` 作为提供商，根据提示跳转至 `opencode.ai/auth` 页面；
 
@@ -124,21 +124,21 @@ docker run -it --rm ghcr.io/anomalyco/opencode
 
 1. 通过 `cd` 命令进入目标项目根目录：
 
-    ```bash
-    cd /path/to/your/project
-    ```
+```bash
+cd /path/to/your/project
+```
 
 2. 启动 OpenCode：
 
-    ```bash
-    opencode
-    ```
+```bash
+opencode
+```
 
 3. 执行初始化命令，工具会自动分析项目，并在根目录生成 `AGENTS.md` 文件：
 
-    ```bash
-    /init
-    ```
+```bash
+/init
+```
 
 > 重要提示：请将 `AGENTS.md` 文件提交至 Git 仓库。该文件记录了项目结构、编码规则等信息，能帮助 OpenCode 长期适配项目风格，保证代码修改的一致性。
 > 
@@ -246,16 +246,16 @@ opencode
 
 1. WSL 终端启动服务，开放外部访问权限：
 
-    ```bash
-    # 基础启动（开放局域网连接）
-    opencode serve --hostname 0.0.0.0 --port 4096
-    ```
+```bash
+# 基础启动（开放局域网连接）
+opencode serve --hostname 0.0.0.0 --port 4096
+```
 
 2. 安全加固：开启外网访问时，必须设置服务密码防止恶意访问：
 
-    ```bash
-    OPENCODE_SERVER_PASSWORD=自定义密码 opencode serve --hostname 0.0.0.0
-    ```
+```bash
+OPENCODE_SERVER_PASSWORD=自定义密码 opencode serve --hostname 0.0.0.0
+```
 
 3. 连接方式：
 

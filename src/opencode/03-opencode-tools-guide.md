@@ -248,18 +248,18 @@ export const multiply = tool({
 - 场景 1：主动覆盖（如需改造原有 bash 能力）
 示例：自定义受限版 bash 工具，拦截高危命令（`.opencode/tools/bash.ts`）
 
-    ```typescript
-    import { tool } from "@opencode-ai/plugin"
-    export default tool({
-      description: "Restricted bash wrapper",
-      args: {
-        command: tool.schema.string(),
-      },
-      async execute(args) {
-        return `blocked: ${args.command}`
-      },
-    })
-    ```
+```typescript
+import { tool } from "@opencode-ai/plugin"
+export default tool({
+  description: "Restricted bash wrapper",
+  args: {
+    command: tool.schema.string(),
+  },
+  async execute(args) {
+    return `blocked: ${args.command}`
+  },
+})
+```
 
 - 场景 2：规避冲突 / 禁用内置工具
 若无覆盖需求，建议使用独特工具名；若需要保留内置工具、仅禁用自定义工具，可通过 `permission` 权限配置管控。
@@ -270,27 +270,27 @@ export const multiply = tool({
 
 1. 基于 `tool.schema`（官方封装，推荐，自带类型提示）
 
-    ```typescript
-    args: {
-      query: tool.schema.string().describe("SQL query to execute")
-    }
-    ```
+```typescript
+args: {
+  query: tool.schema.string().describe("SQL query to execute")
+}
+```
 
 2. 原生导入 Zod（灵活适配复杂参数结构）
 
-    ```typescript
-    import { z } from "zod"
-    export default {
-      description: "Tool description",
-      args: {
-        param: z.string().describe("Parameter description"),
-      },
-      async execute(args, context) {
-        // 工具逻辑
-        return "result"
-      },
-    }
-    ```
+```typescript
+import { z } from "zod"
+export default {
+  description: "Tool description",
+  args: {
+    param: z.string().describe("Parameter description"),
+  },
+  async execute(args, context) {
+    // 工具逻辑
+    return "result"
+  },
+}
+```
 
 #### 3.1.6 会话上下文（context）
 
@@ -326,34 +326,34 @@ export default tool({
 
 1. 第一步：编写 Python 脚本（`.opencode/tools/add.py`）
 
-    ```python
-    import sys
-    a = int(sys.argv[1])
-    b = int(sys.argv[2])
-    print(a + b)
-    ```
+```python
+import sys
+a = int(sys.argv[1])
+b = int(sys.argv[2])
+print(a + b)
+```
 
 2. 第二步：编写 TS 调度工具（`.opencode/tools/python-add.ts`）
 
-    ```typescript
-    import { tool } from "@opencode-ai/plugin"
-    import path from "path"
-    
-    export default tool({
-      description: "Add two numbers using Python",
-      args: {
-        a: tool.schema.number().describe("First number"),
-        b: tool.schema.number().describe("Second number"),
-      },
-      async execute(args, context) {
-        // 拼接脚本路径
-        const script = path.join(context.worktree, ".opencode/tools/add.py")
-        // 调用 Python 脚本（基于 Bun 执行命令）
-        const result = await Bun.$`python3 ${script} ${args.a} ${args.b}`.text()
-        return result.trim()
-      },
-    })
-    ```
+```typescript
+import { tool } from "@opencode-ai/plugin"
+import path from "path"
+
+export default tool({
+  description: "Add two numbers using Python",
+  args: {
+    a: tool.schema.number().describe("First number"),
+    b: tool.schema.number().describe("Second number"),
+  },
+  async execute(args, context) {
+    // 拼接脚本路径
+    const script = path.join(context.worktree, ".opencode/tools/add.py")
+    // 调用 Python 脚本（基于 Bun 执行命令）
+    const result = await Bun.$`python3 ${script} ${args.a} ${args.b}`.text()
+    return result.trim()
+  },
+})
+```
 
 ### 3.2 MCP 服务器集成
 
